@@ -80,72 +80,37 @@
 			<ul>
 				<li>Mon 
 					<c:forEach var="current" items="${restaurantSchedule }">
-							<span>
-								<c:if test="${current.id == 1 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
-							<span>
-								<c:if test="${current.id == 2 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
+						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
-				<li>Mar 
+				<li>Mar  
 					<c:forEach var="current" items="${restaurantSchedule }">
-							<span>
-								<c:if test="${current.id == 1 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
-							<span>
-								<c:if test="${current.id == 2 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
+						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Mer 
 					<c:forEach var="current" items="${restaurantSchedule }">
-							<span>
-								<c:if test="${current.id == 1 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
-							<span>
-								<c:if test="${current.id == 2 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
+						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Jeu 
 					<c:forEach var="current" items="${restaurantSchedule }">
-							<span>
-								<c:if test="${current.id == 1 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
-							<span>
-								<c:if test="${current.id == 2 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
+						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Fri 
 					<c:forEach var="current" items="${restaurantSchedule }">
-							<span>
-								<c:if test="${current.id == 1 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
-							<span>
-								<c:if test="${current.id == 2 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
+						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Sam 
 					<c:forEach var="current" items="${restaurantSchedule }">
-							<span>
-								<c:if test="${current.id == 1 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
-							<span>
-								<c:if test="${current.id == 2 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
+						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Dim 
 					<c:forEach var="current" items="${restaurantSchedule }">
-							<span>
-								<c:if test="${current.id == 1 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
-							<span>
-								<c:if test="${current.id == 2 }">${current.openHour }-${current.closeHour }</c:if>
-							</span>
+						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 			</ul>
