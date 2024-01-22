@@ -29,4 +29,14 @@
     <servlet-name>ServletConnection</servlet-name>
     <url-pattern>/connection</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletProfil</display-name>
+    <servlet-name>ServletProfil</servlet-name>
+    <servlet-class>controller.ServletProfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletProfil</servlet-name>
+    <url-pattern>/ServletProfil</url-pattern>
+  </servlet-mapping>
 </web-app>
