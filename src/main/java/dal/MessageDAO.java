@@ -1,7 +1,6 @@
 package dal;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,18 @@ public class MessageDAO {
 	private Connection cnx;
 	
 	public MessageDAO() throws DALException {
-		cnx = ConnectionProvider.getConnection();
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
+			cnx = dataSource.getConnection();
+			if(!cnx.isClosed()) {
+				System.out.println("La connexion est ouverte");
+			}
+		} catch (SQLException e) {
+			throw new DALException("Erreur de connexion a la base de donnees", e);
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	//======================================

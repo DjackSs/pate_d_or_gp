@@ -7,6 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import bo.User;
 
 public class UserDAO {
@@ -19,7 +24,18 @@ public class UserDAO {
 	private Connection cnx;
 
 	public UserDAO() throws DALException {
-		cnx = ConnectionProvider.getConnection();
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
+			cnx = dataSource.getConnection();
+			if(!cnx.isClosed()) {
+				System.out.println("La connexion est ouverte");
+			}
+		} catch (SQLException e) {
+			throw new DALException("Erreur de connexion a la base de donnees", e);
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	//======================================

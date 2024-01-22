@@ -31,12 +31,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ServletProfil</display-name>
-    <servlet-name>ServletProfil</servlet-name>
-    <servlet-class>controller.ServletProfil</servlet-class>
+    <display-name>ServletUserPage</display-name>
+    <servlet-name>ServletUserPage</servlet-name>
+    <servlet-class>controller.ServletUserPage</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ServletProfil</servlet-name>
-    <url-pattern>/profil</url-pattern>
+    <servlet-name>ServletUserPage</servlet-name>
+    <url-pattern>/user</url-pattern>
   </servlet-mapping>
 </web-app>
