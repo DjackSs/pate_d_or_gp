@@ -19,7 +19,7 @@ public class ReservationDAO {
 	private static final String SELECT = "SELECT * FROM reservations";
 	private static final String SELECT_BY_ID = "SELECT * FROM reservations WHERE id = ?";
 	private static final String INSERT_INTO_RESERVATIONS = "INSERT INTO reservations (reservation_time, state, id_table, id_user) VALUES (?, ?, ?, ?)";
-	private static final String UPDATE = "UPDATE reservations SET reservation_time = ?, state = ?, id_table = ?, id_user = ?, role = ? WHERE id = ?";
+	private static final String UPDATE = "UPDATE reservations SET reservation_time = ?, state = ?, id_table = ?, id_user = ? WHERE id = ?";
 	private static final String DELETE = "DELETE FROM reservations WHERE id = ?";
 	//	
 	private Connection cnx;
