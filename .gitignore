@@ -181,7 +181,7 @@ local.properties
 *.rar
 
 
-#src/main/webapp/META-INF/context.xml
+src/main/webapp/META-INF/context.xml
 
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml

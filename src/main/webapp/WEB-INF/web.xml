@@ -9,4 +9,24 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ServletHome</display-name>
+    <servlet-name>ServletHome</servlet-name>
+    <servlet-class>controller.ServletHome</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletHome</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletConnection</display-name>
+    <servlet-name>ServletConnection</servlet-name>
+    <servlet-class>controller.ServletConnection</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletConnection</servlet-name>
+    <url-pattern>/connection</url-pattern>
+  </servlet-mapping>
 </web-app>
