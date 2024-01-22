@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>PROFIL UTILISATEUR</h1>
-
+	
 </body>
 </html>
