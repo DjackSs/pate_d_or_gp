@@ -29,4 +29,14 @@
     <servlet-name>ServletConnection</servlet-name>
     <url-pattern>/connection</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletRestaurant</display-name>
+    <servlet-name>ServletRestaurant</servlet-name>
+    <servlet-class>controller.ServletRestaurant</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletRestaurant</servlet-name>
+    <url-pattern>/restaurant</url-pattern>
+  </servlet-mapping>
 </web-app>
