@@ -6,7 +6,12 @@ import bo.User;
 import dal.DALException;
 import dal.UserDAO;
 
-public class UserBLL {
+public class UserBLL 
+{
+	private static final int EMAIL_MAX_LENGTH = 60;
+	private static final int PASSWORD_MAX_LENGTH = 60;
+	private static final int MIN_LENGTH = 2;
+	
 	private UserDAO dao;
 	
 	public UserBLL() throws BLLException {
@@ -38,6 +43,51 @@ public class UserBLL {
 			return dao.selectById(id);
 		} catch (DALException e) {
 			throw new BLLException("Echec de la recuperation de l'utilisateur d'id " + id, e);
+		}
+	}
+	
+	//======================================
+	
+	public User selectByEmailAndPassword(String email, String password) throws BLLException 
+	{
+		
+		//email
+		// regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(email.length() > EMAIL_MAX_LENGTH)
+		{
+			throw new BLLException("Email is too big", null);
+					
+		}
+		
+		if(email.length() < MIN_LENGTH)
+		{
+			throw new BLLException("Email name is too small", null);
+			
+		}
+		
+		//password
+		//regexMdp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,15}$/;
+	    // To check a password between 6 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
+		if(password.length() > PASSWORD_MAX_LENGTH)
+		{
+			throw new BLLException("Password invalid", null);
+					
+		}
+		
+		if(password.length() < MIN_LENGTH)
+		{
+			throw new BLLException("Password invalid", null);
+			
+		}
+		
+		
+		try 
+		{
+			return dao.selectByEmailAndPassword(email, password);
+		} 
+		catch (DALException e) 
+		{
+			throw new BLLException("Echec de l'autentification ", e);
 		}
 	}
 	

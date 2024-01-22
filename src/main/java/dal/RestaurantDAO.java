@@ -60,6 +60,7 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 		{
 			e.printStackTrace();
 		}
+
 			
 	}
 	

@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-public class ServletConnection extends HttpServlet 
+public class ServletInscription extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -23,21 +23,20 @@ public class ServletConnection extends HttpServlet
 	public void init() throws ServletException 
 	{
 		super.init();
-		
 		try 
 		{
 			this.userBLL = new UserBLL();
-			
 		} 
 		catch (BLLException e) 
 		{
 			e.printStackTrace();
 		}
 	}
-   
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnection.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPInscription.jsp");
 		
 		rd.forward(request, response);
 		
@@ -47,23 +46,26 @@ public class ServletConnection extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
+		
 		try 
 		{
+		
 			User newUser = new User();
 			
+			newUser.setName(request.getParameter("name"));
+			newUser.setLastname(request.getParameter("lastname"));
 			newUser.setEmail(request.getParameter("email"));
 			newUser.setPassword(request.getParameter("password"));
 			
-			User trueUser = this.userBLL.selectByEmailAndPassword(newUser.getEmail(), newUser.getPassword());
+			newUser.setRole("cust");
+			
+			newUser = this.userBLL.insert(newUser.getName(), newUser.getLastname(), newUser.getEmail(), newUser.getPassword(), newUser.getRole());
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPUserPage.jsp");
 			
-			
-			
-			request.setAttribute("user", trueUser);
+			request.setAttribute("user", newUser);
 			
 			rd.forward(request, response);
-			
 				
 			
 		} 
@@ -79,6 +81,12 @@ public class ServletConnection extends HttpServlet
 			response.sendRedirect("home");
 			
 		}
+		
+		
+		
+		
+		
+		
 		
 	}
 

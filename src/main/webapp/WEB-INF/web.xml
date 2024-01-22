@@ -39,4 +39,14 @@
     <servlet-name>ServletProfil</servlet-name>
     <url-pattern>/ServletProfil</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletInscription</display-name>
+    <servlet-name>ServletInscription</servlet-name>
+    <servlet-class>controller.ServletInscription</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletInscription</servlet-name>
+    <url-pattern>/inscription</url-pattern>
+  </servlet-mapping>
 </web-app>

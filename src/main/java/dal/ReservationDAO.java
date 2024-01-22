@@ -51,7 +51,7 @@ public class ReservationDAO {
 			while(rs.next()) {
 				Reservation reservation = new Reservation();
 				reservation.setId(rs.getInt("id"));
-				reservation.setReservationTimer(rs.getDate("reservation_time").toLocalDate());
+				//reservation.setReservationTimer(rs.getDate("reservation_time").toLocalDate());
 				reservation.setState(rs.getString("state"));
 				reservation.setIdTable(rs.getInt("id_table"));
 				reservation.setIdUser(rs.getInt("id_user"));
