@@ -37,6 +37,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletProfil</servlet-name>
-    <url-pattern>/ServletProfil</url-pattern>
+    <url-pattern>/profil</url-pattern>
   </servlet-mapping>
 </web-app>
