@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Profil</title>
 </head>
 <body>
 	<h1>PROFIL UTILISATEUR</h1>
