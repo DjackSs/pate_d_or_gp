@@ -1,7 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 import bll.BLLException;
 import bll.UserBLL;
@@ -34,9 +39,27 @@ public class ServletConnection extends HttpServlet
 			e.printStackTrace();
 		}
 	}
+	
+	
+		
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		
+		
+		String plainText = "text" + "salt";
+		System.out.println(plainText);
+		MessageDigest messageDigest;
+		try {
+			messageDigest = MessageDigest.getInstance("SHA-512");
+			byte[] hash = messageDigest.digest( plainText.getBytes() );
+			System.out.println("Result: " + new String(hash));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnection.jsp");
 		
 		rd.forward(request, response);
@@ -46,6 +69,8 @@ public class ServletConnection extends HttpServlet
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		
+	
 		
 		try 
 		{
