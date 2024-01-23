@@ -28,8 +28,8 @@ public class UserDAO {
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
 			cnx = dataSource.getConnection();
-			if(!cnx.isClosed())	{
-				System.out.println("la connection est ouverte");
+			if(!cnx.isClosed()) {
+				System.out.println("La connexion est ouverte");
 			}
 		} catch (SQLException e) {
 			throw new DALException("Erreur de connexion a la base de donnees", e);
