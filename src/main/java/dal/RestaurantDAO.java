@@ -48,6 +48,7 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
+
 	}
 	
 	

@@ -17,6 +17,7 @@ import bo.User;
 public class UserDAO {
 	private static final String SELECT = "SELECT * FROM users";
 	private static final String SELECT_BY_ID = "SELECT * FROM users WHERE id = ?";
+	private static final String SELECT_BY_EMAIL_AND_PASSWORD = "SELECT * FROM users WHERE Users.email = ? and Users.password = ?";	
 	private static final String INSERT_INTO_USERS = "INSERT INTO users (name, lastname, email, password, role) VALUES (?, ?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE users SET name = ?, lastname = ?, email = ?, password = ?, role = ? WHERE id = ?";
 	private static final String DELETE = "DELETE FROM users WHERE id = ?";
@@ -24,16 +25,26 @@ public class UserDAO {
 	private Connection cnx;
 
 	public UserDAO() throws DALException {
-		try {
+		try
+		{
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
+
 			cnx = dataSource.getConnection();
 			if(!cnx.isClosed()) {
 				System.out.println("La connexion est ouverte");
+
 			}
-		} catch (SQLException e) {
-			throw new DALException("Erreur de connexion a la base de donnees", e);
-		} catch (NamingException e) {
+		
+		
+		} 
+		catch (SQLException error) 
+		{
+			
+			throw new DALException("erreur de conexion à la base de donnée", error);
+		}
+		catch (NamingException e) 
+		{
 			e.printStackTrace();
 		}
 	}
@@ -95,6 +106,38 @@ public class UserDAO {
 
 		return user;
 	}
+	
+	//======================================
+
+		public User selectByEmailAndPassword(String email, String password) throws DALException {
+
+			User user = null;
+
+			try {
+
+				PreparedStatement ps = cnx.prepareStatement(SELECT_BY_EMAIL_AND_PASSWORD);
+
+				ps.setString(1, email);
+				ps.setString(2, password);
+
+				ResultSet rs = ps.executeQuery();
+
+				if(rs.next()) {
+					user = new User();
+					user.setId(rs.getInt("id"));
+					user.setName(rs.getString("name"));
+					user.setLastname(rs.getString("lastname"));
+					user.setEmail(rs.getString("email"));
+					user.setPassword(rs.getString("password"));
+					user.setRole(rs.getString("role"));
+				}
+			} 
+			catch (SQLException error) {
+				throw new DALException("Unable to recover the data", error);
+			}
+
+			return user;
+		}
 
 	//======================================
 

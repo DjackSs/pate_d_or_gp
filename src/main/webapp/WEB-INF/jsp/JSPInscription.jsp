@@ -6,17 +6,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pate D'Or - Connection</title>
+<title>Pate D'Or - Inscription</title>
 </head>
 <body>
 	<%@include file="../jspf/header.jspf" %>
 	
 	<main>
 	<section>
-	<h1>Connectez vous :</h1>
-	<form method="post" action="connection">
+	<h1>Crée votre compte ::</h1>
+	<form method="post" action="inscription">
 		<fieldset>
-			<legend>Saisissez vous identifiants :</legend>
+			<legend>Saisissez vous informations :</legend>
+			
+			<label for="name">Nom</label>
+			<input type="text" name="name" id="name">
+			
+			<label for="lastname">Prénom</label>
+			<input type="text" name="lastname" id="lastname">
 			
 			<label for="email">Email</label>
 			<input type="email" name="email" id="email">
@@ -24,18 +30,15 @@
 			<label for="password">Mot de passe</label>
 			<input type="password" name="password" id="password">
 			
-			<input type="submit" value="Connection">
+			<input type="submit" value="Inscription">
 		
 		</fieldset>
 	
 	
 	</form>
 	</section>
-	<h2>Pas de compte ?</h2>
-	<a href="inscription" >Inscrivez vous</a>
-	<section>
-	</section>
 	</main>
+	
 
 </body>
 </html>
