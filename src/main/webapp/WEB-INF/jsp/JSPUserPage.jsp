@@ -9,7 +9,9 @@
 <title>Profil</title>
 </head>
 <body>
-	<%@ include file="../jspf/header.jspf"%>
+
+	<%@include file="../jspf/header.jspf" %>
+	
 	<h1>PROFIL UTILISATEUR</h1>
 	<div></div>
 	<img alt="avatar_neutre" src="././img/avatar-neutre.webp">
@@ -21,7 +23,7 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Heure de réservation</th>
+				<th>Heure de rÃ©servation</th>
 				<th>etat</th>
 				<th>id_table</th>
 			</tr>

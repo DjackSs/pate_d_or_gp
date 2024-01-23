@@ -60,12 +60,11 @@ public class ServletInscription extends HttpServlet
 			newUser.setRole("cust");
 			
 			newUser = this.userBLL.insert(newUser.getName(), newUser.getLastname(), newUser.getEmail(), newUser.getPassword(), newUser.getRole());
+
+			request.getSession().setAttribute("user", newUser);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPUserPage.jsp");
+			response.sendRedirect(request.getContextPath()+"/user");
 			
-			request.setAttribute("user", newUser);
-			
-			rd.forward(request, response);
 				
 			
 		} 
