@@ -61,7 +61,7 @@ public class ServletInscription extends HttpServlet
 			
 			newUser = this.userBLL.insert(newUser.getName(), newUser.getLastname(), newUser.getEmail(), newUser.getPassword(), newUser.getRole());
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPUserPage.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPUserPage.jsp");
 			
 			request.setAttribute("user", newUser);
 			
