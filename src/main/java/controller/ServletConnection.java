@@ -47,19 +47,6 @@ public class ServletConnection extends HttpServlet
 	{
 		
 		
-		String plainText = "text" + "salt";
-		System.out.println(plainText);
-		MessageDigest messageDigest;
-		try {
-			messageDigest = MessageDigest.getInstance("SHA-512");
-			byte[] hash = messageDigest.digest( plainText.getBytes() );
-			System.out.println("Result: " + new String(hash));
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnection.jsp");
 		
 		rd.forward(request, response);
