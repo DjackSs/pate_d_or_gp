@@ -5,8 +5,7 @@ import java.util.List;
 
 import bll.BLLException;
 import bll.ReservationBLL;
-import bll.UserBLL;
-import bo.Reservation;
+import bo.ReservationWithRestaurant;
 import bo.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -22,7 +21,6 @@ public class ServletUserPage extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		try {
-			userBLL = new UserBLL();
 			reservationBLL = new ReservationBLL();
 		} catch (BLLException e) {
 			e.printStackTrace();
@@ -31,19 +29,15 @@ public class ServletUserPage extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		if(request.getParameter("deco") != null)
-		{
+		if(request.getParameter("deco") != null) {
 			request.getSession().setAttribute("user", null);
 			
 			response.sendRedirect(request.getContextPath()+"/home");
 			
-		}
-		
-		else
-		{
-		    List<Reservation> reservations = null;
+		} else {
+		    List<ReservationWithRestaurant> reservations = null;
 		    try {
-		        reservations = reservationBLL.selectReservationByIdUser(((User) request.getSession().getAttribute("user")).getId());
+		        reservations = reservationBLL.selectReservationWithRestaurantByIdUser(((User) request.getSession().getAttribute("user")).getId());
 		    } catch (BLLException e) {
 		        e.printStackTrace();
 		    }
