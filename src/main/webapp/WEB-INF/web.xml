@@ -31,6 +31,15 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ServletRestaurant</display-name>
+    <servlet-name>ServletRestaurant</servlet-name>
+    <servlet-class>controller.ServletRestaurant</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletRestaurant</servlet-name>
+    <url-pattern>/restaurant</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <display-name>ServletUserPage</display-name>
     <servlet-name>ServletUserPage</servlet-name>
     <servlet-class>controller.ServletUserPage</servlet-class>
@@ -58,5 +67,5 @@
   <servlet-mapping>
     <servlet-name>ServletInscription</servlet-name>
     <url-pattern>/inscription</url-pattern>
-  </servlet-mapping>
+</servlet-mapping>
 </web-app>
