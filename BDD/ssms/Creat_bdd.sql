@@ -53,10 +53,8 @@ CREATE TABLE Users (
     role            char(4)         not null default 'cus',
 
     check( role in('cust', 'admi', 'staf'))
-
-
-	
 );
+
 
 CREATE TABLE Reservations (
 	id				    INT				PRIMARY KEY identity,
@@ -112,7 +110,6 @@ CREATE TABLE Orders_Dishes (
 
     FOREIGN KEY (id_order) REFERENCES Orders(id) on delete cascade,
     FOREIGN KEY (id_dish) REFERENCES Dishes(id),
-    
-
-
 );
+
+
