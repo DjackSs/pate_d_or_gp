@@ -39,4 +39,14 @@
     <servlet-name>ServletUserPage</servlet-name>
     <url-pattern>/user</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletReservationByUser</display-name>
+    <servlet-name>ServletReservationByUser</servlet-name>
+    <servlet-class>controller.ServletReservationByUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletReservationByUser</servlet-name>
+    <url-pattern>/ServletReservationByUser</url-pattern>
+  </servlet-mapping>
 </web-app>

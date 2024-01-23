@@ -44,6 +44,27 @@ public class ReservationBLL {
 	
 	//======================================
 	
+	public List<Reservation> selectReservationByIdUser(int idUser) throws BLLException {
+		
+		try {
+			return dao.selectByKeyIdUser(idUser);
+		} catch (DALException error) {
+			throw new BLLException("Echec de la recuperation des utilisateurs associés aux réservations" + idUser, error);
+		}
+	}
+	//======================================
+	
+	public List<Reservation> selectReservationByIdTable(int idTable) throws BLLException {
+		
+		try {
+			return dao.selectByKeyIdTable(idTable);
+		} catch (DALException error) {
+			throw new BLLException("Echec de la recuperation des tables associés aux réservations" + idTable, error);
+		}
+	}
+	
+	//======================================
+	
 	public Reservation insert(LocalDate reservationTime, String state, int idTable, int idUser) throws BLLException {
 //		BLLException bllException = new BLLException();
 		

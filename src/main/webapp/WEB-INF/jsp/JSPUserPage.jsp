@@ -9,9 +9,11 @@
 <body>
 	<%@ include file="../jspf/header.jspf"%>
 	<h1>PROFIL UTILISATEUR</h1>
+	<div></div>
 	<img alt="avatar_neutre" src="././img/avatar-neutre.webp">
 	<p>${user.name }</p>
 	<p>${user.lastname }</p>
 	<p>${user.email }</p>
 </body>
 </html>
+  
