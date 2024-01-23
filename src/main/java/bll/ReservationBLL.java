@@ -49,7 +49,7 @@ public class ReservationBLL {
 		try {
 			return dao.selectByKeyIdUser(idUser);
 		} catch (DALException error) {
-			throw new BLLException("Echec de la recuperation des utilisateurs associés aux réservations" + idUser, error);
+			throw new BLLException("Echec de la recuperation des utilisateurs associés aux réservations n°" + idUser, error);
 		}
 	}
 	//======================================

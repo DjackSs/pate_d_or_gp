@@ -18,8 +18,9 @@ import bo.Reservation;
 public class ReservationDAO {
 	private static final String SELECT = "SELECT * FROM reservations";
 	private static final String SELECT_BY_ID = "SELECT * FROM reservations WHERE id = ?";
-	private static final String SELECT_RESERVATIONS_BY_IDUSER = "select Reservations.* from Reservations where Reservations.id_user in(?)";
-	private static final String SELECT_RESERVATIONS_BY_IDTABLE = "select Reservations.* from Reservations where Reservations.id_table in(?)";
+//	private static final String SELECT_RESERVATIONS_BY_IDUSER = "select reservations.* from reservations where reservations.id_user in(?)";
+	private static final String SELECT_RESERVATIONS_BY_IDUSER = "select * from reservations where id_user = ?";
+	private static final String SELECT_RESERVATIONS_BY_IDTABLE = "select reservations.* from reservations where reservations.id_table in(?)";
 	private static final String INSERT_INTO_RESERVATIONS = "INSERT INTO reservations (reservation_time, state, id_table, id_user) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE reservations SET reservation_time = ?, state = ?, id_table = ?, id_user = ? WHERE id = ?";
 	private static final String DELETE = "DELETE FROM reservations WHERE id = ?";
@@ -113,7 +114,7 @@ public class ReservationDAO {
 			while(rs.next()) {
 				Reservation reservation = new Reservation();
 				reservation.setId(rs.getInt("id"));
-				reservation.setReservationTime(rs.getDate("reservationTime").toLocalDate());
+				reservation.setReservationTime(rs.getDate("reservation_time").toLocalDate());
 				reservation.setState(rs.getString("state"));
 				reservation.setIdTable(rs.getInt("id_table"));
 				reservation.setIdUser(rs.getInt("id_user"));
