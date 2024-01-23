@@ -42,6 +42,14 @@ public class ScheduleBLL {
 		}
 	}
 	
+	public List<Schedule> selectAllByIdRestaurantOrderBy(int id, String orderRuler) throws BLLException {
+		try {
+			return dao.selectAllByIdRestaurantOrderBy(id, orderRuler);
+		} catch (DALException e) {
+			throw new BLLException("Echec de la récupération des horaires du restaurant d'id " + id, e);
+		}
+	}
+	
 	
 	public Schedule insert(LocalTime openHour, LocalTime closeHour, int idRestaurant) throws BLLException {
 		if(openHour.isAfter(closeHour)) {

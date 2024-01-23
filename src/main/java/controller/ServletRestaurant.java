@@ -51,7 +51,7 @@ public class ServletRestaurant extends HttpServlet {
 		
 		try {
 			Restaurant restaurant = restaurantBll.selectById(id);
-			List<Schedule> restaurantSchedule = scheduleBll.selectAllByIdRestaurant(id);
+			List<Schedule> restaurantSchedule = scheduleBll.selectAllByIdRestaurantOrderBy(id, "open_hour");
 			Card restaurantCard = cardBll.selectById(restaurant.getIdCard());
 			List<Dish> restaurantCardDishes = dishBll.selectDishesByCardId(restaurant.getIdCard());
 			
