@@ -152,8 +152,11 @@ public class UserDAO {
 			ps.setString(3, user.getEmail());
 			ps.setString(4, user.getPassword());
 			ps.setString(5, user.getRole());
+			
+			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
+			
 			if(rs.next()) {
 				int id = rs.getInt(1);
 				user.setId(id);

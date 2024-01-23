@@ -110,6 +110,31 @@ public class TableDAO implements GenericDAOInterface<Table> {
 
         return tables;
     }
+    
+    public List<Table> selectAllByIdRestaurantOrderBy(String foreignKeyName, int foreignKeyId, String orderRule) throws DALException {
+    	List<Table> tables = new ArrayList<>();
+    	
+    	try {
+    		String query = SELECT + " WHERE " + foreignKeyName + " = ?" + " ORDER BY " + orderRule;
+    		PreparedStatement ps = cnx.prepareStatement(query);
+    		ps.setInt(1, foreignKeyId);
+    		ResultSet rs = ps.executeQuery();
+    		
+    		while (rs.next()) {
+    			Table table = new Table();
+    			table.setId(rs.getInt("id"));
+    			table.setNumberPlace(rs.getInt("number_place"));
+    			table.setState(rs.getString("state"));
+    			table.setIdRestaurant(rs.getInt("id_restaurant"));
+    			
+    			tables.add(table);
+    		}
+    	} catch (SQLException e) {
+    		throw new DALException("Impossible de récupérer les informations par foreign key", e);
+    	}
+    	
+    	return tables;
+    }
 
 	public void insert(Table table) throws DALException {
 		try {

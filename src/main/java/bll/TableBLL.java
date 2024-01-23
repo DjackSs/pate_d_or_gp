@@ -44,6 +44,14 @@ public class TableBLL {
             throw new BLLException("Echec de la récupération des tables par id_restaurant", e);
         }
     }
+    
+    public List<Table> selectAllByIdRestaurantOrderBy(int restaurantId, String orderRule) throws BLLException {
+    	try {
+    		return ((TableDAO) dao).selectAllByIdRestaurantOrderBy("id_restaurant", restaurantId, orderRule);
+    	} catch (DALException e) {
+    		throw new BLLException("Echec de la récupération des tables par id_restaurant triés par " + orderRule, e);
+    	}
+    }
 	
 	public Table insert(int numberPlace, String state, int idRestaurant) throws BLLException {
 		

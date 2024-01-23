@@ -78,4 +78,19 @@
     <servlet-name>ServletReservation</servlet-name>
     <url-pattern>/reservation</url-pattern>
   </servlet-mapping>
+  <!--  
+  <filter>
+    <display-name>FilterSession</display-name>
+    <filter-name>FilterSession</filter-name>
+    <filter-class>filter.FilterSession</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>FilterSession</filter-name>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+    <url-pattern>/FilterSession</url-pattern>
+  </filter-mapping>
+  -->
 </web-app>
