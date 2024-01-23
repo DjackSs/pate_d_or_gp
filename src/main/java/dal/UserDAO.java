@@ -29,12 +29,11 @@ public class UserDAO {
 		{
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
-			
-			this.cnx = dataSource.getConnection();
-			
-			if(!cnx.isClosed())
-			{
-				System.out.println("la co est ouverte");
+
+			cnx = dataSource.getConnection();
+			if(!cnx.isClosed()) {
+				System.out.println("La connexion est ouverte");
+
 			}
 		
 		

@@ -35,33 +35,20 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 	//==============================================================
 	
 	
-	public RestaurantDAO() throws DALException
-	{
-		try
-		{
+	public RestaurantDAO() throws DALException {
+		try {
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
-			
-			this.cnx = dataSource.getConnection();
-			
-			if(!cnx.isClosed())
-			{
-				System.out.println("la co est ouverte");
+			cnx = dataSource.getConnection();
+			if(!cnx.isClosed()) {
+				System.out.println("La connexion est ouverte");
 			}
-		
-		
-		} 
-		catch (SQLException error) 
-		{
-			
-			throw new DALException("erreur de conexion à la base de donnée", error);
-		}
-		catch (NamingException e) 
-		{
+		} catch (SQLException e) {
+			throw new DALException("Erreur de connexion a la base de donnees", e);
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 
-			
 	}
 	
 	
