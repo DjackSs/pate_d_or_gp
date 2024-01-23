@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ page import="java.time.LocalTime" %>
 
 <!DOCTYPE html>
 <html>
@@ -72,7 +71,7 @@
 		</div>	
 	
 		<div>
-			<a href="#">Réserver</a>
+			<a href="reservation?idRestaurant=${restaurant.id }">Réserver</a>
 			<a href="#">Contact</a>
 		</div>
 		

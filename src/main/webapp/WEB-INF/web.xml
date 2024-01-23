@@ -67,5 +67,15 @@
   <servlet-mapping>
     <servlet-name>ServletInscription</servlet-name>
     <url-pattern>/inscription</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletReservation</display-name>
+    <servlet-name>ServletReservation</servlet-name>
+    <servlet-class>controller.ServletReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletReservation</servlet-name>
+    <url-pattern>/reservation</url-pattern>
+  </servlet-mapping>
 </web-app>
