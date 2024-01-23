@@ -56,15 +56,9 @@ public class ServletConnection extends HttpServlet
 			
 			User trueUser = this.userBLL.selectByEmailAndPassword(newUser.getEmail(), newUser.getPassword());
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSPUserPage.jsp");
+			request.getSession().setAttribute("user", trueUser);
 			
-			
-			
-			request.setAttribute("user", trueUser);
-			
-			rd.forward(request, response);
-			
-				
+			response.sendRedirect(request.getContextPath()+"/user");
 			
 		} 
 		catch (BLLException e) 
