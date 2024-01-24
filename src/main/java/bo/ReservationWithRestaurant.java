@@ -10,7 +10,6 @@ public class ReservationWithRestaurant extends Reservation {
         this.restaurantName = restaurantName;
     }
     
-
 	public String getRestaurantName() {
         return restaurantName;
     }

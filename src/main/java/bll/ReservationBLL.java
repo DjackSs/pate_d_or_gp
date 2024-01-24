@@ -54,6 +54,7 @@ public class ReservationBLL {
 			throw new BLLException("Echec de la recuperation des utilisateurs associés aux réservations n°" + userId, error);
 		}
 	}
+	
 	//======================================
 	
 	   public List<ReservationWithRestaurant> selectReservationWithRestaurantByIdUser(int userId) throws BLLException {
