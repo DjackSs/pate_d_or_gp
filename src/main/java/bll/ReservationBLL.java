@@ -1,5 +1,7 @@
 package bll;
 
+
+import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +84,7 @@ public class ReservationBLL {
 	
 	//======================================
 	
-	public Reservation insert(LocalDate reservationTime, String state, int idTable, int idUser) throws BLLException {
+	public Reservation insert(LocalDateTime reservationTime, String state, int idTable, int idUser) throws BLLException {
 //		BLLException bllException = new BLLException();
 		
 	/*

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
 				height="300px">
 		</div>
 		<div class="profilInfo">
-			<p>Prénom : ${user.name }</p>
+			<p>Prï¿½nom : ${user.name }</p>
 			<p>Nom : ${user.lastname }</p>
 			<p>Email : ${user.email }</p>
 		</div>
@@ -39,8 +39,8 @@
 		<thead>
 			<tr>
 				<th>Restaurant</th>
-				<th>Heure de réservation</th>
-				<th>Statut de votre réservation</th>
+				<th>Heure de rï¿½servation</th>
+				<th>Statut de votre rï¿½servation</th>
 			</tr>
 		</thead>
 		<tbody>
