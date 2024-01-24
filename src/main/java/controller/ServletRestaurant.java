@@ -65,7 +65,6 @@ public class ServletRestaurant extends HttpServlet {
 		catch (BLLException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath()+"/user");
 		
 		rd.forward(request, response);
 	}

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page import="java.time.LocalTime" %>
 
@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Pâte d'Or - Restaurant</title>
+<title>PÃ¢te d'Or - Restaurant</title>
 </head>
 <body>
 	<%@include file="../jspf/header.jspf" %>
@@ -26,7 +26,7 @@
 				<h2>${restaurantCard.name }</h2>
 				
 				<div>					
-					<h4>Entrée(s)</h4>
+					<h4>EntrÃ©e(s)</h4>
 					<ul>
 						<c:forEach var="current" items="${restaurantCardDishes }">
 							<c:if test='${current.category.equals("entry") }'>
@@ -72,7 +72,7 @@
 		</div>	
 	
 		<div>
-			<a href="#">Réserver</a>
+			<a href="#">RÃ©server</a>
 			<a href="#">Contact</a>
 		</div>
 		

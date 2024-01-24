@@ -19,10 +19,10 @@
 		<fieldset>
 			<legend>Saisissez vous informations :</legend>
 			
-			<label for="name">Nom</label>
+			<label for="name">Prénom</label>
 			<input type="text" name="name" id="name">
 			
-			<label for="lastname">Prénom</label>
+			<label for="lastname">Nom</label>
 			<input type="text" name="lastname" id="lastname">
 			
 			<label for="email">Email</label>

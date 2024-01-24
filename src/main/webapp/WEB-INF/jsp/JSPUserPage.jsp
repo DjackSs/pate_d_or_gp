@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
@@ -7,16 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Profil</title>
-<style>
-	.pictureInfo {
-		display: flex;
-		justify-content: start-left;
-		align-items: end;
-	}
-	.profilInfo {
-	margin-left: 15px;
-	}
-</style>
+<link rel="stylesheet" href="css/user_page.css">
+
 </head>
 <body>
 
@@ -29,9 +21,10 @@
 				height="300px">
 		</div>
 		<div class="profilInfo">
-			<p>Prénom : ${user.name }</p>
+			<p>PrÃ©nom : ${user.name }</p>
 			<p>Nom : ${user.lastname }</p>
 			<p>Email : ${user.email }</p>
+			<a href="updateUser?id=${user.id }"><button>Modifier profil</button></a>
 		</div>
 	</div>
 	<h2>RESERVATIONS</h2>
@@ -39,14 +32,15 @@
 		<thead>
 			<tr>
 				<th>Restaurant</th>
-				<th>Heure de réservation</th>
-				<th>Statut de votre réservation</th>
+				<th>Heure de rÃ©servation</th>
+				<th>Statut de votre rÃ©servation</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="reservation" items="${reservations}">
 				<tr>
 					<td><a href="restaurant">${reservation.restaurantName}</a></td>
+					â€ƒ<fmt:formatDate value="${reservation.reservationTime}" pattern="dd/MM/yyyy Ã  hh:mm" />
 					<td>${reservation.reservationTime}</td>
 					<td>${reservation.state}</td>
 				</tr>
