@@ -1,10 +1,10 @@
 package bo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Reservation {
 	private int id;
-	private LocalDate reservationTime;
+	private LocalDateTime reservationTime;
 	private String state;
 	
 	private int idTable;
@@ -14,7 +14,7 @@ public class Reservation {
 
 	public Reservation() {}
 
-	public Reservation(LocalDate reservationTime, String state, int idTable, int idUser) {
+	public Reservation(LocalDateTime reservationTime, String state, int idTable, int idUser) {
 		this.reservationTime = reservationTime;
 		this.state = state;
 		this.idTable = idTable;
@@ -29,11 +29,11 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public LocalDate getReservationTime() {
+	public LocalDateTime getReservationTime() {
 		return reservationTime;
 	}
 
-	public void setReservationTime(LocalDate reservationTime) {
+	public void setReservationTime(LocalDateTime reservationTime) {
 		this.reservationTime = reservationTime;
 	}
 

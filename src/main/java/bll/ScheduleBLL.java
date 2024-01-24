@@ -34,6 +34,15 @@ public class ScheduleBLL {
 		}
 	}
 	
+	public Schedule selectByIdRestaurantAnd(int id, String andOption) throws BLLException {
+		try {
+			return dao.selectByIdRestaurantAnd(id, andOption);
+		} catch (DALException e) {
+			throw new BLLException("Echec de la récupération des horaires du restaurant d'id " + id 
+									+ "où " + andOption , e);
+		}
+	}
+	
 	public List<Schedule> selectAllByIdRestaurant(int id) throws BLLException {
 		try {
 			return dao.selectAllByIdRestaurant(id);
