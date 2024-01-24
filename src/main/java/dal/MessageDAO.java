@@ -115,6 +115,7 @@ public class MessageDAO {
 				
 				messages.add(message);
 			}
+			
 		} catch (SQLException error) {
 			throw new DALException("Unable to recover data by Id User", error);
 		}
@@ -133,8 +134,11 @@ public class MessageDAO {
 			ps.setString(1, message.getObject());
 			ps.setString(2, message.getContent());
 			ps.setInt(3, message.getIdUser());
+			
+			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
+			
 			if(rs.next()) {
 				int id = rs.getInt(1);
 				message.setId(id);

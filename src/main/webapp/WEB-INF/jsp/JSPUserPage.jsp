@@ -70,5 +70,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<section>
+		<h3>Contactez nous :</h3>
+		<a href="contact">Envoyez un message à l'équipe</a>
+	</section>
 </body>
 </html>
