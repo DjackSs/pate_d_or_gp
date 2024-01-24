@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class ReservationDAO {
 			while(rs.next()) {
 				Reservation reservation = new Reservation();
 				reservation.setId(rs.getInt("id"));
-				reservation.setReservationTime(rs.getDate("reservation_time").toLocalDate());
+				reservation.setReservationTime(rs.getTimestamp("reservation_time").toLocalDateTime());
 				reservation.setState(rs.getString("state"));
 				reservation.setIdTable(rs.getInt("id_table"));
 				reservation.setIdUser(rs.getInt("id_user"));
@@ -85,7 +86,7 @@ public class ReservationDAO {
 			if(rs.next()) {
 				reservation = new Reservation();
 				reservation.setId(rs.getInt("id"));
-				reservation.setReservationTime(rs.getDate("reservation_time").toLocalDate());
+				reservation.setReservationTime(rs.getTimestamp("reservation_time").toLocalDateTime());
 				reservation.setState(rs.getString("state"));
 				reservation.setIdTable(rs.getInt("id_table"));
 				reservation.setIdUser(rs.getInt("id_user"));
@@ -114,7 +115,7 @@ public class ReservationDAO {
 			while(rs.next()) {
 				Reservation reservation = new Reservation();
 				reservation.setId(rs.getInt("id"));
-				reservation.setReservationTime(rs.getDate("reservation_time").toLocalDate());
+				reservation.setReservationTime(rs.getTimestamp("reservation_time").toLocalDateTime());
 				reservation.setState(rs.getString("state"));
 				reservation.setIdTable(rs.getInt("id_table"));
 				reservation.setIdUser(rs.getInt("id_user"));
@@ -144,7 +145,7 @@ public class ReservationDAO {
 			while(rs.next()) {
 				Reservation reservation = new Reservation();
 				reservation.setId(rs.getInt("id"));
-				reservation.setReservationTime(rs.getDate("reservationTime").toLocalDate());
+				reservation.setReservationTime(rs.getTimestamp("reservation_time").toLocalDateTime());
 				reservation.setState(rs.getString("state"));
 				reservation.setIdTable(rs.getInt("id_table"));
 				reservation.setIdUser(rs.getInt("id_user"));
@@ -168,10 +169,12 @@ public class ReservationDAO {
 
 			PreparedStatement ps = cnx.prepareStatement(INSERT_INTO_RESERVATIONS,PreparedStatement.RETURN_GENERATED_KEYS);
 
-			ps.setDate(1, Date.valueOf(reservation.getReservationTime()));
+			ps.setTimestamp(1, Timestamp.valueOf(reservation.getReservationTime()));
 			ps.setString(2, reservation.getState());
 			ps.setInt(3, reservation.getIdTable());
 			ps.setInt(4, reservation.getIdUser());
+			
+			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()) {
@@ -190,7 +193,7 @@ public class ReservationDAO {
 	public void update(Reservation reservation) throws DALException {
 		try {
 			PreparedStatement ps = cnx.prepareStatement(UPDATE);
-			ps.setDate(1, Date.valueOf(reservation.getReservationTime()));
+			ps.setTimestamp(1, Timestamp.valueOf(reservation.getReservationTime()));
 			ps.setString(2, reservation.getState());
 			ps.setInt(3, reservation.getIdTable());
 			ps.setInt(4, reservation.getIdUser());

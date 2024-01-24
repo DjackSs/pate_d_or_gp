@@ -1,32 +1,34 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import bll.BLLException;
+import bll.ReservationBLL;
 import bll.RestaurantBLL;
 import bll.ScheduleBLL;
 import bll.TableBLL;
+import bo.Reservation;
 import bo.Restaurant;
 import bo.Schedule;
 import bo.Table;
+import bo.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class ServletReservation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private RestaurantBLL restaurantBll;
 	private TableBLL tableBll;
 	private ScheduleBLL scheduleBll;
+	private ReservationBLL reservationBll;
 
 	@Override
 	public void init() throws ServletException {
@@ -37,6 +39,7 @@ public class ServletReservation extends HttpServlet {
 			this.restaurantBll = new RestaurantBLL();
 			this.tableBll = new TableBLL();
 			this.scheduleBll = new ScheduleBLL();
+			this.reservationBll = new ReservationBLL();
 		} 
 		catch (BLLException e) 
 		{
@@ -45,6 +48,10 @@ public class ServletReservation extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		User userSession = ((User) session.getAttribute("user"));
+		request.setAttribute("user", userSession);
+		
 		String idRestaurantStr = request.getParameter("idRestaurant");
 		
 		LocalDate now = LocalDate.now();
@@ -72,39 +79,8 @@ public class ServletReservation extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String tablesStr = request.getParameter("tables");
-		String dateLunchReservationStr = request.getParameter("lunch-reservation-date");
-		String hourLunchReservationStr = request.getParameter("lunch-reservation-hour");
-		String dateDinerReservationStr = request.getParameter("diner-reservation-date");
-		String hourDinerReservationStr = request.getParameter("diner-reservation-hour");
-		
-		String lunchReservationDateTimeStr = dateLunchReservationStr + " " + hourLunchReservationStr + ":00";
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		// Parse from string to Java.util.Date object to Java.sql.Timestamp (for database)
-		try {
-			Date lunchReservationDateTimeParsed = dateFormat.parse(lunchReservationDateTimeStr);
-			Timestamp lunchReservationTimestamp = new Timestamp(lunchReservationDateTimeParsed.getTime());
-			System.out.println("Parsed Timestamp: " + lunchReservationTimestamp);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-//		if (dateLunchReservationStr.length() > 0 && hourLunchReservationStr.length() > 0) {
-//			LocalDateTime lunchReservation = LocalDateTime.parse(dateLunchReservationStr + hourLunchReservationStr);
-//			System.out.println(lunchReservation);
-//		}
-		
-		System.err.println(lunchReservationDateTimeStr);
-//		System.err.println(dateLunchReservationStr);
-//		System.err.println(hourLunchReservationStr);
-//		System.err.println(dateDinerReservationStr);
-//		System.err.println(hourDinerReservationStr);
-		
-		
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+
 	}
 
 }

@@ -78,19 +78,24 @@
     <servlet-name>ServletReservation</servlet-name>
     <url-pattern>/reservation</url-pattern>
   </servlet-mapping>
-  <!--  
-  <filter>
-    <display-name>FilterSession</display-name>
-    <filter-name>FilterSession</filter-name>
-    <filter-class>filter.FilterSession</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>FilterSession</filter-name>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>FORWARD</dispatcher>
-    <dispatcher>INCLUDE</dispatcher>
-    <dispatcher>ERROR</dispatcher>
-    <url-pattern>/FilterSession</url-pattern>
-  </filter-mapping>
-  -->
+  <servlet>
+    <description></description>
+    <display-name>ServletLunchReservation</display-name>
+    <servlet-name>ServletLunchReservation</servlet-name>
+    <servlet-class>controller.ServletLunchReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLunchReservation</servlet-name>
+    <url-pattern>/lunchReservation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDinerReservation</display-name>
+    <servlet-name>ServletDinerReservation</servlet-name>
+    <servlet-class>controller.ServletDinerReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDinerReservation</servlet-name>
+    <url-pattern>/dinerReservation</url-pattern>
+  </servlet-mapping>
 </web-app>
