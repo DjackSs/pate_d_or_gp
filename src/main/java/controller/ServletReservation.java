@@ -47,7 +47,8 @@ public class ServletReservation extends HttpServlet {
 		}
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		HttpSession session = request.getSession();
 		User userSession = ((User) session.getAttribute("user"));
 		request.setAttribute("user", userSession);
@@ -72,6 +73,7 @@ public class ServletReservation extends HttpServlet {
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
 			request.setAttribute("restaurantLunchSchedule", restaurantLunchSchedule);
 			request.setAttribute("restaurantDinerSchedule", restaurantDinerSchedule);
+			
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}

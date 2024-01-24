@@ -68,12 +68,27 @@
 					</ul>
 				</div>
 			</article>
+		</div>
+		
+		<div>
+			<c:choose>
+		
+				<c:when test='${user != null }'>
+					
+					<a href="reservation?idRestaurant=${restaurant.id }">Réserver</a>
+					<a href="#">Contact</a>
+					
+				</c:when>
+				
+				<c:otherwise >
+				
+					<a href="#">Contact</a>
+					
+				</c:otherwise>
+			
+			</c:choose>
 		</div>	
 	
-		<div>
-			<a href="reservation?idRestaurant=${restaurant.id }">Réserver</a>
-			<a href="#">Contact</a>
-		</div>
 		
 		<article>
 			<ul>

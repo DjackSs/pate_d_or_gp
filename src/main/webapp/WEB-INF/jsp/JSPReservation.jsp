@@ -54,13 +54,6 @@
 					 min="${restaurantLunchSchedule.getOpenHour()}" max="${restaurantLunchSchedule.getCloseHour() }" />
 				</div>	
 				
-				<div>
-					<label for="lunch-reservation-object" hidden></label>
-					<input hidden="true" type="text" id="lunch-reservation-object" name="lunch-reservation-object" value="Réservation ${user.getLastname() } ${user.getName() }" />
-					<label hidden="true" for="lunch-reservation-message"></label>
-					<textarea id="lunch-reservation-message" name="lunch-reservation-message" placeholder="Un besoin particulier ? Laissez-nous un message"></textarea>				
-				</div>
-				
 				<input type="submit" value="Valider"/>
 			
 			</form>
@@ -91,17 +84,34 @@
 					 min="${restaurantDinerSchedule.getOpenHour()}" max="${restaurantDinerSchedule.getCloseHour() }" />
 				</div>			
 			
-				<div>
-					<label for="diner-reservation-object" hidden></label>
-					<input hidden="true" type="text" id="diner-reservation-object" name="diner-reservation-object" value="Réservation ${user.getLastname() } ${user.getName() }" />
-					<label hidden="true" for="diner-reservation-message"></label>
-					<textarea id="diner-reservation-message" name="diner-reservation-message" placeholder="Un besoin particulier ? Laissez-nous un message"></textarea>				
-				</div>
-			
 				<input type="submit" value="Valider"/>
 			
 			</form>
+			
 		</c:if>
+		
+		<section>
+		<h1>Contactez nous :</h1>
+		
+		<form method="post" action="contact">
+		
+			<fieldset>
+				<legend>Envoyez-nous un message</legend>
+				
+				<div>
+					<label for="object">Objet de votre message :</label>
+					<input type="text" name="object" id="object">
+					
+					<textarea name="message"></textarea>
+					
+					<input type="submit" value="Envoyer">
+				</div>
+			
+			</fieldset>
+		
+		
+		</form>
+		</section>
 			
 	</main>
 </body>

@@ -116,13 +116,4 @@
     <servlet-name>ServletMessage</servlet-name>
     <url-pattern>/contact</url-pattern>
   </servlet-mapping>
-  <filter>
-    <display-name>FilterXSS</display-name>
-    <filter-name>FilterXSS</filter-name>
-    <filter-class>filter.FilterXSS</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>FilterXSS</filter-name>
-    <url-pattern>/FilterXSS</url-pattern>
-  </filter-mapping>
 </web-app>
