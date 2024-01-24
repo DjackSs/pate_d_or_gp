@@ -97,5 +97,14 @@
   <servlet-mapping>
     <servlet-name>ServletDinerReservation</servlet-name>
     <url-pattern>/dinerReservation</url-pattern>
+	</servlet-mapping>
+	<servlet>
+    <display-name>ServletUpdateUser</display-name>
+    <servlet-name>ServletUpdateUser</servlet-name>
+    <servlet-class>controller.ServletUpdateUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletUpdateUser</servlet-name>
+    <url-pattern>/ServletUpdateUser</url-pattern>
   </servlet-mapping>
 </web-app>

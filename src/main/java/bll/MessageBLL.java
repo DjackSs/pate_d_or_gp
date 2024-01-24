@@ -3,6 +3,7 @@ package bll;
 import java.util.List;
 
 import bo.Message;
+import bo.Reservation;
 import dal.DALException;
 import dal.MessageDAO;
 
@@ -38,6 +39,17 @@ public class MessageBLL {
 			return dao.selectById(id);
 		} catch (DALException e) {
 			throw new BLLException("Echec de la recuperation du message d'id " + id, e);
+		}
+	}
+	
+	//======================================
+	
+	public List<Message> selectMessageByIdUser(int userId) throws BLLException {
+		
+		try {
+			return dao.selectMessageByKeyIdUser(userId);
+		} catch (DALException error) {
+			throw new BLLException("Echec de la recuperation des messages associés à l'utilisateur n°" + userId, error);
 		}
 	}
 	

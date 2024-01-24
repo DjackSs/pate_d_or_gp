@@ -1,9 +1,13 @@
 package bll;
 
+
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import bo.Reservation;
+import bo.ReservationWithRestaurant;
 import dal.DALException;
 import dal.ReservationDAO;
 
@@ -44,24 +48,39 @@ public class ReservationBLL {
 	
 	//======================================
 	
-	public List<Reservation> selectReservationByIdUser(int idUser) throws BLLException {
+	public List<Reservation> selectReservationByIdUser(int userId) throws BLLException {
 		
 		try {
-			return dao.selectByKeyIdUser(idUser);
+			return dao.selectByKeyIdUser(userId);
 		} catch (DALException error) {
-			throw new BLLException("Echec de la recuperation des utilisateurs associés aux réservations n°" + idUser, error);
+			throw new BLLException("Echec de la recuperation des utilisateurs associés aux réservations n°" + userId, error);
 		}
 	}
+	
 	//======================================
 	
-	public List<Reservation> selectReservationByIdTable(int idTable) throws BLLException {
-		
-		try {
-			return dao.selectByKeyIdTable(idTable);
-		} catch (DALException error) {
-			throw new BLLException("Echec de la recuperation des tables associés aux réservations" + idTable, error);
-		}
-	}
+	   public List<ReservationWithRestaurant> selectReservationWithRestaurantByIdUser(int userId) throws BLLException {
+	        try {
+	            List<Reservation> reservations = dao.selectByKeyIdUser(userId);
+	            List<ReservationWithRestaurant> reservationsWithRestaurant = new ArrayList<>();
+
+	            for (Reservation reservation : reservations) {
+	                String restaurantName = dao.getRestaurantNameByReservationId(reservation.getId());
+	                ReservationWithRestaurant reservationWithRestaurant = new ReservationWithRestaurant(
+	                        reservation.getId(),
+	                        reservation.getReservationTime(),
+	                        reservation.getState(),
+	                        reservation.getIdTable(),
+	                        reservation.getIdUser(),
+	                        restaurantName
+	                );
+	                reservationsWithRestaurant.add(reservationWithRestaurant);
+	            }
+	            return reservationsWithRestaurant;
+	        } catch (DALException e) {
+	            throw new BLLException("Error retrieving reservations with restaurant names", e);
+	        }
+	    }
 	
 	//======================================
 	
