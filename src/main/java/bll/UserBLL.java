@@ -90,13 +90,13 @@ public class UserBLL
 		//xss security check
 		
 		//email
-		if(email.length() > EMAIL_MAX_LENGTH)
+		if(email.trim().length() > EMAIL_MAX_LENGTH)
 		{
 			throw new BLLException("Email is too big", null);
 					
 		}
 		
-		if(email.length() < MIN_LENGTH)
+		if(email.trim().length() < MIN_LENGTH)
 		{
 			throw new BLLException("Email name is too small", null);
 			
@@ -112,13 +112,13 @@ public class UserBLL
 		
 		
 		//password
-		if(password.length() > PASSWORD_MAX_LENGTH)
+		if(password.trim().length() > PASSWORD_MAX_LENGTH)
 		{
 			throw new BLLException("Password is invalid", null);
 					
 		}
 		
-		if(password.length() < MIN_LENGTH)
+		if(password.trim().length() < MIN_LENGTH)
 		{
 			throw new BLLException("Password is invalid", null);
 			
@@ -163,13 +163,13 @@ public class UserBLL
 		
 		
 		//email
-		if(user.getEmail().length() > EMAIL_MAX_LENGTH)
+		if(user.getEmail().trim().length() > EMAIL_MAX_LENGTH)
 		{
 			throw new BLLException("Email is too big", null);
 					
 		}
 		
-		if(user.getEmail().length() < MIN_LENGTH)
+		if(user.getEmail().trim().length() < MIN_LENGTH)
 		{
 			throw new BLLException("Email name is too small", null);
 			
@@ -184,13 +184,13 @@ public class UserBLL
 		
 		
 		//password
-		if(user.getPassword().length() > PASSWORD_MAX_LENGTH)
+		if(user.getPassword().trim().length() > PASSWORD_MAX_LENGTH)
 		{
 			throw new BLLException("Password is invalid", null);
 					
 		}
 		
-		if(user.getPassword().length() < MIN_LENGTH)
+		if(user.getPassword().trim().length() < MIN_LENGTH)
 		{
 			throw new BLLException("Password is invalid", null);
 			

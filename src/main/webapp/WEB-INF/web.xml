@@ -85,6 +85,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletMessage</servlet-name>
-    <url-pattern>/ServletMessage</url-pattern>
+    <url-pattern>/contact</url-pattern>
   </servlet-mapping>
 </web-app>

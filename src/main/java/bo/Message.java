@@ -10,7 +10,8 @@ public class Message {
 	public Message() {
 	}
 
-	public Message(String object, String content, int idUser) {
+	public Message(String object, String content, int idUser) 
+	{
 		this.object = object;
 		this.content = content;
 		this.idUser = idUser;
