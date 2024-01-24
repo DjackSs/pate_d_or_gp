@@ -2,9 +2,6 @@ package controller;
 
 import java.io.IOException;
 
-import bll.BLLException;
-import bll.UserBLL;
-import bo.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
