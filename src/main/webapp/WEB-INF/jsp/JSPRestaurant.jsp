@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Pâte d'Or - Restaurant</title>
 </head>
 <body>
@@ -68,12 +68,27 @@
 					</ul>
 				</div>
 			</article>
+		</div>
+		
+		<div>
+			<c:choose>
+		
+				<c:when test='${user != null }'>
+					
+					<a href="reservation?idRestaurant=${restaurant.id }">Réserver</a>
+					<a href="#">Contact</a>
+					
+				</c:when>
+				
+				<c:otherwise >
+				
+					<a href="#">Contact</a>
+					
+				</c:otherwise>
+			
+			</c:choose>
 		</div>	
 	
-		<div>
-			<a href="reservation?idRestaurant=${restaurant.id }">Réserver</a>
-			<a href="#">Contact</a>
-		</div>
 		
 		<article>
 			<ul>

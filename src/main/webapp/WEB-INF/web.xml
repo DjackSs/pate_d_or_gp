@@ -105,7 +105,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletUpdateUser</servlet-name>
-    <url-pattern>/ServletUpdateUser</url-pattern>
+    <url-pattern>/updateUser</url-pattern>
   </servlet-mapping>
   <servlet>
     <display-name>ServletMessage</display-name>

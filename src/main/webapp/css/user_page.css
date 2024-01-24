@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+*, ::before, ::after {
+	box-sizing: border-box;
+	margin:0;
+	padding: 0;
+}
+
+h1 {
+	text-align: center;
+}
+
+.pictureInfo {
+	display: flex;
+	justify-content: start-left;
+	align-items: end;
+}
+
+.profilInfo {
+margin-left: 15px;
+}
+
+input[type="text" i], input[type="email" i], input[type="password" i] {
+width: 100px;
+}
