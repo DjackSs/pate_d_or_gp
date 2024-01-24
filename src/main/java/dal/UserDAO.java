@@ -132,7 +132,8 @@ public class UserDAO {
 					user.setRole(rs.getString("role"));
 				}
 			} 
-			catch (SQLException error) {
+			catch (SQLException error) 
+			{
 				throw new DALException("Unable to recover the data", error);
 			}
 

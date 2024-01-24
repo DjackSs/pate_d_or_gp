@@ -5,7 +5,6 @@ import java.util.List;
 
 import bll.BLLException;
 import bll.ReservationBLL;
-import bll.UserBLL;
 import bo.Reservation;
 import bo.User;
 import jakarta.servlet.ServletException;
@@ -22,7 +21,6 @@ public class ServletUserPage extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		try {
-			userBLL = new UserBLL();
 			reservationBLL = new ReservationBLL();
 		} catch (BLLException e) {
 			e.printStackTrace();
