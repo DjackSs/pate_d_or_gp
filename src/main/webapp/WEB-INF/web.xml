@@ -68,4 +68,14 @@
     <servlet-name>ServletInscription</servlet-name>
     <url-pattern>/inscription</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletUpdateUser</display-name>
+    <servlet-name>ServletUpdateUser</servlet-name>
+    <servlet-class>controller.ServletUpdateUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletUpdateUser</servlet-name>
+    <url-pattern>/ServletUpdateUser</url-pattern>
+  </servlet-mapping>
 </web-app>
