@@ -50,13 +50,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ServletReservationByUser</display-name>
-    <servlet-name>ServletReservationByUser</servlet-name>
-    <servlet-class>controller.ServletReservationByUser</servlet-class>
+    <display-name>ServletUserReservation</display-name>
+    <servlet-name>ServletUserReservation</servlet-name>
+    <servlet-class>controller.ServletUserReservation</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ServletReservationByUser</servlet-name>
-    <url-pattern>/ServletReservationByUser</url-pattern>
+    <servlet-name>ServletUserReservation</servlet-name>
+    <url-pattern>/reservationUser</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

@@ -65,10 +65,11 @@ public class ServletConnection extends HttpServlet
 			newUser.setPassword(request.getParameter("password"));
 			
 			User trueUser = this.userBLL.selectByEmailAndPassword(newUser.getEmail(), newUser.getPassword());
-			
+
 			request.getSession().setAttribute("user", trueUser);
 			
 			response.sendRedirect(request.getContextPath()+"/user");
+
 			
 		} 
 		catch (BLLException e) 
