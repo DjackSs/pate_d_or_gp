@@ -161,54 +161,98 @@ public class UserBLL
 		
 		//xss security check
 		
+		User oldUser = this.selectById(user.getId());
+		
+		//name
+		if(user.getName().isBlank())
+		{
+			user.setName(oldUser.getName());
+		}
+		
+		//lastname
+		if(user.getLastname().isBlank())
+		{
+			user.setLastname(oldUser.getLastname());
+		}
 		
 		//email
-		if(user.getEmail().trim().length() > EMAIL_MAX_LENGTH)
+		if(user.getEmail().isBlank())
 		{
-			throw new BLLException("Email is too big", null);
-					
+			user.setEmail(oldUser.getEmail());
 		}
-		
-		if(user.getEmail().trim().length() < MIN_LENGTH)
+		else
 		{
-			throw new BLLException("Email name is too small", null);
+			if(user.getEmail().trim().length() > EMAIL_MAX_LENGTH)
+			{
+				throw new BLLException("Email is too big", null);
+						
+			}
 			
+			if(user.getEmail().trim().length() < MIN_LENGTH)
+			{
+				throw new BLLException("Email name is too small", null);
+				
+			}
+			if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
+			{
+				throw new BLLException("email is invalid", null);
+			}
+			
+			
+		
 		}
-		
-		
-		if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
-		{
-			throw new BLLException("email is invalid", null);
-		}
-		
-		
 		
 		//password
-		if(user.getPassword().trim().length() > PASSWORD_MAX_LENGTH)
+		if(user.getPassword().isBlank())
 		{
-			throw new BLLException("Password is invalid", null);
-					
+			user.setPassword(oldUser.getPassword());
 		}
-		
-		if(user.getPassword().trim().length() < MIN_LENGTH)
+		else
 		{
-			throw new BLLException("Password is invalid", null);
+			if(user.getPassword().trim().length() > PASSWORD_MAX_LENGTH)
+			{
+				throw new BLLException("Password is invalid", null);
+						
+			}
+			
+			if(user.getPassword().trim().length() < MIN_LENGTH)
+			{
+				throw new BLLException("Password is invalid", null);
+				
+			}
+			
+			if(!this.regexMatche(user.getPassword(), PASSWORD_REGEX))
+			{
+				throw new BLLException("Password is invalid", null);
+			}
 			
 		}
 		
-		
-		if(!this.regexMatche(user.getPassword(), PASSWORD_REGEX))
-		{
-			throw new BLLException("Password is invalid", null);
-		}
-				
+			
 		
 		try 
 		{
+			if(!oldUser.getEmail().equals(user.getEmail()) || !user.getPassword().equals(oldUser.getPassword()))
+			{
+				//hashing the password
+				byte[] salt = this.getSalt(user.getEmail());
+				String hashedPassword = this.toHash(user.getPassword(), salt);
+				
+				user.setPassword(hashedPassword);
+				
+			}
+			
+		
 			dao.update(user);
-		} catch (DALException error) 
+			
+		} 
+		catch (DALException error) 
 		{
 			throw new BLLException("Echec de la mise a jour", error);
+		}
+		catch (NoSuchAlgorithmException e) 
+		{
+			throw new BLLException("Echec du cryptage du mot de passe", e);
 		}
 	}
 	
