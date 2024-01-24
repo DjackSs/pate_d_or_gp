@@ -78,4 +78,13 @@
     <servlet-name>ServletUpdateUser</servlet-name>
     <url-pattern>/ServletUpdateUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>ServletMessage</display-name>
+    <servlet-name>ServletMessage</servlet-name>
+    <servlet-class>controller.ServletMessage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletMessage</servlet-name>
+    <url-pattern>/ServletMessage</url-pattern>
+  </servlet-mapping>
 </web-app>
