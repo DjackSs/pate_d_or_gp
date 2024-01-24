@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
@@ -64,5 +64,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<section>
+		<h3>Contactez nous :</h3>
+		<a href="contact">Envoyez un message � l'�quipe</a>
+	</section>
 </body>
 </html>

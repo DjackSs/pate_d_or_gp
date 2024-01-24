@@ -10,6 +10,10 @@ import dal.MessageDAO;
 public class MessageBLL {
 	private MessageDAO dao;
 	
+	private static final int OBJECT_MAX_LENGTH = 100;
+	private static final int CONTENT_MAX_LENGTH = 250;
+	private static final int MIN_LENGTH = 2;
+	
 	public MessageBLL() throws BLLException {
 		try {
 			dao = new MessageDAO();
@@ -55,17 +59,44 @@ public class MessageBLL {
 	
 	//======================================
 	
-	public Message insert(String object, String content, int idUser) throws BLLException {
+	public Message insert(String object, String content, int idUser) throws BLLException 
+	{
 //		BLLException bllException = new BLLException();
 		
-	/*
-	 * Ajouter des super exceptions
-	 */
+		//object
+		if(object.trim().length() > OBJECT_MAX_LENGTH)
+		{
+			throw new BLLException("Email is too big", null);
+					
+		}
+		
+		if(object.trim().length() < MIN_LENGTH)
+		{
+			throw new BLLException("Email name is too small", null);
+			
+		}
+		
+		
+		//content
+		if(content.trim().length() > CONTENT_MAX_LENGTH)
+		{
+			throw new BLLException("Password is invalid", null);
+					
+		}
+		
+		if(content.trim().length() < MIN_LENGTH)
+		{
+			throw new BLLException("Password is invalid", null);
+			
+		}
 		
 		Message message = new Message(object, content, idUser);
-		try {
+		
+		try 
+		{
 			dao.insert(message);
-		} catch (DALException error) {
+		} catch (DALException error) 
+		{
 			throw new BLLException("Echec de l'insertion", error);
 		}
 		return message;
@@ -73,14 +104,39 @@ public class MessageBLL {
 	
 	//======================================
 	
-	public void update(Message message) throws BLLException {
+	public void update(Message message) throws BLLException 
+	{
 //		BLLException bllException = new BLLException();
 		
-		/*
-		 * Ajouter des super exceptions
-		 */
+		//object
+		if(message.getObject().trim().length() > OBJECT_MAX_LENGTH)
+		{
+			throw new BLLException("Email is too big", null);
+					
+		}
 		
-		try {
+		if(message.getObject().trim().length() < MIN_LENGTH)
+		{
+			throw new BLLException("Email name is too small", null);
+			
+		}
+		
+		
+		//content
+		if(message.getContent().trim().length() > CONTENT_MAX_LENGTH)
+		{
+			throw new BLLException("Password is invalid", null);
+					
+		}
+		
+		if(message.getContent().trim().length() < MIN_LENGTH)
+		{
+			throw new BLLException("Password is invalid", null);
+			
+		}
+		
+		try 
+		{
 			dao.update(message);
 		} catch (DALException error) {
 			throw new BLLException("Echec de la mise a jour", error);

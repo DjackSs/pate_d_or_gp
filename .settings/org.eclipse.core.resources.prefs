@@ -1,3 +1,7 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/webapp/WEB-INF/jsp/JSPUserPage.jsp=UTF-8
+=======
+encoding//src/main/webapp/WEB-INF/jsp/JSPReservation.jsp=UTF-8
+>>>>>>> 825b543228b5960e2c5e4f2bca025df8edfe8b4b
 encoding/<project>=UTF-8

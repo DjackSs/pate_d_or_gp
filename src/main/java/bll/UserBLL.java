@@ -90,13 +90,13 @@ public class UserBLL
 		//xss security check
 		
 		//email
-		if(email.length() > EMAIL_MAX_LENGTH)
+		if(email.trim().length() > EMAIL_MAX_LENGTH)
 		{
 			throw new BLLException("Email is too big", null);
 					
 		}
 		
-		if(email.length() < MIN_LENGTH)
+		if(email.trim().length() < MIN_LENGTH)
 		{
 			throw new BLLException("Email name is too small", null);
 			
@@ -112,13 +112,13 @@ public class UserBLL
 		
 		
 		//password
-		if(password.length() > PASSWORD_MAX_LENGTH)
+		if(password.trim().length() > PASSWORD_MAX_LENGTH)
 		{
 			throw new BLLException("Password is invalid", null);
 					
 		}
 		
-		if(password.length() < MIN_LENGTH)
+		if(password.trim().length() < MIN_LENGTH)
 		{
 			throw new BLLException("Password is invalid", null);
 			
@@ -160,9 +160,8 @@ public class UserBLL
 //		BLLException bllException = new BLLException();
 		
 		//xss security check
-		System.out.println("new user"+user);
+		
 		User oldUser = this.selectById(user.getId());
-		System.out.println("old user" + oldUser);
 		
 		//name
 		if(user.getName().isBlank())
@@ -197,9 +196,8 @@ public class UserBLL
 			if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
 			{
 				throw new BLLException("email is invalid", null);
-			}
+			}		
 		}
-		
 		
 		//password
 		if(user.getPassword().isBlank())
@@ -224,31 +222,30 @@ public class UserBLL
 			{
 				throw new BLLException("Password is invalid", null);
 			}
+			
 		}
 		
-		System.out.println(user);
-		
-		try
-		{
-			System.out.println("mdp de bll "+user.getPassword());
 			
+		
+		try 
+		{
 			if(!oldUser.getEmail().equals(user.getEmail()) || !user.getPassword().equals(oldUser.getPassword()))
 			{
 				//hashing the password
 				byte[] salt = this.getSalt(user.getEmail());
 				String hashedPassword = this.toHash(user.getPassword(), salt);
 				
-				user.setPassword(hashedPassword);	
+				user.setPassword(hashedPassword);
 			}
 			
-		
 			dao.update(user);
 			
-		} catch (DALException error)
+		} 
+		catch (DALException error) 
 		{
 			throw new BLLException("Echec de la mise a jour", error);
 		}
-		catch (NoSuchAlgorithmException e)
+		catch (NoSuchAlgorithmException e) 
 		{
 			throw new BLLException("Echec du cryptage du mot de passe", e);
 		}
@@ -305,9 +302,7 @@ public class UserBLL
             }
             
             mdp = sb.toString();
-            
-            
-			
+ 	
 		}
 		catch (NoSuchAlgorithmException e) 
 		{
@@ -316,7 +311,6 @@ public class UserBLL
 		}
 		
 		return mdp;	
-		
-		
+
 	}
 }

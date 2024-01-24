@@ -26,6 +26,7 @@ public class ScheduleDAO implements GenericDAOInterface<Schedule> {
 	private static final String INSERT = "INSERT INTO "+ TABLE_NAME +" (open_hour, close_hour, id_restaurant) VALUES (?,?,?)";
 	private static final String SELECT_ALL_BY_ID_RESTAURANT = "SELECT * FROM Schedules s INNER JOIN Restaurants r ON r.id = id_restaurant WHERE r.id =  ?";
 	private static final String SELECT_ALL_BY_ID_RESTAURANT_ORDERBY = "SELECT * FROM Schedules s INNER JOIN Restaurants r ON r.id = id_restaurant WHERE r.id = ?";
+	private static final String SELECT_BY_ID_RESTAURANT_AND = "SELECT * FROM Schedules s INNER JOIN Restaurants r ON r.id = id_restaurant WHERE r.id =  ?";
 	private static final String SELECT_BY_ID = "SELECT * FROM "+ TABLE_NAME +" WHERE id = ?";
 	private static final String SELECT = "SELECT * FROM "+ TABLE_NAME;
 
@@ -101,6 +102,33 @@ public class ScheduleDAO implements GenericDAOInterface<Schedule> {
 			}
 		} catch (SQLException e) {
 			throw new DALException("Impossible de récupérer les informations de l'horaire d'id " + id, e);
+		}
+		
+		return schedule;
+	}
+	
+
+	public Schedule selectByIdRestaurantAnd(int id, String andOption) throws DALException {
+		Schedule schedule = null;
+		
+		try {
+			String query = SELECT_BY_ID_RESTAURANT_AND + " AND " + andOption ;
+			PreparedStatement ps = cnx.prepareStatement(query);
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				schedule = new Schedule();
+				
+				schedule.setId(rs.getInt("id"));
+				schedule.setOpenHour(rs.getTime("open_hour").toLocalTime());
+				schedule.setCloseHour(rs.getTime("close_hour").toLocalTime());
+				schedule.setIdRestaurant(rs.getInt("id_restaurant"));
+			}
+		} catch (SQLException e) {
+			throw new DALException("Impossible de récupérer les informations des horaires du restaurant d'id " + id 
+									+ "où " + andOption , e);
 		}
 		
 		return schedule;

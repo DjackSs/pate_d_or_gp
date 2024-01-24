@@ -180,6 +180,7 @@ public class UserDAO {
 			ps.setString(4, user.getPassword());
 			ps.setString(5, user.getRole());
 			ps.setInt(6, user.getId());
+			
 			ps.executeUpdate();
 			
 		} catch (SQLException error) {

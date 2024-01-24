@@ -14,7 +14,7 @@
 	
 	<main>
 	<section>
-	<h1>Crée votre compte ::</h1>
+	<h1>Crée votre compte :</h1>
 	<form method="post" action="inscription">
 		<fieldset>
 			<legend>Saisissez vous informations :</legend>
