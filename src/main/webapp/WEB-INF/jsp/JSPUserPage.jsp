@@ -7,16 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Profil</title>
-<style>
-	.pictureInfo {
-		display: flex;
-		justify-content: start-left;
-		align-items: end;
-	}
-	.profilInfo {
-	margin-left: 15px;
-	}
-</style>
+<link rel="stylesheet" href="css/user_page.css">
+
 </head>
 <body>
 
@@ -29,9 +21,10 @@
 				height="300px">
 		</div>
 		<div class="profilInfo">
-			<p>Pr�nom : ${user.name }</p>
+			<p>Prénom : ${user.name }</p>
 			<p>Nom : ${user.lastname }</p>
 			<p>Email : ${user.email }</p>
+			<a href="updateUser?id=${user.id }"><button>Modifier profil</button></a>
 		</div>
 	</div>
 	<h2>RESERVATIONS</h2>
@@ -39,14 +32,15 @@
 		<thead>
 			<tr>
 				<th>Restaurant</th>
-				<th>Heure de r�servation</th>
-				<th>Statut de votre r�servation</th>
+				<th>Heure de réservation</th>
+				<th>Statut de votre réservation</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="reservation" items="${reservations}">
 				<tr>
 					<td><a href="restaurant">${reservation.restaurantName}</a></td>
+					 <fmt:formatDate value="${reservation.reservationTime}" pattern="dd/MM/yyyy à hh:mm" />
 					<td>${reservation.reservationTime}</td>
 					<td>${reservation.state}</td>
 				</tr>
@@ -73,7 +67,7 @@
 	
 	<section>
 		<h3>Contactez nous :</h3>
-		<a href="contact">Envoyez un message � l'�quipe</a>
+		<a href="contact">Envoyez un message � l'�quipe</a>
 	</section>
 </body>
 </html>
