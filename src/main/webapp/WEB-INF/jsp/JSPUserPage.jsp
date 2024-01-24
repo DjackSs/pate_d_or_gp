@@ -24,7 +24,8 @@
 			<p>Prénom : ${user.name }</p>
 			<p>Nom : ${user.lastname }</p>
 			<p>Email : ${user.email }</p>
-			<a href="updateUser?id=${user.id }"><button>Modifier profil</button></a>
+			<a href="updateUser"><button>Modifier profil</button></a>
+			<a href="updateUser?delete=true"><button>Supprimer profil</button></a>
 		</div>
 	</div>
 	<h2>RESERVATIONS</h2>
@@ -40,7 +41,6 @@
 			<c:forEach var="reservation" items="${reservations}">
 				<tr>
 					<td><a href="restaurant">${reservation.restaurantName}</a></td>
-					 <fmt:formatDate value="${reservation.reservationTime}" pattern="dd/MM/yyyy à hh:mm" />
 					<td>${reservation.reservationTime}</td>
 					<td>${reservation.state}</td>
 				</tr>
