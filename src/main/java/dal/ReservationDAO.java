@@ -14,13 +14,16 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import bo.Reservation;
+import bo.ReservationWithRestaurant;
 
 public class ReservationDAO {
 	private static final String SELECT = "SELECT * FROM reservations";
 	private static final String SELECT_BY_ID = "SELECT * FROM reservations WHERE id = ?";
-//	private static final String SELECT_RESERVATIONS_BY_IDUSER = "select reservations.* from reservations where reservations.id_user in(?)";
 	private static final String SELECT_RESERVATIONS_BY_IDUSER = "select * from reservations where id_user = ?";
-	private static final String SELECT_RESERVATIONS_BY_IDTABLE = "select reservations.* from reservations where reservations.id_table in(?)";
+	private static final String SELECT_RESTAURANTS_NAME_FOR_RESERVATION = "SELECT R.name FROM Reservations AS Re "
+																		+ "JOIN Tables AS T ON Re.id_table = T.id "
+															            + "JOIN Restaurants AS R ON T.id_restaurant = R.id "
+															            + "WHERE Re.id = ?";
 	private static final String INSERT_INTO_RESERVATIONS = "INSERT INTO reservations (reservation_time, state, id_table, id_user) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE reservations SET reservation_time = ?, state = ?, id_table = ?, id_user = ? WHERE id = ?";
 	private static final String DELETE = "DELETE FROM reservations WHERE id = ?";
@@ -130,31 +133,22 @@ public class ReservationDAO {
 
 	//======================================
 	
-	public List<Reservation> selectByKeyIdTable(int foreignKey) throws DALException {
-		List<Reservation> reservations = new ArrayList<>();
+	public String getRestaurantNameByReservationId(int reservationId) throws DALException {
+		
+		String reservationsName = null;
 		
 		try {
-			PreparedStatement ps;
-			ps = cnx.prepareStatement(SELECT_RESERVATIONS_BY_IDTABLE);
-			
-			ps.setInt(1, foreignKey);
-			
+			PreparedStatement ps = cnx.prepareStatement(SELECT_RESTAURANTS_NAME_FOR_RESERVATION);
+			ps.setInt(1, reservationId);
 			ResultSet rs = ps.executeQuery();
 			
-			while(rs.next()) {
-				Reservation reservation = new Reservation();
-				reservation.setId(rs.getInt("id"));
-				reservation.setReservationTime(rs.getDate("reservationTime").toLocalDate());
-				reservation.setState(rs.getString("state"));
-				reservation.setIdTable(rs.getInt("id_table"));
-				reservation.setIdUser(rs.getInt("id_user"));
-				
-				reservations.add(reservation);
-			}
-		} catch (SQLException error) {
-			throw new DALException("Unable to recover data by Id Table", error);
+			if (rs.next()) {
+                return rs.getString("name");
+            }
+		} catch (SQLException e) {
+            throw new DALException("Error retrieving restaurant name by reservation id", e);
 		}
-		return reservations;
+		return reservationsName;
 	}
 	
 	

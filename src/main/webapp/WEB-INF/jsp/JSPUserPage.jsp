@@ -5,36 +5,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Profil</title>
+<style>
+	.pictureInfo {
+		display: flex;
+		justify-content: start-left;
+		align-items: end;
+	}
+	.profilInfo {
+	margin-left: 15px;
+	}
+</style>
 </head>
 <body>
 
-	<%@include file="../jspf/header.jspf" %>
-	
+	<%@include file="../jspf/header.jspf"%>
+
 	<h1>PROFIL UTILISATEUR</h1>
-	<div></div>
-	<img alt="avatar_neutre" src="././img/avatar-neutre.webp">
-	<p>${user.name }</p>
-	<p>${user.lastname }</p>
-	<p>${user.email }</p>
+	<div class="pictureInfo">
+		<div class="profilPicture">
+			<img alt="avatar_neutre" src="././img/avatar-neutre1.webp"
+				height="300px">
+		</div>
+		<div class="profilInfo">
+			<p>Prénom : ${user.name }</p>
+			<p>Nom : ${user.lastname }</p>
+			<p>Email : ${user.email }</p>
+		</div>
+	</div>
 	<h2>RESERVATIONS</h2>
 	<table>
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>Heure de rÃ©servation</th>
-				<th>etat</th>
-				<th>id_table</th>
+				<th>Restaurant</th>
+				<th>Heure de réservation</th>
+				<th>Statut de votre réservation</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="reservation" items="${reservations}">
 				<tr>
-					<td>${reservation.id}</td>
+					<td><a href="restaurant">${reservation.restaurantName}</a></td>
 					<td>${reservation.reservationTime}</td>
 					<td>${reservation.state}</td>
-					<td>${reservation.idTable}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<h2>MESSAGES</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Objet</th>
+				<th>Contenu</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="message" items="${messages}">
+				<tr>
+					<td>${message.object}</td>
+					<td>${message.content}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

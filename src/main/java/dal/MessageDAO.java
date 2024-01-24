@@ -13,10 +13,12 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import bo.Message;
+import bo.Reservation;
 
 public class MessageDAO {
 	private static final String SELECT = "SELECT * FROM messages";
 	private static final String SELECT_BY_ID = "SELECT * FROM messages WHERE id = ?";
+	private static final String SELECT_BY_ID_USER = "SELECT * FROM messages WHERE id_user = ?";
 	private static final String INSERT_INTO_MESSAGES = "INSERT INTO messages (object, content, id_user) VALUES (?, ?, ?)";
 	private static final String UPDATE = "UPDATE messages SET object = ?, content = ?, id_user = ? WHERE id = ?";
 	private static final String DELETE = "DELETE FROM messages WHERE id = ?";
@@ -91,6 +93,34 @@ public class MessageDAO {
 
 		return message;
 	}
+
+	//======================================
+	
+	public List<Message> selectMessageByKeyIdUser(int foreignKey) throws DALException {
+		List<Message> messages = new ArrayList<Message>();
+
+		try {
+			PreparedStatement ps = cnx.prepareStatement(SELECT_BY_ID_USER);
+
+			ps.setInt(1, foreignKey);
+
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()) {
+				Message message = new Message();
+				message.setId(rs.getInt("id"));
+				message.setObject(rs.getString("object"));
+				message.setContent(rs.getString("content"));
+				message.setIdUser(rs.getInt("id_user"));
+				
+				messages.add(message);
+			}
+		} catch (SQLException error) {
+			throw new DALException("Unable to recover data by Id User", error);
+		}
+		return messages;
+	}
+
 
 	//======================================
 
