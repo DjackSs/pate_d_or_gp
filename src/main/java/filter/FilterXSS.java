@@ -5,7 +5,6 @@ import java.io.IOException;
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -27,14 +26,6 @@ public class FilterXSS extends HttpFilter implements Filter
 {
 	
 	private static final long serialVersionUID = 5469743367551988020L;
-	
-	
-
-	public void init(FilterConfig fConfig) throws ServletException 
-	{
-		
-	}
-       
 
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
@@ -48,13 +39,6 @@ public class FilterXSS extends HttpFilter implements Filter
 		
 		chain.doFilter(req , res );
 	}
-	
-	public void destroy() 
-	{
-		
-	}
-
-
 	
 	
 

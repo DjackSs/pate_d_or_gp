@@ -8,7 +8,12 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 public class XssWrapper extends HttpServletRequestWrapper 
 {
 	
-	private static final Pattern[] XSS_PATERNS = { Pattern.compile("<.*?>"),Pattern.compile("&.*?;"),Pattern.compile("%[0-9a-fA-F]*")}; 
+	private static final Pattern[] XSS_PATERNS = 
+		{ 
+				Pattern.compile("<.*?>"),	//detect html balise patern
+				Pattern.compile("&.*?;"),	//detect html symbole (&#8249; = <)
+				Pattern.compile("%[0-9a-fA-F]*") //detect hexadecimal digit character (%3c = <)	
+		}; 
 
 	public XssWrapper(HttpServletRequest request) 
 	{
@@ -31,13 +36,6 @@ public class XssWrapper extends HttpServletRequestWrapper
 		return values;
 	}
 	
-	@Override
-	public String getParameter(String paramater)
-	{
-		return removeTags(super.getParameter(paramater));
-		
-	}
-	
 	private String removeTags(String value)
 	{
 		if(value != null)
@@ -55,5 +53,22 @@ public class XssWrapper extends HttpServletRequestWrapper
 		
 		return value;
 	}
+	
+	//body sanitation
+	@Override
+	public String getParameter(String paramater)
+	{
+		return removeTags(super.getParameter(paramater));
+		
+	}
+	
+	//header sanitation
+	@Override
+    public String getHeader( String name ) 
+	{
+        return removeTags( super.getHeader(name) );
+    }
+	
+	
 
 }
