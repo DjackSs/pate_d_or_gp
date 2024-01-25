@@ -196,10 +196,7 @@ public class UserBLL
 			if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
 			{
 				throw new BLLException("email is invalid", null);
-			}
-			
-			
-		
+			}		
 		}
 		
 		//password
@@ -239,10 +236,8 @@ public class UserBLL
 				String hashedPassword = this.toHash(user.getPassword(), salt);
 				
 				user.setPassword(hashedPassword);
-				
 			}
 			
-		
 			dao.update(user);
 			
 		} 
@@ -307,9 +302,7 @@ public class UserBLL
             }
             
             mdp = sb.toString();
-            
-            
-			
+ 	
 		}
 		catch (NoSuchAlgorithmException e) 
 		{
@@ -318,7 +311,6 @@ public class UserBLL
 		}
 		
 		return mdp;	
-		
-		
+
 	}
 }

@@ -70,13 +70,42 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ServletReservation</display-name>
+    <servlet-name>ServletReservation</servlet-name>
+    <servlet-class>controller.ServletReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletReservation</servlet-name>
+    <url-pattern>/reservation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletLunchReservation</display-name>
+    <servlet-name>ServletLunchReservation</servlet-name>
+    <servlet-class>controller.ServletLunchReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLunchReservation</servlet-name>
+    <url-pattern>/lunchReservation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDinerReservation</display-name>
+    <servlet-name>ServletDinerReservation</servlet-name>
+    <servlet-class>controller.ServletDinerReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDinerReservation</servlet-name>
+    <url-pattern>/dinerReservation</url-pattern>
+	</servlet-mapping>
+	<servlet>
     <display-name>ServletUpdateUser</display-name>
     <servlet-name>ServletUpdateUser</servlet-name>
     <servlet-class>controller.ServletUpdateUser</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletUpdateUser</servlet-name>
-    <url-pattern>/ServletUpdateUser</url-pattern>
+    <url-pattern>/updateUser</url-pattern>
   </servlet-mapping>
   <servlet>
     <display-name>ServletMessage</display-name>
@@ -87,13 +116,4 @@
     <servlet-name>ServletMessage</servlet-name>
     <url-pattern>/contact</url-pattern>
   </servlet-mapping>
-  <filter>
-    <display-name>FilterXSS</display-name>
-    <filter-name>FilterXSS</filter-name>
-    <filter-class>filter.FilterXSS</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>FilterXSS</filter-name>
-    <url-pattern>/FilterXSS</url-pattern>
-  </filter-mapping>
 </web-app>

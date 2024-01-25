@@ -60,12 +60,10 @@ public class ServletRestaurant extends HttpServlet {
 			request.setAttribute("restaurantCard", restaurantCard);
 			request.setAttribute("restaurantCardDishes", restaurantCardDishes);
 			
-			System.out.println(restaurantSchedule);
 		} 
 		catch (BLLException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath()+"/user");
 		
 		rd.forward(request, response);
 	}

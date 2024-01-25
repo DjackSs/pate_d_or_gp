@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
@@ -7,16 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Profil</title>
-<style>
-	.pictureInfo {
-		display: flex;
-		justify-content: start-left;
-		align-items: end;
-	}
-	.profilInfo {
-	margin-left: 15px;
-	}
-</style>
+<link rel="stylesheet" href="css/user_page.css">
+
 </head>
 <body>
 
@@ -29,9 +21,11 @@
 				height="300px">
 		</div>
 		<div class="profilInfo">
-			<p>Prénom : ${user.name }</p>
+			<p>PrÃ©nom : ${user.name }</p>
 			<p>Nom : ${user.lastname }</p>
 			<p>Email : ${user.email }</p>
+			<a href="updateUser"><button>Modifier profil</button></a>
+			<a href="updateUser?delete=true"><button>Supprimer profil</button></a>
 		</div>
 	</div>
 	<h2>RESERVATIONS</h2>
@@ -39,8 +33,8 @@
 		<thead>
 			<tr>
 				<th>Restaurant</th>
-				<th>Heure de réservation</th>
-				<th>Statut de votre réservation</th>
+				<th>Heure de rÃ©servation</th>
+				<th>Statut de votre rÃ©servation</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -73,7 +67,7 @@
 	
 	<section>
 		<h3>Contactez nous :</h3>
-		<a href="contact">Envoyez un message à l'équipe</a>
+		<a href="contact">Envoyez un message ï¿½ l'ï¿½quipe</a>
 	</section>
 </body>
 </html>

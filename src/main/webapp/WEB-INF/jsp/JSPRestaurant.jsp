@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ page import="java.time.LocalTime" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Pâte d'Or - Restaurant</title>
+<meta charset="UTF-8">
+<title>PÃ¢te d'Or - Restaurant</title>
 </head>
 <body>
 	<%@include file="../jspf/header.jspf" %>
@@ -26,7 +25,7 @@
 				<h2>${restaurantCard.name }</h2>
 				
 				<div>					
-					<h4>Entrée(s)</h4>
+					<h4>EntrÃ©e(s)</h4>
 					<ul>
 						<c:forEach var="current" items="${restaurantCardDishes }">
 							<c:if test='${current.category.equals("entry") }'>
@@ -69,12 +68,27 @@
 					</ul>
 				</div>
 			</article>
+		</div>
+		
+		<div>
+			<c:choose>
+		
+				<c:when test='${user != null }'>
+					
+					<a href="reservation?idRestaurant=${restaurant.id }">RÃ©server</a>
+					<a href="#">Contact</a>
+					
+				</c:when>
+				
+				<c:otherwise >
+				
+					<a href="#">Contact</a>
+					
+				</c:otherwise>
+			
+			</c:choose>
 		</div>	
 	
-		<div>
-			<a href="#">Réserver</a>
-			<a href="#">Contact</a>
-		</div>
 		
 		<article>
 			<ul>
