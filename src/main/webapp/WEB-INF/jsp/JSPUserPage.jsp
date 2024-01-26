@@ -15,6 +15,7 @@
 	<%@include file="../jspf/header.jspf"%>
 
 	<h1>PROFIL UTILISATEUR</h1>
+	<h2>Informations personnelles</h2>
 	<div class="pictureInfo">
 		<div class="profilPicture">
 			<img alt="avatar_neutre" src="././img/avatar-neutre1.webp"
@@ -24,7 +25,8 @@
 			<p>Prénom : ${user.name }</p>
 			<p>Nom : ${user.lastname }</p>
 			<p>Email : ${user.email }</p>
-			<a href="updateUser?id=${user.id }"><button>Modifier profil</button></a>
+			<a href="updateUser?id=${user.id }"><button>Modifier
+					profil</button></a>
 		</div>
 	</div>
 	<h2>RESERVATIONS</h2>
@@ -40,9 +42,15 @@
 			<c:forEach var="reservation" items="${reservations}">
 				<tr>
 					<td><a href="restaurant">${reservation.restaurantName}</a></td>
-					 <fmt:formatDate value="${reservation.reservationTime}" pattern="dd/MM/yyyy à hh:mm" />
 					<td>${reservation.reservationTime}</td>
-					<td>${reservation.state}</td>
+					<td><c:choose>
+							<c:when test="${reservation.state=='gran'}">Validée</c:when>
+							<!-- if condition -->
+							<c:when test="${reservation.state=='hold'}">En attente</c:when>
+							<!-- if condition -->
+							<c:when test="${reservation.state=='deni'}">Refusée</c:when>
+							<!-- else condition -->
+						</c:choose></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -64,10 +72,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
+
 	<section>
 		<h3>Contactez nous :</h3>
-		<a href="contact">Envoyez un message � l'�quipe</a>
+		<a href="contact">Envoyez un message à l'équipe</a>
 	</section>
 </body>
 </html>

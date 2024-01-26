@@ -6,20 +6,63 @@
 	padding: 0;
 }
 
+body {
+	background-color: #3d3a4b;
+}
+
+p {
+	color: floralwhite;
+}
+
+a {
+	text-decoration: none;
+	color: grey;
+	font-style: italic;
+}
+
+a:hover {
+ text-decoration: underline;
+}
+
+button {
+	cursor: pointer;
+	background-color: #3d3a4b;
+	padding: 5px 5px;
+	border: 0 solid black;
+	border-radius: 7px;
+	margin-top: 5px;
+	color: floralwhite;
+}
+
 h1 {
 	text-align: center;
+	margin-bottom: 15px;
+}
+
+h2, h3, table, a {
+	margin: 15px 0px 15px 10px;
+}
+
+h1, h2, h3, table {
+	color: floralwhite;
 }
 
 .pictureInfo {
+	background-color: #EEEbd0;;
 	display: flex;
-	justify-content: start-left;
-	align-items: end;
+	justify-content: space-between;
+	align-items: center ;
+	height: 400px;
+	color: #3d3a4b;
+}
+
+img {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	border: 1px solid black;
 }
 
 .profilInfo {
-margin-left: 15px;
-}
-
-input[type="text" i], input[type="email" i], input[type="password" i] {
-width: 100px;
+	margin-left: 15px;
 }
