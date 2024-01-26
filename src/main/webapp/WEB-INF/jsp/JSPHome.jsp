@@ -22,12 +22,12 @@
 				<h1 class="playfair-font title-display-1">La pâte d'or</h1>	
 				<p>Nos chefs attendent votre commande.</p>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis dicta cum exercitationem, illum minima cupiditate.</p>
-				<a href="#">Consultez nos restaurants</a>
+				<a href="#home-restaurant-section">Consultez nos restaurants</a>
 			</div>
 		</section>
 	
 	
-		<section class="home-restaurant-section">
+		<section id="home-restaurant-section" class="home-restaurant-section">
 			<p>Aliments frais et de qualité supérieure</p>
 			<h2 class="playfair-font title-display-2">Asseyez-vous, détendez-vous, on s'occupe de tout</h2>	
 			<p>Voici un aperçu de nos restaurants</p>
@@ -47,8 +47,8 @@
 							</c:choose>
 						</div>
 						<div class="home-restaurant-card__body">
-							<h3>${restaurant.name}</h3>
-							<p>(${restaurant.postalCode} ${restaurant.town })</p>
+							<h3 class="playfair-font title-display-3">${restaurant.name}</h3>
+							<p>(${restaurant.postalCode} ${restaurant.town.toLowerCase() })</p>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, cumque.</p>
 						</div>
 					</div>
@@ -58,7 +58,42 @@
 		
 		<section class="home-products-section">
 			<h2 class="playfair-font title-display-2">Nos produits phares</h2>	
-			<p>Voici un aperçu de nos restaurants</p>
+			<p>Appréciés de nos clients.</p>
+			<div class="home-products-container container">
+				<div class="home-products-card">
+					<div class="home-products-card__box-img">
+						<img alt="Confit de canard" src="././img/unsplash-confitcanard-img.jpg">
+					</div>
+					<div class="home-products-card__body">
+						<h3 class="playfair-font title-display-3">Confit de Canard</h3>
+						<p>24€00</p>
+						<p>Cuisse de canard cuite lentement, avec une peau croustillante et une viande tendre.</p>
+						<p>Présent dans la carte Spécialités d'Été</p>
+					</div>
+				</div>
+				<div class="home-products-card">
+					<div class="home-products-card__box-img">
+						<img alt="Panna cotta à la vanille" src="././img/unsplash-pannacotta-img.jpg">
+					</div>
+					<div class="home-products-card__body">
+						<h3 class="playfair-font title-display-3">Panna cotta à la vanille</h3>
+						<p>9€00</p>
+						<p>Dessert à la vanille crémeux avec compote de baies.</p>
+						<p>Présent dans la carte Collection Hiver</p>
+					</div>
+				</div>
+				<div class="home-products-card">
+					<div class="home-products-card__box-img">
+						<img alt="Cocktail Old Fashioned" src="././img/unsplash-oldfashioned-img.jpg">
+					</div>
+					<div class="home-products-card__body">
+						<h3 class="playfair-font title-display-3">Old Fashioned</h3>
+						<p>15€00</p>
+						<p>Un cocktail intemporel avec bourbon, sucre et bitter.</p>
+						<p>Présent dans la carte Collection Hiver</p>
+					</div>
+				</div>
+			</div>
 		</section>
 	
 	</main>

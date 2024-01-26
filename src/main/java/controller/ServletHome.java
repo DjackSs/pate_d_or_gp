@@ -19,7 +19,6 @@ public class ServletHome extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	private RestaurantBLL restaurantBll;
-	private DishBLL dishBll;
 	
 	@Override
 	public void init() throws ServletException 
@@ -30,7 +29,6 @@ public class ServletHome extends HttpServlet
 		try 
 		{
 			this.restaurantBll = new RestaurantBLL();
-			this.dishBll = new DishBLL();
 		} 
 		catch (BLLException e) 
 		{
@@ -46,18 +44,14 @@ public class ServletHome extends HttpServlet
 		try 
 		{
 			List<Restaurant> restaurants = this.restaurantBll.selectAll();
-			List<Dish> dishes = this.dishBll.selectAll();
 			
 			request.setAttribute("restaurants", restaurants);
-			request.setAttribute("produits", dishes);
 		} 
 		catch (BLLException e) 
 		{
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		rd.forward(request, response);
 		
 	}

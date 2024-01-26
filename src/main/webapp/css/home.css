@@ -30,6 +30,12 @@
     line-height: 1.2;
 }
 
+.title-display-3 {
+	font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
 .beige-subtitle {
 	text-align: center;
 	color: #eeebd0;
@@ -134,7 +140,6 @@ h1 {
  
  /*********** HOME RESTAURANT ***********/
 .home-restaurant-section {
-	padding-top: 3rem;
 	background-color: #eeebd0;
 }
 
@@ -145,6 +150,7 @@ h1 {
 
 .home-restaurant-section > p:nth-child(1) {
 	margin-bottom: 0.25rem;
+	padding-top: 5em;
 }
 
 .home-restaurant-section > p:nth-child(3) {
@@ -173,6 +179,12 @@ h1 {
 	border-radius: 2px;
 }
 
+.home-restaurant-card > a {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
 .home-restaurant-card .home-restaurant-card__box-img {
 	height: calc(1rem + 228px);
 }
@@ -184,10 +196,76 @@ h1 {
 }
 
 .home-restaurant-card .home-restaurant-card__body {
+	position: relative;
 	flex-grow: 1;
 	background-color: #3d3a4b;
 	color: #f8f9fa;
 	padding: 1rem;
 }
 
+.home-restaurant-card .home-restaurant-card__body > h3 {
+	margin-bottom: 0.5rem;
+}
+ 
+.home-restaurant-card .home-restaurant-card__body > p:nth-child(2) {
+	font-size: 0.8rem;
+	text-transform: capitalize;
+	margin-bottom: 0.25rem;
+} 
+
 /*********** HOME PRODUCTS ***********/
+.home-products-section {
+	padding-top: 3rem;
+}
+
+.home-products-section > h2 {
+	text-align: center;
+	margin-bottom: 1rem;
+	color : #f8f9fa;
+}
+
+.home-products-section > p:nth-child(2) {
+	margin-bottom: 0.25rem;
+	text-align: center;
+	color : #f8f9fa;
+}
+
+.home-products-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.home-products-card {
+	display:flex;
+}
+
+.home-products-card .home-products-card__box-img {
+	display: inline-flex;
+	width: 25%;	
+}
+
+.home-products-card .home-products-card__box-img img {
+	width: 100%;	
+	height: 300px;
+	object-fit: cover;	
+	object-position: center;
+}
+
+.home-products-card .home-products-card__body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 1.4rem;
+	background-color: #eeebd0;
+	color: #111;
+}
+
+.home-products-card .home-products-card__body > h3 {
+	margin-bottom: 0.5rem;
+}
+
+.home-products-card .home-products-card__body > p:nth-child(3) {
+	font-size: 1.25rem;
+	margin: 1rem 0;
+}
