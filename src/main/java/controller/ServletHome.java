@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import bll.BLLException;
+import bll.DishBLL;
 import bll.RestaurantBLL;
+import bo.Dish;
 import bo.Restaurant;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -16,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ServletHome extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-	
 	private RestaurantBLL restaurantBll;
+	private DishBLL dishBll;
 	
 	@Override
 	public void init() throws ServletException 
@@ -28,10 +30,10 @@ public class ServletHome extends HttpServlet
 		try 
 		{
 			this.restaurantBll = new RestaurantBLL();
+			this.dishBll = new DishBLL();
 		} 
 		catch (BLLException e) 
 		{
-			
 			e.printStackTrace();
 		}
 	}
@@ -44,12 +46,13 @@ public class ServletHome extends HttpServlet
 		try 
 		{
 			List<Restaurant> restaurants = this.restaurantBll.selectAll();
+			List<Dish> dishes = this.dishBll.selectAll();
 			
 			request.setAttribute("restaurants", restaurants);
+			request.setAttribute("produits", dishes);
 		} 
 		catch (BLLException e) 
 		{
-			
 			e.printStackTrace();
 		}
 		

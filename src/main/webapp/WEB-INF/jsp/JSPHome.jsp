@@ -16,25 +16,49 @@
 	
 	<main>
 	
-		<section class="home-hero">	
+		<section class="home-hero-section">	
 			<div class="container">			
-				<p class="beige-subtitle">Restaurant nantais award 2023-2024</p>	
+				<p class="beige-subtitle">Restaurants award 2023-2024</p>	
 				<h1 class="playfair-font title-display-1">La pâte d'or</h1>	
-				<p>Nos chefs attendent votre commande</p>
+				<p>Nos chefs attendent votre commande.</p>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis dicta cum exercitationem, illum minima cupiditate.</p>
 				<a href="#">Consultez nos restaurants</a>
 			</div>
 		</section>
 	
 	
-		<section class="home-grid">		
-		<c:forEach var="item" items="${restaurants}">
-			<a href="restaurant?id=${item.id }">
-				<article>
-				<h2>${item.name}</h2>
-				</article>
-			</a>
-		</c:forEach>
+		<section class="home-restaurant-section">
+			<p>Aliments frais et de qualité supérieure</p>
+			<h2 class="playfair-font title-display-2">Asseyez-vous, détendez-vous, on s'occupe de tout</h2>	
+			<p>Voici un aperçu de nos restaurants</p>
+			
+			<div class="home-restaurant-grid container">
+				<c:forEach var="restaurant" items="${restaurants}">
+					<div class="home-restaurant-card">
+						<a href="restaurant?id=${restaurant.id }"></a>
+						<div class="home-restaurant-card__box-img">
+							<c:choose>
+								<c:when test="${restaurant.id % 2 == 0 }">
+									<img alt="" src="././img/unsplash-restaurant-img1.jpg">
+								</c:when>
+								<c:when test="${restaurant.id % 2 == 1 }">
+									<img alt="" src="././img/unsplash-restaurant-img2.jpg">
+								</c:when>
+							</c:choose>
+						</div>
+						<div class="home-restaurant-card__body">
+							<h3>${restaurant.name}</h3>
+							<p>(${restaurant.postalCode} ${restaurant.town })</p>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, cumque.</p>
+						</div>
+					</div>
+				</c:forEach>
+			</div>		
+		</section>
+		
+		<section class="home-products-section">
+			<h2 class="playfair-font title-display-2">Nos produits phares</h2>	
+			<p>Voici un aperçu de nos restaurants</p>
 		</section>
 	
 	</main>
