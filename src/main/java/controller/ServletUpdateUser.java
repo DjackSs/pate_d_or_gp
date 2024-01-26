@@ -24,61 +24,60 @@ public class ServletUpdateUser extends HttpServlet {
 		}
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idStr = request.getParameter("id");
-		
-		if (idStr == null || idStr.isBlank()) {
-			request.getRequestDispatcher("/WEB-INF/jsp/JSPHome.jsp").forward(request, response);
-			return;
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		if(request.getParameter("delete") != null) 
+		{
+			try 
+			{
+				this.userBLL.delete(((User) request.getSession().getAttribute("user")).getId());
+				
+				request.getSession().setAttribute("user", null);
+			} 
+			catch (BLLException e) 
+			{
+				e.printStackTrace();
+			}
+			
+			
+			response.sendRedirect(request.getContextPath()+"/home");
+			
+		} 
+		else 
+		{
+			request.getRequestDispatcher("/WEB-INF/jsp/JSPUpdateUser.jsp").forward(request, response);
 		}
-		
-		int id = Integer.parseInt(idStr);
-		
-		try {
-			User user = userBLL.selectById(id);
-			request.setAttribute("user", user);
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-		request.getRequestDispatcher("/WEB-INF/jsp/JSPUpdateUser.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1 Récupérer les données d'insertion
-		String idStr = request.getParameter("id");
-		String nameStr = request.getParameter("name");
-		String lastnameStr = request.getParameter("lastname");
-		String emailStr = request.getParameter("email");
-		String passwordStr = request.getParameter("password");
-		String roleStr = request.getParameter("role");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		
+		int id = ((User) request.getSession().getAttribute("user")).getId();
+		String name = request.getParameter("name");
+		String lastname = request.getParameter("lastname");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 		
-		// 2 eventuellement passer dans le bon type
-		int id = Integer.parseInt(idStr);
+		String role = ((User) request.getSession().getAttribute("user")).getRole();
 		
-		// 3 Exploitation des params par le BLL
 		try {
 			User userToUpdate;
 			userToUpdate = userBLL.selectById(id);
-			System.out.println(id);
-			userToUpdate.setName(nameStr);
-			System.out.println(nameStr);
-			userToUpdate.setLastname(lastnameStr);
-			System.out.println(lastnameStr);
-			userToUpdate.setEmail(emailStr);
-			System.out.println(emailStr);
-			userToUpdate.setPassword(passwordStr);
-			System.out.println("mdp de sevlet"+passwordStr);
-			userToUpdate.setRole(roleStr);
-			System.out.println(roleStr);
+			userToUpdate.setName(name);
+			userToUpdate.setLastname(lastname);
+			userToUpdate.setEmail(email);
+			userToUpdate.setPassword(password);
+			userToUpdate.setRole(role);
 			
-			System.out.println(userToUpdate);
 			userBLL.update(userToUpdate);
-			System.out.println(userToUpdate);
 			
 			request.getSession().setAttribute("user", userToUpdate);
-			response.sendRedirect("user?id="+id);
-		} catch (BLLException e) {
+			
+			response.sendRedirect("user");
+			
+		} 
+		catch (BLLException e) 
+		{
 			request.setAttribute("erreur", e);
 			request.getRequestDispatcher("/WEB-INF/jsp/JSPUpdateUser.jsp").forward(request, response);
 		}

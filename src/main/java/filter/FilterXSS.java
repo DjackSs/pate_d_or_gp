@@ -1,9 +1,10 @@
 package filter;
 
+import java.io.IOException;
+
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -11,8 +12,6 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
 
 
 @WebFilter(dispatcherTypes= 
@@ -22,38 +21,25 @@ import java.io.IOException;
 		DispatcherType.INCLUDE,
 		DispatcherType.ERROR,
 		
-}, urlPatterns = {"/user", "/contact","/updateUser", "/reservation/*"})
-public class FilterSession extends HttpFilter implements Filter 
+}, urlPatterns = {"/*"})
+public class FilterXSS extends HttpFilter implements Filter 
 {
-	private static final long serialVersionUID = 3736531170359901374L;
+	
+	private static final long serialVersionUID = 5469743367551988020L;
 
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
 	{
+		//https://koor.fr/Java/TutorialJEE/jee_attaques_xss.wp
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		
+		req = new XssWrapper (req);
 		
-		if(req.getSession().getAttribute("user") != null)
-		{
-			chain.doFilter(request, response);
-			
-		}
-		else
-		{
-			res.sendRedirect(req.getContextPath()+"/connection");
-			
-		}
-		
-		
-		
+		chain.doFilter(req , res );
 	}
-
 	
-	public void init(FilterConfig fConfig) throws ServletException 
-	{
-		
-	}
+	
 
 }
