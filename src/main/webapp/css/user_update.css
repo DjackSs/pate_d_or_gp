@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+*, ::before, ::after {
+	box-sizing: border-box;
+	margin:0;
+	padding: 0;
+}
+
+body {
+	background-color: #3d3a4b;
+	color: floralwhite;
+}
+
+
+a {
+	text-decoration: none;
+	color: grey;
+	font-style: italic;
+}
+
+a:hover {
+ text-decoration: underline;
+}
+
+.alignLabelInput button,
+.alignLabelInput input[type="submit"] {
+    cursor: pointer;
+    background-color: floralwhite;
+    padding: 5px 5px;
+    border: 0 solid black;
+    border-radius: 7px;
+    margin-top: 5px;
+    color: #3d3a4b;
+}
+
+h1 {
+	text-align: center;
+	margin: 20px 0 15px 0;
+}
+
+h2, h3, table, a {
+	margin: 15px 0px 15px 10px;
+}
+
+h1, h2, h3, table {
+	color: floralwhite;
+}
+
+.inputUpdateUser {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.alignLabelInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; 
+}
+
+.alignLabelInput label {
+    flex: 1; 
+    text-align: left; 
+}
+
+.alignLabelInput input[type="text"],
+.alignLabelInput input[type="email"],
+.alignLabelInput input[type="password"] {
+    flex: 1;
+    text-align: left; 
+    margin-left: 10px; 
+}
+
+.alignLabelInput input[type="submit"],
+.alignLabelInput button {
+    margin-top: 10px;
+}
+
+

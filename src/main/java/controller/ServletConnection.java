@@ -1,12 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 
 import bll.BLLException;
 import bll.UserBLL;

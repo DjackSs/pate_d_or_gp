@@ -8,11 +8,9 @@
 
 body {
 	background-color: #3d3a4b;
-}
-
-p {
 	color: floralwhite;
 }
+
 
 a {
 	text-decoration: none;
@@ -48,21 +46,42 @@ h1, h2, h3, table {
 }
 
 .pictureInfo {
-	background-color: #EEEbd0;;
-	display: flex;
-	justify-content: space-between;
-	align-items: center ;
-	height: 400px;
-	color: #3d3a4b;
+    background-color: #EEEbd0;
+    display: flex;
+    align-items: center;
+    height: 400px;
+    color: #3d3a4b;
 }
 
-img {
+.profilInfo {
+    flex: 2;
+    text-align: start;
+}
+
+.profilPicture {
+    flex: 1;
+    text-align: center; 
+    margin-right: 10px; 
+}
+
+.picto {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.header {
+	display: inline-block;
+}
+
+#imgProfil {
 	width: 300px;
 	height: 300px;
 	border-radius: 50%;
 	border: 1px solid black;
+	object-fit: cover;
 }
 
-.profilInfo {
-	margin-left: 15px;
-}
+
+
