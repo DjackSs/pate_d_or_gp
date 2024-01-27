@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Modification utilisateur</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/user_update.css">
 </head>
 
 <body>
@@ -19,33 +19,33 @@
 	
 		<form action="updateUser" method="POST">
 		
-			<div>
-				<label>Prénom: </label> <input type="text" name="name"
-					value="${user.name}" />
+			<div class="alignLabelInput">
+				<div><label>Prénom: </label></div>
+				<div><input type="text" name="name" value="${user.name}" /></div>
 			</div>
 			
-			<div>
-				<label>Nom: </label> <input type="text" name="lastname"
-					value="${user.lastname}" />
+			<div class="alignLabelInput">
+				<div><label>Nom: </label></div>
+				<div><input type="text" name="lastname" value="${user.lastname}" /></div>
 			</div>
 			
-			<div>
-				<label>Email: </label> <input type="email" name="email"
-					value="${user.email}" />
+			<div class="alignLabelInput">
+				<div><label>Email: </label></div>
+				<div><input type="email" name="email" value="${user.email}" /></div>
 			</div>
 			
-			<div>
-				<label>Mot de passe: </label> <input type="password" name="password"
-					placeholder="Validez avec votre mot de passe" />
+			<div class="alignLabelInput">
+				<div><label>Mot de passe: </label></div>
+				<div><input type="password" name="password" placeholder="Validez avec votre mot de passe" /></div>
 			</div>
 		
-			<div>
-				<input type="submit" value="Modifier" />
+			<div class="alignLabelInput">
+			    <div><input type="submit" value="Modifier" class="buttonStyle" /></div>
+			    <div><a href="user"><button class="buttonStyle">Retour au profil</button></a></div>
 			</div>
 		</form>
 	</div>
 	
-	<a href="user">Retour à la page profil</a>
 
 	</main>
 	
