@@ -6,20 +6,98 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pâte d'Or - Home</title>
+<title>Pâte d'Or - Home</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="./css/home.css" rel="stylesheet"><link>
 </head>
 <body>
-<%@include file="../jspf/header.jspf" %>
-<h1>Bienvenue</h1>
+	<%@include file="../jspf/header.jspf" %>
+	
+	<main>
+	
+		<section class="home-hero-section">	
+			<div class="container">			
+				<p class="beige-subtitle">Restaurants award 2023-2024</p>	
+				<h1 class="playfair-font title-display-1">La pâte d'or</h1>	
+				<p>Nos chefs attendent votre commande.</p>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis dicta cum exercitationem, illum minima cupiditate.</p>
+				<a href="#home-restaurant-section">Consultez nos restaurants</a>
+			</div>
+		</section>
+	
+	
+		<section id="home-restaurant-section" class="home-restaurant-section">
+			<p>Aliments frais et de qualité supérieure</p>
+			<h2 class="playfair-font title-display-2">Asseyez-vous, détendez-vous, on s'occupe de tout</h2>	
+			<p>Voici un aperçu de nos restaurants</p>
+			
+			<div class="home-restaurant-grid container">
+				<c:forEach var="restaurant" items="${restaurants}">
+					<div class="home-restaurant-card">
+						<a href="restaurant?id=${restaurant.id }"></a>
+						<div class="home-restaurant-card__box-img">
+							<c:choose>
+								<c:when test="${restaurant.id % 2 == 0 }">
+									<img alt="" src="././img/unsplash-restaurant-img1.jpg">
+								</c:when>
+								<c:when test="${restaurant.id % 2 == 1 }">
+									<img alt="" src="././img/unsplash-restaurant-img2.jpg">
+								</c:when>
+							</c:choose>
+						</div>
+						<div class="home-restaurant-card__body">
+							<h3 class="playfair-font title-display-3">${restaurant.name}</h3>
+							<p>(${restaurant.postalCode} ${restaurant.town.toLowerCase() })</p>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, cumque.</p>
+						</div>
+					</div>
+				</c:forEach>
+			</div>		
+		</section>
+		
+		<section class="home-products-section">
+			<h2 class="playfair-font title-display-2">Nos produits phares</h2>	
+			<p>Appréciés de nos clients.</p>
+			<div class="home-products-container container">
+				<div class="home-products-card">
+					<div class="home-products-card__box-img">
+						<img alt="Confit de canard" src="././img/unsplash-confitcanard-img.jpg">
+					</div>
+					<div class="home-products-card__body">
+						<h3 class="playfair-font title-display-3">Confit de Canard</h3>
+						<p>24€00</p>
+						<p>Cuisse de canard cuite lentement, avec une peau croustillante et une viande tendre.</p>
+						<p>Présent dans la carte <span>Spécialités d'Été</span></p>
+					</div>
+				</div>
+				<div class="home-products-card">
+					<div class="home-products-card__box-img">
+						<img alt="Panna cotta à la vanille" src="././img/unsplash-pannacotta-img.jpg">
+					</div>
+					<div class="home-products-card__body">
+						<h3 class="playfair-font title-display-3">Panna cotta à la vanille</h3>
+						<p>9€00</p>
+						<p>Dessert à la vanille crémeux avec compote de baies.</p>
+						<p>Présent dans la carte <span>Collection Hiver</span></p>
+					</div>
+				</div>
+				<div class="home-products-card">
+					<div class="home-products-card__box-img">
+						<img alt="Cocktail Old Fashioned" src="././img/unsplash-oldfashioned-img.jpg">
+					</div>
+					<div class="home-products-card__body">
+						<h3 class="playfair-font title-display-3">Old Fashioned</h3>
+						<p>15€00</p>
+						<p>Un cocktail intemporel avec bourbon, sucre et bitter.</p>
+						<p>Présent dans la carte <span>Collection Hiver</span></p>
+					</div>
+				</div>
+			</div>
+		</section>
+	
+	</main>
 
-
-	<c:forEach var="item" items="${restaurants}">
-		<a href="restaurant?id=${item.id }">
-			<article>
-			<h2>${item.name}</h2>
-			</article>
-		</a>
-	</c:forEach>
 
 </body>
 </html>

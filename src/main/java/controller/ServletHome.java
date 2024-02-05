@@ -16,7 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ServletHome extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-	
 	private RestaurantBLL restaurantBll;
 	
 	@Override
@@ -31,7 +30,6 @@ public class ServletHome extends HttpServlet
 		} 
 		catch (BLLException e) 
 		{
-			
 			e.printStackTrace();
 		}
 	}
@@ -49,12 +47,9 @@ public class ServletHome extends HttpServlet
 		} 
 		catch (BLLException e) 
 		{
-			
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		rd.forward(request, response);
 		
 	}
