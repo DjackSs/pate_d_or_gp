@@ -6,20 +6,82 @@
 	padding: 0;
 }
 
+body {
+	background-color: #3d3a4b;
+	color: floralwhite;
+}
+
+
+a {
+	text-decoration: none;
+	color: grey;
+	font-style: italic;
+}
+
+a:hover {
+ text-decoration: underline;
+}
+
+button {
+	cursor: pointer;
+	background-color: #3d3a4b;
+	padding: 5px 5px;
+	border: 0 solid black;
+	border-radius: 7px;
+	margin-top: 5px;
+	color: floralwhite;
+}
+
 h1 {
 	text-align: center;
+	margin-bottom: 15px;
+}
+
+h2, h3, table, a {
+	margin: 15px 0px 15px 10px;
+}
+
+h1, h2, h3, table {
+	color: floralwhite;
 }
 
 .pictureInfo {
-	display: flex;
-	justify-content: start-left;
-	align-items: end;
+    background-color: #EEEbd0;
+    display: flex;
+    align-items: center;
+    height: 400px;
+    color: #3d3a4b;
 }
 
 .profilInfo {
-margin-left: 15px;
+    flex: 2;
+    text-align: start;
 }
 
-input[type="text" i], input[type="email" i], input[type="password" i] {
-width: 100px;
+.profilPicture {
+    flex: 1;
+    text-align: center; 
+    margin-right: 10px; 
 }
+
+.picto {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.header {
+	display: inline-block;
+}
+
+#imgProfil {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	border: 1px solid black;
+	object-fit: cover;
+}
+
+
+

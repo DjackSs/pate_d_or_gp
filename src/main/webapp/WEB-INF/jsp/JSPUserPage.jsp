@@ -8,66 +8,97 @@
 <meta charset="UTF-8">
 <title>Profil</title>
 <link rel="stylesheet" href="css/user_page.css">
-
+<script src="https://kit.fontawesome.com/9bb344ad6f.js"
+	crossorigin="anonymous"></script>
 </head>
 <body>
 
 	<%@include file="../jspf/header.jspf"%>
 
 	<h1>PROFIL UTILISATEUR</h1>
+	<section>
+		<i class="picto fa-solid fa-user"></i>
+		<h2 class="header">INFORMATIONS PERSONNELLES</h2>
+	</section>
 	<div class="pictureInfo">
 		<div class="profilPicture">
-			<img alt="avatar_neutre" src="././img/avatar-neutre1.webp"
-				height="300px">
+			<img id="imgProfil" alt="avatar_neutre"
+				src="././img/naruto-profil.webp" height="300px">
 		</div>
 		<div class="profilInfo">
 			<p>Prénom : ${user.name }</p>
 			<p>Nom : ${user.lastname }</p>
 			<p>Email : ${user.email }</p>
-			<a href="updateUser"><button>Modifier profil</button></a>
-			<a href="updateUser?delete=true"><button>Supprimer profil</button></a>
+			<a href="updateUser?id=${user.id }"><button>Modifier
+					profil</button></a>
 		</div>
 	</div>
-	<h2>RESERVATIONS</h2>
-	<table>
-		<thead>
-			<tr>
-				<th>Restaurant</th>
-				<th>Heure de réservation</th>
-				<th>Statut de votre réservation</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="reservation" items="${reservations}">
-				<tr>
-					<td><a href="restaurant">${reservation.restaurantName}</a></td>
-					<td>${reservation.reservationTime}</td>
-					<td>${reservation.state}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<h2>MESSAGES</h2>
-	<table>
-		<thead>
-			<tr>
-				<th>Objet</th>
-				<th>Contenu</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="message" items="${messages}">
-				<tr>
-					<td>${message.object}</td>
-					<td>${message.content}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	
+
+	<!-- Affichage des réservations -->
 	<section>
-		<h3>Contactez nous :</h3>
-		<a href="contact">Envoyez un message � l'�quipe</a>
+		<i class="picto fa-solid fa-book-open"></i>
+		<h2 class="header">RESERVATIONS</h2>
 	</section>
+	<c:choose>
+		<c:when test="${reservation != null }">
+			<table>
+				<thead>
+					<tr>
+						<th>Restaurant</th>
+						<th>Heure de réservation</th>
+						<th>Statut de votre réservation</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="reservation" items="${reservations}">
+						<tr>
+							<td><a href="restaurant">${reservation.restaurantName}</a></td>
+							<td>${reservation.reservationTime}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:when>
+		<c:otherwise>
+			<p>Aucune réservation pour le moment</p>
+		</c:otherwise>
+	</c:choose>
+
+	<!-- Affichage des messages -->
+
+	<div class="pictoHeader">
+		<i class="picto fa-solid fa-envelope-open-text"></i>
+		<h2 class="header">MESSAGES</h2>
+	</div>
+	<c:choose>
+		<c:when test="${message != null }">
+			<table>
+				<thead>
+					<tr>
+						<th>Objet</th>
+						<th>Contenu</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="message" items="${messages}">
+						<tr>
+							<td>${message.object}</td>
+							<td>${message.content}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:when>
+		<c:otherwise>
+			<p>Aucun message pour le moment</p>
+		</c:otherwise>
+	</c:choose>
+
+
+	<section>
+		<i class="picto fa-solid fa-pen-nib"></i>
+		<h2 class="header">CONTACTEZ NOUS :</h2>
+	</section>
+	<a href="contact">Envoyez un message à l'équipe</a>
 </body>
 </html>
