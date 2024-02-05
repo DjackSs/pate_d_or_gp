@@ -68,7 +68,7 @@
 						<h3 class="playfair-font title-display-3">Confit de Canard</h3>
 						<p>24€00</p>
 						<p>Cuisse de canard cuite lentement, avec une peau croustillante et une viande tendre.</p>
-						<p>Présent dans la carte Spécialités d'Été</p>
+						<p>Présent dans la carte <span>Spécialités d'Été</span></p>
 					</div>
 				</div>
 				<div class="home-products-card">
@@ -79,7 +79,7 @@
 						<h3 class="playfair-font title-display-3">Panna cotta à la vanille</h3>
 						<p>9€00</p>
 						<p>Dessert à la vanille crémeux avec compote de baies.</p>
-						<p>Présent dans la carte Collection Hiver</p>
+						<p>Présent dans la carte <span>Collection Hiver</span></p>
 					</div>
 				</div>
 				<div class="home-products-card">
@@ -90,7 +90,7 @@
 						<h3 class="playfair-font title-display-3">Old Fashioned</h3>
 						<p>15€00</p>
 						<p>Un cocktail intemporel avec bourbon, sucre et bitter.</p>
-						<p>Présent dans la carte Collection Hiver</p>
+						<p>Présent dans la carte <span>Collection Hiver</span></p>
 					</div>
 				</div>
 			</div>

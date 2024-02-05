@@ -141,6 +141,7 @@ h1 {
  /*********** HOME RESTAURANT ***********/
 .home-restaurant-section {
 	background-color: #eeebd0;
+	padding-bottom: 5rem;
 }
 
 .home-restaurant-section > p {
@@ -177,6 +178,12 @@ h1 {
 	border: 1px solid rgba(61,58,75,0.5);
 	box-shadow: 2px 2px 4px #3d3a4b;
 	border-radius: 2px;
+	transform: translate(0);
+	transition: transform 0.3s ease-in-out;
+}
+.home-restaurant-card:hover {
+	box-shadow: 4px -2px 4px #3d3a4b;
+	transform: translate(-2px, -2px);
 }
 
 .home-restaurant-card > a {
@@ -231,41 +238,57 @@ h1 {
 }
 
 .home-products-container {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .home-products-card {
-	display:flex;
+  display: flex;
+  flex-basis: 70%;
+  height: 22rem;
+  border: 1px solid rgba(238,235,208,0.5);
+  box-shadow: 1px 1px 4px #eeebd0;
 }
 
 .home-products-card .home-products-card__box-img {
-	display: inline-flex;
-	width: 25%;	
+  flex-basis: 50%;
+  max-width: 50%;
+  overflow: hidden;
 }
 
 .home-products-card .home-products-card__box-img img {
-	width: 100%;	
-	height: 300px;
-	object-fit: cover;	
-	object-position: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .home-products-card .home-products-card__body {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 1.4rem;
-	background-color: #eeebd0;
-	color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: 50%;
+  max-width: 50%;
+  padding: 1.4rem;
+  background-color: #eeebd0;
+  color: #111;
 }
 
 .home-products-card .home-products-card__body > h3 {
-	margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .home-products-card .home-products-card__body > p:nth-child(3) {
-	font-size: 1.25rem;
-	margin: 1rem 0;
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
+.home-products-card .home-products-card__body > p:last-child > span {
+  background-color: #c70a0a;
+  color: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 2px;
 }
