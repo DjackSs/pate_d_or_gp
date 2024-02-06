@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import bll.ReservationBLL;
 import bll.RestaurantBLL;
 import bll.ScheduleBLL;
 import bll.TableBLL;
-import bo.Reservation;
 import bo.Restaurant;
 import bo.Schedule;
 import bo.Table;

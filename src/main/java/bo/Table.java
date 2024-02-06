@@ -1,5 +1,9 @@
 package bo;
 
+import jakarta.persistence.Entity;
+
+@Entity
+@Table(name= "Schedules")
 public class Table {
 	private int id;
 	private int numberPlace;
