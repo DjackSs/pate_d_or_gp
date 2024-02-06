@@ -57,76 +57,34 @@ body {
 }
 /****************************************/
 
-a {
-	text-decoration: none;
-	color: grey;
-	font-style: italic;
-}
-
-a:hover {
- text-decoration: underline;
-}
-
-button {
-	cursor: pointer;
-	background-color: #3d3a4b;
-	padding: 5px 5px;
-	border: 0 solid black;
-	border-radius: 7px;
-	margin-top: 5px;
-	color: floralwhite;
-}
-
 h1 {
 	text-align: center;
-	margin: 20px 0;
+	margin: 100px 0 20px 0;
 }
 
-h2, h3, table, a {
-	margin: 15px 0px 15px 10px;
+.inputContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-p, a {
-	padding-left: 15px;
+input {
+	width: 500px;
+	height: 50px;
 }
 
-.pictureInfo {
-    background-color: #EEEbd0;
-    display: flex;
-    align-items: center;
-    height: 400px;
-    color: #3d3a4b;
-}
-
-.profilInfo {
-    flex: 2;
-    text-align: start;
-}
-
-.profilPicture {
-    flex: 1;
-    text-align: center; 
-    margin-right: 10px; 
-}
-
-.picto {
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	margin-left: 20px;
-}
-
-.header {
-	display: inline-block;
-}
-
-#imgProfil {
-	width: 300px;
+textarea {
+	width: 500px;
 	height: 300px;
-	border-radius: 50%;
-	border: 1px solid black;
-	object-fit: cover;
 }
 
+.btnSubmit {
+	width: 70px;
+	height: 30px;
+	border-radius: 5%;
+}
 
+/**********************************/
 
+/**********************************/
