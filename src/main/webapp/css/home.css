@@ -136,6 +136,13 @@ h1 {
 	 padding: 4px 8px;
 	 font-size: 1rem;
 	 border-radius: 2px;
+	 border: 1px solid rgba(238,235,208,0.5);
+	 transform: translate(0);
+	 transition: all 0.3s ease-in-out;
+ }
+ .home-hero-section a:hover {
+	 transform: translate(-2px, -2px);
+  	 box-shadow: 1px 1px 4px #f1f1f1;
  }
  
  /*********** HOME RESTAURANT ***********/
@@ -179,7 +186,7 @@ h1 {
 	box-shadow: 2px 2px 4px #3d3a4b;
 	border-radius: 2px;
 	transform: translate(0);
-	transition: transform 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 .home-restaurant-card:hover {
 	box-shadow: 4px -2px 4px #3d3a4b;
