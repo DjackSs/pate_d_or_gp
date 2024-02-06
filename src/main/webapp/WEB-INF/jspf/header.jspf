@@ -1,18 +1,18 @@
 <header>
 <nav class="main-navbar">
 
-	<a href="home">Home</a>
+	<a href="home">Accueil</a>
 	
 	
 	<c:choose>
 	
 		<c:when test='${user != null }'>
-			<a href="user">Profile</a>
+			<a href="user">Profil</a>
 			<a href="user?deco=true">Déconnexion</a>
 		</c:when>
 		
 		<c:otherwise >
-			<a href="connection">Connection</a>
+			<a href="connection">Connexion</a>
 		</c:otherwise>
 		
 	</c:choose>

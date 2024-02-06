@@ -16,6 +16,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+<link href="./css/navbar.css" rel="stylesheet"><link>
 <link href="./css/footer.css" rel="stylesheet"><link>
 <link href="./css/home.css" rel="stylesheet"><link>
 </head>
