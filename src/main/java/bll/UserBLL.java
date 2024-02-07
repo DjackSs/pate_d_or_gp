@@ -23,7 +23,8 @@ public class UserBLL
 	
 	private UserDAO dao;
 	
-	public UserBLL() throws BLLException {
+	public UserBLL() throws BLLException 
+	{
 		try {
 			dao = new UserDAO();
 		} catch (DALException error) {
@@ -34,9 +35,6 @@ public class UserBLL
 	//======================================
 	
 	public List<User> selectAll() throws BLLException {
-		/*
-		 * Ajouter des super exceptions
-		 */
 		
 		try {
 			return dao.selectAll();
@@ -57,11 +55,9 @@ public class UserBLL
 	
 	//======================================
 	
+	
 	public User selectByEmailAndPassword(String email, String password) throws BLLException 
 	{
-		//xss security check
-		
-		
 		
 		try 
 		{
@@ -71,32 +67,27 @@ public class UserBLL
 			
 			return dao.selectByEmailAndPassword(email, hashedPassword);
 		} 
-		catch (DALException e) 
-		{
-			throw new BLLException("Echec de l'autentification ", e);
-		}
 		catch (NoSuchAlgorithmException e) 
 		{
 			throw new BLLException("Echec du cryptage du mot de passe", e);
 		}
 	}
 	
+	
 	//======================================
 	
-	public User insert(String name, String lastname, String email, String password, String role) throws BLLException 
+	public User insert(User user) throws BLLException 
 	{
-		//BLLException bllException = new BLLException();
 		
-		//xss security check
 		
 		//email
-		if(email.trim().length() > EMAIL_MAX_LENGTH)
+		if(user.getEmail().trim().length() > EMAIL_MAX_LENGTH)
 		{
 			throw new BLLException("Email is too big", null);
 					
 		}
 		
-		if(email.trim().length() < MIN_LENGTH)
+		if(user.getEmail().trim().length() < MIN_LENGTH)
 		{
 			throw new BLLException("Email name is too small", null);
 			
@@ -104,7 +95,7 @@ public class UserBLL
 		
 		
 		
-		if(!this.regexMatche(email, EMAIL_REGEX))
+		if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
 		{
 			throw new BLLException("email is invalid", null);
 		}
@@ -112,32 +103,34 @@ public class UserBLL
 		
 		
 		//password
-		if(password.trim().length() > PASSWORD_MAX_LENGTH)
+		if(user.getPassword().trim().length() > PASSWORD_MAX_LENGTH)
 		{
 			throw new BLLException("Password is invalid", null);
 					
 		}
 		
-		if(password.trim().length() < MIN_LENGTH)
+		if(user.getPassword().trim().length() < MIN_LENGTH)
 		{
 			throw new BLLException("Password is invalid", null);
 			
 		}
 		
-		if(!this.regexMatche(password, PASSWORD_REGEX))
+		if(!this.regexMatche(user.getPassword(), PASSWORD_REGEX))
 		{
 			throw new BLLException("Password is invalid", null);
 		}
-			
-		User user = new User();
+		
+		//role
+		user.setRole("cust");
 		
 		try 
 		{
 			//hashing the password
-			byte[] salt = this.getSalt(email);
-			String hashedPassword = this.toHash(password, salt);
+			byte[] salt = this.getSalt(user.getEmail());
+			String hashedPassword = this.toHash(user.getPassword(), salt);
 			
-			user = new User(name, lastname, email, hashedPassword, role);
+			user.setPassword(hashedPassword);
+			
 			
 			dao.insert(user);
 			
@@ -156,27 +149,25 @@ public class UserBLL
 	
 	//======================================
 	
-	public void update(User user) throws BLLException {
-//		BLLException bllException = new BLLException();
-		
-		//xss security check
+	public void update(User user) throws BLLException 
+	{
 		
 		User oldUser = this.selectById(user.getId());
 		
 		//name
-		if(user.getName().isBlank())
+		if(user.getName().isBlank() || user.getName() == null)
 		{
 			user.setName(oldUser.getName());
 		}
 		
 		//lastname
-		if(user.getLastname().isBlank())
+		if(user.getLastname().isBlank() || user.getLastname() == null )
 		{
 			user.setLastname(oldUser.getLastname());
 		}
 		
 		//email
-		if(user.getEmail().isBlank())
+		if(user.getEmail().isBlank() || user.getEmail() == null)
 		{
 			user.setEmail(oldUser.getEmail());
 		}
@@ -200,7 +191,7 @@ public class UserBLL
 		}
 		
 		//password
-		if(user.getPassword().isBlank())
+		if(user.getPassword().isBlank() || user.getPassword() == null)
 		{
 			user.setPassword(oldUser.getPassword());
 		}
@@ -253,10 +244,14 @@ public class UserBLL
 	
 	//======================================
 	
-	public void delete(int id) throws BLLException {
-		try {
-			dao.delete(id);
-		} catch (DALException e) {
+	public void delete(User user) throws BLLException 
+	{
+		try 
+		{
+			dao.delete(user);
+		} 
+		catch (DALException e) 
+		{
 			throw new BLLException("Echec de la suppression", e);
 		}
 	}

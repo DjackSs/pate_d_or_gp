@@ -1,26 +1,35 @@
 package bo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name= "Dishes")
 public class Dish 
 {
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
 	private float price;
 	private String description;
 	private String category;
-	private int idCard;
 	
-	
+
 	public Dish () {}
 	
 
-	public Dish(String name, float price, String description, String category, int idCard) 
+	public Dish(String name, float price, String description, String category) 
 	{
 		this.id = 0;
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.category = category;
-		this.idCard = idCard;
 	}
 
 
@@ -74,24 +83,6 @@ public class Dish
 		this.category = category;
 	}
 
-
-	public int getIdCard() {
-		return idCard;
-	}
-
-
-	public void setIdCard(int idCard) {
-		this.idCard = idCard;
-	};
-	
-	
-
-	@Override
-	public String toString() 
-	{
-		return "Dish [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description
-				+ ", category=" + category + ", idCard=" + idCard + "]";
-	}
 
 	
 	

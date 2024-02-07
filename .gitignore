@@ -180,7 +180,9 @@ local.properties
 *.tar.gz
 *.rar
 
+# database configuration files #
 
+src/main/java/hibernate.cfg.xml
 src/main/webapp/META-INF/context.xml
 
 
