@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+/*********** RESET ***********/
+*, ::before, ::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+/*********** CUSTOM GENERIC CLASS ***********/
+.container {
+	max-width: 1320px;
+	margin: 0 auto;
+}
+
+.playfair-font {
+  font-family: "Playfair Display", serif;
+}
+
+.title-display-1 {
+	font-size: calc(1.525rem + 1vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.title-display-2 {
+	font-size: calc(1rem + 1vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.beige-subtitle {
+	text-align: center;
+	color: #eeebd0;
+	margin-bottom: 1rem;
+}
+
+/*********** GENERAL ***********/
+body {
+	background-color: #5d5872;
+	color: #f8f9fa;
+	padding-top: 55px;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+main {
+	min-height: 80vh;	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 2rem;
+}
+
+h1, h2 {
+	text-align: center;
+	margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #f8f9fa;
+}
+
+/*********** CONNECTION SESSION ***********/
+/*.connection-session-container, .inscription-session-container {
+	padding: 0 1rem;
+}*/
+
+.connection-session-container > form > fieldset {
+	padding: 1rem;
+	display : flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+.connection-session-container > form > fieldset > legend {
+	font-size: calc(0.5rem + 0.5vw);
+	text-align: center;
+	font-style: italic;
+	color: #eeebd0;
+}
+.connection-session-container > form  input:not([type="submit"]) {
+	padding: 5px;
+	width: 100%;
+	border: 1px solid #eeebd0;
+	background-color: #3d3a4b;
+	color: #f1f1f1;
+	outline: none;
+	font-size: calc(1rem + 0.5vw);
+}
+.connection-session-container > form  input:not([type="submit"]):focus {
+	border: 2px solid #eeebd0;
+	
+}
+.connection-session-container > form  input[type="submit"] {
+	margin-top: 10px;
+	padding: 4px 8px;
+	cursor: pointer;
+	font-size: calc(0.5rem + 0.5vw);
+	font-weight: 500;
+	color: #111;
+	border: none;
+	border-radius: 2px;
+	font-family: "Montserrat", sans-serif;
+}
+
+.inscription-session-container {
+	
+}
