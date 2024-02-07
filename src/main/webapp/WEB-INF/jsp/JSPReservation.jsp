@@ -1,30 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Pâte d'Or - Reservation</title>
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/reservation.css">
+<link rel="stylesheet" href="css/footer.css">
+<script src="https://kit.fontawesome.com/9bb344ad6f.js"
+	crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
 </head>
 <body>
-	<%@include file="../jspf/header.jspf" %>
+	<%@include file="../jspf/header.jspf"%>
 
 	<main>
-	
+		<h1>${restaurant.name }</h1>
+
 		<c:choose>
-		
+
 			<c:when test="${restaurant.id % 2 == 0 }">
-				<h1>On a hâte de vous accueillir</h1>
-				<p>Contactez-nous.</p>			
+				<h3>On a hâte de vous accueillir</h3>
+				<p>Contactez-nous.</p>
 			</c:when>
-			
+
 			<c:when test="${restaurant.id % 2 == 1 }">
-				<h1>Nous vous attendons !</h1>
-				<p>Contactez-nous.</p>			
+				<h3>Nous vous attendons !</h3>
 			</c:when>
-			
+
 		</c:choose>
 		
 		<h2>${restaurant.name }</h2>
@@ -98,33 +107,24 @@
 		</c:if>
 	
 	</c:forEach>
-		
-	
-		
-		
+
 		<section>
-		<h1>Contactez nous :</h1>
-		
-		<form method="post" action="contact">
-		
-			<fieldset>
-				<legend>Envoyez-nous un message</legend>
-				
-				<div>
-					<label for="object">Objet de votre message :</label>
-					<input type="text" name="object" id="object">
-					
-					<textarea name="message"></textarea>
-					
-					<input type="submit" value="Envoyer">
+			<h1>Contactez nous :</h1>
+
+			<form method="post" action="contact">
+				<div class="inputContainer">
+					<input type="text" name="object" id="object" placeholder=" Objet">
+
+					<textarea class="messageContent" placeholder=" Message"
+						name="message"></textarea>
+
+					<input class="button-30" id="submitMessage" type="submit"
+						value="Envoyer">
 				</div>
-			
-			</fieldset>
-		
-		
-		</form>
+			</form>
 		</section>
-			
+
 	</main>
+	<%@include file="../jspf/footer.jspf"%>
 </body>
 </html>
