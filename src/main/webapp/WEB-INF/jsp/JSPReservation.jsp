@@ -38,7 +38,7 @@
 					<label for="lunch-reservation-table-select">🍽</label>
 					<select id="lunch-reservation-table-select" name="lunch-tables" required>
 						<option value="">Choisissez une table</option>
-						<c:forEach var="current" items="${restaurantTables }">
+						<c:forEach var="current" items="${restaurant.tables }">
 							<c:if test='${!current.state.equals("pres") }'>
 								<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
 							</c:if>

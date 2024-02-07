@@ -119,7 +119,9 @@ public class UserBLL
 		{
 			throw new BLLException("Password is invalid", null);
 		}
-			
+		
+		//role
+		user.setRole("cust");
 		
 		try 
 		{

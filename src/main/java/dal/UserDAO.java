@@ -18,6 +18,7 @@ public class UserDAO
 {
 	private SessionFactory factory;
 	
+	//======================================
 
 	public UserDAO() throws DALException 
 	{
@@ -44,7 +45,7 @@ public class UserDAO
 		return result;
 	}
 
-	//======================================
+	//----------------------------------------
 
 	public User selectById(int id) throws DALException 
 	{
@@ -58,13 +59,13 @@ public class UserDAO
 		return result;
 	}
 	
-	//======================================
+	//----------------------------------------
 	
 	public User selectByEmailAndPassword(String email, String password)
 	{
 		Session session = factory.openSession();
 		
-		TypedQuery<User> query = session.createNamedQuery("findUser", User.class);
+		TypedQuery<User> query = session.createNamedQuery("findUser", User.class); 
 		
 		User user = query.setParameter("email", email).setParameter("password", password).getSingleResult();
 		
@@ -73,41 +74,8 @@ public class UserDAO
 		return user;
 	}
 	
-	/*
 	
-		public User selectByEmailAndPassword(String email, String password) throws DALException {
-
-			User user = null;
-
-			try {
-
-				PreparedStatement ps = cnx.prepareStatement(SELECT_BY_EMAIL_AND_PASSWORD);
-
-				ps.setString(1, email);
-				ps.setString(2, password);
-
-				ResultSet rs = ps.executeQuery();
-
-				if(rs.next()) {
-					user = new User();
-					user.setId(rs.getInt("id"));
-					user.setName(rs.getString("name"));
-					user.setLastname(rs.getString("lastname"));
-					user.setEmail(rs.getString("email"));
-					user.setPassword(rs.getString("password"));
-					user.setRole(rs.getString("role"));
-				}
-			} 
-			catch (SQLException error) 
-			{
-				throw new DALException("Unable to recover the data", error);
-			}
-
-			return user;
-		}
-	
-	*/
-	//======================================
+	//----------------------------------------
 
 	public void insert(User user) throws DALException 
 	{
@@ -133,7 +101,7 @@ public class UserDAO
 		session.close();
 	}
 	
-	//======================================
+	//----------------------------------------
 	
 	public void update(User user) throws DALException 
 	{
@@ -145,7 +113,7 @@ public class UserDAO
 		try
 		{
 
-			session.persist(user);
+			session.merge(user);
 			
 			transaction.commit();
 			
@@ -158,7 +126,7 @@ public class UserDAO
 		session.close();
 	}
 
-	//======================================
+	//----------------------------------------
 	
 	public void delete(User user) throws DALException
 	{

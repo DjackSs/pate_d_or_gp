@@ -152,7 +152,7 @@ public class RestaurantDAO
 		try
 		{
 			//update
-			session.persist(restaurant);
+			session.merge(restaurant);
 			
 			transaction.commit();
 			

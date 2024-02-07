@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 	@NamedQuery
 	(
 		name = "findUser",
-		query = "select u from User u where u.email like :email and u.password like :password"
+		query = "select u from User u where u.email like :email and u.password like :password" //"SELECT * FROM users WHERE Users.email = ? and Users.password = ?"
 		
 	)
 })
