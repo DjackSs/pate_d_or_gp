@@ -1,0 +1,35 @@
+/*********** FOOTER ***********/
+
+footer {
+  background-color: #3d3a4b;
+  color: #f8f9fa;
+  border-top: 1px solid #f8f9fa;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+footer p {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+footer .footer-icons {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+footer .footer-icons a {
+  display: flex;
+  flex-direction: column;
+  color: #f8f9fa;
+  margin: 0 1rem;
+  text-decoration: none;
+  transform: translate(0);
+  transition: all 0.3s ease-in-out;
+}
+
+footer .footer-icons a:hover {
+  color: #eeebd0;
+  transform: translate(-2px, -2px);
+}

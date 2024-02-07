@@ -1,0 +1,28 @@
+<footer class="footer-section">
+      <div class="container">
+        <div class="footer-icons">
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a
+            href="https://www.tiktok.com/fr"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+        <p>&copy; 2024 La pâte d'or. Tous droits réservés.</p>
+      </div>
+</footer>
