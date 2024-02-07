@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import bo.Reservation;
 import bo.User;
 import dal.DALException;
 import dal.UserDAO;
@@ -145,6 +146,25 @@ public class UserBLL
 		}
 		
 		return user;
+	}
+	
+	//======================================
+	
+	public Reservation insertReservation(Reservation reservation) throws BLLException
+	{
+		try
+		{
+			this.dao.insertReservation(reservation);
+			
+		}
+		catch(DALException error)
+		{
+			throw new BLLException("Echec de l'insertion de la réservation", error);
+			
+		}
+		
+		
+		return reservation;
 	}
 	
 	//======================================

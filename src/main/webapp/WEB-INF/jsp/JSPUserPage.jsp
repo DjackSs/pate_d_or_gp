@@ -55,17 +55,22 @@
 				</thead>
 				<tbody>
 					<c:forEach var="reservation" items="${User.reservations}">
+					
 						<tr>
 							<td><a class="link" href="restaurant">${reservation.restaurantName}</a></td>
 							<td>${reservation.reservationTime}</td>
 						</tr>
+						
 					</c:forEach>
 				</tbody>
 			</table>
 		</c:when>
 		<c:otherwise>
+		
 			<p>Aucune réservation pour le moment</p>
+			
 		</c:otherwise>
+		
 	</c:choose>
 
 	<!-- Affichage des messages -->
