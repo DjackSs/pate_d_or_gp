@@ -8,17 +8,18 @@
 <meta charset="UTF-8">
 <title>Profil</title>
 <link rel="stylesheet" href="css/user_page.css">
-<script src="https://kit.fontawesome.com/9bb344ad6f.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
 	<%@include file="../jspf/header.jspf"%>
 
-	<h1>PROFIL UTILISATEUR</h1>
+	<h1 class="playfair-font">PROFIL UTILISATEUR</h1>
 	<section>
 		<i class="picto fa-solid fa-user"></i>
-		<h2 class="header">INFORMATIONS PERSONNELLES</h2>
+		<h2 class="header playfair-font">INFORMATIONS PERSONNELLES</h2>
 	</section>
 	<div class="pictureInfo">
 		<div class="profilPicture">
@@ -37,10 +38,12 @@
 	<!-- Affichage des réservations -->
 	<section>
 		<i class="picto fa-solid fa-book-open"></i>
-		<h2 class="header">RESERVATIONS</h2>
+		<h2 class="header playfair-font">RESERVATIONS</h2>
 	</section>
 	<c:choose>
+
 		<c:when test="${user.reservations.size() != 0 }">
+
 			<table>
 				<thead>
 					<tr>
@@ -68,7 +71,7 @@
 
 	<div class="pictoHeader">
 		<i class="picto fa-solid fa-envelope-open-text"></i>
-		<h2 class="header">MESSAGES</h2>
+		<h2 class="header playfair-font">MESSAGES</h2>
 	</div>
 	<c:choose>
 		<c:when test="${user.messages.size() != 0 }">
@@ -97,7 +100,7 @@
 
 	<section>
 		<i class="picto fa-solid fa-pen-nib"></i>
-		<h2 class="header">CONTACTEZ NOUS :</h2>
+		<h2 class="header playfair-font">CONTACTEZ NOUS :</h2>
 	</section>
 	<a href="contact">Envoyez un message à l'équipe</a>
 </body>
