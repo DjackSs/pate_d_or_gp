@@ -29,7 +29,7 @@
 				
 				<div><textarea name="message" placeholder=" Message"></textarea></div>
 				
-				<div><input type="submit" value="Envoyer" class="button-30"></div>
+				<div><input type="submit" value="Envoyer" class="button-30" id="submit-message"></div>
 			</div>
 		
 	</form>

@@ -11,7 +11,7 @@
 }
 
 body {
-	background-color: #3d3a4b;
+	background-color: #5d5872;
 	color: #f8f9fa;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1rem;
@@ -20,7 +20,7 @@ body {
 }
 
 
-a {
+.link {
 	text-decoration: none;
 	color: grey;
 	font-style: italic;
@@ -28,6 +28,10 @@ a {
 
 footer {
 	margin-top: 15px;
+		position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 }
 button {
 	cursor: pointer;

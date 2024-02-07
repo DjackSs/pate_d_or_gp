@@ -6,7 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Modification utilisateur</title>
+<link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/user_update.css">
+<link rel="stylesheet" href="css/footer.css">
+<script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
@@ -43,6 +46,7 @@
 		
 			<div class="alignLabelInput">
 			    <div><input type="submit" value="Modifier" class="buttonStyle" /></div>
+			    <div><a href="#"><button class="buttonStyle">Supprimer</button></a></div>
 			    <div><a href="user"><button class="buttonStyle">Retour au profil</button></a></div>
 			</div>
 		</form>
@@ -50,6 +54,6 @@
 	
 
 	</main>
-	
+	<%@include file="../jspf/footer.jspf"%>
 </body>
 </html>
