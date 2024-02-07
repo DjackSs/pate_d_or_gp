@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Pate D'Or - Contact</title>
 <link rel="stylesheet" href="css/contact.css">
+<link rel="stylesheet" href="css/footer.css">
 <script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -24,17 +25,17 @@
 	<form method="post" action="contact">
 	
 			<div class="inputContainer">
-				<div><input type="text" name="object" id="object" placeholder="Objet"></div>
+				<div><input type="text" name="object" id="object" placeholder=" Objet"></div>
 				
-				<div><textarea name="message" placeholder="Message"></textarea></div>
+				<div><textarea name="message" placeholder=" Message"></textarea></div>
 				
-				<div><input type="submit" value="Envoyer" class="btnSubmit"></div>
+				<div><input type="submit" value="Envoyer" class="button-30"></div>
 			</div>
 		
 	</form>
 	</section>
 	</main>
 	
-
+	<%@include file="../jspf/footer.jspf" %>
 </body>
 </html>
