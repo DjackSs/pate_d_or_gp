@@ -39,7 +39,7 @@
 				<div>					
 					<h4 class="beige-subtitle">Entrée(s)</h4>
 					<ul>
-						<c:forEach var="current" items="${restaurantCardDishes }">
+						<c:forEach var="current" items="${restaurantCard.dishes }">
 							<c:if test='${current.category.equals("entry") }'>
 								<li>${current.name } (${current.price }€)</li>
 							</c:if>
@@ -50,7 +50,7 @@
 				<div>					
 					<h4 class="beige-subtitle">Plat(s)</h4>
 					<ul>
-						<c:forEach var="current" items="${restaurantCardDishes }">
+						<c:forEach var="current" items="${restaurantCard.dishes }">
 							<c:if test='${current.category.equals("dish") }'>
 								<li>${current.name } (${current.price }€)</li>
 							</c:if>
@@ -61,7 +61,7 @@
 				<div>					
 					<h4 class="beige-subtitle">Desserts(s)</h4>
 					<ul>
-						<c:forEach var="current" items="${restaurantCardDishes }">
+						<c:forEach var="current" items="${restaurantCard.dishes }">
 							<c:if test='${current.category.equals("desert") }'>
 								<li>${current.name } (${current.price }€)</li>
 							</c:if>
@@ -72,7 +72,7 @@
 				<div>					
 					<h4 class="beige-subtitle">Boisson(s)</h4>
 					<ul>
-						<c:forEach var="current" items="${restaurantCardDishes }">
+						<c:forEach var="current" items="${restaurantCard.dishes }">
 							<c:if test='${current.category.equals("beverage") }'>
 								<li>${current.name } (${current.price }€)</li>
 							</c:if>

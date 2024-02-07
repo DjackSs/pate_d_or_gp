@@ -22,7 +22,7 @@ import java.io.IOException;
 		DispatcherType.INCLUDE,
 		DispatcherType.ERROR,
 		
-}, urlPatterns = {"/user", "/contact","/updateUser", "/reservation/*"})
+}, urlPatterns = {"/user", "/contact","/updateUser", "/reservation/*", "/contact/*"})
 public class FilterSession extends HttpFilter implements Filter 
 {
 	private static final long serialVersionUID = 3736531170359901374L;

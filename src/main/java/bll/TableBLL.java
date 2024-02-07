@@ -3,13 +3,13 @@ package bll;
 import java.util.Arrays;
 import java.util.List;
 
-import bo.Table;
+import bo.RestaurantTable;
 import dal.DALException;
 import dal.GenericDAOInterface;
 import dal.TableDAO;
 
 public class TableBLL {
-	private GenericDAOInterface<Table> dao;
+	private GenericDAOInterface<RestaurantTable> dao;
 	
 	public TableBLL() throws BLLException {
 		try {
@@ -19,7 +19,7 @@ public class TableBLL {
 		}
 	}
 	
-	public List<Table> selectAll() throws BLLException {
+	public List<RestaurantTable> selectAll() throws BLLException {
 		
 		try {
 			return dao.selectAll();
@@ -28,7 +28,7 @@ public class TableBLL {
 		}
 	}
 	
-	public Table selectById(int id) throws BLLException {
+	public RestaurantTable selectById(int id) throws BLLException {
 		try {
 			return dao.selectById(id);
 		} catch (DALException e) {
@@ -37,7 +37,7 @@ public class TableBLL {
 		
 	}
 	
-    public List<Table> selectTablesByRestaurantId(int restaurantId) throws BLLException {
+    public List<RestaurantTable> selectTablesByRestaurantId(int restaurantId) throws BLLException {
         try {
             return ((TableDAO) dao).selectByForeignKey("id_restaurant", restaurantId);
         } catch (DALException e) {
@@ -45,7 +45,7 @@ public class TableBLL {
         }
     }
     
-    public List<Table> selectAllByIdRestaurantOrderBy(int restaurantId, String orderRule) throws BLLException {
+    public List<RestaurantTable> selectAllByIdRestaurantOrderBy(int restaurantId, String orderRule) throws BLLException {
     	try {
     		return ((TableDAO) dao).selectAllByIdRestaurantOrderBy("id_restaurant", restaurantId, orderRule);
     	} catch (DALException e) {
@@ -53,7 +53,7 @@ public class TableBLL {
     	}
     }
 	
-	public Table insert(int numberPlace, String state, int idRestaurant) throws BLLException {
+	public RestaurantTable insert(int numberPlace, String state, int idRestaurant) throws BLLException {
 		
 		BLLException bllException = new BLLException();
 		
@@ -70,7 +70,7 @@ public class TableBLL {
 			throw bllException;
 		}
 		
-		Table table = new Table(numberPlace, state, idRestaurant);
+		RestaurantTable table = new RestaurantTable(numberPlace, state, idRestaurant);
 		try {
 			dao.insert(table);
 		} catch (DALException e) {
@@ -79,7 +79,7 @@ public class TableBLL {
 		return table;
 	}
 	
-	public void update(Table table) throws BLLException {
+	public void update(RestaurantTable table) throws BLLException {
 		
 		try {
 			dao.update(table);
@@ -104,7 +104,7 @@ public class TableBLL {
             throw bllException;
         }
 
-        Table updatedTable = new Table();
+        RestaurantTable updatedTable = new RestaurantTable();
         updatedTable.setId(id);
         updatedTable.setNumberPlace(newNumberPlace);
         updatedTable.setState(newState);

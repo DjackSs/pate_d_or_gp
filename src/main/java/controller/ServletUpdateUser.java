@@ -10,16 +10,20 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class ServletUpdateUser extends HttpServlet {
+public class ServletUpdateUser extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
 	private UserBLL userBLL;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		try {
+		try 
+		{
 			userBLL = new UserBLL();
-		} catch (BLLException e) {
+		} 
+		catch (BLLException e) 
+		{
 			e.printStackTrace();
 		}
 	}
@@ -30,7 +34,7 @@ public class ServletUpdateUser extends HttpServlet {
 		{
 			try 
 			{
-				this.userBLL.delete(((User) request.getSession().getAttribute("user")).getId());
+				this.userBLL.delete(((User) request.getSession().getAttribute("user")));
 				
 				request.getSession().setAttribute("user", null);
 			} 

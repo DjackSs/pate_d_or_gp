@@ -1,135 +1,135 @@
 package dal;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import bo.Card;
+import jakarta.persistence.RollbackException;
 
-public class CardDAO implements GenericDAOInterface<Card> {
-	private static final String TABLE_NAME = " cards ";
+public class CardDAO 
+{
+	private SessionFactory factory;
 
-	private static final String DELETE = "DELETE FROM"+ TABLE_NAME +" WHERE id = ?";
-	private static final String UPDATE = "UPDATE "+ TABLE_NAME +" SET name = ? WHERE id = ?";
-	private static final String INSERT = "INSERT INTO "+ TABLE_NAME +" (name) VALUES (?)";
-	private static final String SELECT_BY_ID = "SELECT * FROM "+ TABLE_NAME +" WHERE id = ?";
-	private static final String SELECT = "SELECT * FROM "+ TABLE_NAME;
+	//======================================
+	
+	public CardDAO() throws DALException 
+	{
+		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder()
+                .configure("hibernate.cfg.xml")
+                .build();
+		
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        
+        
+        this.factory = meta.getSessionFactoryBuilder().build();
+			
+	}
+	
+	//======================================
 
-	private Connection cnx;
+	public List<Card> selectAll() throws DALException 
+	{
+		Session session = this.factory.openSession();
+		
+		List<Card> result = session.createQuery("from Card", Card.class).list();
+		
+		session.close();
+		
+		return result;
+		
+	}
+	
+	//----------------------------------------
+	
+	public Card selectById(int id) throws DALException 
+	{
+		Session session = this.factory.openSession();
+		
+		Card result = session.find(Card.class, id);
+		
+		session.close();
+		
+		return result;
+	}
+	
+	
+	//----------------------------------------
 
-	public CardDAO() throws DALException {
+	public void insert(Card card) throws DALException 
+	{
+		Session session = this.factory.openSession();
+		
+		Transaction transaction = session.beginTransaction();
+		
 		try
 		{
-			Context context = new InitialContext();
-			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
+
+			session.persist(card);
 			
-			this.cnx = dataSource.getConnection();
+			transaction.commit();
 			
-			if(!cnx.isClosed())
-			{
-				System.out.println("la co est ouverte");
-			}
-		
-		
-		} 
-		catch (SQLException error) 
+		}
+		catch (RollbackException error)
 		{
-			
-			throw new DALException("erreur de conexion à la base de donnée", error);
+			transaction.rollback();
 		}
-		catch (NamingException e) 
-		{
-			e.printStackTrace();
-		}
-			
-	}
-
-	public List<Card> selectAll() throws DALException {
-		List<Card> cards = new ArrayList<>();
-
-		try {
-			PreparedStatement ps = cnx.prepareStatement(SELECT);
-			ResultSet rs = ps.executeQuery();
-
-			while(rs.next()) {
-				Card card = new Card();
-				card.setId(rs.getInt("id"));
-				card.setName(rs.getString("name"));
-
-				cards.add(card);
-			}
-		} catch (SQLException e) {
-			throw new DALException("Impossible de recuperer les informations", e);
-		}
-		return cards;
-	}
-
-	public Card selectById(int id) throws DALException {
-		Card card = null;
-
-		try {
-			PreparedStatement ps = cnx.prepareStatement(SELECT_BY_ID);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-
-			if(rs.next()) {
-				card = new Card();
-				card.setId(rs.getInt("id"));
-				card.setName(rs.getString("name"));
-			}
-
-		} catch (SQLException e) {
-			throw new DALException("Impossible de recuperer les informations pour l'id "+ id, e);
-		}
-		return card;
-	}
-
-	public void insert(Card card) throws DALException {
-		try {
-			PreparedStatement ps = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setString(1, card.getName());
-			ps.executeUpdate();
-
-			ResultSet rs = ps.getGeneratedKeys();
-			
-			if(rs.next()) {
-				int id = rs.getInt(1);
-				card.setId(id);
-			}
-		} catch (SQLException e) {
-			throw new DALException("Impossible d'inserer les donnees.", e);
-		}
+		
+		session.close();
 	}
 	
-	public void update(Card card) throws DALException {
-		try {
-			PreparedStatement ps = cnx.prepareStatement(UPDATE);
-			ps.setString(1, card.getName());
-			ps.setInt(2, card.getId());
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			throw new DALException("Impossible de mettre a jour les informations pour l'id "+ card.getId(), e);
+	//----------------------------------------
+	
+	public void update(Card card) throws DALException 
+	{
+		Session session = this.factory.openSession();
+		
+		Transaction transaction = session.beginTransaction();
+		
+		try
+		{
+
+			session.merge(card);
+			
+			transaction.commit();
+			
 		}
+		catch (RollbackException error)
+		{
+			transaction.rollback();
+		}
+		
+		session.close();
 	}
 	
-	public void delete(int id) throws DALException {
-		try {
-			PreparedStatement ps = cnx.prepareStatement(DELETE);
-			ps.setInt(1, id);
-			int nbDeleteLine = ps.executeUpdate();
-			if(nbDeleteLine == 0) {
-				throw new DALException("Echec de suppression du composant d'id " + id, null);
-			}
-		} catch (SQLException e) {
-			throw new DALException("Impossible de supprimer le composant d'id "+ id, e);
+	//----------------------------------------
+	
+	public void delete(Card card) throws DALException 
+	{
+		Session session = this.factory.openSession();
+		
+		Transaction transaction = session.beginTransaction();
+		
+		try
+		{
+
+			session.remove(card);
+			
+			transaction.commit();
+			
 		}
+		catch (RollbackException error)
+		{
+			transaction.rollback();
+		}
+		
+		session.close();
+
 	}
 }

@@ -57,9 +57,7 @@ public class ServletInscription extends HttpServlet
 			newUser.setEmail(request.getParameter("email"));
 			newUser.setPassword(request.getParameter("password"));
 			
-			newUser.setRole("cust");
-			
-			newUser = this.userBLL.insert(newUser.getName(), newUser.getLastname(), newUser.getEmail(), newUser.getPassword(), newUser.getRole());
+			newUser = this.userBLL.insert(newUser);
 
 			request.getSession().setAttribute("user", newUser);
 			
@@ -80,9 +78,6 @@ public class ServletInscription extends HttpServlet
 			response.sendRedirect("home");
 			
 		}
-		
-		
-		
 		
 		
 		

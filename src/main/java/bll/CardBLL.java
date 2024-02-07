@@ -3,26 +3,34 @@ package bll;
 import java.util.List;
 
 import bo.Card;
-import dal.DALException;
-import dal.GenericDAOInterface;
 import dal.CardDAO;
+import dal.DALException;
 
-public class CardBLL {
-	private GenericDAOInterface<Card> dao;
+public class CardBLL 
+{
+	private CardDAO dao;
 	
-	public CardBLL() throws BLLException {
-		try {
+	public CardBLL() throws BLLException 
+	{
+		try 
+		{
 			dao = new CardDAO();
-		} catch (DALException e) {
+		} 
+		catch (DALException e) 
+		{
 			throw new BLLException("Echec de la connexion", e);
 		}
 	}
 	
-	public List<Card> selectAll() throws BLLException {
+	public List<Card> selectAll() throws BLLException 
+	{
 		
-		try {
+		try 
+		{
 			return dao.selectAll();
-		} catch (DALException e) {
+		} 
+		catch (DALException e) 
+		{
 			throw new BLLException("Echec de la recuperation des cartes", e);
 		}
 	}
@@ -35,7 +43,6 @@ public class CardBLL {
 		}
 		
 	}
-	
 	
 	
 	public Card insert(String name) throws BLLException {
@@ -72,9 +79,10 @@ public class CardBLL {
 		}
 	}
 	
-	public void delete(int id) throws BLLException {
-		try {
-			dao.delete(id);
+	public void delete(Card card) throws BLLException {
+		try 
+		{
+			dao.delete(card);
 		} catch (DALException e) {
 			throw new BLLException("Echec de la suppression", e);
 		}

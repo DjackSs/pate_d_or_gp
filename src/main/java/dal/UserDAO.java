@@ -1,205 +1,153 @@
 package dal;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import bo.User;
+import jakarta.persistence.RollbackException;
+import jakarta.persistence.TypedQuery;
 
-public class UserDAO {
-	private static final String SELECT = "SELECT * FROM users";
-	private static final String SELECT_BY_ID = "SELECT * FROM users WHERE id = ?";
-	private static final String SELECT_BY_EMAIL_AND_PASSWORD = "SELECT * FROM users WHERE Users.email = ? and Users.password = ?";	
-	private static final String INSERT_INTO_USERS = "INSERT INTO users (name, lastname, email, password, role) VALUES (?, ?, ?, ?, ?)";
-	private static final String UPDATE = "UPDATE users SET name = ?, lastname = ?, email = ?, password = ?, role = ? WHERE id = ?";
-	private static final String DELETE = "DELETE FROM users WHERE id = ?";
-	//	
-	private Connection cnx;
+public class UserDAO 
+{
+	private SessionFactory factory;
+	
+	//======================================
 
-	public UserDAO() throws DALException {
-		try
-		{
-			Context context = new InitialContext();
-			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
-
-			cnx = dataSource.getConnection();
-			if(!cnx.isClosed()) {
-				System.out.println("La connexion est ouverte");
-
-			}
+	public UserDAO() throws DALException 
+	{
+		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder()
+                .configure("hibernate.cfg.xml")
+                .build();
 		
-		
-		} 
-		catch (SQLException error) 
-		{
-			
-			throw new DALException("erreur de conexion à la base de donnée", error);
-		}
-		catch (NamingException e) 
-		{
-			e.printStackTrace();
-		}
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        
+        
+        this.factory = meta.getSessionFactoryBuilder().build();
 	}
 
 	//======================================
 
-	public List<User> selectAll() throws DALException {
-		List<User> users = new ArrayList<>();
-
-		try {
-			PreparedStatement ps = cnx.prepareStatement(SELECT);
-			ResultSet rs = ps.executeQuery();
-
-			while(rs.next()) {
-				User user = new User();
-				user.setId(rs.getInt("id"));
-				user.setName(rs.getString("name"));
-				user.setLastname(rs.getString("lastname"));
-				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("password"));
-				user.setRole(rs.getString("role"));
-
-				users.add(user);
-			}
-		} catch (SQLException error) {
-
-			throw new DALException("Unable to recover datas", error);
-		}
-		return users;
+	public List<User> selectAll() throws DALException 
+	{
+		Session session = this.factory.openSession();
+		
+		List<User> result = session.createQuery("from User", User.class).list();
+		
+		session.close();
+		
+		return result;
 	}
 
-	//======================================
+	//----------------------------------------
 
-	public User selectById(int id) throws DALException {
+	public User selectById(int id) throws DALException 
+	{
 
-		User user = null;
-
-		try {
-
-			PreparedStatement ps = cnx.prepareStatement(SELECT_BY_ID);
-
-			ps.setInt(1, id);
-
-			ResultSet rs = ps.executeQuery();
-
-			if(rs.next()) {
-				user = new User();
-				user.setId(rs.getInt("id"));
-				user.setName(rs.getString("name"));
-				user.setLastname(rs.getString("lastname"));
-				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("password"));
-				user.setRole(rs.getString("role"));
-			}
-		} 
-		catch (SQLException error) {
-			throw new DALException("Unable to recover the data", error);
-		}
-
+		Session session = this.factory.openSession();
+		
+		User result = session.find(User.class, id);
+		
+		session.close();
+		
+		return result;
+	}
+	
+	//----------------------------------------
+	
+	public User selectByEmailAndPassword(String email, String password)
+	{
+		Session session = factory.openSession();
+		
+		TypedQuery<User> query = session.createNamedQuery("findUser", User.class); 
+		
+		User user = query.setParameter("email", email).setParameter("password", password).getSingleResult();
+		
+		session.close();
+		
 		return user;
 	}
 	
-	//======================================
+	
+	//----------------------------------------
 
-		public User selectByEmailAndPassword(String email, String password) throws DALException {
+	public void insert(User user) throws DALException 
+	{
 
-			User user = null;
-
-			try {
-
-				PreparedStatement ps = cnx.prepareStatement(SELECT_BY_EMAIL_AND_PASSWORD);
-
-				ps.setString(1, email);
-				ps.setString(2, password);
-
-				ResultSet rs = ps.executeQuery();
-
-				if(rs.next()) {
-					user = new User();
-					user.setId(rs.getInt("id"));
-					user.setName(rs.getString("name"));
-					user.setLastname(rs.getString("lastname"));
-					user.setEmail(rs.getString("email"));
-					user.setPassword(rs.getString("password"));
-					user.setRole(rs.getString("role"));
-				}
-			} 
-			catch (SQLException error) 
-			{
-				throw new DALException("Unable to recover the data", error);
-			}
-
-			return user;
-		}
-
-	//======================================
-
-	public void insert(User user) throws DALException {
-
-		try {
-
-			PreparedStatement ps = cnx.prepareStatement(INSERT_INTO_USERS,PreparedStatement.RETURN_GENERATED_KEYS);
-
-			ps.setString(1, user.getName());
-			ps.setString(2, user.getLastname());
-			ps.setString(3, user.getEmail());
-			ps.setString(4, user.getPassword());
-			ps.setString(5, user.getRole());
-			
-			ps.executeUpdate();
-
-			ResultSet rs = ps.getGeneratedKeys();
-			
-			if(rs.next()) {
-				int id = rs.getInt(1);
-				user.setId(id);
-			}
-		} 
-		catch (SQLException error) 
+		Session session = this.factory.openSession();
+		
+		
+		Transaction transaction = session.beginTransaction();
+		
+		try
 		{
-			throw new DALException("data to insert invalid", error);
+
+			session.persist(user);
+			
+			transaction.commit();
+			
 		}
+		catch (RollbackException error)
+		{
+			transaction.rollback();
+		}
+		
+		session.close();
 	}
 	
-	//======================================
+	//----------------------------------------
 	
-	public void update(User user) throws DALException {
-		try {
-			PreparedStatement ps = cnx.prepareStatement(UPDATE);
-			ps.setString(1, user.getName());
-			ps.setString(2, user.getLastname());
-			ps.setString(3, user.getEmail());
-			ps.setString(4, user.getPassword());
-			ps.setString(5, user.getRole());
-			ps.setInt(6, user.getId());
+	public void update(User user) throws DALException 
+	{
+		Session session = this.factory.openSession();
+		
+		
+		Transaction transaction = session.beginTransaction();
+		
+		try
+		{
+
+			session.merge(user);
 			
-			ps.executeUpdate();
+			transaction.commit();
 			
-		} catch (SQLException error) {
-			throw new DALException("Impossible de mettre a jour les informations pour l'id "+ user.getId(), error);
 		}
+		catch (RollbackException error)
+		{
+			transaction.rollback();
+		}
+		
+		session.close();
 	}
 
-	//======================================
+	//----------------------------------------
 	
-	public void delete(int id) throws DALException {
-		try {
-			PreparedStatement ps = cnx.prepareStatement(DELETE);
-			ps.setInt(1, id);
-			int nbLignesSupprimees = ps.executeUpdate();
-			if (nbLignesSupprimees == 0) {
-				throw new DALException("Echec de suppression de l'utilisateur d'id " + id, null);
-			}
-		} catch (SQLException e) {
-			throw new DALException("Impossible de supprimer l'utilisateur d'id "+ id, e);
+	public void delete(User user) throws DALException
+	{
+		Session session = this.factory.openSession();
+		
+		Transaction transaction = session.beginTransaction();
+		
+		try
+		{
+
+			session.remove(user);
+			
+			transaction.commit();
+			
 		}
+		catch (RollbackException error)
+		{
+			transaction.rollback();
+		}
+		
+		session.close();
+
 	}
 }

@@ -1,20 +1,29 @@
 package bo;
 
-public class Message {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name= "Messages")
+public class Message 
+{
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String object;
 	private String content;
 	
-	private int idUser;
 
-	public Message() {
-	}
+	public Message() {}
 
-	public Message(String object, String content, int idUser) 
+	public Message(String object, String content) 
 	{
 		this.object = object;
 		this.content = content;
-		this.idUser = idUser;
 	}
 
 	public int getId() {
@@ -41,13 +50,5 @@ public class Message {
 		this.content = content;
 	}
 
-	public int getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
-	}
-	
 	
 }

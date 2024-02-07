@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Modification utilisateur</title>
 <link rel="stylesheet" href="css/user_update.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +16,7 @@
 	
 	<main>
 
-	<h1>Modification des données utilisateur</h1>
+	<h1 class="playfair-font">Modification de vos informations personnelles</h1>
 	<div class="inputUpdateUser">
 	
 		<form action="updateUser" method="POST">
