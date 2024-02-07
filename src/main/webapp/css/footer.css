@@ -10,7 +10,7 @@ footer {
 
 footer p {
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: calc(0.5rem + 0.5vw);
 }
 
 footer .footer-icons {
@@ -31,5 +31,5 @@ footer .footer-icons a {
 
 footer .footer-icons a:hover {
   color: #eeebd0;
-  transform: translate(-2px, -2px);
+  transform: translate(-1px, -1px);
 }

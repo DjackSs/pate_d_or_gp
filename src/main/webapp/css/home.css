@@ -94,17 +94,18 @@ h1 {
 	 text-decoration: none;
 	 background-color: #eeebd0;
 	 color: #000;
-	 margin-top: 0.5rem;
+	 margin-top: 1rem;
 	 padding: 4px 8px;
 	 font-size: 1rem;
+	 font-weight: 500;
 	 border-radius: 2px;
-	 border: 1px solid rgba(238,235,208,0.5);
+	 border: 1px solid rgba(61,58,75,0.5);
 	 transform: translate(0);
 	 transition: all 0.3s ease-in-out;
  }
  .home-hero-section a:hover {
-	 transform: translate(-2px, -2px);
-  	 box-shadow: 1px 1px 4px #f1f1f1;
+	 transform: translate(-1px, -1px);
+  	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
  }
  
  /*********** HOME RESTAURANT ***********/
@@ -174,7 +175,7 @@ h1 {
 .home-restaurant-card .home-restaurant-card__body {
 	position: relative;
 	flex-grow: 1;
-	background-color: #3d3a4b;
+	background-color: #5d5872;
 	color: #f8f9fa;
 	padding: 1rem;
 }
@@ -256,7 +257,7 @@ h1 {
 }
 
 .home-products-card .home-products-card__body > p:last-child > span {
-  background-color: #c70a0a;
+  background-color: #5d5872;
   color: #f8f9fa;
   padding: 0.5rem;
   border-radius: 2px;
