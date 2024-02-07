@@ -8,7 +8,7 @@
     <session-factory>
     
         <property name="hbm2ddl.auto">none</property>
-        <property name="dialect">org.hibernate.dialect.SQLServer2008Dialect</property>  
+        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>  
         <property name="connection.url">jdbc:sqlserver://localhost;databasename=PATE_D_OR;trustservercertificate=true</property>  
         <property name="connection.username">user</property>
         <property name="connection.password">password</property>
@@ -16,6 +16,15 @@
     
     	
     	<mapping class="bo.Restaurant"/>
+    	<mapping class="bo.Schedule"/>
+    	<mapping class="bo.RestaurantTable"/>
+    	
+    	<mapping class="bo.Card"/>
+    	<mapping class="bo.Dish"/>
+    	
+    	<mapping class="bo.User"/>
+    	<mapping class="bo.Message"/>
+    	<mapping class="bo.Reservation"/>
     	 	
     	
     </session-factory>  

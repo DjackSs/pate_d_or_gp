@@ -148,6 +148,15 @@ public class User
 		this.reservations = reservations;
 	}
 
+	@Override
+	public String toString() 
+	{
+		return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", email=" + email + ", password="
+				+ password + ", role=" + role + ", messages=" + messages.size() + ", reservations=" + reservations.size() + "]";
+	}
+	
+	
+
 	
 	
 	

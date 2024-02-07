@@ -20,10 +20,7 @@ public class RestaurantTable
 	private String state;
 	
 	
-	
-	
-	public RestaurantTable() {
-	}
+	public RestaurantTable() {}
 
 
 	public RestaurantTable(int numberPlace, String state) 

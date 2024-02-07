@@ -2,13 +2,15 @@ package controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import bll.BLLException;
 import bll.RestaurantBLL;
-import bll.UserBLL;
 import bo.Restaurant;
-import bo.User;
+import bo.Schedule;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +21,6 @@ public class ServletReservation extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	private RestaurantBLL restaurantBll;
-	private UserBLL userBLL;
 	
 
 	@Override
@@ -29,7 +30,6 @@ public class ServletReservation extends HttpServlet
 		try 
 		{
 			this.restaurantBll = new RestaurantBLL();
-			this.userBLL = new UserBLL();
 			
 		} 
 		catch (BLLException e) 
@@ -39,12 +39,8 @@ public class ServletReservation extends HttpServlet
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-	
-		User userSession = ((User) request.getSession().getAttribute("user"));
-		
+	{	
 		int idRestaurant = Integer.parseInt(request.getParameter("idRestaurant"));
-		
 		
 		LocalDate now = LocalDate.now();
 		String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -56,17 +52,28 @@ public class ServletReservation extends HttpServlet
 			
 			Restaurant restaurant = restaurantBll.selectById(idRestaurant);
 			
+			List<Schedule> restaurantLunchSchedule = new ArrayList<>();
+			List<Schedule> restaurantDinerSchedule = new ArrayList<>();
 			
-			
-			//List<RestaurantTable> restaurantTables = tableBll.selectAllByIdRestaurantOrderBy(idRestaurant, "number_place");
-			
-			//Schedule restaurantLunchSchedule = scheduleBll.selectByIdRestaurantAnd(idRestaurant, "open_hour < '18:00'");
-			//Schedule restaurantDinerSchedule = scheduleBll.selectByIdRestaurantAnd(idRestaurant, "close_hour >= '18:00'");
+			for(Schedule item : restaurant.getSchedules())
+			{
+				if(item.getOpenHour().isBefore(LocalTime.of(18, 00)))
+				{
+					restaurantLunchSchedule.add(item);
+					
+				}
+				else
+				{
+					restaurantDinerSchedule.add(item);
+					
+				}
+					
+			}
 			
 			request.setAttribute("restaurant", restaurant);
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
-			//request.setAttribute("restaurantLunchSchedule", restaurantLunchSchedule);
-			//request.setAttribute("restaurantDinerSchedule", restaurantDinerSchedule);
+			request.setAttribute("restaurantLunchSchedule", restaurantLunchSchedule);
+			request.setAttribute("restaurantDinerSchedule", restaurantDinerSchedule);
 			
 		} 
 		catch (BLLException e) 
@@ -77,7 +84,8 @@ public class ServletReservation extends HttpServlet
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{	
 
 	}
 
