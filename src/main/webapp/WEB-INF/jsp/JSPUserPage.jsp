@@ -41,7 +41,7 @@
 		<h2 class="header playfair-font">RESERVATIONS</h2>
 	</section>
 	<c:choose>
-		<c:when test="${reservation != null }">
+		<c:when test="${reservations != null }">
 			<table>
 				<thead>
 					<tr>
