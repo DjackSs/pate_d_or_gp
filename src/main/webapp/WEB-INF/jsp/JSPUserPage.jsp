@@ -7,7 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Profil</title>
+<link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/user_page.css">
+<link rel="stylesheet" href="css/footer.css">
 <script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -49,13 +51,12 @@
 					<tr>
 						<th>Restaurant</th>
 						<th>Heure de réservation</th>
-						<th>Statut de votre réservation</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="reservation" items="${User.reservations}">
 						<tr>
-							<td><a href="restaurant">${reservation.restaurantName}</a></td>
+							<td><a class="link" href="restaurant">${reservation.restaurantName}</a></td>
 							<td>${reservation.reservationTime}</td>
 						</tr>
 					</c:forEach>
@@ -93,7 +94,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<p>Aucun message pour le moment</p>
+			<p class="contentMessage">Aucun message pour le moment</p>
 		</c:otherwise>
 	</c:choose>
 
@@ -102,6 +103,8 @@
 		<i class="picto fa-solid fa-pen-nib"></i>
 		<h2 class="header playfair-font">CONTACTEZ NOUS :</h2>
 	</section>
-	<a href="contact">Envoyez un message à l'équipe</a>
+	<a class="link" href="contact">Envoyez un message à l'équipe</a>
+	
+	<%@include file="../jspf/footer.jspf" %>
 </body>
 </html>
