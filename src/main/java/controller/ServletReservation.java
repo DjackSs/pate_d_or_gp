@@ -12,7 +12,7 @@ import bll.ScheduleBLL;
 import bll.TableBLL;
 import bo.Restaurant;
 import bo.Schedule;
-import bo.Table;
+import bo.RestaurantTable;
 import bo.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -62,7 +62,7 @@ public class ServletReservation extends HttpServlet {
 		
 		try {
 			Restaurant restaurant = restaurantBll.selectById(idRestaurant);
-			List<Table> restaurantTables = tableBll.selectAllByIdRestaurantOrderBy(idRestaurant, "number_place"); 
+			List<RestaurantTable> restaurantTables = tableBll.selectAllByIdRestaurantOrderBy(idRestaurant, "number_place"); 
 			Schedule restaurantLunchSchedule = scheduleBll.selectByIdRestaurantAnd(idRestaurant, "open_hour < '18:00'");
 			Schedule restaurantDinerSchedule = scheduleBll.selectByIdRestaurantAnd(idRestaurant, "close_hour >= '18:00'");
 			

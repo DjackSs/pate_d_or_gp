@@ -1,24 +1,35 @@
 package bo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name= "Schedules")
-public class Table {
+@Table(name= "Tables")
+public class RestaurantTable 
+{
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name = "number_place", nullable = false)
 	private int numberPlace;
 	private String state;
-	private int idRestaurant;
 	
 	
-	public Table() {
+	
+	
+	public RestaurantTable() {
 	}
 
 
-	public Table(int numberPlace, String state, int idRestaurant) {
+	public RestaurantTable(int numberPlace, String state) 
+	{
 		this.numberPlace = numberPlace;
 		this.state = state;
-		this.idRestaurant = idRestaurant;
 	}
 
 
@@ -52,19 +63,6 @@ public class Table {
 	}
 
 
-	public int getIdRestaurant() {
-		return idRestaurant;
-	}
-
-
-	public void setIdRestaurant(int idRestaurant) {
-		this.idRestaurant = idRestaurant;
-	}
-	
-	@Override
-	public String toString() {
-		return "Table [id=" + id + ", numberPlace=" + numberPlace + ", state=" + state + "]";
-	}
 	
 	
 	

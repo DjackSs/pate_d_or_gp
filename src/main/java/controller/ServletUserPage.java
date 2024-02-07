@@ -19,40 +19,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class ServletUserPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ReservationBLL reservationBLL;
-	private MessageBLL messageBLL;
 
 
-	@Override
-	public void init() throws ServletException {
-		super.init();
-		try {
-			reservationBLL = new ReservationBLL();
-			messageBLL = new MessageBLL();
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("deco") != null) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		if(request.getParameter("deco") != null) 
+		{
 			request.getSession().setAttribute("user", null);
 			
 			response.sendRedirect(request.getContextPath()+"/home");
 			
-		} else {
-		    List<ReservationWithRestaurant> reservations = null;
-		    List<Message> messages = null;
-		    try {
-		        reservations = reservationBLL.selectReservationWithRestaurantByIdUser(((User) request.getSession().getAttribute("user")).getId());
-		        messages = messageBLL.selectMessageByIdUser(((User) request.getSession().getAttribute("user")).getId());
-		    } catch (BLLException e) {
-		        e.printStackTrace();
-		    }
-		 
-		    request.setAttribute("reservations", reservations);
-		    request.setAttribute("messages", messages);
-
+		} else 
+		{
 			request.getRequestDispatcher("/WEB-INF/jsp/JSPUserPage.jsp").forward(request, response);
 			
 		}

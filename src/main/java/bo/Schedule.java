@@ -2,6 +2,7 @@ package bo;
 
 import java.time.LocalTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,10 @@ public class Schedule
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "open_hour", nullable = false)
 	private LocalTime openHour;
+	
+	@Column(name = "close_hour", nullable = false)
 	private LocalTime closeHour;
 	
 	

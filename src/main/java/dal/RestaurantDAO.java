@@ -1,53 +1,37 @@
 package dal;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import bo.Restaurant;
+import jakarta.persistence.RollbackException;
 
-public class RestaurantDAO implements GenericDAOInterface<Restaurant>
+public class RestaurantDAO
 {
-	private Connection cnx;
-		
-	private static final String SELECT_RESTAURANTS = "select Restaurants.* from Restaurants";
-	
-	private static final String SELECT_RESTAURANTS_BY_FK = "select Restaurants.* from Restaurants where Restaurants.id_card in(?)";
-	
-	private static final String SELECT_RESTAURANTS_BY_ID = "select Restaurants.* from Restaurants where Restaurants.id in(?)";
-	
-	private static final String INSERT_INTO_RESTAURANTS = "insert into Restaurants ( name, address, postal_code, town, id_card) values ( ?, ?, ?, ?, ?)";
-
-	private static final String UPDATE_RESTAURANTS = "update Restaurants set Restaurants.name = ?, Restaurants.address = ?, Restaurants.postal_code = ?, Restaurants.town = ?, Restaurants.id_card = ? where Restaurants.id = ?";
-	
-	private static final String DELETE_RESTAURANTS = "delete from Restaurants where Restaurants.id = ?";
+	private SessionFactory factory;
 		
 		
 	//==============================================================
 	
 	
-	public RestaurantDAO() throws DALException {
-		try {
-			Context context = new InitialContext();
-			DataSource dataSource = (DataSource) context.lookup("java:comp/env/patedor");
-			cnx = dataSource.getConnection();
-			if(!cnx.isClosed()) {
-				System.out.println("La connexion est ouverte");
-			}
-		} catch (SQLException e) {
-			throw new DALException("Erreur de connexion a la base de donnees", e);
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
+	public RestaurantDAO() throws DALException 
+	{
+		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder()
+                .configure("hibernate.cfg.xml")
+                .build();
+		
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        
+        
+        this.factory = meta.getSessionFactoryBuilder().build();
+		
 
 	}
 	
@@ -57,39 +41,13 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 
 	public List<Restaurant> selectAll() throws DALException
 	{
-		List<Restaurant> restaurants = new ArrayList<>();
+		Session session = this.factory.openSession();
 		
-		try 
-		{
-			PreparedStatement query;
-			query = cnx.prepareStatement(SELECT_RESTAURANTS);
-			
-			ResultSet result = query.executeQuery();
-			
-			while(result.next())
-			{
-				Restaurant restaurant = new Restaurant();
-				restaurant.setId(result.getInt("id"));
-				restaurant.setName(result.getString("name"));
-				restaurant.setAddress(result.getString("address"));
-				restaurant.setPostalCode(result.getString("postal_code"));
-				restaurant.setTown(result.getString("town"));
-				restaurant.setIdCard(result.getInt("id_card"));	
-				
-				restaurants.add(restaurant);
-				
-			}
-			
-		} 
-		catch (SQLException error) 
-		{
-			
-			throw new DALException("Unable to recover datas", error);
-		}
+		List<Restaurant> result = session.createQuery("from Restaurant", Restaurant.class).list();
 		
-		return restaurants;
+		session.close();
 		
-		
+		return result;
 		
 	}
 	
@@ -97,46 +55,21 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 	
 	public Restaurant selectById(int id) throws DALException
 	{
-		Restaurant restaurant = null;
 		
-		try 
-		{
-			
-			PreparedStatement query;
-			query = cnx.prepareStatement(SELECT_RESTAURANTS_BY_ID);
-			
-			query.setInt(1, id);
-			
-			
-			ResultSet result = query.executeQuery();
-			
-			if(result.next())
-			{
-				restaurant = new Restaurant();
-				restaurant.setId(result.getInt("id"));
-				restaurant.setName(result.getString("name"));
-				restaurant.setAddress(result.getString("address"));
-				restaurant.setPostalCode(result.getString("postal_code"));
-				restaurant.setTown(result.getString("town"));
-				restaurant.setIdCard(result.getInt("id_card"));	
-				
-				
-			}
-			
-		} 
-		catch (SQLException error) 
-		{
-			throw new DALException("Unable to recover the data", error);
-		}
+		Session session = this.factory.openSession();
 		
-		return restaurant;
+		Restaurant result = session.find(Restaurant.class, id);
 		
+		session.close();
+		
+		return result;
 		
 		
 	}
 	
 	//--------------------------------------------------------------
 	
+	/*
 		public List<Restaurant> selectByFk(int fk) throws DALException
 		{
 			List<Restaurant> restaurants = new ArrayList<>();
@@ -176,58 +109,32 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 			
 			
 		}
+		*/
 	
 	//--------------------------------------------------------------
 	
 	public void insert(Restaurant restaurant) throws DALException
 	{
 		
-		try 
-		{
-			PreparedStatement query;
-			query = cnx.prepareStatement(INSERT_INTO_RESTAURANTS,PreparedStatement.RETURN_GENERATED_KEYS);
-			
-			query.setString(1, restaurant.getName());
-			query.setString(2, restaurant.getAddress());
-			query.setString(3, restaurant.getPostalCode());
-			query.setString(4, restaurant.getTown());
-			
-			if(restaurant.getIdCard() != 0)
-			{
-				query.setInt(5, restaurant.getIdCard());
-				
-			}
-			else
-			{
-				query.setNull(5,Types.INTEGER); 
-			}
-			
+		Session session = this.factory.openSession();
 		
-			int result = query.executeUpdate();
-			
-			if(result == 0)
-			{
-				throw new DALException("insertion without effect", null);
-			}
-			
-			
-			ResultSet generatedKey = query.getGeneratedKeys();
-			
-			if(generatedKey.next()) 
-			{
-				int primarykey = generatedKey.getInt(1);
-				restaurant.setId(primarykey);
-				
-			}
-			
-			
-		} 
-		catch (SQLException error) 
+		
+		Transaction transaction = session.beginTransaction();
+		
+		try
 		{
-			throw new DALException("data to insert invalid", error);
+
+			session.persist(restaurant);
+			
+			transaction.commit();
+			
+		}
+		catch (RollbackException error)
+		{
+			transaction.rollback();
 		}
 		
-		
+		session.close();
 		
 		
 	}
@@ -237,79 +144,54 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 	public void update(Restaurant restaurant) throws DALException
 	{
 		
-		try 
+		Session session = this.factory.openSession();
+		
+		
+		Transaction transaction = session.beginTransaction();
+		
+		try
 		{
-			PreparedStatement query;
+			//update
+			session.persist(restaurant);
 			
-			query = cnx.prepareStatement(UPDATE_RESTAURANTS);
+			transaction.commit();
 			
-			query.setString(1, restaurant.getName());
-			query.setString(2, restaurant.getAddress());
-			query.setString(3, restaurant.getPostalCode());
-			query.setString(4, restaurant.getTown());
-			
-			if(restaurant.getIdCard() != 0)
-			{
-				query.setInt(5, restaurant.getIdCard());
-				
-			}
-			else
-			{
-				query.setNull(5,Types.INTEGER); 
-			}
-			
-			
-			query.setInt(6, restaurant.getId());
-			
-			int result = query.executeUpdate();
-			
-			if(result == 0)
-			{
-				throw new DALException("Data modification without effect", null);
-				
-			}
-			
-			
-		} 
-		catch (SQLException error) 
-		{
-			throw new DALException("Data modification failed", error);
 		}
+		catch (RollbackException error)
+		{
+			transaction.rollback();
+		}
+		
+		session.close();
+		
 		
 	
 	}
 	
 	//--------------------------------------------------------------
 	
-	public void delete(int id) throws DALException
+	public void delete(Restaurant restaurant) throws DALException
 	{
 		
-		try 
+		Session session = this.factory.openSession();
+		
+		Transaction transaction = session.beginTransaction();
+		
+		try
 		{
+			//delete
+			session.remove(restaurant);
 			
-			PreparedStatement query;
-			query = cnx.prepareStatement(DELETE_RESTAURANTS);
-	
-			query.setInt(1, id);
-					
-			int result = query.executeUpdate();
+			transaction.commit();
 			
-			if(result == 0)
-			{
-				throw new DALException("Data deletion without effect", null);
-				
-			}
-			
-			
-		} 
-		catch (SQLException error) 
-		{
-			throw new DALException("Data deletion failed", error);
 		}
-			
-			
-			
+		catch (RollbackException error)
+		{
+			transaction.rollback();
+		}
+		
+		session.close();
+
+
 	}
-
-
 }

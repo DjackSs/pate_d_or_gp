@@ -29,12 +29,13 @@ public class Restaurant
 	@Column(length = 60, nullable = false)
 	private String address;
 	
+	@Column(name = "postal_code", nullable = false)
 	private String postalCode;
 	
 	@Column(length = 40, nullable = false)
 	private String town;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_card")
 	private Card card;
 	
@@ -44,7 +45,7 @@ public class Restaurant
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_restaurant")
-	private List<Table> tables;
+	private List<RestaurantTable> tables;
 	
 	
 	public Restaurant() 
@@ -66,7 +67,7 @@ public class Restaurant
 		
 	}
 	
-	public Restaurant(String name, String address, String postal, String town, List<Schedule> schedules, List<Table> tables)
+	public Restaurant(String name, String address, String postal, String town, List<Schedule> schedules, List<RestaurantTable> tables)
 	{
 		this.id =0;
 		this.name = name;
@@ -84,7 +85,7 @@ public class Restaurant
 		this.schedules.add(schedule);
 	}
 	
-	public void addTable(Table table)
+	public void addTable(RestaurantTable table)
 	{
 		this.tables.add(table);
 	}
@@ -147,11 +148,11 @@ public class Restaurant
 		this.schedules = schedules;
 	}
 
-	public List<Table> getTables() {
+	public List<RestaurantTable> getTables() {
 		return tables;
 	}
 
-	public void setTables(List<Table> tables) {
+	public void setTables(List<RestaurantTable> tables) {
 		this.tables = tables;
 	}
 	

@@ -54,12 +54,8 @@ public class ServletConnection extends HttpServlet
 		
 		try 
 		{
-			User newUser = new User();
 			
-			newUser.setEmail(request.getParameter("email"));
-			newUser.setPassword(request.getParameter("password"));
-			
-			User trueUser = this.userBLL.selectByEmailAndPassword(newUser.getEmail(), newUser.getPassword());
+			User trueUser = this.userBLL.selectByEmailAndPassword(request.getParameter("email"), request.getParameter("password"));
 
 			request.getSession().setAttribute("user", trueUser);
 			
