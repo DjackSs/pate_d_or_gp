@@ -175,7 +175,7 @@ h1 {
 .home-restaurant-card .home-restaurant-card__body {
 	position: relative;
 	flex-grow: 1;
-	background-color: #3d3a4b;
+	background-color: #5d5872;
 	color: #f8f9fa;
 	padding: 1rem;
 }
@@ -257,7 +257,7 @@ h1 {
 }
 
 .home-products-card .home-products-card__body > p:last-child > span {
-  background-color: #c70a0a;
+  background-color: #5d5872;
   color: #f8f9fa;
   padding: 0.5rem;
   border-radius: 2px;
