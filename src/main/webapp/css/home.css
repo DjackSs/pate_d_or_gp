@@ -94,11 +94,12 @@ h1 {
 	 text-decoration: none;
 	 background-color: #eeebd0;
 	 color: #000;
-	 margin-top: 0.5rem;
+	 margin-top: 1rem;
 	 padding: 4px 8px;
 	 font-size: 1rem;
+	 font-weight: 500;
 	 border-radius: 2px;
-	 border: 1px solid rgba(238,235,208,0.5);
+	 border: 1px solid rgba(61,58,75,0.5);
 	 transform: translate(0);
 	 transition: all 0.3s ease-in-out;
  }

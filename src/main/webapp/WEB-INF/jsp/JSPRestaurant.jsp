@@ -6,71 +6,83 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pâte d'Or - Restaurant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pâte d'Or - Restaurant</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+<link href="./css/navbar.css" rel="stylesheet"><link>
+<link href="./css/footer.css" rel="stylesheet"><link>
+<link href="./css/restaurant.css" rel="stylesheet"><link>
 </head>
 <body>
 	<%@include file="../jspf/header.jspf" %>
 	
 	<main>
 	
-		<h1>${restaurant.name }</h1>
-		<h3>${restaurant.address } ${restaurant.postalCode } ${restaurant.town }</h3>
+		<h1 class="playfair-font title-display-1">${restaurant.name }</h1>
+		<h3 class="title-display-3 beige-subtitle">${restaurant.address } ${restaurant.postalCode } ${restaurant.town }</h3>
 		
-		<div>
-			<div>
-				<img src="././img/unsplash-restaurant-img1.jpg" alt="" style="width: 300px; height: 300px"/>
+		<section class="restaurant-content-section container">
+			<div class="restaurant-content__img-box">
+				<img src="././img/unsplash-restaurant-img1.jpg" alt="" />
 			</div>
 			
-			<article>
-				<h2>${restaurantCard.name }</h2>
+			<article class="restaurant-content__card-box">
+				<h2 class="playfair-font title-display-2">${restaurantCard.name }</h2>
 				
 				<div>					
-					<h4>Entrée(s)</h4>
+					<h4 class="beige-subtitle">Entrée(s)</h4>
 					<ul>
 						<c:forEach var="current" items="${restaurantCardDishes }">
 							<c:if test='${current.category.equals("entry") }'>
-								<li>${current.name }</li>
+								<li>${current.name } (${current.price }€)</li>
 							</c:if>
 						</c:forEach>				
 					</ul>
 				</div>
 				
 				<div>					
-					<h4>Plat(s)</h4>
+					<h4 class="beige-subtitle">Plat(s)</h4>
 					<ul>
 						<c:forEach var="current" items="${restaurantCardDishes }">
 							<c:if test='${current.category.equals("dish") }'>
-								<li>${current.name }</li>
+								<li>${current.name } (${current.price }€)</li>
 							</c:if>
 						</c:forEach>				
 					</ul>
 				</div>
 				
 				<div>					
-					<h4>Desserts(s)</h4>
+					<h4 class="beige-subtitle">Desserts(s)</h4>
 					<ul>
 						<c:forEach var="current" items="${restaurantCardDishes }">
 							<c:if test='${current.category.equals("desert") }'>
-								<li>${current.name }</li>
+								<li>${current.name } (${current.price }€)</li>
 							</c:if>
 						</c:forEach>				
 					</ul>
 				</div>
 				
 				<div>					
-					<h4>Boisson(s)</h4>
+					<h4 class="beige-subtitle">Boisson(s)</h4>
 					<ul>
 						<c:forEach var="current" items="${restaurantCardDishes }">
 							<c:if test='${current.category.equals("beverage") }'>
-								<li>${current.name }</li>
+								<li>${current.name } (${current.price }€)</li>
 							</c:if>
 						</c:forEach>				
 					</ul>
 				</div>
 			</article>
-		</div>
+		</section>
 		
-		<div>
+		<div class="restaurant-calltoaction-section">
 			<c:choose>
 		
 				<c:when test='${user != null }'>
@@ -90,39 +102,46 @@
 		</div>	
 	
 		
-		<article>
+		<article class="restaurant-schedule-section container">
 			<ul>
-				<li>Mon 
+				<li>
+					<span class="beige-subtitle">Lun</span> 
 					<c:forEach var="current" items="${restaurantSchedule }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
-				<li>Mar  
+				<li>
+					<span class="beige-subtitle">Mar</span>  
 					<c:forEach var="current" items="${restaurantSchedule }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
-				<li>Mer 
+				<li>
+					<span class="beige-subtitle">Mer</span> 
 					<c:forEach var="current" items="${restaurantSchedule }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
-				<li>Jeu 
+				<li>
+					<span class="beige-subtitle">Jeu</span> 
 					<c:forEach var="current" items="${restaurantSchedule }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
-				<li>Fri 
+				<li>
+					<span class="beige-subtitle">Ven</span> 
 					<c:forEach var="current" items="${restaurantSchedule }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
-				<li>Sam 
+				<li>
+					<span class="beige-subtitle">Sam</span> 
 					<c:forEach var="current" items="${restaurantSchedule }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
-				<li>Dim 
+				<li>
+					<span class="beige-subtitle">Dim</span> 
 					<c:forEach var="current" items="${restaurantSchedule }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
@@ -130,5 +149,7 @@
 			</ul>
 		</article>
 	</main>
+	
+	<%@include file="../jspf/footer.jspf" %>
 </body>
 </html>

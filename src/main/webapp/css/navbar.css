@@ -21,6 +21,7 @@
     color: #f8f9fa;
     text-decoration: none;
     text-transform: uppercase;
+    font-size: calc(0.4rem + 0.5vw);
 }
 .main-navbar a::after {
 	content: "";

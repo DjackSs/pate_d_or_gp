@@ -10,7 +10,7 @@ footer {
 
 footer p {
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: calc(0.5rem + 0.5vw);
 }
 
 footer .footer-icons {
