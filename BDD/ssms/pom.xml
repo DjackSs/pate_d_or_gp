@@ -23,13 +23,13 @@
   
   <dependencies>
 	  
-	  <!-- mysql connector -->
+	  <!-- jdbc -->
 	  <dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.33</version>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>12.4.2.jre11</version>
 		</dependency>
-
+		
 		<!-- activation api -->
 		<dependency>
 			<groupId>jakarta.activation</groupId>

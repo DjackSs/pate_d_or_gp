@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import bo.Message;
 import bo.User;
 import dal.DALException;
 import dal.UserDAO;
@@ -34,10 +35,20 @@ public class UserBLL
 	
 	//======================================
 	
-	public List<User> selectAll() throws BLLException {
+	public List<User> selectAll() throws BLLException 
+	{
 		
-		try {
-			return dao.selectAll();
+		try 
+		{
+			List<User> users =  dao.selectAll();
+			
+			for(User item : users)
+			{
+				item.setPassword("");
+			}
+			
+			return users;
+			
 		} catch (DALException error) {
 			throw new BLLException("Echec de la recuperation des utilisateurs", error);
 		}
@@ -45,9 +56,14 @@ public class UserBLL
 	
 	//======================================
 	
-	public User selectById(int id) throws BLLException {
-		try {
-			return dao.selectById(id);
+	public User selectById(int id) throws BLLException 
+	{
+		try 
+		{
+			User user = dao.selectById(id);
+			user.setPassword("");
+			return user;
+			
 		} catch (DALException e) {
 			throw new BLLException("Echec de la recuperation de l'utilisateur d'id " + id, e);
 		}
@@ -65,7 +81,9 @@ public class UserBLL
 			byte[] salt = this.getSalt(email);
 			String hashedPassword = this.toHash(password, salt);
 			
-			return dao.selectByEmailAndPassword(email, hashedPassword);
+			User user = dao.selectByEmailAndPassword(email, hashedPassword);
+			user.setPassword("");
+			return user;
 		} 
 		catch (NoSuchAlgorithmException e) 
 		{
@@ -78,7 +96,6 @@ public class UserBLL
 	
 	public User insert(User user) throws BLLException 
 	{
-		
 		
 		//email
 		if(user.getEmail().trim().length() > EMAIL_MAX_LENGTH)
@@ -145,6 +162,24 @@ public class UserBLL
 		}
 		
 		return user;
+	}
+	
+	//======================================
+	
+	public Message insertMessage(Message message) throws BLLException 
+	{
+		try
+		{
+			this.dao.insertMessage(message);
+		}
+		catch(DALException error)
+		{
+			throw new BLLException("Echec du cryptage du mot de passe", error);
+		}
+		
+		return message;
+
+		
 	}
 	
 	//======================================

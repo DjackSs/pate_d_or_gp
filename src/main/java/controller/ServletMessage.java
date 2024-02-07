@@ -47,14 +47,16 @@ public class ServletMessage extends HttpServlet
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		Message newMessaga = new Message(request.getParameter("object"),request.getParameter("message"));
+		Message newMessage = new Message(request.getParameter("object"),request.getParameter("message"));
 		
 		User user = ((User) request.getSession().getAttribute("user"));
 		
-		user.addMessage(newMessaga);
-		
 		try 
 		{
+			newMessage = this.userBLL.insertMessage(newMessage);
+			
+			user.addMessage(newMessage);
+			
 			this.userBLL.update(user);
 		}
 		catch (BLLException e)
