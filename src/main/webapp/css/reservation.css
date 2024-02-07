@@ -34,11 +34,16 @@ h1 {
     margin-bottom: 0.5rem;
     font-weight: 500;
     line-height: 1.2;
-    color: #f8f9fa;
 }
 
-h2 {
+h3 {
 	margin-bottom: 20px;
+	text-align: center;
+    color: #eeebd0;
+}
+
+span {
+	font-style: italic;
 }
 
 #lunch-reservation-table-select,
@@ -46,10 +51,26 @@ h2 {
 #lunch-reservation-hour,
 #diner-reservation-table-select,
 #diner-reservation-date,
-#diner-reservation-hour {
+#diner-reservation-hour,
+input[type="text" i],
+textarea {
+	border: 1px solid #eeebd0;
 	background-color: #3d3a4b;
-		color: #f8f9fa;
+	color:#f8f9fa;
+	outline: none;
 }
+
+#lunch-reservation-table-select:focus,
+#lunch-reservation-date:focus,
+#lunch-reservation-hour:focus,
+#diner-reservation-table-select:focus,
+#diner-reservation-date:focus,
+#diner-reservation-hour:focus,
+input[type="text" i]:focus,
+textarea:focus {
+	outline: 1px solid white;
+}
+
 
 .formResaContainer {
 	display: flex;
@@ -162,10 +183,6 @@ textarea {
 	height: 240px;
 	margin: 20px 0 20px 0;
 	padding: 5px;
-}
-
-input[type="text" i], textarea {
-	border-radius: 7px;	
 }
 
 /**********FOOTER*******************************/
