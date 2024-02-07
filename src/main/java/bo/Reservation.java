@@ -2,23 +2,49 @@ package bo;
 
 import java.time.LocalDateTime;
 
-public class Reservation {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name= "Reservations")
+public class Reservation 
+{
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name = "reservation_time", nullable = false)
 	private LocalDateTime reservationTime;
 	private String state;
 	
-	private int idTable;
-	private int idUser;
-	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_table")
+	private RestaurantTable tables;
 	
 
 	public Reservation() {}
 
-	public Reservation(LocalDateTime reservationTime, String state, int idTable, int idUser) {
+	public Reservation(LocalDateTime reservationTime, String state) 
+	{
 		this.reservationTime = reservationTime;
 		this.state = state;
-		this.idTable = idTable;
-		this.idUser = idUser;
+		
+	}
+	
+	public Reservation(LocalDateTime reservationTime, String state, RestaurantTable table) 
+	{
+		this.reservationTime = reservationTime;
+		this.state = state;
+		this.tables = table;
+		
 	}
 
 	public int getId() {
@@ -45,21 +71,18 @@ public class Reservation {
 		this.state = state;
 	}
 
-	public int getIdTable() {
-		return idTable;
+	public RestaurantTable getTables() {
+		return tables;
 	}
 
-	public void setIdTable(int idTable) {
-		this.idTable = idTable;
+	public void setTables(RestaurantTable tables) {
+		this.tables = tables;
 	}
 
-	public int getIdUser() {
-		return idUser;
-	}
+	
+	
+	
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
-	}
 	
 	
 

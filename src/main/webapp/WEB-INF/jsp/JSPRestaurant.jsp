@@ -27,7 +27,7 @@
 				<div>					
 					<h4>Entrée(s)</h4>
 					<ul>
-						<c:forEach var="current" items="${restaurantCardDishes }">
+						<c:forEach var="current" items="${restaurantCard.dishes }">
 							<c:if test='${current.category.equals("entry") }'>
 								<li>${current.name }</li>
 							</c:if>
@@ -38,7 +38,7 @@
 				<div>					
 					<h4>Plat(s)</h4>
 					<ul>
-						<c:forEach var="current" items="${restaurantCardDishes }">
+						<c:forEach var="current" items="${restaurantCard.dishes }">
 							<c:if test='${current.category.equals("dish") }'>
 								<li>${current.name }</li>
 							</c:if>
@@ -49,7 +49,7 @@
 				<div>					
 					<h4>Desserts(s)</h4>
 					<ul>
-						<c:forEach var="current" items="${restaurantCardDishes }">
+						<c:forEach var="current" items="${restaurantCard.dishes }">
 							<c:if test='${current.category.equals("desert") }'>
 								<li>${current.name }</li>
 							</c:if>
@@ -60,7 +60,7 @@
 				<div>					
 					<h4>Boisson(s)</h4>
 					<ul>
-						<c:forEach var="current" items="${restaurantCardDishes }">
+						<c:forEach var="current" items="${restaurantCard.dishes }">
 							<c:if test='${current.category.equals("beverage") }'>
 								<li>${current.name }</li>
 							</c:if>
@@ -93,37 +93,37 @@
 		<article>
 			<ul>
 				<li>Mon 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Mar  
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Mer 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Jeu 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Fri 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Sam 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>Dim 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>

@@ -3,7 +3,7 @@ package controller;
 import java.io.IOException;
 
 import bll.BLLException;
-import bll.MessageBLL;
+import bll.UserBLL;
 import bo.Message;
 import bo.User;
 import jakarta.servlet.RequestDispatcher;
@@ -17,25 +17,24 @@ public class ServletMessage extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
-	private MessageBLL messageBLL;
+	private UserBLL userBLL;
 	
 	@Override
 	public void init() throws ServletException 
 	{
 		super.init();
-		
 		try 
 		{
-			this.messageBLL = new MessageBLL();
+			this.userBLL = new UserBLL();
 		} 
 		catch (BLLException e)
 		{
 			e.printStackTrace();
 		}
-		
 	}
+	
        
-    
+  
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -48,11 +47,15 @@ public class ServletMessage extends HttpServlet
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		Message newMessaga = new Message(request.getParameter("object"),request.getParameter("message"));
 		
+		User user = ((User) request.getSession().getAttribute("user"));
+		
+		user.addMessage(newMessaga);
 		
 		try 
 		{
-			Message message = this.messageBLL.insert(request.getParameter("object"), request.getParameter("message"), ((User) request.getSession().getAttribute("user")).getId());
+			this.userBLL.update(user);
 		}
 		catch (BLLException e)
 		{

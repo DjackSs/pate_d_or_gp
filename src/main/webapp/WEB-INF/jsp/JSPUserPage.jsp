@@ -41,7 +41,9 @@
 		<h2 class="header playfair-font">RESERVATIONS</h2>
 	</section>
 	<c:choose>
-		<c:when test="${reservations != null }">
+
+		<c:when test="${user.reservations.size() != 0 }">
+
 			<table>
 				<thead>
 					<tr>
@@ -51,7 +53,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="reservation" items="${reservations}">
+					<c:forEach var="reservation" items="${User.reservations}">
 						<tr>
 							<td><a href="restaurant">${reservation.restaurantName}</a></td>
 							<td>${reservation.reservationTime}</td>
@@ -72,7 +74,7 @@
 		<h2 class="header playfair-font">MESSAGES</h2>
 	</div>
 	<c:choose>
-		<c:when test="${message != null }">
+		<c:when test="${user.messages.size() != 0 }">
 			<table>
 				<thead>
 					<tr>
@@ -81,7 +83,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="message" items="${messages}">
+					<c:forEach var="message" items="${user.messages}">
 						<tr>
 							<td>${message.object}</td>
 							<td>${message.content}</td>
