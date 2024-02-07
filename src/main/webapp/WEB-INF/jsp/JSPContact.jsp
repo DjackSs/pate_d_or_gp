@@ -8,6 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Pate D'Or - Contact</title>
+<link rel="stylesheet" href="css/contact.css">
+<script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -15,25 +19,18 @@
 	
 	<main>
 	<section>
-	<h1>Contactez nous :</h1>
+	<h1 class="playfair-font">Contactez nous :</h1>
 	
 	<form method="post" action="contact">
 	
-		<fieldset>
-			<legend>Envoyez-nous un message</legend>
-			
-			<div>
-				<label for="object">Objet de votre message :</label>
-				<input type="text" name="object" id="object">
+			<div class="inputContainer">
+				<div><input type="text" name="object" id="object" placeholder="Objet"></div>
 				
-				<textarea name="message"></textarea>
+				<div><textarea name="message" placeholder="Message"></textarea></div>
 				
-				<input type="submit" value="Envoyer">
+				<div><input type="submit" value="Envoyer" class="btnSubmit"></div>
 			</div>
 		
-		</fieldset>
-	
-	
 	</form>
 	</section>
 	</main>
