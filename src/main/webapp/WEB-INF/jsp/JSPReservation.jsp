@@ -56,14 +56,17 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="lunch-reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
-					<input type="date" id="lunch-reservation-date" name="lunch-reservation-date" min="${dateTimeInputMin }" />
-					<label for="lunch-reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
-					<input type="time" id="lunch-reservation-hour" name="lunch-reservation-hour"
-					 min="${lunchSchedule.getOpenHour()}" max="${lunchSchedule.getCloseHour() }" />
-				</div>	
+				    <div class="input-group">
+				    <label for="lunch-reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
+				        <input type="date" id="lunch-reservation-date" name="lunch-reservation-date" min="${dateTimeInputMin }" />
+				        <label for="lunch-reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
+				        <input type="time" id="lunch-reservation-hour" name="lunch-reservation-hour" min="${lunchSchedule.getOpenHour()}" max="${lunchSchedule.getCloseHour() }" />
+				    </div>
+				</div>
 				
-				<input type="submit" value="Valider"/>
+				<div class="submit-group">
+				    <input type="submit" class="button-30" value="Valider"/>
+				</div>
 			
 			</form>
 		</c:if>
@@ -97,7 +100,7 @@
 					 min="${DinerSchedule.getOpenHour()}" max="${DinerSchedule.getCloseHour() }" />
 				</div>			
 			
-				<input type="submit" value="Valider"/>
+				<input type="submit" class="button-30 form-submit" value="Valider"/>
 			
 			</form>
 			

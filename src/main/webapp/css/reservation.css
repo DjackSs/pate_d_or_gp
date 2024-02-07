@@ -68,7 +68,7 @@ textarea {
 #diner-reservation-hour:focus,
 input[type="text" i]:focus,
 textarea:focus {
-	outline: 1px solid white;
+	outline: 1px solid #eeebd0;
 }
 
 
@@ -83,14 +83,26 @@ textarea:focus {
 }
 
 .form-group {
+	    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: 10px;
 }
 
-.form-submit {
-    text-align: center;
+.input-group {
+    width: 300px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Adjustments for form elements */
+.submit-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 label {
     margin-right: 5px;
 }
@@ -98,7 +110,9 @@ label {
 input[type="date"],
 input[type="time"],
 select {
-    width: 150px; /* You can adjust the width as needed */
+    width: 150px; 
+    margin-right: 10px; 
+
 }
 
 
