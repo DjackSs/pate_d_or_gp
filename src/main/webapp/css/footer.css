@@ -1,6 +1,9 @@
 /*********** FOOTER ***********/
 
 footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   background-color: #3d3a4b;
   color: #f8f9fa;
   border-top: 1px solid #f8f9fa;
