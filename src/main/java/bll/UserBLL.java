@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import bo.Message;
-
 import bo.Reservation;
 import bo.User;
 import dal.DALException;
@@ -186,7 +185,7 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	public Message insertMessage(Message message) throws BLLException
+	public Message insertMessages(Message message) throws BLLException
 	{
 		try
 		{

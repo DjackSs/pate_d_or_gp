@@ -59,6 +59,7 @@
 										<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
 									</c:if>
 								</c:forEach>
+								
 							</select>
 						</div>
 						
@@ -86,12 +87,14 @@
 					<div class="form-group">
 						<label for="diner-reservation-table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label>
 						<select id="diner-reservation-table-select" name="diner-tables" required>
-							<option value="none">Choisissez une table</option>
-							<c:forEach var="current" items="${restaurantTables }">
-								<c:if test='${!current.state.equals("pres") }'>
-									<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
-								</c:if>
-							</c:forEach>
+							<option value="none">Choisissez une table</option> 
+							
+							<c:forEach var="current" items="${restaurant.tables }">
+									<c:if test='${!current.state.equals("pres") }'>
+										<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
+									</c:if>
+								</c:forEach>
+							
 						</select>
 					</div>
 					

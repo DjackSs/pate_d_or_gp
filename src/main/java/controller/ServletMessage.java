@@ -51,20 +51,13 @@ public class ServletMessage extends HttpServlet
 		
 		User user = ((User) request.getSession().getAttribute("user"));
 		
-<<<<<<< HEAD
-		try 
-		{
-			newMessage = this.userBLL.insertMessage(newMessage);
-			
-			user.addMessage(newMessage);
-=======
+
 		
 		try 
 		{
-			newMessaga = this.userBLL.insertMessage(newMessaga);
+			newMessage = this.userBLL.insertMessages(newMessage);
 			
-			user.addMessage(newMessaga);
->>>>>>> 6ac7390bace480012404b54642814b81ea171de1
+			user.addMessage(newMessage);
 			
 			this.userBLL.update(user);
 		}

@@ -60,8 +60,8 @@ CREATE TABLE Reservations (
 	id				    INT				PRIMARY KEY auto_increment,
 	reservation_time    datetime        not null,
     state               char(4)         not null default 'hold',
-    id_table            int             not null,
-    id_user             int             not null,
+    id_table            int             ,
+    id_user             int             ,
 
     FOREIGN KEY (id_table) REFERENCES Tables(id),
     FOREIGN KEY (id_user) REFERENCES Users(id),
