@@ -97,6 +97,7 @@ h1, h2 {
 	color: #f1f1f1;
 	outline: none;
 	font-size: calc(1rem + 0.5vw);
+	font-family: "Montserrat", sans-serif;
 }
 .inscription-section-container > form  input:not([type="submit"]):focus {
 	border: 2px solid #eeebd0;

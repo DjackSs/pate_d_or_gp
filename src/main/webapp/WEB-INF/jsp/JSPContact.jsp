@@ -9,8 +9,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Pâte d'Or - Contact</title>
-<link rel="stylesheet" href="css/contact.css">
+<link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/contact.css">
 <script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,22 +21,16 @@
 	<%@include file="../jspf/header.jspf" %>
 	
 	<main>
-		<section>
+		<section class="contact-section">
 		
-			<h1 class="playfair-font">Contactez-nous :</h1>
+			<h1 class="playfair-font title-display-1">Contactez-nous :</h1>
 			
 			<form method="post" action="contact">
-					<div class="inputContainer">
-						<div>
-							<input type="text" name="object" id="object" placeholder=" Objet">
-						</div>
-						<div>
-							<textarea name="message" placeholder=" Message"></textarea>
-						</div>
-						<div>
-							<input type="submit" value="Envoyer" class="button-30">
-						</div>
-					</div>
+				<div class="inputContainer">
+					<input type="text" name="object" id="object" placeholder=" Objet">
+					<textarea name="message" placeholder=" Message"></textarea>
+					<input type="submit" value="Envoyer" class="button-30">
+				</div>
 			</form>
 			
 		</section>
