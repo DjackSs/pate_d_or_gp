@@ -79,23 +79,24 @@ public class RestaurantBLL
 	//--------------------------------------------------------------
 	
 	/*
-	public List<Restaurant> selectByFk(int fk) throws BLLException
+	public Restaurant selectByReservation(int id) throws BLLException
 	{
 		
 		try
 		{
 				
-			return dao.selectByFk(fk);
+			return dao.selectByReservation(id);
 			
 		}
 		catch (DALException e) 
 		{
-			throw new BLLException("Echec de la recuperation des cartes associées au restaurant "+fk, e);
+			throw new BLLException("Echec de la recuperation des restaurant associé à la reservation ", e);
 		}
 		
 	
 	}
 	*/
+	
 	//--------------------------------------------------------------
 
 	public Restaurant insert(Restaurant restaurant) throws BLLException

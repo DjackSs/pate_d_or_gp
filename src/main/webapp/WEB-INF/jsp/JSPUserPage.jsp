@@ -47,28 +47,37 @@
 
 		<c:when test="${user.reservations.size() != 0 }">
 		
-		<c:forEach var="reservation" items="${user.reservations }">
-
-			<table>
-				<thead>
-					<tr>
-						<th>Restaurant</th>
-						<th>Heures de réservation</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="reservation" items="${User.reservations}">
-					
+			<c:forEach var="reservation" items="${user.reservations }">
+	
+				<table>
+					<thead>
 						<tr>
-							<td><a class="link" href="restaurant">${reservation.restaurantName}</a></td>
+							<th>Restaurant</th>
+							<th>Heures de réservation</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						
+						
+						<tr>
+							<c:forEach var="map" items="${restaurants }">
+								<c:if test="${reservation.id ==  map.key}">
+								
+									<td>${map.value.name }</td>
+								</c:if>
+							</c:forEach>
+							
 							<td>${reservation.reservationTime}</td>
 						</tr>
 						
-					</c:forEach>
-				</tbody>
-			</table>
+		
+						
+					</tbody>
+				</table>
+				
+			</c:forEach>
 			
-		</c:forEach>
 		</c:when>
 		<c:otherwise>
 
