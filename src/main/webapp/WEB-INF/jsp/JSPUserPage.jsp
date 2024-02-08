@@ -44,31 +44,55 @@
 		<!-- Affichage des réservations -->
 		<section class="user-resa-section">
 			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-book-open"></i>RÉSERVATIONS</h2>
+			
 			<c:choose>
 		
 				<c:when test="${user.reservations.size() != 0 }">
-		
-					<table>
-						<thead>
-							<tr>
-								<th>Restaurant</th>
-								<th>Heures de réservation</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="reservation" items="${User.reservations}">
+
+					
+					
+						<table>
+						
+							<thead>
+							
 								<tr>
-									<td><a class="link" href="restaurant">${reservation.restaurantName}</a></td>
-									<td>${reservation.reservationTime}</td>
+									<th>Restaurant</th>
+									<th>Heures de réservation</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+								
+							</thead>
+							
+							<tbody>
+								<c:forEach var="reservation" items="${user.reservations}">
+									
+										<tr>
+											<c:forEach var="map" items="${restaurants }">
+												<c:if test="${reservation.id ==  map.key}">
+													<td>
+														<a class="link" href="restaurant?id=${map.value.id }">${map.value.name}</a>
+													</td>
+												</c:if>
+											</c:forEach>
+											
+											<td>${reservation.reservationTime}</td>
+										</tr>
+							
+								</c:forEach>
+							</tbody>
+							
+						</table>
+						
+					
 				</c:when>
+				
 				<c:otherwise>
+				
 					<p class="contentMessage">Aucune réservation pour le moment</p>
+					
 				</c:otherwise>
+				
 			</c:choose>
+			
 		</section>
 	
 		<!-- Affichage des messages -->
