@@ -39,7 +39,6 @@
 			</form>
 			
 		</section>
-		
 	</main>
 	
 	<%@include file="../jspf/footer.jspf" %>

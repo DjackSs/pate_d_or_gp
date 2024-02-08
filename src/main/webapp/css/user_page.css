@@ -38,10 +38,14 @@ body {
 
 footer {
 	margin-top: 15px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 }
 button {
 	cursor: pointer;
-	background-color: #3d3a4b;
+	background-color: #5d5872;
 	padding: 5px 5px;
 	border: 0 solid #111;
 	border-radius: 2px;
@@ -54,7 +58,7 @@ button {
 
 h1 {
 	text-align: center;
-	margin: 20px 0;
+	margin: 1rem 0;
 }
 
 h2, h3, table {
@@ -103,6 +107,14 @@ h2, h3, table {
 	border-radius: 50%;
 	border: 1px solid black;
 	object-fit: cover;
+}
+
+.align-i-h2 {
+	margin-top: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	margin-bottom: 15px;
 }
 
 

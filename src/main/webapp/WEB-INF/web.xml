@@ -97,8 +97,8 @@
   <servlet-mapping>
     <servlet-name>ServletDinerReservation</servlet-name>
     <url-pattern>/dinerReservation</url-pattern>
-	</servlet-mapping>
-	<servlet>
+  </servlet-mapping>
+  <servlet>
     <display-name>ServletUpdateUser</display-name>
     <servlet-name>ServletUpdateUser</servlet-name>
     <servlet-class>controller.ServletUpdateUser</servlet-class>
@@ -115,5 +115,15 @@
   <servlet-mapping>
     <servlet-name>ServletMessage</servlet-name>
     <url-pattern>/contact</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletSupprimerUser</display-name>
+    <servlet-name>ServletSupprimerUser</servlet-name>
+    <servlet-class>controller.ServletSupprimerUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletSupprimerUser</servlet-name>
+    <url-pattern>/deleteUser</url-pattern>
   </servlet-mapping>
 </web-app>

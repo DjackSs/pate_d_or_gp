@@ -25,7 +25,7 @@ public class Reservation
 	private LocalDateTime reservationTime;
 	private String state;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_table")
 	private RestaurantTable tables;
 	

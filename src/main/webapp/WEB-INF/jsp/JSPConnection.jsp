@@ -20,6 +20,7 @@
 <link href="./css/navbar.css" rel="stylesheet"><link>
 <link href="./css/footer.css" rel="stylesheet"><link>
 <link href="./css/connection.css" rel="stylesheet"><link>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 </head>
 <body>
 
@@ -28,23 +29,23 @@
 	<main>
 	
 		<section class="connection-section-container container">
-		
 			<h1 class="playfair-font title-display-1">Connectez-vous :</h1>
 			
 			<form method="post" action="connection">
 				<fieldset>
 					<legend>Saisissez vos identifiants</legend>
-					
-					<label for="email">Email</label>
-					<input type="email" name="email" id="email">
-					
-					<label for="password">Mot de passe</label>
-					<input type="password" name="password" id="password">
-					
+					<div>
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email">
+					</div>
+					<div>
+						<label for="password">Mot de passe</label>
+						<input type="password" name="password" id="password">
+						<i class="bi bi-eye-slash" id="togglePassword"></i>
+					</div>
 					<input type="submit" value="Connection">
 				</fieldset>
 			</form>
-			
 		</section>
 		
 		<section class="inscription-section-container">
@@ -58,5 +59,6 @@
 
 	<%@include file="../jspf/footer.jspf" %>
 	
+<script src="./javascript/togglePassword.js"></script>
 </body>
 </html>
