@@ -70,10 +70,14 @@
 						<input type="submit" value="Modifier" class="buttonStyle" />
 					</div>
 
-					<a class="buttonStyle" href="updateUser?delete=true" >Supprimer</a>
-
 					<div>
-						<a href="user"><button class="buttonStyle">Retour au profil</button></a>
+						<button>
+							<a class="buttonStyle" href="updateUser?delete=true" onclick="return confirm('Etes vous sûr de vouloir supprimer votre compte ?');">Supprimer</a>
+						</button>
+					</div>
+					<div>
+						<a href="user"><button class="buttonStyle">Retour au
+								profil</button></a>
 					</div>
 				</div>
 			</form>
