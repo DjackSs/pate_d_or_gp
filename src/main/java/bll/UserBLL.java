@@ -53,7 +53,7 @@ public class UserBLL
 			
 			for(User item : users)
 			{
-				item.setPassword("");
+				this.erasePassword(item);
 			}
 			
 			return users;
@@ -70,7 +70,7 @@ public class UserBLL
 		try 
 		{
 			User user = dao.selectById(id);
-			user.setPassword("");
+			this.erasePassword(user);
 			return user;
 			
 		} catch (DALException e) {

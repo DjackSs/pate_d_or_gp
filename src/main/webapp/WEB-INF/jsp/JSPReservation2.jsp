@@ -53,8 +53,8 @@
 						
 			<div class="form-group">
 			
-				<label for="lunch-reservation-table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
-				<select id="lunch-reservation-table-select" name="lunch-tables" required>
+				<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
+				<select id="table-select" name="tables" required>
 					<option value="none">Choisissez une table</option>
 					
 					<c:forEach var="current" items="${restaurant.tables }">
@@ -72,11 +72,11 @@
 			
 			    <div class="input-group">
 			    
-			    	<label for="lunch-reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
-			        <input type="date" id="lunch-reservation-date" name="lunch-reservation-date" min="${dateTimeInputMin }" />
+			    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
+			        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
 			        
-			        <label for="lunch-reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
-			        <input type="time" id="lunch-reservation-hour" name="lunch-reservation-hour" min="${lunchSchedule.getOpenHour()}" max="${lunchSchedule.getCloseHour() }" />
+			        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
+			        <input type="time" id="reservation-hour" name="reservation-hour"  />
 			        
 			    </div>
 			    
