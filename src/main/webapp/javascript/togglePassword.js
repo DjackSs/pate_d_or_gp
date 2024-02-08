@@ -11,9 +11,3 @@ togglePassword.addEventListener("click", function () {
     // toggle the icon
     this.classList.toggle("bi-eye");
 });
-
-// prevent form submit
-const form = document.querySelector("form");
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-});
