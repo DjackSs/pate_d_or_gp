@@ -52,7 +52,7 @@ public class ServletReservation extends HttpServlet
 		LocalDate now = LocalDate.now();
 		String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation2.jsp");
 		
 		try 
 		{
