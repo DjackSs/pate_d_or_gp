@@ -49,7 +49,10 @@ body {
 }
 
 main {
-	min-height: 85vh;	
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -65,6 +68,12 @@ h1, h2 {
     color: #f8f9fa;
 }
 
+.footer-section {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
 /*********** CONNECTION SECTION ***********/
 .connection-section-container > form > fieldset {
 	padding: 1rem;
@@ -72,6 +81,10 @@ h1, h2 {
 	flex-direction: column;
 	align-items: center;
 	gap: 5px;
+}
+.connection-section-container > form > fieldset > div {
+	width: 100%;
+	text-align: center;
 }
 .connection-section-container > form > fieldset > legend {
 	font-size: calc(0.5rem + 0.5vw);
@@ -142,4 +155,9 @@ h1, h2 {
 }
 .inscription-section-container > a:hover::after {
 	transform: scaleX(1);
+}
+
+form i {
+	margin-left: -30px;
+	cursor: pointer;
 }
