@@ -19,95 +19,93 @@
 
 	<%@include file="../jspf/header.jspf"%>
 
-<!-- 	<main> -->
+ 	<main>
 	
-		<h1 class="playfair-font">PROFIL UTILISATEUR</h1>
-		<section>
-			<i class="picto fa-solid fa-user"></i>
-			<h2 class="header playfair-font">INFORMATIONS PERSONNELLES</h2>
+		<h1 class="playfair-font title-display-1">PROFIL UTILISATEUR</h1>
+		<section class="user-details-section">
+			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-user"></i>INFORMATIONS PERSONNELLES</h2>
+			<div class="user-details-content">
+				<div class="pictureInfo">
+					<div class="profilPicture">
+						<img id="imgProfil" alt="avatar_neutre"
+							src="././img/naruto-profil.webp" height="300px">
+					</div>
+					<div class="profilInfo">
+						<p>Prénom : ${user.name }</p>
+						<p>Nom : ${user.lastname }</p>
+						<p>Email : ${user.email }</p>
+						<a href="updateUser?id=${user.id }"><button>Modifier
+								profil</button></a>
+					</div>
+				</div>
+			</div>
 		</section>
-		<div class="pictureInfo">
-			<div class="profilPicture">
-				<img id="imgProfil" alt="avatar_neutre"
-					src="././img/naruto-profil.webp" height="300px">
-			</div>
-			<div class="profilInfo">
-				<p>Prénom : ${user.name }</p>
-				<p>Nom : ${user.lastname }</p>
-				<p>Email : ${user.email }</p>
-				<a href="updateUser?id=${user.id }"><button>Modifier
-						profil</button></a>
-			</div>
-		</div>
 	
 		<!-- Affichage des réservations -->
-		<section>
-			<i class="picto fa-solid fa-book-open"></i>
-			<h2 class="header playfair-font">RÉSERVATIONS</h2>
-		</section>
-		<c:choose>
-	
-			<c:when test="${user.reservations.size() != 0 }">
-	
-				<table>
-					<thead>
-						<tr>
-							<th>Restaurant</th>
-							<th>Heures de réservation</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="reservation" items="${User.reservations}">
+		<section class="user-resa-section">
+			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-book-open"></i>RÉSERVATIONS</h2>
+			<c:choose>
+		
+				<c:when test="${user.reservations.size() != 0 }">
+		
+					<table>
+						<thead>
 							<tr>
-								<td><a class="link" href="restaurant">${reservation.restaurantName}</a></td>
-								<td>${reservation.reservationTime}</td>
+								<th>Restaurant</th>
+								<th>Heures de réservation</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</c:when>
-			<c:otherwise>
-				<p>Aucune réservation pour le moment</p>
-			</c:otherwise>
-		</c:choose>
+						</thead>
+						<tbody>
+							<c:forEach var="reservation" items="${User.reservations}">
+								<tr>
+									<td><a class="link" href="restaurant">${reservation.restaurantName}</a></td>
+									<td>${reservation.reservationTime}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<p class="contentMessage">Aucune réservation pour le moment</p>
+				</c:otherwise>
+			</c:choose>
+		</section>
 	
 		<!-- Affichage des messages -->
-	
-		<div class="pictoHeader">
-			<i class="picto fa-solid fa-envelope-open-text"></i>
-			<h2 class="header playfair-font">MESSAGES</h2>
-		</div>
-		<c:choose>
-			<c:when test="${user.messages.size() != 0 }">
-				<table>
-					<thead>
-						<tr>
-							<th>Objet</th>
-							<th>Contenu</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="message" items="${user.messages}">
+		<section class="user-message-section">
+			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-envelope-open-text"></i>MESSAGES</h2>
+			<c:choose>
+				<c:when test="${user.messages.size() != 0 }">
+					<table>
+						<thead>
 							<tr>
-								<td>${message.object}</td>
-								<td>${message.content}</td>
+								<th>Objet</th>
+								<th>Contenu</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</c:when>
-			<c:otherwise>
-				<p class="contentMessage">Aucun message pour le moment</p>
-			</c:otherwise>
-		</c:choose>
-	
-	
-		<section>
-			<i class="picto fa-solid fa-pen-nib"></i>
-			<h2 class="header playfair-font">CONTACTEZ-NOUS :</h2>
+						</thead>
+						<tbody>
+							<c:forEach var="message" items="${user.messages}">
+								<tr>
+									<td>${message.object}</td>
+									<td>${message.content}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<p class="contentMessage">Aucun message pour le moment</p>
+				</c:otherwise>
+			</c:choose>
 		</section>
-		<a class="link" href="contact">Envoyez un message à l'équipe</a>
-<!-- 	</main> -->
+	
+	
+		<section  class="user-contact-section">
+			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-pen-nib"></i>CONTACTEZ-NOUS :</h2>
+			<a class="link" href="contact">Envoyez un message à l'équipe</a>
+		</section>
+		
+ 	</main> 
 
 	
 	<%@include file="../jspf/footer.jspf" %>

@@ -10,17 +10,30 @@
   font-family: "Playfair Display", serif;
 }
 
+.title-display-1 {
+	font-size: calc(1.525rem + 1vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.title-display-2 {
+	font-size: calc(1rem + 0.5vw);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
 main {
 	padding-top: 55px;
 }
 
 body {
-	background-color: #3d3a4b;
+	background-color: #5d5872;
 	color: #f8f9fa;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
+	letter-spacing: 0.5px;
 }
 
 footer {
@@ -44,7 +57,7 @@ h1 {
 	margin: 20px 0;
 }
 
-h2, h3, table, a {
+h2, h3, table {
 	margin: 15px 0px 15px 0px;
 }
 
@@ -59,29 +72,25 @@ h2, h3, table, a {
 }
 
 .pictureInfo {
+	padding: 1rem;
     background-color: #EEEbd0;
     display: flex;
     align-items: center;
-    height: 400px;
+    gap: 1rem;
+    min-height: 400px;
     color: #3d3a4b;
 }
 
 .profilInfo {
-    flex: 2;
+    flex: 1;
     text-align: start;
+    font-size: calc(0.5rem + 0.5vw)
 }
 
 .profilPicture {
     flex: 1;
     text-align: center; 
     margin-right: 10px; 
-}
-
-.picto {
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	margin-left: 20px;
 }
 
 .header {
@@ -96,5 +105,31 @@ h2, h3, table, a {
 	object-fit: cover;
 }
 
+
+.user-details-section, .user-resa-section, .user-message-section, .user-contact-section {
+	display: flex;
+	flex-direction: column;
+}
+.user-resa-section, .user-message-section, .user-contact-section {
+	padding: 0 1rem;
+}
+.user-details-section > h2, .user-resa-section > h2, .user-message-section > h2, .user-contact-section > h2 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.user-details-section > h2 {
+	padding: 0 1rem;
+}
+
+/**************************************/
+/*********** MEDIA QUERIES ***********/
+/*************************************/
+
+@media screen and (max-width: 425px) {
+	.pictureInfo {
+		flex-direction: column;
+	}
+}
 
 
