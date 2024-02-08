@@ -46,6 +46,8 @@
 	<c:choose>
 
 		<c:when test="${user.reservations.size() != 0 }">
+		
+		<c:forEach var="reservation" items="${user.reservations }">
 
 			<table>
 				<thead>
@@ -56,17 +58,23 @@
 				</thead>
 				<tbody>
 					<c:forEach var="reservation" items="${User.reservations}">
+					
 						<tr>
 							<td><a class="link" href="restaurant">${reservation.restaurantName}</a></td>
 							<td>${reservation.reservationTime}</td>
 						</tr>
+						
 					</c:forEach>
 				</tbody>
 			</table>
+			
+		</c:forEach>
 		</c:when>
 		<c:otherwise>
+
 			<p class="content-default">Aucune réservation pour le moment</p>
 		</c:otherwise>
+		
 	</c:choose>
 
 	<!-- Affichage des messages -->

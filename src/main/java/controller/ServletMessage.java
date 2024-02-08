@@ -51,10 +51,13 @@ public class ServletMessage extends HttpServlet
 		
 		User user = ((User) request.getSession().getAttribute("user"));
 		
-		user.addMessage(newMessaga);
 		
 		try 
 		{
+			newMessaga = this.userBLL.insertMessage(newMessaga);
+			
+			user.addMessage(newMessaga);
+			
 			this.userBLL.update(user);
 		}
 		catch (BLLException e)
