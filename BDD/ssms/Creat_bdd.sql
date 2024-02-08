@@ -75,7 +75,7 @@ CREATE TABLE Messages (
     content         varchar(250)    not null,
 	id_user			int				,
 
-	FOREIGN KEY (id_user) REFERENCES Users(id) on delete cascade,
+	FOREIGN KEY (id_user) REFERENCES Users(id) on delete cascade
 );
 
 
@@ -109,7 +109,7 @@ CREATE TABLE Orders_Dishes (
     id_dish        int             not null,
 
     FOREIGN KEY (id_order) REFERENCES Orders(id) on delete cascade,
-    FOREIGN KEY (id_dish) REFERENCES Dishes(id),
+    FOREIGN KEY (id_dish) REFERENCES Dishes(id)
 );
 
 

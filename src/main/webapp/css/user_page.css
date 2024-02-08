@@ -11,7 +11,7 @@
 }
 
 body {
-	background-color: #3d3a4b;
+	background-color: #5d5872;
 	color: #f8f9fa;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1rem;
@@ -20,7 +20,7 @@ body {
 }
 
 
-a {
+.link {
 	text-decoration: none;
 	color: grey;
 	font-style: italic;
@@ -28,10 +28,14 @@ a {
 
 footer {
 	margin-top: 15px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 }
 button {
 	cursor: pointer;
-	background-color: #3d3a4b;
+	background-color: #5d5872;
 	padding: 5px 5px;
 	border: 0 solid black;
 	border-radius: 7px;
@@ -41,16 +45,11 @@ button {
     height: 30px;
 }
 
-h1 {
-	text-align: center;
-	margin: 20px 0;
+.header, table, .link {
+	margin: 20px 0px 15px 0px;
 }
 
-h2, h3, table, a {
-	margin: 15px 0px 15px 0px;
-}
-
-.contentMessage, .link {
+.content-default, .link {
 	padding-left: 15px;
 }
 
@@ -90,6 +89,14 @@ h2, h3, table, a {
 	border-radius: 50%;
 	border: 1px solid black;
 	object-fit: cover;
+}
+
+.align-i-h2 {
+	margin-top: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	margin-bottom: 15px;
 }
 
 
