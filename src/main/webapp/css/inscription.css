@@ -65,22 +65,22 @@ h1, h2 {
     color: #f8f9fa;
 }
 
-/*********** CONNECTION SECTION ***********/
-.connection-section-container > form > fieldset {
+/*********** inscription SESSION ***********/
+.inscription-section-container > form > fieldset {
 	padding: 1rem;
 	display : flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 5px;
 }
-.connection-section-container > form > fieldset > legend {
+.inscription-section-container > form > fieldset > legend {
 	font-size: calc(0.5rem + 0.5vw);
 	padding: 0 10px;
 	text-align: center;
 	font-style: italic;
 	color: #eeebd0;
 }
-.connection-section-container > form  input:not([type="submit"]) {
+.inscription-section-container > form  input:not([type="submit"]) {
 	padding: 5px;
 	width: 100%;
 	border: 1px solid #eeebd0;
@@ -89,12 +89,12 @@ h1, h2 {
 	outline: none;
 	font-size: calc(1rem + 0.5vw);
 }
-.connection-section-container > form  input:not([type="submit"]):focus {
+.inscription-section-container > form  input:not([type="submit"]):focus {
 	border: 2px solid #eeebd0;
 	margin: -1px;
 	
 }
-.connection-section-container > form  input[type="submit"] {
+.inscription-section-container > form  input[type="submit"] {
 	margin-top: 10px;
 	padding: 4px 8px;
 	cursor: pointer;
@@ -108,38 +108,7 @@ h1, h2 {
 	transform: translate(0);
 	transition: all 0.3s ease-in-out;
 }
-.connection-section-container > form  input[type="submit"]:hover {
+.inscription-section-container > form  input[type="submit"]:hover {
 	 transform: translate(-1px, -1px);
   	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
-}
-
-
-/*********** INSCRIPTION SECTION ***********/
-.inscription-section-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.inscription-section-container > a {
-	text-decoration: none;
-	cursor: pointer;
-	font-weight: 500;
-	font-family: "Montserrat", sans-serif;
-	position: relative;
-    color: #f8f9fa;
-    font-size: calc(0.5rem + 0.5vw);
-}
-.inscription-section-container > a::after {
-	content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background: #f1f1f1;
-    transform: scaleX(0);
-    transition: transform 0.2s ease-in-out;
-}
-.inscription-section-container > a:hover::after {
-	transform: scaleX(1);
 }

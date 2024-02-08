@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pate D'Or - Connection</title>
+<title>Pate D'Or - Connexion</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link
@@ -22,12 +22,15 @@
 <link href="./css/connection.css" rel="stylesheet"><link>
 </head>
 <body>
+
 	<%@include file="../jspf/header.jspf" %>
 	
 	<main>
 	
-		<section class="connection-session-container container">
+		<section class="connection-section-container container">
+		
 			<h1 class="playfair-font title-display-1">Connectez-vous :</h1>
+			
 			<form method="post" action="connection">
 				<fieldset>
 					<legend>Saisissez vos identifiants</legend>
@@ -39,20 +42,21 @@
 					<input type="password" name="password" id="password">
 					
 					<input type="submit" value="Connection">
-				
 				</fieldset>
-			
-			
 			</form>
+			
 		</section>
 		
-		<section class="inscription-session-container">
+		<section class="inscription-section-container">
+		
 			<h2 class="playfair-font title-display-2">Pas de compte ?</h2>
 			<a href="inscription" >Inscrivez-vous</a>
+			
 		</section>
 		
 	</main>
 
 	<%@include file="../jspf/footer.jspf" %>
+	
 </body>
 </html>
