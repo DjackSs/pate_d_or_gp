@@ -24,6 +24,7 @@
 
 main {
 	padding-top: 55px;
+	margin-bottom: 1rem;
 }
 
 body {
@@ -36,13 +37,6 @@ body {
 	letter-spacing: 0.5px;
 }
 
-footer {
-	margin-top: 15px;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-}
 button {
 	cursor: pointer;
 	background-color: #5d5872;
