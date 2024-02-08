@@ -102,15 +102,12 @@
 						 min="${DinerSchedule.getOpenHour()}" max="${DinerSchedule.getCloseHour() }" />
 					</div>			
 				
-					<input type="submit" class="button-30 form-submit" value="Valider"/>
-				
-				
-				
+
 				</c:if>
 		
 		</c:forEach>
 		
-		<input type="submit" value="Valider"/>
+		<input type="submit" class="button-30 form-submit" value="Valider"/>
 	
 	</form>
 	
