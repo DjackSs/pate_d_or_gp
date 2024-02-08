@@ -45,6 +45,8 @@
 	<c:choose>
 
 		<c:when test="${user.reservations.size() != 0 }">
+		
+		<c:forEach var="reservation" items="${user.reservations }">
 
 			<table>
 				<thead>
@@ -64,6 +66,8 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
+		</c:forEach>
 		</c:when>
 		<c:otherwise>
 		

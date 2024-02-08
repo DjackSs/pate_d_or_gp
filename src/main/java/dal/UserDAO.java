@@ -1,6 +1,5 @@
 package dal;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -11,6 +10,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import bo.Message;
 import bo.Reservation;
 import bo.User;
 import jakarta.persistence.RollbackException;
@@ -102,6 +102,32 @@ public class UserDAO
 		
 		session.close();
 	}
+	
+	//----------------------------------------
+
+		public void insertMessage(Message message) throws DALException 
+		{
+
+			Session session = this.factory.openSession();
+			
+			
+			Transaction transaction = session.beginTransaction();
+			
+			try
+			{
+
+				session.persist(message);
+				
+				transaction.commit();
+				
+			}
+			catch (RollbackException error)
+			{
+				transaction.rollback();
+			}
+			
+			session.close();
+		}
 	
 	//----------------------------------------
 

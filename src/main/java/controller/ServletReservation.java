@@ -94,12 +94,14 @@ public class ServletReservation extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		User userSession = (((User) request.getSession().getAttribute("user")));
-		userSession.setPassword("");
 		
 		String redirectDestination = "user";
 		
+		System.out.println(request.getParameter("lunch-tables"));
+		System.out.println(request.getParameter("diner-tables"));
+		
 		//reservation for lunch
-		if(request.getParameter("lunch-tables") != null)
+		if(!"none".equals(request.getParameter("lunch-tables")))
 		{
 			String dateLunchReservationStr = request.getParameter("lunch-reservation-date");
 			String hourLunchReservationStr = request.getParameter("lunch-reservation-hour");
@@ -112,11 +114,13 @@ public class ServletReservation extends HttpServlet
 			RestaurantTable table = new RestaurantTable();
 			table.setId(Integer.parseInt(request.getParameter("lunch-tables")));
 		
-			Reservation newReservation = new Reservation(lunchReservationDateTime, "hold", table);
+			Reservation newReservation = new Reservation(lunchReservationDateTime, "hold");
 			
 			try 
 			{
 				newReservation = this.userBLL.insertReservation(newReservation);
+				
+				newReservation.setTables(table);
 				
 				userSession.addReservation(newReservation);
 				
@@ -134,7 +138,7 @@ public class ServletReservation extends HttpServlet
 		}
 		
 		//reservation for diner
-		if(request.getParameter("diner-tables") != null)
+		if(!"none".equals(request.getParameter("diner-tables")))
 		{
 			
 			String dateDinerReservationStr = request.getParameter("diner-reservation-date");
@@ -148,11 +152,13 @@ public class ServletReservation extends HttpServlet
 			RestaurantTable table = new RestaurantTable();
 			table.setId(Integer.parseInt(request.getParameter("diner-tables")));
 
-			Reservation newReservation = new Reservation(dinerReservationDateTime, "hold", table);
+			Reservation newReservation = new Reservation(dinerReservationDateTime, "hold");
 			
 			try 
 			{
 				newReservation = this.userBLL.insertReservation(newReservation);
+				
+				newReservation.setTables(table);
 				
 				userSession.addReservation(newReservation);
 				
@@ -164,12 +170,11 @@ public class ServletReservation extends HttpServlet
 				e.printStackTrace();
 				
 				redirectDestination = "home";
-			}
-			
-			response.sendRedirect(redirectDestination);
+			}	
 			
 		}
 		
+		response.sendRedirect(redirectDestination);
 	
 			
 	}

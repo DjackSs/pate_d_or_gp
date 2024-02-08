@@ -4,14 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import bo.Card;
-import jakarta.persistence.RollbackException;
 
 public class CardDAO 
 {
@@ -60,76 +58,4 @@ public class CardDAO
 	}
 	
 	
-	//----------------------------------------
-
-	public void insert(Card card) throws DALException 
-	{
-		Session session = this.factory.openSession();
-		
-		Transaction transaction = session.beginTransaction();
-		
-		try
-		{
-
-			session.persist(card);
-			
-			transaction.commit();
-			
-		}
-		catch (RollbackException error)
-		{
-			transaction.rollback();
-		}
-		
-		session.close();
-	}
-	
-	//----------------------------------------
-	
-	public void update(Card card) throws DALException 
-	{
-		Session session = this.factory.openSession();
-		
-		Transaction transaction = session.beginTransaction();
-		
-		try
-		{
-
-			session.merge(card);
-			
-			transaction.commit();
-			
-		}
-		catch (RollbackException error)
-		{
-			transaction.rollback();
-		}
-		
-		session.close();
-	}
-	
-	//----------------------------------------
-	
-	public void delete(Card card) throws DALException 
-	{
-		Session session = this.factory.openSession();
-		
-		Transaction transaction = session.beginTransaction();
-		
-		try
-		{
-
-			session.remove(card);
-			
-			transaction.commit();
-			
-		}
-		catch (RollbackException error)
-		{
-			transaction.rollback();
-		}
-		
-		session.close();
-
-	}
 }
