@@ -118,12 +118,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ServletSupprimer</display-name>
-    <servlet-name>ServletSupprimer</servlet-name>
-    <servlet-class>controller.ServletSupprimer</servlet-class>
+    <display-name>ServletSupprimerUser</display-name>
+    <servlet-name>ServletSupprimerUser</servlet-name>
+    <servlet-class>controller.ServletSupprimerUser</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ServletSupprimer</servlet-name>
+    <servlet-name>ServletSupprimerUser</servlet-name>
     <url-pattern>/deleteUser</url-pattern>
   </servlet-mapping>
 </web-app>

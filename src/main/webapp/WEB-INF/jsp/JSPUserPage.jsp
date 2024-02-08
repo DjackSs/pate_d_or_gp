@@ -18,10 +18,11 @@
 
 	<%@include file="../jspf/header.jspf"%>
 
-	<h1 class="playfair-font">PROFIL UTILISATEUR</h1>
 	<section>
-		<i class="picto fa-solid fa-user"></i>
-		<h2 class="header playfair-font">INFORMATIONS PERSONNELLES</h2>
+		<div class="align-i-h2">
+			<div><i class="picto fa-solid fa-user"></i></div>
+			<div><h2 class="first-header playfair-font">INFORMATIONS PERSONNELLES</h2></div>
+		</div>
 	</section>
 	<div class="pictureInfo">
 		<div class="profilPicture">
@@ -64,7 +65,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<p>Aucune réservation pour le moment</p>
+			<p class="content-default">Aucune réservation pour le moment</p>
 		</c:otherwise>
 	</c:choose>
 
@@ -94,7 +95,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<p class="contentMessage">Aucun message pour le moment</p>
+			<p class="content-default">Aucun message pour le moment</p>
 		</c:otherwise>
 	</c:choose>
 

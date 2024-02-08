@@ -70,11 +70,7 @@
 						<input type="submit" value="Modifier" class="buttonStyle" />
 					</div>
 
-
-					<form action="deleteUser" method="post">
-						<input class="buttonStyle" type="submit" value="Supprimer" />
-					</form>
-
+					<a class="buttonStyle" href="updateUser?delete=true" >Supprimer</a>
 
 					<div>
 						<a href="user"><button class="buttonStyle">Retour au profil</button></a>
