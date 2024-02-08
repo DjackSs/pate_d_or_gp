@@ -65,10 +65,12 @@ public class ServletUserPage extends HttpServlet
 						{
 							for(RestaurantTable table : restaurant.getTables())
 							{
-								if(table.getId() == reservation.getTables().getId());
-								
-								reservationRestaurants.put(reservation.getId(), restaurant);
-								
+								if(table.getId() == reservation.getTables().getId())
+								{
+									reservationRestaurants.put(reservation.getId(), restaurant);
+									
+								}
+	
 							}
 							
 						}

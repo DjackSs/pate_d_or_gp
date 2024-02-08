@@ -52,35 +52,16 @@ public class ServletReservation extends HttpServlet
 		LocalDate now = LocalDate.now();
 		String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation2.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation.jsp");
 		
 		try 
 		{
 			
 			Restaurant restaurant = restaurantBll.selectById(idRestaurant);
 			
-			List<Schedule> restaurantLunchSchedule = new ArrayList<>();
-			List<Schedule> restaurantDinerSchedule = new ArrayList<>();
-			
-			for(Schedule item : restaurant.getSchedules())
-			{
-				if(item.getOpenHour().isBefore(LocalTime.of(18, 00)))
-				{
-					restaurantLunchSchedule.add(item);
-					
-				}
-				else
-				{
-					restaurantDinerSchedule.add(item);
-					
-				}
-					
-			}
-			
 			request.setAttribute("restaurant", restaurant);
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
-			request.setAttribute("restaurantLunchSchedule", restaurantLunchSchedule);
-			request.setAttribute("restaurantDinerSchedule", restaurantDinerSchedule);
+
 			
 		} 
 		catch (BLLException e) 

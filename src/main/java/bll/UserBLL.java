@@ -281,7 +281,7 @@ public class UserBLL
 		}
 		
 		//password
-		if(user.getPassword().isBlank() || user.getPassword() == null)
+		if(user.getPassword().isBlank())
 		{
 			user.setPassword(oldUser.getPassword());
 		}
