@@ -68,6 +68,12 @@ h1, h2 {
     color: #f8f9fa;
 }
 
+.footer-section {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
 /*********** CONNECTION SECTION ***********/
 .connection-section-container > form > fieldset {
 	padding: 1rem;

@@ -10,6 +10,10 @@
   font-family: "Playfair Display", serif;
 }
 
+main {
+	padding-top: 55px;
+}
+
 body {
 	background-color: #3d3a4b;
 	color: #f8f9fa;
@@ -19,13 +23,6 @@ body {
 	line-height: 1.5;
 }
 
-
-a {
-	text-decoration: none;
-	color: grey;
-	font-style: italic;
-}
-
 footer {
 	margin-top: 15px;
 }
@@ -33,12 +30,13 @@ button {
 	cursor: pointer;
 	background-color: #3d3a4b;
 	padding: 5px 5px;
-	border: 0 solid black;
-	border-radius: 7px;
+	border: 0 solid #111;
+	border-radius: 2px;
 	margin-top: 5px;
 	color: floralwhite;
 	width: 115px;
     height: 30px;
+    font-family: "Montserrat", sans-serif;
 }
 
 h1 {
@@ -48,6 +46,12 @@ h1 {
 
 h2, h3, table, a {
 	margin: 15px 0px 15px 0px;
+}
+
+.link {
+	color: grey;	
+	text-decoration: none;
+	font-style: italic;
 }
 
 .contentMessage, .link {
