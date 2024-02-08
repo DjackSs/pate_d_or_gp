@@ -48,7 +48,7 @@ body {
 }
 
 main {
-	min-height: 80vh;	
+	min-height: 85vh;	
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -78,6 +78,7 @@ h1, h2 {
 }
 .connection-session-container > form > fieldset > legend {
 	font-size: calc(0.5rem + 0.5vw);
+	padding: 0 10px;
 	text-align: center;
 	font-style: italic;
 	color: #eeebd0;
@@ -93,20 +94,53 @@ h1, h2 {
 }
 .connection-session-container > form  input:not([type="submit"]):focus {
 	border: 2px solid #eeebd0;
+	margin: -1px;
 	
 }
 .connection-session-container > form  input[type="submit"] {
 	margin-top: 10px;
 	padding: 4px 8px;
 	cursor: pointer;
+	font-family: "Montserrat", sans-serif;
 	font-size: calc(0.5rem + 0.5vw);
 	font-weight: 500;
+	background-color: #eeebd0;
 	color: #111;
-	border: none;
 	border-radius: 2px;
-	font-family: "Montserrat", sans-serif;
+	border: 1px solid rgba(61,58,75,0.5);
+	transform: translate(0);
+	transition: all 0.3s ease-in-out;
+}
+.connection-session-container > form  input[type="submit"]:hover {
+	 transform: translate(-1px, -1px);
+  	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
 }
 
 .inscription-session-container {
-	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.inscription-session-container > a {
+	text-decoration: none;
+	cursor: pointer;
+	font-weight: 500;
+	font-family: "Montserrat", sans-serif;
+	position: relative;
+    color: #f8f9fa;
+    font-size: calc(0.5rem + 0.5vw);
+}
+.inscription-session-container > a::after {
+	content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: #f1f1f1;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+}
+.inscription-session-container > a:hover::after {
+	transform: scaleX(1);
 }

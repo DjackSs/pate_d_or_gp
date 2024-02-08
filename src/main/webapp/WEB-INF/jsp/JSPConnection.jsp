@@ -48,7 +48,7 @@
 		
 		<section class="inscription-session-container">
 			<h2 class="playfair-font title-display-2">Pas de compte ?</h2>
-			<a href="inscription" >Inscrivez vous</a>
+			<a href="inscription" >Inscrivez-vous</a>
 		</section>
 		
 	</main>
