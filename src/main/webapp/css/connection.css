@@ -73,6 +73,10 @@ h1, h2 {
 	align-items: center;
 	gap: 5px;
 }
+.connection-section-container > form > fieldset > div {
+	width: 100%;
+	text-align: center;
+}
 .connection-section-container > form > fieldset > legend {
 	font-size: calc(0.5rem + 0.5vw);
 	padding: 0 10px;
@@ -142,4 +146,9 @@ h1, h2 {
 }
 .inscription-section-container > a:hover::after {
 	transform: scaleX(1);
+}
+
+form i {
+	margin-left: -30px;
+	cursor: pointer;
 }
