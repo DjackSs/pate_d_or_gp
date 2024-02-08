@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -9,8 +10,12 @@ import java.util.List;
 
 import bll.BLLException;
 import bll.RestaurantBLL;
+import bll.UserBLL;
+import bo.Reservation;
 import bo.Restaurant;
+import bo.RestaurantTable;
 import bo.Schedule;
+import bo.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -21,6 +26,7 @@ public class ServletReservation extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	private RestaurantBLL restaurantBll;
+	private UserBLL userBLL;
 	
 
 	@Override
@@ -30,6 +36,7 @@ public class ServletReservation extends HttpServlet
 		try 
 		{
 			this.restaurantBll = new RestaurantBLL();
+			this.userBLL = new UserBLL();
 			
 		} 
 		catch (BLLException e) 
@@ -85,8 +92,93 @@ public class ServletReservation extends HttpServlet
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{	
+	{
+		User userSession = (((User) request.getSession().getAttribute("user")));
+		
+		String redirectDestination = "user";
+		
+		System.out.println(request.getParameter("lunch-tables"));
+		System.out.println(request.getParameter("diner-tables"));
+		
+		//reservation for lunch
+		if(!"none".equals(request.getParameter("lunch-tables")))
+		{
+			String dateLunchReservationStr = request.getParameter("lunch-reservation-date");
+			String hourLunchReservationStr = request.getParameter("lunch-reservation-hour");
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+			
+			String lunchReservationDateTimeStr = dateLunchReservationStr + "T" + hourLunchReservationStr + ":00";
+			LocalDateTime lunchReservationDateTime = LocalDateTime.parse(lunchReservationDateTimeStr, formatter);
+			
+			RestaurantTable table = new RestaurantTable();
+			table.setId(Integer.parseInt(request.getParameter("lunch-tables")));
+		
+			Reservation newReservation = new Reservation(lunchReservationDateTime, "hold");
+			
+			try 
+			{
+				newReservation = this.userBLL.insertReservation(newReservation);
+				
+				newReservation.setTables(table);
+				
+				userSession.addReservation(newReservation);
+				
+				this.userBLL.update(userSession);
+				
+				
+			} 
+			catch (BLLException e) 
+			{
+				e.printStackTrace();
+				
+				redirectDestination = "home";
+			}
+			
+		}
+		
+		//reservation for diner
+		if(!"none".equals(request.getParameter("diner-tables")))
+		{
+			
+			String dateDinerReservationStr = request.getParameter("diner-reservation-date");
+			String hourDinerReservationStr = request.getParameter("diner-reservation-hour");
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+			
+			String dinerReservationDateTimeStr = dateDinerReservationStr + "T" + hourDinerReservationStr + ":00";
+			LocalDateTime dinerReservationDateTime = LocalDateTime.parse(dinerReservationDateTimeStr, formatter);
+			
+			RestaurantTable table = new RestaurantTable();
+			table.setId(Integer.parseInt(request.getParameter("diner-tables")));
 
+			Reservation newReservation = new Reservation(dinerReservationDateTime, "hold");
+			
+			try 
+			{
+				newReservation = this.userBLL.insertReservation(newReservation);
+				
+				newReservation.setTables(table);
+				
+				userSession.addReservation(newReservation);
+				
+				this.userBLL.update(userSession);
+				
+			} 
+			catch (BLLException e) 
+			{
+				e.printStackTrace();
+				
+				redirectDestination = "home";
+			}	
+			
+		}
+		
+		response.sendRedirect(redirectDestination);
+	
+			
 	}
+
+	
 
 }

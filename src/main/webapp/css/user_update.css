@@ -7,8 +7,8 @@
 }
 
 body {
-	background-color: #3d3a4b;
-	color: f8f9fa;
+	background-color: #5d5872;
+	color: #f8f9fa;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1rem;
 	font-weight: 400;
@@ -53,19 +53,22 @@ body {
 }
 /****************************************/
 
-a {
-	text-decoration: none;
-	color: grey;
-	font-style: italic;
-}
-
-a:hover {
- text-decoration: underline;
-}
 
 .alignLabelInput button,
 .alignLabelInput input[type="submit"] {
     cursor: pointer;
+    background-color: floralwhite;
+    padding: 5px 5px;
+    border: 0 solid black;
+    border-radius: 7px;
+    margin-top: 5px;
+    color: #3d3a4b;
+}
+
+
+.buttonStyle {
+	text-decoration: none;
+	cursor: pointer;
     background-color: floralwhite;
     padding: 5px 5px;
     border: 0 solid black;
@@ -79,7 +82,7 @@ h1 {
 	padding: 120px 0 15px 0;
 }
 
-h2, h3, table, a {
+h2, h3, table {
 	margin: 15px 0px 15px 10px;
 }
 
@@ -113,6 +116,17 @@ h1, h2, h3, table {
     flex: 1;
     text-align: left; 
     margin-left: 10px; 
+    background-color: #5d5872;
+    color: #eeebd0;
+    border: 1px solid #eeebd0;
+    outline: none;
+    padding: 5px;
+}
+
+.alignLabelInput input[type="text"]:focus,
+.alignLabelInput input[type="email"]:focus,
+.alignLabelInput input[type="password"]:focus {
+	outline: 1px solid white;
 }
 
 .alignLabelInput input[type="submit"],
@@ -120,4 +134,14 @@ h1, h2, h3, table {
     margin-top: 10px;
 }
 
+::placeholder {
+	color: #eeebd0;
+	opacity: 0.5;
+}
 
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}

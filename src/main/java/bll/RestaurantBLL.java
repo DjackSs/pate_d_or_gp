@@ -1,8 +1,11 @@
 package bll;
 
+import java.util.Arrays;
 import java.util.List;
 
 import bo.Restaurant;
+import bo.RestaurantTable;
+import bo.Schedule;
 import dal.DALException;
 import dal.RestaurantDAO;
 
@@ -76,23 +79,24 @@ public class RestaurantBLL
 	//--------------------------------------------------------------
 	
 	/*
-	public List<Restaurant> selectByFk(int fk) throws BLLException
+	public Restaurant selectByReservation(int id) throws BLLException
 	{
 		
 		try
 		{
 				
-			return dao.selectByFk(fk);
+			return dao.selectByReservation(id);
 			
 		}
 		catch (DALException e) 
 		{
-			throw new BLLException("Echec de la recuperation des cartes associées au restaurant "+fk, e);
+			throw new BLLException("Echec de la recuperation des restaurant associé à la reservation ", e);
 		}
 		
 	
 	}
 	*/
+	
 	//--------------------------------------------------------------
 
 	public Restaurant insert(Restaurant restaurant) throws BLLException
@@ -148,10 +152,11 @@ public class RestaurantBLL
 			
 		}
 		
+		//schedules
+		this.controleSchedule(restaurant.getSchedules());
 		
-		//verif de Schedule
-		//verif de Table
-		
+		//tables
+		this.controleTable(restaurant.getTables());
 		
 			
 		try
@@ -227,8 +232,11 @@ public class RestaurantBLL
 			
 		}
 		
-		//verif de Schedule
-		//verif de Table
+		//schedules
+		this.controleSchedule(restaurant.getSchedules());
+		
+		//tables
+		this.controleTable(restaurant.getTables());
 		
 		
 		try 
@@ -255,6 +263,40 @@ public class RestaurantBLL
 		} catch (DALException e)
 		{
 			throw new BLLException("DAO failed to delete datas",e);
+		}
+		
+	}
+	
+	//--------------------------------------------------------------
+	
+	private void controleSchedule(List<Schedule> schedules) throws BLLException
+	{
+		for(Schedule schedule : schedules)
+		{
+			if(schedule.getOpenHour().isAfter(schedule.getCloseHour())) 
+			{
+				throw new BLLException("L'heure d'ouverture " + schedule.getOpenHour()
+										+ "doit être avant l'heure de fermeture " + schedule.getCloseHour(), null);
+			}
+		}
+	}
+	
+	//--------------------------------------------------------------
+	
+	private void controleTable(List<RestaurantTable> tables) throws BLLException
+	{
+		for(RestaurantTable table : tables)
+		{
+			if (table.getNumberPlace() < 2) 
+			{
+				throw new BLLException("Le nombre de place d'une table doit être au minimum de 2.", null);
+			}
+			
+			List<String> checkState = Arrays.asList(null, "PRES");
+			if (!checkState.contains(table.getState())) 
+			{
+				throw new BLLException("Le statut de la table est soit nul soit PRES", null);
+			}
 		}
 		
 	}

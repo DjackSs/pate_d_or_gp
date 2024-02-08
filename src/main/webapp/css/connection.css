@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+/*********** RESET ***********/
+*, ::before, ::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+/*********** CUSTOM GENERIC CLASS ***********/
+.container {
+	max-width: 1320px;
+	margin: 0 auto;
+}
+
+.playfair-font {
+  font-family: "Playfair Display", serif;
+}
+
+.title-display-1 {
+	font-size: calc(1.525rem + 1vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.title-display-2 {
+	font-size: calc(1rem + 1vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.beige-subtitle {
+	text-align: center;
+	color: #eeebd0;
+	margin-bottom: 1rem;
+}
+
+/*********** GENERAL ***********/
+body {
+	background-color: #5d5872;
+	color: #f8f9fa;
+	padding-top: 55px;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	letter-spacing: 0.5px;
+}
+
+main {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 2rem;
+}
+
+h1, h2 {
+	text-align: center;
+	margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #f8f9fa;
+}
+
+.footer-section {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+/*********** CONNECTION SECTION ***********/
+.connection-section-container > form > fieldset {
+	padding: 1rem;
+	display : flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+.connection-section-container > form > fieldset > div {
+	width: 100%;
+	text-align: center;
+}
+.connection-section-container > form > fieldset > legend {
+	font-size: calc(0.5rem + 0.5vw);
+	padding: 0 10px;
+	text-align: center;
+	font-style: italic;
+	color: #eeebd0;
+}
+.connection-section-container > form  input:not([type="submit"]) {
+	padding: 5px;
+	width: 100%;
+	border: 1px solid #eeebd0;
+	background-color: #3d3a4b;
+	color: #f1f1f1;
+	outline: none;
+	font-size: calc(1rem + 0.5vw);
+}
+.connection-section-container > form  input:not([type="submit"]):focus {
+	border: 2px solid #eeebd0;
+	margin: -1px;
+	
+}
+.connection-section-container > form  input[type="submit"] {
+	margin-top: 10px;
+	padding: 4px 8px;
+	cursor: pointer;
+	font-family: "Montserrat", sans-serif;
+	font-size: calc(0.5rem + 0.5vw);
+	font-weight: 500;
+	background-color: #eeebd0;
+	color: #111;
+	border-radius: 2px;
+	border: 1px solid rgba(61,58,75,0.5);
+	transform: translate(0);
+	transition: all 0.3s ease-in-out;
+}
+.connection-section-container > form  input[type="submit"]:hover {
+	 transform: translate(-1px, -1px);
+  	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
+}
+
+
+/*********** INSCRIPTION SECTION ***********/
+.inscription-section-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.inscription-section-container > a {
+	text-decoration: none;
+	cursor: pointer;
+	font-weight: 500;
+	font-family: "Montserrat", sans-serif;
+	position: relative;
+    color: #f8f9fa;
+    font-size: calc(0.5rem + 0.5vw);
+}
+.inscription-section-container > a::after {
+	content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: #f1f1f1;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+}
+.inscription-section-container > a:hover::after {
+	transform: scaleX(1);
+}
+
+form i {
+	margin-left: -30px;
+	cursor: pointer;
+}

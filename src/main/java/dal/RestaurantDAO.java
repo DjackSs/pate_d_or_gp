@@ -12,6 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import bo.Restaurant;
 import jakarta.persistence.RollbackException;
+import jakarta.persistence.TypedQuery;
 
 public class RestaurantDAO
 {
@@ -70,47 +71,21 @@ public class RestaurantDAO
 	//--------------------------------------------------------------
 	
 	/*
-		public List<Restaurant> selectByFk(int fk) throws DALException
+		public Restaurant selectByReservation(int id) throws DALException
 		{
-			List<Restaurant> restaurants = new ArrayList<>();
+			Session session = factory.openSession();
 			
-			try 
-			{
-				PreparedStatement query;
-				query = cnx.prepareStatement(SELECT_RESTAURANTS_BY_FK);
-				
-				query.setInt(1, fk);
-				
-				ResultSet result = query.executeQuery();
-				
-				while(result.next())
-				{
-					Restaurant restaurant = new Restaurant();
-					restaurant.setId(result.getInt("id"));
-					restaurant.setName(result.getString("name"));
-					restaurant.setAddress(result.getString("address"));
-					restaurant.setPostalCode(result.getString("postal_code"));
-					restaurant.setTown(result.getString("town"));
-					restaurant.setIdCard(result.getInt("id_card"));	
-					
-					restaurants.add(restaurant);
-					
-				}
-				
-			} 
-			catch (SQLException error) 
-			{
-				
-				throw new DALException("Unable to recover datas", error);
-			}
+			TypedQuery<Restaurant> query = session.createNamedQuery("findRestaurantWithReservation", Restaurant.class); 
 			
-			return restaurants;
+			Restaurant restaurant = query.setParameter("idReservation", id).getSingleResult();
 			
+			session.close();
 			
-			
+			return restaurant;
+				
 		}
-		*/
-	
+		
+	*/
 	//--------------------------------------------------------------
 	
 	public void insert(Restaurant restaurant) throws DALException

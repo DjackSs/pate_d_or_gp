@@ -11,6 +11,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import bo.Message;
+<<<<<<< HEAD
+=======
+import bo.Reservation;
+>>>>>>> 6ac7390bace480012404b54642814b81ea171de1
 import bo.User;
 import jakarta.persistence.RollbackException;
 import jakarta.persistence.TypedQuery;
@@ -104,6 +108,7 @@ public class UserDAO
 	
 	//----------------------------------------
 
+<<<<<<< HEAD
 	public void insertMessage(Message message) throws DALException 
 	{
 
@@ -127,6 +132,59 @@ public class UserDAO
 		
 		session.close();
 	}
+=======
+		public void insertMessage(Message message) throws DALException 
+		{
+
+			Session session = this.factory.openSession();
+			
+			
+			Transaction transaction = session.beginTransaction();
+			
+			try
+			{
+
+				session.persist(message);
+				
+				transaction.commit();
+				
+			}
+			catch (RollbackException error)
+			{
+				transaction.rollback();
+			}
+			
+			session.close();
+		}
+	
+	//----------------------------------------
+
+		public void insertReservation(Reservation reservation) throws DALException
+		{
+			
+			Session session = this.factory.openSession();
+			
+			
+			Transaction transaction = session.beginTransaction();
+			
+			try
+			{
+
+				session.persist(reservation);
+				
+				transaction.commit();
+				
+			}
+			catch (RollbackException error)
+			{
+				transaction.rollback();
+			}
+			
+			session.close();
+
+
+		}
+>>>>>>> 6ac7390bace480012404b54642814b81ea171de1
 	
 	//----------------------------------------
 	

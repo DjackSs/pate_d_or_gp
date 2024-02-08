@@ -12,11 +12,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name= "Restaurants")
+
+/*
+@NamedQueries
+({
+	@NamedQuery
+	(
+		name = "findRestaurantWithReservation",
+		query = "select r from Restaurant r join RestaurantTable t on r.id = t.id_restaurant join Reservation x on t.id = x.id_table where x.id = :idReservation " 
+		//"select Restaurants.* from Restaurants inner join Tables on Restaurants.id = Tables.id_restaurant inner join Reservations on Tables.id = Reservations.id_table where Reservations.id = ?;"
+	)
+})
+*/
 public class Restaurant 
 {
 	@Id 
