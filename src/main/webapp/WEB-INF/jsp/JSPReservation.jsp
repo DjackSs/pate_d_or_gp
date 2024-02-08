@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Pâte d'Or - Reservation</title>
+<title>La Pâte d'Or - Réservation</title>
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/reservation.css">
 <link rel="stylesheet" href="css/footer.css">
@@ -78,7 +78,7 @@
 		<c:if test="${DinerSchedule.id != null }">
 			<form action="dinerReservation" method="POST">
 			
-				<p>Diner <span>(Horaires : ${DinerSchedule.getOpenHour()}-${DinerSchedule.getCloseHour()}) </span></p>
+				<p>Dîner <span>(Horaires : ${DinerSchedule.getOpenHour()}-${DinerSchedule.getCloseHour()}) </span></p>
 				
 				<div class="form-group">
 					<label for="diner-reservation-table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label>
@@ -109,7 +109,7 @@
 	</c:forEach>
 </div>
 		<section>
-			<h1>Contactez nous :</h1>
+			<h1>Contactez-nous :</h1>
 
 			<form method="post" action="contact">
 				<div class="inputContainer">

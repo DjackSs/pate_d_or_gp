@@ -7,39 +7,56 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pate D'Or - Inscription</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Pâte d'Or - Inscription</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+<link href="./css/navbar.css" rel="stylesheet"><link>
+<link href="./css/footer.css" rel="stylesheet"><link>
+<link href="./css/inscription.css" rel="stylesheet"><link>
 </head>
 <body>
+
 	<%@include file="../jspf/header.jspf" %>
 	
 	<main>
-	<section>
-	<h1>Crée votre compte :</h1>
-	<form method="post" action="inscription">
-		<fieldset>
-			<legend>Saisissez vous informations :</legend>
-			
-			<label for="name">Prénom</label>
-			<input type="text" name="name" id="name">
-			
-			<label for="lastname">Nom</label>
-			<input type="text" name="lastname" id="lastname">
-			
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			
-			<label for="password">Mot de passe</label>
-			<input type="password" name="password" id="password">
-			
-			<input type="submit" value="Inscription">
+	
+		<section class="inscription-section-container container">
 		
-		</fieldset>
-	
-	
-	</form>
-	</section>
+			<h1 class="playfair-font title-display-1">Créer votre compte :</h1>
+			
+			<form method="post" action="inscription">
+				<fieldset>
+					<legend>Saisissez vos informations</legend>
+					
+					<label for="name">Prénom</label>
+					<input type="text" name="name" id="name">
+					
+					<label for="lastname">Nom</label>
+					<input type="text" name="lastname" id="lastname">
+					
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email">
+					
+					<label for="password">Mot de passe</label>
+					<input type="password" name="password" id="password">
+					
+					<input type="submit" value="Inscription">
+				</fieldset>
+			</form>
+			
+		</section>
+		
 	</main>
 	
-
+	<%@include file="../jspf/footer.jspf" %>
+	
 </body>
 </html>

@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pâte d'Or - Home</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Pâte d'Or - Accueil</title><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link
@@ -21,18 +22,21 @@
 <link href="./css/home.css" rel="stylesheet"><link>
 </head>
 <body>
+
 	<%@include file="../jspf/header.jspf" %>
 	
 	<main>
 	
 		<section class="home-hero-section">	
+		
 			<div class="container">			
 				<p class="beige-subtitle">Restaurants award 2023-2024</p>	
-				<h1 class="playfair-font title-display-1">La pâte d'or</h1>	
+				<h1 class="playfair-font title-display-1">La Pâte d'Or</h1>	
 				<p>Nos chefs attendent votre commande.</p>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis dicta cum exercitationem, illum minima cupiditate.</p>
 				<a href="#home-restaurant-section">Consultez nos restaurants</a>
 			</div>
+			
 		</section>
 	
 	
@@ -88,7 +92,7 @@
 						<h3 class="playfair-font title-display-3">Panna cotta à la vanille</h3>
 						<p>9€00</p>
 						<p>Dessert à la vanille crémeux avec compote de baies.</p>
-						<p>Présent dans la carte <span>Collection Hiver</span></p>
+						<p>Présente dans la carte <span>Collection Hiver</span></p>
 					</div>
 				</div>
 				<div class="home-products-card">
