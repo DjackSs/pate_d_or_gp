@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Profil</title>
+<title>La Pâte d'Or - Profil</title>
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/user_page.css">
 <link rel="stylesheet" href="css/footer.css">
@@ -40,7 +40,7 @@
 	<!-- Affichage des réservations -->
 	<section>
 		<i class="picto fa-solid fa-book-open"></i>
-		<h2 class="header playfair-font">RESERVATIONS</h2>
+		<h2 class="header playfair-font">RÉSERVATIONS</h2>
 	</section>
 	<c:choose>
 
@@ -50,7 +50,7 @@
 				<thead>
 					<tr>
 						<th>Restaurant</th>
-						<th>Heure de réservation</th>
+						<th>Heures de réservation</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -101,7 +101,7 @@
 
 	<section>
 		<i class="picto fa-solid fa-pen-nib"></i>
-		<h2 class="header playfair-font">CONTACTEZ NOUS :</h2>
+		<h2 class="header playfair-font">CONTACTEZ-NOUS :</h2>
 	</section>
 	<a class="link" href="contact">Envoyez un message à l'équipe</a>
 	

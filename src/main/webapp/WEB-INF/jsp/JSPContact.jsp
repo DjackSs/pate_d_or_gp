@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pate D'Or - Contact</title>
+<title>La Pâte d'Or - Contact</title>
 <link rel="stylesheet" href="css/contact.css">
 <link rel="stylesheet" href="css/footer.css">
 <script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
@@ -19,23 +19,29 @@
 	<%@include file="../jspf/header.jspf" %>
 	
 	<main>
-	<section>
-	<h1 class="playfair-font">Contactez nous :</h1>
-	
-	<form method="post" action="contact">
-	
-			<div class="inputContainer">
-				<div><input type="text" name="object" id="object" placeholder=" Objet"></div>
-				
-				<div><textarea name="message" placeholder=" Message"></textarea></div>
-				
-				<div><input type="submit" value="Envoyer" class="button-30"></div>
-			</div>
+		<section>
 		
-	</form>
-	</section>
+			<h1 class="playfair-font">Contactez-nous :</h1>
+			
+			<form method="post" action="contact">
+					<div class="inputContainer">
+						<div>
+							<input type="text" name="object" id="object" placeholder=" Objet">
+						</div>
+						<div>
+							<textarea name="message" placeholder=" Message"></textarea>
+						</div>
+						<div>
+							<input type="submit" value="Envoyer" class="button-30">
+						</div>
+					</div>
+			</form>
+			
+		</section>
+		
 	</main>
 	
 	<%@include file="../jspf/footer.jspf" %>
+	
 </body>
 </html>
