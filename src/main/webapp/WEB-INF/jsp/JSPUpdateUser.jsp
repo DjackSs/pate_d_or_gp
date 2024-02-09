@@ -45,7 +45,7 @@
 			
 			<div class="alignLabelInput">
 				<div><label>Mot de passe: </label></div>
-				<div><input type="password" name="password" placeholder="Validez avec votre mot de passe" /></div>
+				<div><input type="password" name="password"/></div>
 			</div>
 		
 			<div class="alignLabelInput">

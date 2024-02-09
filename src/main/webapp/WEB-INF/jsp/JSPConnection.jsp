@@ -43,7 +43,7 @@
 						<input type="password" name="password" id="password">
 						<i class="bi bi-eye-slash" id="togglePassword"></i>
 					</div>
-					<input type="submit" value="Connection">
+					<input type="submit" value="Connexion">
 				</fieldset>
 			</form>
 		</section>
