@@ -6,6 +6,12 @@
 	padding: 0;
 }
 
+.title-display-1 {
+	font-size: calc(1.525rem + 1vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
 body {
 	background-color: #5d5872;
 	color: #f8f9fa;
@@ -13,81 +19,18 @@ body {
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
+	letter-spacing: 0.5px;
 }
 
-/*********** NAV BAR ***********/
-.main-navbar {
-	position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 99;
-    background-color: #3d3a4b;
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px solid #f8f9fa;
-    padding: 1rem 0;
-}
-.main-navbar > a:not(:nth-child(1)) {
-	margin-left: 1rem;
-}
-.main-navbar > a {
-	position: relative;
-    color: #f8f9fa;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-.main-navbar a::after {
-	content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background: #f1f1f1;
-    transform: scaleX(0);
-    transition: transform 0.2s ease-in-out;
-}
-.main-navbar a:hover::after {
-	transform: scaleX(1);
-}
-/****************************************/
-
-
-.alignLabelInput button,
-.alignLabelInput input[type="submit"] {
-    cursor: pointer;
-    background-color: floralwhite;
-    padding: 5px 5px;
-    border: 0 solid black;
-    border-radius: 7px;
-    margin-top: 5px;
-    color: #3d3a4b;
-}
-
-
-.buttonStyle {
-	text-decoration: none;
-	cursor: pointer;
-    background-color: floralwhite;
-    padding: 5px 5px;
-    border: 0 solid black;
-    border-radius: 7px;
-    margin-top: 5px;
-    color: #3d3a4b;
+main {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 h1 {
 	text-align: center;
-	padding: 120px 0 15px 0;
-}
-
-h2, h3, table {
-	margin: 15px 0px 15px 10px;
-}
-
-h1, h2, h3, table {
-	color: floralwhite;
 }
 
 .inputUpdateUser {
@@ -96,6 +39,7 @@ h1, h2, h3, table {
 	justify-content: center;
 	align-items: center;
 	margin-top: 20px;
+	padding: 0 10px;
 }
 
 .alignLabelInput {
@@ -103,35 +47,54 @@ h1, h2, h3, table {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px; 
+    gap: 1em;
 }
 
 .alignLabelInput label {
     flex: 1; 
     text-align: left; 
+    font-size: calc(0.5rem + 0.5vw);
+    font-style: italic;
 }
 
-.alignLabelInput input[type="text"],
-.alignLabelInput input[type="email"],
-.alignLabelInput input[type="password"] {
+.alignLabelInput input:not([type="submit"]) {
     flex: 1;
     text-align: left; 
-    margin-left: 10px; 
     background-color: #5d5872;
     color: #eeebd0;
     border: 1px solid #eeebd0;
     outline: none;
     padding: 5px;
+    font-size: calc(0.5rem + 0.5vw);
 }
 
-.alignLabelInput input[type="text"]:focus,
-.alignLabelInput input[type="email"]:focus,
-.alignLabelInput input[type="password"]:focus {
-	outline: 1px solid white;
+.alignLabelInput input:not([type="submit"]):focus {
+	border: 2px solid #eeebd0;
+	margin: -1px;
 }
 
 .alignLabelInput input[type="submit"],
-.alignLabelInput button {
+.alignLabelInput a {
+	display: block;
     margin-top: 10px;
+	padding: 4px 8px;
+	cursor: pointer;
+	text-decoration: none;
+	letter-spacing: 0.5px;
+	font-family: "Montserrat", sans-serif;
+	font-size: calc(0.5rem + 0.5vw);
+	font-weight: 500;
+	background-color: #eeebd0;
+	color: #111;
+	border-radius: 2px;
+	border: 1px solid rgba(61,58,75,0.5);
+	transform: translate(0);
+	transition: all 0.3s ease-in-out;
+}
+.alignLabelInput input[type="submit"]:hover,
+.alignLabelInput a:hover {
+	transform: translate(-1px, -1px);
+  	box-shadow: 0px 0px 10px rgba(241,241,241,0.8)
 }
 
 ::placeholder {
