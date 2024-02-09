@@ -39,8 +39,6 @@
 		
 		<div class="form-resa-container">
 		
-		<h2>${restaurant.name }</h2>
-		
 		<form action="reservation" method="POST">
 		
 			<c:forEach var="lunchSchedule" items="${restaurantLunchSchedule }">
@@ -108,13 +106,13 @@
 		
 		</c:forEach>
 		
-		<input type="submit" class="button-30 form-submit" value="Valider"/>
+		<input type="submit" class="form-submit" value="Valider"/>
 	
 	</form>
 	
 	</div>
 
-		<section>
+		<section class="form-message-container">
 			<h1>Contactez-nous :</h1>
 
 			<form method="post" action="contact">
@@ -124,8 +122,7 @@
 					<textarea class="messageContent" placeholder=" Message"
 						name="message"></textarea>
 
-					<input class="button-30" id="submitMessage" type="submit"
-						value="Envoyer">
+					<input id="submitMessage" type="submit" value="Envoyer">
 				</div>
 			</form>
 		</section>
