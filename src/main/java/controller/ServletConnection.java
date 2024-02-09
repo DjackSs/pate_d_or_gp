@@ -66,13 +66,13 @@ public class ServletConnection extends HttpServlet
 		catch (BLLException e) 
 		{
 			e.printStackTrace();
-			response.sendRedirect("home");
+			response.sendRedirect(request.getContextPath()+"home");
 		}
 		catch (DateTimeParseException e)
 		{
 			
 			e.printStackTrace();
-			response.sendRedirect("home");
+			response.sendRedirect(request.getContextPath()+"home");
 			
 		}
 		

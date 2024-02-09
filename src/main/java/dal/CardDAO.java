@@ -10,8 +10,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import bo.Card;
+import dal.daointerface.GenericDAOInterface;
 
-public class CardDAO 
+public class CardDAO implements GenericDAOInterface<Card>
 {
 	private SessionFactory factory;
 

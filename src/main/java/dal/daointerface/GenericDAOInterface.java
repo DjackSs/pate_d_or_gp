@@ -1,6 +1,8 @@
-package dal;
+package dal.daointerface;
 
 import java.util.List;
+
+import dal.DALException;
 
 public interface GenericDAOInterface<T> 
 {
@@ -9,10 +11,5 @@ public interface GenericDAOInterface<T>
 	
 	T selectById(int id) throws DALException;
 	
-	void insert(T objet) throws DALException;
-	
-	void update(T objet) throws DALException;
-	
-	void delete(int id) throws DALException;
 
 }
