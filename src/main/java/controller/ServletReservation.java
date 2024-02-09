@@ -106,7 +106,7 @@ public class ServletReservation extends HttpServlet
 				
 				this.userBLL.update(userSession);
 				
-				redirectDestination = "user";
+				redirectDestination = "/user";
 				
 				
 			} 
@@ -114,7 +114,7 @@ public class ServletReservation extends HttpServlet
 			{
 				e.printStackTrace();
 				
-				redirectDestination = "home";
+				redirectDestination = "/home";
 			}
 			
 		}

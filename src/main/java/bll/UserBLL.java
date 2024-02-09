@@ -71,9 +71,31 @@ public class UserBLL
 	//----------------------------------------
 	
 	
-	public User selectByEmailAndPassword(String email, String password) throws BLLException 
+	public User selectByEmailAndPassword(String email, String password) throws BLLException
 	{
+		BLLException bll = new BLLException();
 		
+		//email
+		if(StringUtils.isBlank(email))
+		{
+			bll.addError("emailSize", "Veuillez saisir une adresse mail");
+		}
+		
+		
+		
+		//password
+		if(!StringUtils.isBlank(password))
+		{
+			bll.addError("password", "Mot de passe invalide");
+				
+		}
+		
+		
+		if(bll.getErrors().size() != 0)
+		{
+			throw bll;
+		}
+
 		try 
 		{
 			//hashing the password
@@ -89,6 +111,13 @@ public class UserBLL
 		catch (NoSuchAlgorithmException e) 
 		{
 			throw new BLLException("Echec du cryptage du mot de passe", e);
+		}
+		catch (DALException e)
+		{
+			bll.addError("password", "Mot de passe invalide");
+			bll.addError("emailMatch", "Adresse mail invalide");
+			throw bll;
+			
 		}
 	}
 	

@@ -64,17 +64,32 @@ public class UserDAO implements UserDAOInterface<User>
 	
 	//----------------------------------------
 	
-	public User selectByEmailAndPassword(String email, String password)
+	public User selectByEmailAndPassword(String email, String password) throws DALException 
 	{
 		Session session = factory.openSession();
 		
 		TypedQuery<User> query = session.createNamedQuery("findUser", User.class); 
 		
-		User user = query.setParameter("email", email).setParameter("password", password).getSingleResult();
+		try
+		{
+			User user = query.setParameter("email", email).setParameter("password", password).getSingleResult();
+			
+			session.close();
+			
+			return user;
+		}
+		catch (jakarta.persistence.NoResultException e)
+		{
+			session.close();
+			
+			throw new DALException("No match for this query", e);
+			
+		}
 		
-		session.close();
 		
-		return user;
+		
+		
+		
 	}
 	
 	
