@@ -51,6 +51,14 @@ public class User
 		this.messages = new ArrayList<>();
 		this.reservations = new ArrayList<>();
 	}
+	
+	public User(String email, String password) 
+	{
+		this.email = email;
+		this.password = password;
+		this.messages = new ArrayList<>();
+		this.reservations = new ArrayList<>();
+	}
 
 	public User(String name, String lastname, String email, String password, String role) 
 	{

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vo.ReservationVO;
 
 public class ServletUserPage extends HttpServlet 
 {
@@ -70,7 +72,6 @@ public class ServletUserPage extends HttpServlet
 									reservationRestaurants.put(reservation.getId(), restaurant);
 									
 								}
-	
 							}
 							
 						}
@@ -86,11 +87,20 @@ public class ServletUserPage extends HttpServlet
 					e.printStackTrace();
 				}
 				
-				
+			}
+			request.getRequestDispatcher("/WEB-INF/jsp/JSPUserPage.jsp").forward(request, response);
+			
+			User currentUser = (User) request.getSession().getAttribute("user");
+			if (currentUser.getReservations().size() != 0 ) {
+				List<ReservationVO> allResaVO = new ArrayList<>();
+				for (Reservation resa: currentUser.getReservations()) {
+					ReservationVO resaVO = new ReservationVO(resa);
+					allResaVO.add(resaVO);
+				}
+				request.setAttribute("reservationVO", allResaVO);
 			}
 			
-
-			request.getRequestDispatcher("/WEB-INF/jsp/JSPUserPage.jsp").forward(request, response);
+			
 			
 		}
 	}

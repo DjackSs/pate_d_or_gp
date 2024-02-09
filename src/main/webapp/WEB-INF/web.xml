@@ -9,6 +9,10 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/JSP404.jsp</location>
+  </error-page>
   <servlet>
     <description></description>
     <display-name>ServletHome</display-name>
@@ -50,16 +54,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ServletUserReservation</display-name>
-    <servlet-name>ServletUserReservation</servlet-name>
-    <servlet-class>controller.ServletUserReservation</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletUserReservation</servlet-name>
-    <url-pattern>/reservationUser</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ServletInscription</display-name>
     <servlet-name>ServletInscription</servlet-name>
     <servlet-class>controller.ServletInscription</servlet-class>
@@ -78,26 +72,7 @@
     <servlet-name>ServletReservation</servlet-name>
     <url-pattern>/reservation</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletLunchReservation</display-name>
-    <servlet-name>ServletLunchReservation</servlet-name>
-    <servlet-class>controller.ServletLunchReservation</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletLunchReservation</servlet-name>
-    <url-pattern>/lunchReservation</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletDinerReservation</display-name>
-    <servlet-name>ServletDinerReservation</servlet-name>
-    <servlet-class>controller.ServletDinerReservation</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletDinerReservation</servlet-name>
-    <url-pattern>/dinerReservation</url-pattern>
-  </servlet-mapping>
+ 
   <servlet>
     <display-name>ServletUpdateUser</display-name>
     <servlet-name>ServletUpdateUser</servlet-name>

@@ -11,10 +11,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import bo.Restaurant;
+import dal.daointerface.GenericDAOInterface;
 import jakarta.persistence.RollbackException;
-import jakarta.persistence.TypedQuery;
 
-public class RestaurantDAO
+public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 {
 	private SessionFactory factory;
 		

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.time.format.DateTimeParseException;
 
 import bll.BLLException;
 import bll.UserBLL;
@@ -45,18 +44,17 @@ public class ServletInscription extends HttpServlet
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		User newUser = new User();
+		
+		newUser.setName(request.getParameter("name"));
+		newUser.setLastname(request.getParameter("lastname"));
+		newUser.setEmail(request.getParameter("email"));
+		newUser.setPassword(request.getParameter("password"));
 		
 		
 		try 
 		{
-		
-			User newUser = new User();
-			
-			newUser.setName(request.getParameter("name"));
-			newUser.setLastname(request.getParameter("lastname"));
-			newUser.setEmail(request.getParameter("email"));
-			newUser.setPassword(request.getParameter("password"));
-			
+
 			newUser = this.userBLL.insert(newUser);
 
 			request.getSession().setAttribute("user", newUser);
@@ -68,15 +66,12 @@ public class ServletInscription extends HttpServlet
 		} 
 		catch (BLLException e) 
 		{
-			e.printStackTrace();
-			response.sendRedirect("home");
-		}
-		catch (DateTimeParseException e)
-		{
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPInscription.jsp");
 			
-			e.printStackTrace();
-			response.sendRedirect("home");
+			request.setAttribute("errors", e.getErrors());
+			request.setAttribute("newUser", newUser);
 			
+			rd.forward(request, response);
 		}
 		
 		

@@ -26,11 +26,31 @@
 			<h1 class="playfair-font title-display-1">Contactez-nous :</h1>
 			
 			<form method="post" action="contact">
+			
 				<div class="inputContainer">
-					<input type="text" name="object" id="object" placeholder=" Objet">
-					<textarea name="message" placeholder=" Message"></textarea>
+				
+					<c:choose>
+						<c:when test="${errors.messageObject != null }">
+							<input type="text" name="object" id="object" placeholder="${errors.messageObject }">
+						</c:when>
+						<c:otherwise >
+							<input type="text" name="object" id="object" placeholder="Objet..." value="${newMessage.object }" > 
+						</c:otherwise>	
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${errors.messageContent != null }">
+							<textarea  name="message" id="message" placeholder="${errors.messageContent }"></textarea>
+						</c:when>
+						<c:otherwise >
+							<textarea  name="message" id="message" placeholder="Message...">${newMessage.content }</textarea>
+						</c:otherwise>	
+					</c:choose>
+					
 					<input type="submit" value="Envoyer" class="button-30">
+					
 				</div>
+				
 			</form>
 			
 		</section>

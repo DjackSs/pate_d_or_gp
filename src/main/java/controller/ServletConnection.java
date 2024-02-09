@@ -51,11 +51,13 @@ public class ServletConnection extends HttpServlet
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		User tryUser = new User(request.getParameter("email"),request.getParameter("password"));
 		
+		System.out.println(tryUser);
 		try 
 		{
 			
-			User trueUser = this.userBLL.selectByEmailAndPassword(request.getParameter("email"), request.getParameter("password"));
+			User trueUser = this.userBLL.selectByEmailAndPassword(tryUser.getEmail(), tryUser.getPassword());
 
 			request.getSession().setAttribute("user", trueUser);
 			
@@ -65,14 +67,12 @@ public class ServletConnection extends HttpServlet
 		} 
 		catch (BLLException e) 
 		{
-			e.printStackTrace();
-			response.sendRedirect("home");
-		}
-		catch (DateTimeParseException e)
-		{
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnection.jsp");
 			
-			e.printStackTrace();
-			response.sendRedirect("home");
+			request.setAttribute("errors", e.getErrors());
+			request.setAttribute("tryUser", tryUser);
+			
+			rd.forward(request, response);
 			
 		}
 		

@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,8 @@ public class ServletReservation extends HttpServlet
 	private RestaurantBLL restaurantBll;
 	private UserBLL userBLL;
 	
+	private List<Schedule> schedules;
+	
 
 	@Override
 	public void init() throws ServletException {
@@ -37,6 +38,7 @@ public class ServletReservation extends HttpServlet
 		{
 			this.restaurantBll = new RestaurantBLL();
 			this.userBLL = new UserBLL();
+			this.schedules = new ArrayList<>();
 			
 		} 
 		catch (BLLException e) 
@@ -58,10 +60,17 @@ public class ServletReservation extends HttpServlet
 		{
 			
 			Restaurant restaurant = restaurantBll.selectById(idRestaurant);
+<<<<<<< HEAD
 			
 			request.setAttribute("restaurant", restaurant);
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
 
+=======
+			this.schedules = restaurant.getSchedules();
+			
+			request.setAttribute("restaurant", restaurant);
+			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
+>>>>>>> a36badf30d6e475ed645232835b1e8c4cd616a11
 			
 		} 
 		catch (BLLException e) 
@@ -79,6 +88,7 @@ public class ServletReservation extends HttpServlet
 		if(!"none".equals(request.getParameter("tables")))
 		{
 			User userSession = (((User) request.getSession().getAttribute("user")));
+<<<<<<< HEAD
 			
 			String dateReservationStr = request.getParameter("reservation-date");
 			String hourReservationStr = request.getParameter("reservation-hour");
@@ -86,7 +96,17 @@ public class ServletReservation extends HttpServlet
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 			
 			String lunchReservationDateTimeStr = dateReservationStr + "T" + hourReservationStr + ":00";
+=======
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+			
+			String dateReservationStr = request.getParameter("reservation-date");
+			String hourReservationStr = request.getParameter("reservation-hour");
+			String lunchReservationDateTimeStr = dateReservationStr + "T" + hourReservationStr + ":00";
+			
+>>>>>>> a36badf30d6e475ed645232835b1e8c4cd616a11
 			LocalDateTime lunchReservationDateTime = LocalDateTime.parse(lunchReservationDateTimeStr, formatter);
+			
 			
 			RestaurantTable table = new RestaurantTable();
 			table.setId(Integer.parseInt(request.getParameter("tables")));
@@ -95,7 +115,7 @@ public class ServletReservation extends HttpServlet
 			
 			try 
 			{
-				newReservation = this.userBLL.insertReservation(newReservation);
+				newReservation = this.userBLL.insertReservation(newReservation, this.schedules);
 				
 				newReservation.setTables(table);
 				
@@ -103,7 +123,11 @@ public class ServletReservation extends HttpServlet
 				
 				this.userBLL.update(userSession);
 				
+<<<<<<< HEAD
 				redirectDestination = "user";
+=======
+				redirectDestination = "/user";
+>>>>>>> a36badf30d6e475ed645232835b1e8c4cd616a11
 				
 				
 			} 
@@ -111,13 +135,13 @@ public class ServletReservation extends HttpServlet
 			{
 				e.printStackTrace();
 				
-				redirectDestination = "home";
+				redirectDestination = "/home";
 			}
 			
 		}
 		
 		
-		response.sendRedirect(redirectDestination);
+		response.sendRedirect(request.getContextPath()+redirectDestination);
 	
 			
 	}

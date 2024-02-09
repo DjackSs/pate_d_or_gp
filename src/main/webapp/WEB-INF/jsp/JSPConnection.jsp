@@ -32,20 +32,48 @@
 			<h1 class="playfair-font title-display-1">Connectez-vous :</h1>
 			
 			<form method="post" action="connection">
+			
 				<fieldset>
+				
 					<legend>Saisissez vos identifiants</legend>
+					
 					<div>
+					
 						<label for="email">Email</label>
-						<input type="email" name="email" id="email">
+						<c:choose>
+							<c:when test="${errors.emailSize != null }">
+								<input type="email" name="email" id="email" placeholder="${errors.emailSize }">
+							</c:when>
+							<c:when test="${errors.emailMatch != null }">
+								<input type="email" name="email" id="email" placeholder="${errors.emailMatch }">
+							</c:when>
+							<c:otherwise >
+								<input type="email" name="email" id="email" value="${tryUser.email }" > 
+							</c:otherwise>	
+						</c:choose>
+						
 					</div>
+					
 					<div>
+					
 						<label for="password">Mot de passe</label>
-						<input type="password" name="password" id="password">
+						<c:choose>
+							<c:when test="${errors.password != null }">
+								<input type="password" name="password" id="password" placeholder="${errors.password }">
+							</c:when>
+							<c:otherwise >
+								<input type="password" name="password" id="password" > 
+							</c:otherwise>	
+						</c:choose>
 						<i class="bi bi-eye-slash" id="togglePassword"></i>
+						
 					</div>
-					<input type="submit" value="Connection">
+					
+					<input type="submit" value="Connexion">
 				</fieldset>
+				
 			</form>
+			
 		</section>
 		
 		<section class="inscription-section-container">

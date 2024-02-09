@@ -20,8 +20,6 @@ public class ReservationVO {
 	public ReservationVO(Reservation reservation) {
 		this.reservationTime = reservation.getReservationTime().format(TIME_FORMAT);
 		this.state = reservation.getState();
-		this.idTable = reservation.getIdTable();
-		this.idUser = reservation.getIdUser();
 		
 	}
 
@@ -37,8 +35,6 @@ public class ReservationVO {
 		reservation.setId(id);
 		reservation.setReservationTime(LocalDateTime.parse(reservationTime));
 		reservation.setState(state);
-		reservation.setIdTable(idTable);
-		reservation.setIdUser(idUser);
 		return reservation;
 	}
 
