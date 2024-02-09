@@ -74,9 +74,12 @@
 												</c:if>
 											</c:forEach>
 											
-											<td>${reservation.reservationTime}</td>
 										</tr>
-							
+										<c:forEach var="reservationVO" items="${reservationVO }">
+											<c:if test="${reservation.id == reservationVO.id}">
+												<td>${reservationVO.reservationTime}</td>
+											</c:if>
+										</c:forEach>
 								</c:forEach>
 							</tbody>
 							
