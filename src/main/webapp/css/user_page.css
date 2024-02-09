@@ -60,9 +60,10 @@ h2, h3, table {
 }
 
 .link {
-	color: grey;	
+	color: #f8f9fa;	
 	text-decoration: none;
 	font-style: italic;
+	opacity: 0.8;
 }
 
 .contentMessage, .link {

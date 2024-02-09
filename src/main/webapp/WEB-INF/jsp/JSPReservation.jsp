@@ -11,12 +11,9 @@
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/reservation.css">
 <link rel="stylesheet" href="css/footer.css">
-<script src="https://kit.fontawesome.com/9bb344ad6f.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 	<%@include file="../jspf/header.jspf"%>
@@ -38,8 +35,6 @@
 
 		
 		<div class="form-resa-container">
-		
-		<h2>${restaurant.name }</h2>
 		
 		<form action="reservation" method="POST">
 			<p>
@@ -82,13 +77,45 @@
 			</div>
 					
 	
-		<input type="submit" class="button-30 form-submit" value="Valider"/>
+			<c:forEach var="DinerSchedule" items="${restaurantDinerSchedule }">
+				
+				<c:if test="${DinerSchedule.id != null }">
+						
+		
+					<p>Dîner <span>(Horaires : ${DinerSchedule.getOpenHour()}-${DinerSchedule.getCloseHour()}) </span></p>
+					
+					<div class="form-group">
+						<label for="diner-reservation-table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label>
+						<select id="diner-reservation-table-select" name="diner-tables" required>
+							<option value="none">Choisissez une table</option>
+							<c:forEach var="current" items="${restaurantTables }">
+								<c:if test='${!current.state.equals("pres") }'>
+									<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="diner-reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
+						<input type="date" id="diner-reservation-date" name="diner-reservation-date" min="${dateTimeInputMin }"  />
+						<label for="diner-reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
+						<input type="time" id="diner-reservation-hour" name="diner-reservation-hour"
+						 min="${DinerSchedule.getOpenHour()}" max="${DinerSchedule.getCloseHour() }" />
+					</div>			
+				
+
+				</c:if>
+		
+		</c:forEach>
+		
+		<input type="submit" class="form-submit" value="Valider"/>
 	
 	</form>
 	
 	</div>
 
-		<section>
+		<section class="form-message-container">
 			<h1>Contactez-nous :</h1>
 
 			<form method="post" action="contact">
@@ -98,8 +125,7 @@
 					<textarea class="messageContent" placeholder=" Message"
 						name="message"></textarea>
 
-					<input class="button-30" id="submitMessage" type="submit"
-						value="Envoyer">
+					<input id="submitMessage" type="submit" value="Envoyer">
 				</div>
 			</form>
 		</section>
