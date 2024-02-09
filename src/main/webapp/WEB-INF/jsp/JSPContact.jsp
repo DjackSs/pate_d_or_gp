@@ -26,11 +26,14 @@
 			<h1 class="playfair-font title-display-1">Contactez-nous :</h1>
 			
 			<form method="post" action="contact">
+			
 				<div class="inputContainer">
+				
 					<input type="text" name="object" id="object" placeholder=" Objet">
 					<textarea name="message" placeholder=" Message"></textarea>
 					<input type="submit" value="Envoyer" class="button-30">
 				</div>
+				
 			</form>
 			
 		</section>

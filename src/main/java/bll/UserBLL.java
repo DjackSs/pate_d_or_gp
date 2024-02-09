@@ -84,7 +84,7 @@ public class UserBLL
 		
 		
 		//password
-		if(!StringUtils.isBlank(password))
+		if(StringUtils.isBlank(password))
 		{
 			bll.addError("password", "Mot de passe invalide");
 				
@@ -294,6 +294,11 @@ public class UserBLL
 		{
 			bll.addError("messageContent", "Le contenus de votre message est trop court");
 			
+		}
+		
+		if(bll.getErrors().size() != 0)
+		{
+			throw bll;
 		}
 		
 		try
