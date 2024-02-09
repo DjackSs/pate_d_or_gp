@@ -21,19 +21,19 @@
 
  	<main>
 	
-		<h1 class="playfair-font title-display-1">PROFIL UTILISATEUR</h1>
+		<h1 class="title-display-1">PROFIL</h1>
 		<section class="user-details-section">
-			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-user"></i>INFORMATIONS PERSONNELLES</h2>
+			<h2 class="title-display-2"><i class="fa-solid fa-user"></i>INFORMATIONS PERSONNELLES</h2>
 			<div class="user-details-content">
 				<div class="pictureInfo">
 					<div class="profilPicture">
 						<img id="imgProfil" alt="avatar_neutre"
-							src="././img/naruto-profil.webp" height="300px">
+							src="././img/naruto-profil.webp">
 					</div>
 					<div class="profilInfo">
-						<p>Prénom : ${user.name }</p>
-						<p>Nom : ${user.lastname }</p>
-						<p>Email : ${user.email }</p>
+						<p><span>Prénom :</span> ${user.name }</p>
+						<p><span>Nom :</span> ${user.lastname }</p>
+						<p><span>Email :</span> ${user.email }</p>
 						<a href="updateUser?id=${user.id }"><button>Modifier
 								profil</button></a>
 					</div>
@@ -43,7 +43,7 @@
 	
 		<!-- Affichage des réservations -->
 		<section class="user-resa-section">
-			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-book-open"></i>RÉSERVATIONS</h2>
+			<h2 class="title-display-2"><i class="fa-solid fa-book-open"></i>RÉSERVATIONS</h2>
 			
 			<c:choose>
 		
@@ -69,7 +69,7 @@
 											<c:forEach var="map" items="${restaurants }">
 												<c:if test="${reservation.id ==  map.key}">
 													<td>
-														<a class="link" href="restaurant?id=${map.value.id }">${map.value.name}</a>
+														<a class="user-resa__restaurant-link" href="restaurant?id=${map.value.id }">${map.value.name}</a>
 													</td>
 												</c:if>
 											</c:forEach>
@@ -90,7 +90,7 @@
 				
 				<c:otherwise>
 				
-					<p class="contentMessage">Aucune réservation pour le moment</p>
+					<p>Aucune réservation pour le moment</p>
 					
 				</c:otherwise>
 				
@@ -100,7 +100,7 @@
 	
 		<!-- Affichage des messages -->
 		<section class="user-message-section">
-			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-envelope-open-text"></i>MESSAGES</h2>
+			<h2 class="title-display-2"><i class="fa-solid fa-envelope-open-text"></i>MESSAGES</h2>
 			<c:choose>
 				<c:when test="${user.messages.size() != 0 }">
 					<table>
@@ -121,14 +121,14 @@
 					</table>
 				</c:when>
 				<c:otherwise>
-					<p class="contentMessage">Aucun message pour le moment</p>
+					<p>Aucun message pour le moment</p>
 				</c:otherwise>
 			</c:choose>
 		</section>
 	
 	
 		<section  class="user-contact-section">
-			<h2 class="header playfair-font title-display-2"><i class="fa-solid fa-pen-nib"></i>CONTACTEZ-NOUS :</h2>
+			<h2 class="title-display-2"><i class="fa-solid fa-pen-nib"></i>CONTACTEZ-NOUS :</h2>
 			<a class="link" href="contact">Envoyez un message à l'équipe</a>
 		</section>
 		
