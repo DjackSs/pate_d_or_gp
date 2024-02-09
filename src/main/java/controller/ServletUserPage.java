@@ -91,7 +91,6 @@ public class ServletUserPage extends HttpServlet
 				}
 				
 			}
-			request.getRequestDispatcher("/WEB-INF/jsp/JSPUserPage.jsp").forward(request, response);
 			
 			User currentUser = (User) request.getSession().getAttribute("user");
 			if (currentUser.getReservations().size() != 0 ) {
@@ -104,6 +103,7 @@ public class ServletUserPage extends HttpServlet
 			}
 			
 			
+			request.getRequestDispatcher("/WEB-INF/jsp/JSPUserPage.jsp").forward(request, response);
 			
 		}
 	}
