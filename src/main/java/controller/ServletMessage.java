@@ -53,11 +53,7 @@ public class ServletMessage extends HttpServlet
 		
 		try 
 		{
-<<<<<<< HEAD
 			newMessage = this.userBLL.insertMessages(newMessage);
-=======
-			newMessage = this.userBLL.insertMessage(newMessage);
->>>>>>> a36badf30d6e475ed645232835b1e8c4cd616a11
 			
 			user.addMessage(newMessage);
 			

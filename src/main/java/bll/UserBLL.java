@@ -395,7 +395,8 @@ public class UserBLL
 		User oldUser = this.selectById(user.getId());
 		
 		//name
-		if(StringUtils.isBlank(user.getName()))		{
+		if(StringUtils.isBlank(user.getName()))		
+		{
 			user.setName(oldUser.getName());
 		}
 		

@@ -24,59 +24,7 @@
 	
 		<section>
 		
-<<<<<<< HEAD
-		<div class="form-resa-container">
-		
-		<h2>${restaurant.name }</h2>
-		
-		<form action="reservation" method="POST">
-			<p>
-		
-				<c:forEach var="schedule" items="${restaurant.schedules }">
-		
-					<span>(Horaires : ${schedule.getOpenHour()}-${schedule.getCloseHour()}) </span>
-					
-				</c:forEach>
-			</p>
-						
-			<div class="form-group">
-			
-				<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
-				<select id="table-select" name="tables" required>
-					<option value="none">Choisissez une table</option>
-					
-					<c:forEach var="current" items="${restaurant.tables }">
-					
-						<c:if test='${!current.state.equals("pres") }'>
-							<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
-						</c:if>
-						
-					</c:forEach>
-					
-				</select>
-			</div>
-						
-			<div class="form-group">
-			
-			    <div class="input-group">
-			    
-			    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
-			        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
-			        
-			        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
-			        <input type="time" id="reservation-hour" name="reservation-hour"  />
-			        
-			    </div>
-			    
-			</div>
-					
-	
-		<input type="submit" class="button-30 form-submit" value="Valider"/>
-	
-	</form>
-	
-	</div>
-=======
+
 			<h1 class="playfair-font title-display-1">${restaurant.name }</h1>
 	
 			<c:choose>
@@ -141,7 +89,6 @@
 		
 		</div>
 		</section>
->>>>>>> a36badf30d6e475ed645232835b1e8c4cd616a11
 
 		<section class="form-message-container">
 		
