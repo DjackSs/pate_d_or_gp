@@ -18,6 +18,7 @@ public class ReservationVO {
 	public ReservationVO() {}
 	
 	public ReservationVO(Reservation reservation) {
+		this.id = reservation.getId();
 		this.reservationTime = reservation.getReservationTime().format(TIME_FORMAT);
 		this.state = reservation.getState();
 		

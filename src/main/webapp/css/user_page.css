@@ -59,15 +59,23 @@ h2, h3, table {
 	margin: 15px 0px 15px 0px;
 }
 
+tr {
+	text-align: left;
+}
+
+td {
+	font-size: calc(0.6rem + 0.5vw);
+}
+
+td:nth-child(even) {
+	padding-left: 2px;
+}
+
 .link {
 	color: #f8f9fa;	
 	text-decoration: none;
 	font-style: italic;
 	opacity: 0.8;
-}
-
-.contentMessage, .link {
-	padding-left: 15px;
 }
 
 .pictureInfo {
