@@ -71,9 +71,31 @@ public class UserBLL
 	//----------------------------------------
 	
 	
-	public User selectByEmailAndPassword(String email, String password) throws BLLException 
+	public User selectByEmailAndPassword(String email, String password) throws BLLException
 	{
+		BLLException bll = new BLLException();
 		
+		//email
+		if(StringUtils.isBlank(email))
+		{
+			bll.addError("emailSize", "Veuillez saisir une adresse mail");
+		}
+		
+		
+		
+		//password
+		if(StringUtils.isBlank(password))
+		{
+			bll.addError("password", "Mot de passe invalide");
+				
+		}
+		
+		
+		if(bll.getErrors().size() != 0)
+		{
+			throw bll;
+		}
+
 		try 
 		{
 			//hashing the password
@@ -89,6 +111,13 @@ public class UserBLL
 		catch (NoSuchAlgorithmException e) 
 		{
 			throw new BLLException("Echec du cryptage du mot de passe", e);
+		}
+		catch (DALException e)
+		{
+			bll.addError("password", "Mot de passe invalide");
+			bll.addError("emailMatch", "Adresse mail invalide");
+			throw bll;
+			
 		}
 	}
 	
@@ -241,30 +270,53 @@ public class UserBLL
 		BLLException bll = new BLLException ();
 		
 		//object
-		if(message.getObject().trim().length() > MESSAGE_OBJECT_MAX_LENGTH)
+		if(!StringUtils.isBlank(message.getObject()))
 		{
-			bll.addError("messageObject", "L'objet de votre message est trop long");
-					
+			if(message.getObject().trim().length() > MESSAGE_OBJECT_MAX_LENGTH)
+			{
+				bll.addError("messageObject", "L'objet de votre message est trop long");
+						
+			}
+			
+			if(message.getObject().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("messageObject", "L'objet de votre message est trop court");
+				
+			}
 		}
-		
-		if(message.getObject().trim().length() < MIN_LENGTH)
+		else
 		{
-			bll.addError("messageObject", "L'objet de votre message est trop court");
+			bll.addError("messageObject", "Veuillez saisir un objet pour votre message");
 			
 		}
+		
 		
 		
 		//content
-		if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
+		if(!StringUtils.isBlank(message.getContent()))
 		{
-			bll.addError("messageContent", "Le contenus de votre message est trop long");
-					
+			if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
+			{
+				bll.addError("messageContent", "Le contenus de votre message est trop long");
+						
+			}
+			
+			if(message.getContent().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("messageContent", "Le contenus de votre message est trop court");
+				
+			}
+			
+		}
+		else
+		{
+			bll.addError("messageContent", "Veuillez saisir un contenu pour votre message");
 		}
 		
-		if(message.getContent().trim().length() < MIN_LENGTH)
+		
+		if(bll.getErrors().size() != 0)
 		{
-			bll.addError("messageContent", "Le contenus de votre message est trop court");
-			
+			throw bll;
 		}
 		
 		try

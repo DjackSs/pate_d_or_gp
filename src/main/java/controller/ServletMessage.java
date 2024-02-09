@@ -33,9 +33,7 @@ public class ServletMessage extends HttpServlet
 		}
 	}
 	
-       
-  
-   
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPContact.jsp");
@@ -47,22 +45,27 @@ public class ServletMessage extends HttpServlet
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		Message newMessaga = new Message(request.getParameter("object"),request.getParameter("message"));
+		Message newMessage = new Message(request.getParameter("object"),request.getParameter("message"));
 		
 		User user = ((User) request.getSession().getAttribute("user"));
 		
 		
 		try 
 		{
-			newMessaga = this.userBLL.insertMessage(newMessaga);
+			newMessage = this.userBLL.insertMessage(newMessage);
 			
-			user.addMessage(newMessaga);
+			user.addMessage(newMessage);
 			
 			this.userBLL.update(user);
 		}
 		catch (BLLException e)
-		{
-			e.printStackTrace();
+		{	
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPContact.jsp");
+			
+			request.setAttribute("errors", e.getErrors());
+			request.setAttribute("newMessage", newMessage);
+			
+			rd.forward(request, response);
 		}
 		
 		response.sendRedirect(request.getContextPath()+"/user");

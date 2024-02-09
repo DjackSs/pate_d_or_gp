@@ -59,23 +59,23 @@
 					<label for="email">Email</label>
 					<c:choose>
 						<c:when test="${errors.emailSize != null }">
-							<input type="text" name="email" id="name" placeholder="${errors.emailSize }">
+							<input type="email" name="email" id="name" placeholder="${errors.emailSize }">
 						</c:when>
 						<c:when test="${errors.emailMatch != null }">
-							<input type="text" name="name" id="email" placeholder="${errors.emailMatch }">
+							<input type="email" name="name" id="email" placeholder="${errors.emailMatch }">
 						</c:when>
 						<c:otherwise >
-							<input type="text" name="email" id="email" value="${newUser.email }" > 
+							<input type="email" name="email" id="email" value="${newUser.email }" > 
 						</c:otherwise>	
 					</c:choose>
 					
 					<label for="password">Mot de passe</label>
 					<c:choose>
 						<c:when test="${errors.password != null }">
-							<input type="text" name="password" id="password" placeholder="${errors.password }">
+							<input type="password" name="password" id="password" placeholder="${errors.password }">
 						</c:when>
 						<c:otherwise >
-							<input type="text" name="password" id="password" > 
+							<input type="password" name="password" id="password" > 
 						</c:otherwise>	
 					</c:choose>
 					

@@ -18,6 +18,8 @@
 <body>
 	<%@include file="../jspf/header.jspf"%>
 
+
+
 	<main class="container">
 	
 		<section>
@@ -88,6 +90,7 @@
 		</section>
 
 		<section class="form-message-container">
+		
 			<h2 class="title-display-2">Contactez-nous :</h2>
 
 			<form method="post" action="contact">
@@ -98,6 +101,7 @@
 
 					<input id="submitMessage" type="submit" value="Envoyer">
 			</form>
+			
 		</section>
 
 	</main>
