@@ -13,10 +13,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import bo.Message;
 import bo.Reservation;
 import bo.User;
+import dal.daointerface.UserDAOInterface;
 import jakarta.persistence.RollbackException;
 import jakarta.persistence.TypedQuery;
 
-public class UserDAO 
+public class UserDAO implements UserDAOInterface<User>
 {
 	private SessionFactory factory;
 	

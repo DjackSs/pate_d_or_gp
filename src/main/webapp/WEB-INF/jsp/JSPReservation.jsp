@@ -11,12 +11,9 @@
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/reservation.css">
 <link rel="stylesheet" href="css/footer.css">
-<script src="https://kit.fontawesome.com/9bb344ad6f.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/9bb344ad6f.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 	<%@include file="../jspf/header.jspf"%>
@@ -40,39 +37,45 @@
 		<div class="form-resa-container">
 		
 		<form action="reservation" method="POST">
+			<p>
+				<c:forEach var="schedule" items="${restaurant.schedules }">
 		
-			<c:forEach var="lunchSchedule" items="${restaurantLunchSchedule }">
-			
-				<c:if test="${lunchSchedule.id != null }">
-						
-						<p>Déjeuner <span>(Horaires : ${lunchSchedule.getOpenHour()}-${lunchSchedule.getCloseHour()}) </span></p>
-						
-						<div class="form-group">
-							<label for="lunch-reservation-table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
-							<select id="lunch-reservation-table-select" name="lunch-tables" required>
-								<option value="none">Choisissez une table</option>
-								
-								<c:forEach var="current" items="${restaurant.tables }">
-									<c:if test='${!current.state.equals("pres") }'>
-										<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
-									</c:if>
-								</c:forEach>
-							</select>
-						</div>
-						
-						<div class="form-group">
-						    <div class="input-group">
-						    <label for="lunch-reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
-						        <input type="date" id="lunch-reservation-date" name="lunch-reservation-date" min="${dateTimeInputMin }" />
-						        <label for="lunch-reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
-						        <input type="time" id="lunch-reservation-hour" name="lunch-reservation-hour" min="${lunchSchedule.getOpenHour()}" max="${lunchSchedule.getCloseHour() }" />
-						    </div>
-						</div>
+					<span>(Horaires : ${schedule.getOpenHour()}-${schedule.getCloseHour()}) </span>
 					
-				</c:if>
-	
-			</c:forEach>
-		
+				</c:forEach>
+			</p>
+						
+			<div class="form-group">
+			
+				<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
+				<select id="table-select" name="tables" required>
+					<option value="none">Choisissez une table</option>
+					
+					<c:forEach var="current" items="${restaurant.tables }">
+					
+						<c:if test='${!current.state.equals("pres") }'>
+							<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
+						</c:if>
+						
+					</c:forEach>
+					
+				</select>
+			</div>
+						
+			<div class="form-group">
+			
+			    <div class="input-group">
+			    
+			    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
+			        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
+			        
+			        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
+			        <input type="time" id="reservation-hour" name="reservation-hour"  />
+			        
+			    </div>
+			    
+			</div>
+					
 	
 			<c:forEach var="DinerSchedule" items="${restaurantDinerSchedule }">
 				
