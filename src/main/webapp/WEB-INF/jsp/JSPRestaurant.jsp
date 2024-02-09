@@ -94,43 +94,43 @@
 			<ul>
 				<li>
 					<span class="beige-subtitle">Lun</span> 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>
 					<span class="beige-subtitle">Mar</span>  
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>
 					<span class="beige-subtitle">Mer</span> 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>
 					<span class="beige-subtitle">Jeu</span> 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>
 					<span class="beige-subtitle">Ven</span> 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>
 					<span class="beige-subtitle">Sam</span> 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>
 				<li>
 					<span class="beige-subtitle">Dim</span> 
-					<c:forEach var="current" items="${restaurantSchedule }">
+					<c:forEach var="current" items="${restaurant.schedules }">
 						${current.openHour }-${current.closeHour }
 					</c:forEach>	
 				</li>

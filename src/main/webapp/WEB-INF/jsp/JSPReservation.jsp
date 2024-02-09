@@ -18,115 +18,85 @@
 <body>
 	<%@include file="../jspf/header.jspf"%>
 
-	<main>
-		<h1>${restaurant.name }</h1>
-
-		<c:choose>
-			<c:when test="${restaurant.id % 2 == 0 }">
-				<h3>On a hâte de vous accueillir</h3>
-				<p>Contactez-nous.</p>
-			</c:when>
-
-			<c:when test="${restaurant.id % 2 == 1 }">
-				<h3>Nous vous attendons !</h3>
-			</c:when>
-
-		</c:choose>
-
-		
-		<div class="form-resa-container">
-		
-		<form action="reservation" method="POST">
-			<p>
-				<c:forEach var="schedule" items="${restaurant.schedules }">
-		
-					<span>(Horaires : ${schedule.getOpenHour()}-${schedule.getCloseHour()}) </span>
-					
-				</c:forEach>
-			</p>
-						
-			<div class="form-group">
-			
-				<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
-				<select id="table-select" name="tables" required>
-					<option value="none">Choisissez une table</option>
-					
-					<c:forEach var="current" items="${restaurant.tables }">
-					
-						<c:if test='${!current.state.equals("pres") }'>
-							<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
-						</c:if>
-						
-					</c:forEach>
-					
-				</select>
-			</div>
-						
-			<div class="form-group">
-			
-			    <div class="input-group">
-			    
-			    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
-			        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
-			        
-			        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
-			        <input type="time" id="reservation-hour" name="reservation-hour"  />
-			        
-			    </div>
-			    
-			</div>
-					
+	<main class="container">
 	
-			<c:forEach var="DinerSchedule" items="${restaurantDinerSchedule }">
-				
-				<c:if test="${DinerSchedule.id != null }">
-						
+		<section>
 		
-					<p>Dîner <span>(Horaires : ${DinerSchedule.getOpenHour()}-${DinerSchedule.getCloseHour()}) </span></p>
-					
+			<h1 class="playfair-font title-display-1">${restaurant.name }</h1>
+	
+			<c:choose>
+				<c:when test="${restaurant.id % 2 == 0 }">
+					<h3 class="title-display-3">On a hâte de vous accueillir</h3>
+				</c:when>
+	
+				<c:when test="${restaurant.id % 2 == 1 }">
+					<h3 class="title-display-3">Nous vous attendons !</h3>
+				</c:when>
+	
+			</c:choose>
+	
+			
+			<div class="form-resa-container">
+			
+				<form action="reservation" method="POST">
+					<p>
+						<c:forEach var="schedule" items="${restaurant.schedules }">
+				
+							<span>(Horaires : ${schedule.getOpenHour()}-${schedule.getCloseHour()}) </span>
+							
+						</c:forEach>
+					</p>
+								
 					<div class="form-group">
-						<label for="diner-reservation-table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label>
-						<select id="diner-reservation-table-select" name="diner-tables" required>
+					
+						<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
+						<select id="table-select" name="tables" required>
 							<option value="none">Choisissez une table</option>
-							<c:forEach var="current" items="${restaurantTables }">
+							
+							<c:forEach var="current" items="${restaurant.tables }">
+							
 								<c:if test='${!current.state.equals("pres") }'>
 									<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
 								</c:if>
+								
 							</c:forEach>
+							
 						</select>
 					</div>
-					
+								
 					<div class="form-group">
-						<label for="diner-reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
-						<input type="date" id="diner-reservation-date" name="diner-reservation-date" min="${dateTimeInputMin }"  />
-						<label for="diner-reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
-						<input type="time" id="diner-reservation-hour" name="diner-reservation-hour"
-						 min="${DinerSchedule.getOpenHour()}" max="${DinerSchedule.getCloseHour() }" />
-					</div>			
+					
+					    <div class="input-group">
+					    
+					    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
+					        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
+					        
+					        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
+					        <input type="time" id="reservation-hour" name="reservation-hour"  />
+					        
+					    </div>
+					    
+					</div>
+							
+		
 				
-
-				</c:if>
+				<input type="submit" class="form-submit" value="Valider"/>
+			
+			</form>
 		
-		</c:forEach>
-		
-		<input type="submit" class="form-submit" value="Valider"/>
-	
-	</form>
-	
-	</div>
+		</div>
+		</section>
 
 		<section class="form-message-container">
-			<h1>Contactez-nous :</h1>
+			<h2 class="title-display-2">Contactez-nous :</h2>
 
 			<form method="post" action="contact">
-				<div class="inputContainer">
 					<input type="text" name="object" id="object" placeholder=" Objet">
 
 					<textarea class="messageContent" placeholder=" Message"
-						name="message"></textarea>
+						name="message" rows="5" cols="33"></textarea>
 
 					<input id="submitMessage" type="submit" value="Envoyer">
-				</div>
 			</form>
 		</section>
 
