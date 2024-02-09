@@ -283,7 +283,7 @@ p {
 		padding: 2rem;
 	}
 	.home-products-card {
-		flex-basis: unset;
+		flex-basis: 85%;
 	}
 	.home-products-card .home-products-card__body {
 	  padding: 2rem 1.4rem;
