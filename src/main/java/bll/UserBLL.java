@@ -270,31 +270,49 @@ public class UserBLL
 		BLLException bll = new BLLException ();
 		
 		//object
-		if(message.getObject().trim().length() > MESSAGE_OBJECT_MAX_LENGTH)
+		if(!StringUtils.isBlank(message.getObject()))
 		{
-			bll.addError("messageObject", "L'objet de votre message est trop long");
-					
+			if(message.getObject().trim().length() > MESSAGE_OBJECT_MAX_LENGTH)
+			{
+				bll.addError("messageObject", "L'objet de votre message est trop long");
+						
+			}
+			
+			if(message.getObject().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("messageObject", "L'objet de votre message est trop court");
+				
+			}
 		}
-		
-		if(message.getObject().trim().length() < MIN_LENGTH)
+		else
 		{
-			bll.addError("messageObject", "L'objet de votre message est trop court");
+			bll.addError("messageObject", "Veuillez saisir un objet pour votre message");
 			
 		}
+		
 		
 		
 		//content
-		if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
+		if(!StringUtils.isBlank(message.getContent()))
 		{
-			bll.addError("messageContent", "Le contenus de votre message est trop long");
-					
-		}
-		
-		if(message.getContent().trim().length() < MIN_LENGTH)
-		{
-			bll.addError("messageContent", "Le contenus de votre message est trop court");
+			if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
+			{
+				bll.addError("messageContent", "Le contenus de votre message est trop long");
+						
+			}
+			
+			if(message.getContent().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("messageContent", "Le contenus de votre message est trop court");
+				
+			}
 			
 		}
+		else
+		{
+			bll.addError("messageContent", "Veuillez saisir un contenu pour votre message");
+		}
+		
 		
 		if(bll.getErrors().size() != 0)
 		{
