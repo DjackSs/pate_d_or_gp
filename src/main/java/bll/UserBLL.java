@@ -19,6 +19,8 @@ public class UserBLL
 	private static final int MIN_LENGTH = 2;
 	
 	//------------------user constants
+	private static final int USER_NAME_MAX_LENGTH = 40;
+	private static final int USER_LASTNAME_MAX_LENGTH = 40;
 	private static final int USER_EMAIL_MAX_LENGTH = 60;
 	private static final int USER_PASSWORD_MAX_LENGTH = 60;
 	private static final String EMAIL_REGEX = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";
@@ -93,52 +95,113 @@ public class UserBLL
 	
 	public User insert(User user) throws BLLException 
 	{
+		BLLException bll = new BLLException ();
+		
+		//name
+		if(user.getName() != null)
+		{
+			if(user.getName().trim().length() > USER_NAME_MAX_LENGTH)
+			{
+				bll.addError("nameSize", "Votre prénom est trop long");
+						
+			}
+			
+			if(user.getName().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("nameSize", "Votre prénom est trop court");
+				
+			}
+			
+		}
+		else
+		{
+			bll.addError("nameSize", "Veuillez saisir un prénom");
+		}
+		
+		
+		//lastname
+		if(user.getLastname() != null)
+		{
+			if(user.getLastname().trim().length() > USER_LASTNAME_MAX_LENGTH)
+			{
+				bll.addError("lastnameSize", "Votre nom est trop long");
+						
+			}
+			
+			if(user.getLastname().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("lastnameSize", "Votre nom est trop court");
+				
+			}
+			
+		}
+		else
+		{
+			bll.addError("lastnameSize", "Veuillez saisir un nom");
+		}
+		
+		
 		
 		
 		//email
-		if(user.getEmail().trim().length() > USER_EMAIL_MAX_LENGTH)
+		if(user.getEmail() != null)
 		{
-			throw new BLLException("Email is too big", null);
-					
-		}
-		
-		if(user.getEmail().trim().length() < MIN_LENGTH)
-		{
-			throw new BLLException("Email name is too small", null);
+			if(user.getEmail().trim().length() > USER_EMAIL_MAX_LENGTH)
+			{
+				bll.addError("emailSize", "Votre adresse mail est trop longue");
+						
+			}
+			
+			if(user.getEmail().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("emailSize", "Votre adresse mail est trop courte");
+				
+			}
+			
+			if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
+			{
+				bll.addError("emailMatch", "Votre adresse est invalide");
+			}
 			
 		}
-		
-		
-		
-		if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
+		else
 		{
-			throw new BLLException("email is invalid", null);
+			bll.addError("emailSize", "Veuillez saisir une adresse mail");
 		}
-		
 		
 		
 		//password
-		if(user.getPassword().trim().length() > USER_PASSWORD_MAX_LENGTH)
+		if(user.getPassword() != null)
 		{
-			throw new BLLException("Password is invalid", null);
-					
+			if(user.getPassword().trim().length() > USER_PASSWORD_MAX_LENGTH)
+			{
+				bll.addError("password", "Mot de passe invalide");
+						
+			}
+			
+			if(user.getPassword().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("password", "Mot de passe invalide");
+				
+			}
+			
+			if(!this.regexMatche(user.getPassword(), PASSWORD_REGEX))
+			{
+				bll.addError("password", "Mot de passe invalide");
+			}
+				
 		}
-		
-		if(user.getPassword().trim().length() < MIN_LENGTH)
+		else
 		{
-			throw new BLLException("Password is invalid", null);
+			bll.addError("password", "Mot de passe invalide");
 			
 		}
 		
-		if(!this.regexMatche(user.getPassword(), PASSWORD_REGEX))
+		
+		if(bll.getErrors().size() != 0)
 		{
-			throw new BLLException("Password is invalid", null);
+			throw bll;
 		}
-		
-		//messages
-		this.controleMessages(user.getMessages());
-		
-		//reservations
 		
 		//role
 		user.setRole("cust");
@@ -212,6 +275,8 @@ public class UserBLL
 	public void update(User user) throws BLLException 
 	{
 		
+		BLLException bll = new BLLException ();
+		
 		User oldUser = this.selectById(user.getId());
 		
 		//name
@@ -277,7 +342,7 @@ public class UserBLL
 		}
 		
 		//messages
-		this.controleMessages(user.getMessages());
+		this.controleMessages(user.getMessages(), bll);
 		
 		//reservations
 		
@@ -387,20 +452,20 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	private void controleMessages(List<Message> messages) throws BLLException
+	private void controleMessages(List<Message> messages, BLLException bll) throws BLLException
 	{
 		for(Message message : messages)
 		{
 			//object
 			if(message.getObject().trim().length() > MESSAGE_OBJECT_MAX_LENGTH)
 			{
-				throw new BLLException("message's object is too big", null);
+				bll.addError("messageObject", "L'objet de votre message est trop long");
 						
 			}
 			
 			if(message.getObject().trim().length() < MIN_LENGTH)
 			{
-				throw new BLLException("message's object name is too small", null);
+				bll.addError("messageObject", "L'objet de votre message est trop court");
 				
 			}
 			
@@ -408,13 +473,13 @@ public class UserBLL
 			//content
 			if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
 			{
-				throw new BLLException("message's content is too big", null);
+				bll.addError("messageContent", "Le contenus de votre message est trop long");
 						
 			}
 			
 			if(message.getContent().trim().length() < MIN_LENGTH)
 			{
-				throw new BLLException("message's content is too small", null);
+				bll.addError("messageContent", "Le contenus de votre message est trop court");
 				
 			}
 		}
