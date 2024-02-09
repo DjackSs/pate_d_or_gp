@@ -20,89 +20,77 @@
 
 
 
+<<<<<<< Updated upstream
 	<main class="container">
-	
-		<section>
+=======
+			<c:when test="${restaurant.id % 2 == 1 }">
+				<h3>Nous vous attendons !</h3>
+			</c:when>
+
+		</c:choose>
+
 		
-			<h1 class="playfair-font title-display-1">${restaurant.name }</h1>
-	
-			<c:choose>
-				<c:when test="${restaurant.id % 2 == 0 }">
-					<h3 class="title-display-3">On a hâte de vous accueillir</h3>
-				</c:when>
-	
-				<c:when test="${restaurant.id % 2 == 1 }">
-					<h3 class="title-display-3">Nous vous attendons !</h3>
-				</c:when>
-	
-			</c:choose>
-	
-			
-			<div class="form-resa-container">
-			
-				<form action="reservation" method="POST">
-					<p>
-						<c:forEach var="schedule" items="${restaurant.schedules }">
-				
-							<span>(Horaires : ${schedule.getOpenHour()}-${schedule.getCloseHour()}) </span>
-							
-						</c:forEach>
-					</p>
-								
-					<div class="form-group">
+		<div class="form-resa-container">
+		
+		<form action="reservation" method="POST">
+			<p>
+				<c:forEach var="schedule" items="${restaurant.schedules }">
+		
+					<span>(Horaires : ${schedule.getOpenHour()}-${schedule.getCloseHour()}) </span>
 					
-						<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
-						<select id="table-select" name="tables" required>
-							<option value="none">Choisissez une table</option>
-							
-							<c:forEach var="current" items="${restaurant.tables }">
-							
-								<c:if test='${!current.state.equals("pres") }'>
-									<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
-								</c:if>
-								
-							</c:forEach>
-							
-						</select>
-					</div>
-								
-					<div class="form-group">
+				</c:forEach>
+			</p>
+						
+			<div class="form-group">
+			
+				<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
+				<select id="table-select" name="tables" required>
+					<option value="none">Choisissez une table</option>
 					
-					    <div class="input-group">
-					    
-					    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
-					        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
-					        
-					        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
-					        <input type="time" id="reservation-hour" name="reservation-hour"  />
-					        
-					    </div>
-					    
-					</div>
-							
-		
-				
-				<input type="submit" class="form-submit" value="Valider"/>
+					<c:forEach var="current" items="${restaurant.tables }">
+					
+						<c:if test='${!current.state.equals("pres") }'>
+							<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
+						</c:if>
+						
+					</c:forEach>
+					
+				</select>
+			</div>
+						
+			<div class="form-group">
 			
-			</form>
+			    <div class="input-group">
+			    
+			    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
+			        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
+				        <c:choose>
+							<c:when test="${errors.date != null }">
+							<p>${errors.date }</p>
+							</c:when>
+							<c:otherwise >
+							</c:otherwise>	
+						</c:choose>
+			        
+			        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
+			        <input type="time" id="reservation-hour" name="reservation-hour"  />
+			        	<c:choose>
+							<c:when test="${errors.hour != null }">
+							<p>${errors.hour }</p>
+							</c:when>
+							<c:otherwise >
+							</c:otherwise>	
+						</c:choose>
+			        
+			    </div>
+			    
+			</div>
+					
 		
-		</div>
-		</section>
+		<input type="submit" class="form-submit" value="Valider"/>
 
-		<section class="form-message-container">
-		
-			<h2 class="title-display-2">Contactez-nous :</h2>
+		<%@include file="../jspf/message.jspf" %>
 
-			<form method="post" action="contact">
-					<input type="text" name="object" id="object" placeholder=" Objet">
-
-					<textarea class="messageContent" placeholder=" Message"
-						name="message" rows="5" cols="33"></textarea>
-
-					<input id="submitMessage" type="submit" value="Envoyer">
-			</form>
-			
-		</section>
 
 	</main>
 	<%@include file="../jspf/footer.jspf"%>

@@ -27,6 +27,7 @@ public class ServletReservation extends HttpServlet
 	private RestaurantBLL restaurantBll;
 	private UserBLL userBLL;
 	
+	private Restaurant restaurant;
 	private List<Schedule> schedules;
 	
 
@@ -39,6 +40,7 @@ public class ServletReservation extends HttpServlet
 			this.restaurantBll = new RestaurantBLL();
 			this.userBLL = new UserBLL();
 			this.schedules = new ArrayList<>();
+			this.restaurant = new Restaurant();
 			
 		} 
 		catch (BLLException e) 
@@ -59,10 +61,10 @@ public class ServletReservation extends HttpServlet
 		try 
 		{
 			
-			Restaurant restaurant = restaurantBll.selectById(idRestaurant);
+			this.restaurant = restaurantBll.selectById(idRestaurant);
 			this.schedules = restaurant.getSchedules();
 			
-			request.setAttribute("restaurant", restaurant);
+			request.setAttribute("restaurant", this.restaurant);
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
 			
 		} 
@@ -76,29 +78,22 @@ public class ServletReservation extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String redirectDestination = "reservationUser";
+		String redirectDestination = "/home";
 		
 		if(!"none".equals(request.getParameter("tables")))
 		{
 			User userSession = (((User) request.getSession().getAttribute("user")));
 			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-			
+
 			String dateReservationStr = request.getParameter("reservation-date");
-			String hourReservationStr = request.getParameter("reservation-hour");
-			String lunchReservationDateTimeStr = dateReservationStr + "T" + hourReservationStr + ":00";
-			
-			LocalDateTime lunchReservationDateTime = LocalDateTime.parse(lunchReservationDateTimeStr, formatter);
-			
-			
+			String hourReservationStr = request.getParameter("reservation-hour");			
+
 			RestaurantTable table = new RestaurantTable();
 			table.setId(Integer.parseInt(request.getParameter("tables")));
-		
-			Reservation newReservation = new Reservation(lunchReservationDateTime, "hold");
-			
+
 			try 
 			{
-				newReservation = this.userBLL.insertReservation(newReservation, this.schedules);
+				Reservation newReservation = this.userBLL.insertReservation(dateReservationStr, hourReservationStr, this.schedules);
 				
 				newReservation.setTables(table);
 				
@@ -112,15 +107,22 @@ public class ServletReservation extends HttpServlet
 			} 
 			catch (BLLException e) 
 			{
-				e.printStackTrace();
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation.jsp");
 				
-				redirectDestination = "/home";
+				LocalDate now = LocalDate.now();
+				String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+				
+				request.setAttribute("dateTimeInputMin", dateTimeInputMin);
+				request.setAttribute("restaurant", this.restaurant);
+				request.setAttribute("errors", e.getErrors());
+				
+				rd.forward(request, response);
 			}
 			
 		}
 		
 		
-		response.sendRedirect(request.getContextPath()+redirectDestination);
+		//response.sendRedirect(request.getContextPath()+redirectDestination);
 	
 			
 	}

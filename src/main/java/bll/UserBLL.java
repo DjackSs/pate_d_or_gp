@@ -3,6 +3,9 @@ package bll;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -334,23 +337,74 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	public Reservation insertReservation(Reservation reservation, List<Schedule> schedules) throws BLLException
+	public Reservation insertReservation(String date, String time, List<Schedule> schedules) throws BLLException
 	{
-		try
+		BLLException bll = new BLLException();
+		
+		Reservation reservation = null;
+		
+		
+		if(StringUtils.isBlank(date))
 		{
-			this.controleReservation(reservation, schedules);
-			
-			this.dao.insertReservation(reservation);
-			
-		}
-		catch(DALException error)
-		{
-			throw new BLLException("Echec de l'insertion de la réservation", error);
-			
+			bll.addError("date", "Veuillez saisir une date de reservation");
 		}
 		
+		if(StringUtils.isBlank(time))
+		{
+			bll.addError("hour", "Veuillez saisir une heur de reservation");
+		}
+		
+		
+		if(!StringUtils.isBlank(date) && !StringUtils.isBlank(time))
+		{
+			try
+			{
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+				
+				String ReservationDateTimeStr = date + "T" + time + ":00";
+				
+				LocalDateTime ReservationDateTime = LocalDateTime.parse(ReservationDateTimeStr, formatter);
+				
+				this.controleReservation(ReservationDateTime, schedules, bll);
+				
+				if(ReservationDateTime.toLocalDate().isBefore(LocalDate.now()))
+				{
+					bll.addError("dateDay", "Veuillez choisir une date qui n'est pas passée");
+				}
+				
+
+				if(bll.getErrors().size() != 0)
+				{
+					throw bll;
+				}
+				
+				reservation = new Reservation(ReservationDateTime, "hold");
+				
+				try
+				{
+					this.dao.insertReservation(reservation);
+					
+				}
+				catch(DALException error)
+				{
+					throw new BLLException("Echec de l'insertion de la réservation", error);
+					
+				}
+				
+				return reservation;
+				
+			}
+			catch(Exception e)
+			{
+				bll.addError("dateTimeParse", "Mauvais formas de la date ou de l'heure");
+			}
+			
+			
+		}
+			
 		
 		return reservation;
+		
 	}
 	
 	//----------------------------------------
@@ -358,7 +412,6 @@ public class UserBLL
 	public void update(User user) throws BLLException 
 	{
 		
-		BLLException bll = new BLLException ();
 		
 		User oldUser = this.selectById(user.getId());
 		
@@ -532,13 +585,13 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	private void controleReservation(Reservation reservation, List<Schedule> schedules) throws BLLException
+	private void controleReservation(LocalDateTime reservationTime, List<Schedule> schedules, BLLException bll)
 	{
 		boolean include = false;
 		
 		for(Schedule schedule : schedules)
 		{
-			if(reservation.getReservationTime().toLocalTime().isAfter(schedule.getOpenHour()) && reservation.getReservationTime().toLocalTime().isBefore(schedule.getCloseHour()))
+			if(reservationTime.toLocalTime().isAfter(schedule.getOpenHour()) && reservationTime.toLocalTime().isBefore(schedule.getCloseHour()))
 			{
 				include = true;
 			}
@@ -547,7 +600,7 @@ public class UserBLL
 		
 		if(include != true)
 		{
-			throw new BLLException("Reservation time is invalide", null);
+			bll.addError("reservationTime", "Veuillez respectez le(s) creneau(x) horraire du restaurant");
 		}
 			
 		
