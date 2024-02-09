@@ -395,19 +395,18 @@ public class UserBLL
 		User oldUser = this.selectById(user.getId());
 		
 		//name
-		if(user.getName().isBlank() || user.getName() == null)
-		{
+		if(StringUtils.isBlank(user.getName()))		{
 			user.setName(oldUser.getName());
 		}
 		
 		//lastname
-		if(user.getLastname().isBlank() || user.getLastname() == null )
+		if(StringUtils.isBlank(user.getLastname()))
 		{
 			user.setLastname(oldUser.getLastname());
 		}
 		
 		//email
-		if(user.getEmail().isBlank() || user.getEmail() == null)
+		if(StringUtils.isBlank(user.getEmail()))
 		{
 			user.setEmail(oldUser.getEmail());
 		}
@@ -431,7 +430,7 @@ public class UserBLL
 		}
 		
 		//password
-		if(user.getPassword().isBlank())
+		if(StringUtils.isBlank(user.getPassword()))
 		{
 			user.setPassword(oldUser.getPassword());
 		}
