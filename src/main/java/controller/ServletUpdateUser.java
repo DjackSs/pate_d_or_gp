@@ -77,7 +77,7 @@ public class ServletUpdateUser extends HttpServlet
 			
 			request.getSession().setAttribute("user", userToUpdate);
 			
-			response.sendRedirect("user");
+			response.sendRedirect(request.getContextPath()+"user");
 			
 		} 
 		catch (BLLException e) 

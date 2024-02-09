@@ -120,7 +120,7 @@ public class ServletReservation extends HttpServlet
 		}
 		
 		
-		response.sendRedirect(redirectDestination);
+		response.sendRedirect(request.getContextPath()+redirectDestination);
 	
 			
 	}
