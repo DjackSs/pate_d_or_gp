@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import bo.Message;
 import bo.Reservation;
+import bo.Schedule;
 import bo.User;
 import dal.DALException;
 import dal.UserDAO;
@@ -138,7 +139,6 @@ public class UserBLL
 		this.controleMessages(user.getMessages());
 		
 		//reservations
-		this.controleReservations(user.getReservations());
 		
 		//role
 		user.setRole("cust");
@@ -188,10 +188,12 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	public Reservation insertReservation(Reservation reservation) throws BLLException
+	public Reservation insertReservation(Reservation reservation, List<Schedule> schedules) throws BLLException
 	{
 		try
 		{
+			this.controleReservation(reservation, schedules);
+			
 			this.dao.insertReservation(reservation);
 			
 		}
@@ -278,7 +280,7 @@ public class UserBLL
 		this.controleMessages(user.getMessages());
 		
 		//reservations
-		this.controleReservations(user.getReservations());
+		
 		
 			
 		
@@ -420,11 +422,24 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	private void controleReservations(List<Reservation> reservations) throws BLLException
+	private void controleReservation(Reservation reservation, List<Schedule> schedules) throws BLLException
 	{
-		for(Reservation reservation : reservations)
+		boolean include = false;
+		
+		for(Schedule schedule : schedules)
 		{
-			//ajouter des controles
+			if(reservation.getReservationTime().toLocalTime().isAfter(schedule.getOpenHour()) && reservation.getReservationTime().toLocalTime().isBefore(schedule.getCloseHour()))
+			{
+				include = true;
+			}
+			
 		}
+		
+		if(include != true)
+		{
+			throw new BLLException("Reservation time is invalide", null);
+		}
+			
+		
 	}
 }
