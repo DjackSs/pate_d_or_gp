@@ -83,22 +83,10 @@
 		</section>
 		
 		<div class="restaurant-calltoaction-section">
-			<c:choose>
 		
-				<c:when test='${user != null }'>
-					
+				<c:if test='${user != null }'>
 					<a href="reservation?idRestaurant=${restaurant.id }">Réserver</a>
-					<a href="#">Contacter</a>
-					
-				</c:when>
-				
-				<c:otherwise >
-				
-					<a href="#">Contacter</a>
-					
-				</c:otherwise>
-			
-			</c:choose>
+				</c:if>
 		</div>	
 	
 		
