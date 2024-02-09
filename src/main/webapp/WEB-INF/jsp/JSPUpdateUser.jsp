@@ -23,38 +23,38 @@
 
 	<main>
 
-	<h1 class="playfair-font">Modification de vos informations personnelles</h1>
-	<div class="inputUpdateUser">
-	
-		<form action="updateUser" method="POST">
+		<h1 class="title-display-1">Modifier profil</h1>
+		<div class="inputUpdateUser">
 		
-			<div class="alignLabelInput">
-				<div><label>Prénom : </label></div>
-				<div><input type="text" name="name" value="${user.name}" /></div>
-			</div>
+			<form action="updateUser" method="POST">
 			
-			<div class="alignLabelInput">
-				<div><label>Nom : </label></div>
-				<div><input type="text" name="lastname" value="${user.lastname}" /></div>
-			</div>
+				<div class="alignLabelInput">
+					<label>Prénom : </label>
+					<input type="text" name="name" value="${user.name}" />
+				</div>
+				
+				<div class="alignLabelInput">
+					<label>Nom : </label>
+					<input type="text" name="lastname" value="${user.lastname}" />
+				</div>
+				
+				<div class="alignLabelInput">
+					<label>Email : </label>
+					<input type="email" name="email" value="${user.email}" />
+				</div>
+				
+				<div class="alignLabelInput">
+					<label>Mot de passe: </label>
+					<input type="password" name="password"/>
+				</div>
 			
-			<div class="alignLabelInput">
-				<div><label>Email : </label></div>
-				<div><input type="email" name="email" value="${user.email}" /></div>
-			</div>
-			
-			<div class="alignLabelInput">
-				<div><label>Mot de passe: </label></div>
-				<div><input type="password" name="password"/></div>
-			</div>
-		
-			<div class="alignLabelInput">
-			    <div><input type="submit" value="Modifier" class="buttonStyle" /></div>
-		    	<div><button><a class="buttonStyle" href="updateUser?delete=true" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?');">Supprimer</a></button></div>
-			    <div><a href="user"><button class="buttonStyle">Retour au profil</button></a></div>
-			</div>
-		</form>
-	</div>
+				<div class="alignLabelInput">
+				    <input type="submit" value="Modifier"/>
+			    	<a href="updateUser?delete=true" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?');">Supprimer</a>
+				   	<a href="user">Retour profil</a>
+				</div>
+			</form>
+		</div>
 	
 	</main>
 	<%@include file="../jspf/footer.jspf"%>
