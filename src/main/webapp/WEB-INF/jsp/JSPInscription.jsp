@@ -49,33 +49,33 @@
 					<label for="lastname">Nom</label>
 					<c:choose>
 						<c:when test="${errors.lastnameSize != null }">
-							<input type="text" name="name" id="name" placeholder="${errors.lastnameSize }">
+							<input type="text" name="lastname" id="lastname" placeholder="${errors.lastnameSize }">
 						</c:when>
 						<c:otherwise >
-							<input type="text" name="name" id="name" value="${newUser.lastname }" > 
+							<input type="text" name="lastname" id="lastname" value="${newUser.lastname }" > 
 						</c:otherwise>	
 					</c:choose>
 					
 					<label for="email">Email</label>
 					<c:choose>
 						<c:when test="${errors.emailSize != null }">
-							<input type="text" name="name" id="name" placeholder="${errors.emailSize }">
+							<input type="text" name="email" id="name" placeholder="${errors.emailSize }">
 						</c:when>
 						<c:when test="${errors.emailMatch != null }">
-							<input type="text" name="name" id="name" placeholder="${errors.emailMatch }">
+							<input type="text" name="name" id="email" placeholder="${errors.emailMatch }">
 						</c:when>
 						<c:otherwise >
-							<input type="text" name="name" id="name" value="${newUser.email }" > 
+							<input type="text" name="email" id="email" value="${newUser.email }" > 
 						</c:otherwise>	
 					</c:choose>
 					
 					<label for="password">Mot de passe</label>
 					<c:choose>
 						<c:when test="${errors.password != null }">
-							<input type="text" name="name" id="name" placeholder="${errors.password }">
+							<input type="text" name="password" id="password" placeholder="${errors.password }">
 						</c:when>
 						<c:otherwise >
-							<input type="text" name="name" id="name" > 
+							<input type="text" name="password" id="password" > 
 						</c:otherwise>	
 					</c:choose>
 					

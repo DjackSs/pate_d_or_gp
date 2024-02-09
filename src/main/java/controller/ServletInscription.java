@@ -51,7 +51,6 @@ public class ServletInscription extends HttpServlet
 		newUser.setEmail(request.getParameter("email"));
 		newUser.setPassword(request.getParameter("password"));
 		
-		System.out.println(newUser);
 		
 		try 
 		{

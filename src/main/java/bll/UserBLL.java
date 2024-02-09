@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.tomcat.jakartaee.commons.lang3.StringUtils;
+
 import bo.Message;
 import bo.Reservation;
 import bo.Schedule;
@@ -98,7 +100,7 @@ public class UserBLL
 		BLLException bll = new BLLException ();
 		
 		//name
-		if(user.getName() != null)
+		if(!StringUtils.isBlank(user.getName()))
 		{
 			if(user.getName().trim().length() > USER_NAME_MAX_LENGTH)
 			{
@@ -120,7 +122,7 @@ public class UserBLL
 		
 		
 		//lastname
-		if(user.getLastname() != null)
+		if(!StringUtils.isBlank(user.getLastname()))
 		{
 			if(user.getLastname().trim().length() > USER_LASTNAME_MAX_LENGTH)
 			{
@@ -144,7 +146,7 @@ public class UserBLL
 		
 		
 		//email
-		if(user.getEmail() != null)
+		if(!StringUtils.isBlank(user.getEmail()))
 		{
 			if(user.getEmail().trim().length() > USER_EMAIL_MAX_LENGTH)
 			{
@@ -171,7 +173,7 @@ public class UserBLL
 		
 		
 		//password
-		if(user.getPassword() != null)
+		if(!StringUtils.isBlank(user.getPassword()))
 		{
 			if(user.getPassword().trim().length() > USER_PASSWORD_MAX_LENGTH)
 			{
@@ -236,6 +238,35 @@ public class UserBLL
 	
 	public Message insertMessage(Message message) throws BLLException
 	{
+		BLLException bll = new BLLException ();
+		
+		//object
+		if(message.getObject().trim().length() > MESSAGE_OBJECT_MAX_LENGTH)
+		{
+			bll.addError("messageObject", "L'objet de votre message est trop long");
+					
+		}
+		
+		if(message.getObject().trim().length() < MIN_LENGTH)
+		{
+			bll.addError("messageObject", "L'objet de votre message est trop court");
+			
+		}
+		
+		
+		//content
+		if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
+		{
+			bll.addError("messageContent", "Le contenus de votre message est trop long");
+					
+		}
+		
+		if(message.getContent().trim().length() < MIN_LENGTH)
+		{
+			bll.addError("messageContent", "Le contenus de votre message est trop court");
+			
+		}
+		
 		try
 		{
 			this.dao.insertMessage(message);
@@ -341,10 +372,6 @@ public class UserBLL
 			
 		}
 		
-		//messages
-		this.controleMessages(user.getMessages(), bll);
-		
-		//reservations
 		
 		
 			
@@ -450,40 +477,6 @@ public class UserBLL
 		 user.setPassword("");
 	}
 	
-	//----------------------------------------
-	
-	private void controleMessages(List<Message> messages, BLLException bll) throws BLLException
-	{
-		for(Message message : messages)
-		{
-			//object
-			if(message.getObject().trim().length() > MESSAGE_OBJECT_MAX_LENGTH)
-			{
-				bll.addError("messageObject", "L'objet de votre message est trop long");
-						
-			}
-			
-			if(message.getObject().trim().length() < MIN_LENGTH)
-			{
-				bll.addError("messageObject", "L'objet de votre message est trop court");
-				
-			}
-			
-			
-			//content
-			if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
-			{
-				bll.addError("messageContent", "Le contenus de votre message est trop long");
-						
-			}
-			
-			if(message.getContent().trim().length() < MIN_LENGTH)
-			{
-				bll.addError("messageContent", "Le contenus de votre message est trop court");
-				
-			}
-		}
-	}
 	
 	//----------------------------------------
 	
