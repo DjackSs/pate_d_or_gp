@@ -48,12 +48,10 @@ public class ServletMessage extends HttpServlet
 		Message newMessage = new Message(request.getParameter("object"),request.getParameter("message"));
 		
 		User user = ((User) request.getSession().getAttribute("user"));
-		
 
-		
 		try 
 		{
-			newMessage = this.userBLL.insertMessages(newMessage);
+			newMessage = this.userBLL.insertMessage(newMessage);
 			
 			user.addMessage(newMessage);
 			

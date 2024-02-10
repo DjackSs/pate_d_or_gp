@@ -37,9 +37,13 @@
 				</c:when>
 	
 			</c:choose>
+			
+			
 	
 			
 			<div class="form-resa-container">
+			
+			
 			
 				<form action="reservation" method="POST">
 					<p>
@@ -52,6 +56,11 @@
 								
 					<div class="form-group">
 					
+						<c:if test="${errorTable != null}">
+							<p>${errorTable }</p>
+						</c:if>
+						
+						
 						<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
 						<select id="table-select" name="tables" required>
 							<option value="none">Choisissez une table</option>
@@ -71,13 +80,25 @@
 					
 					    <div class="input-group">
 					    
+					    	<c:if test="${errors.date != null || errors.dateDay != null}">
+					    		<p>${errors.date } ${errors.dateDay }</p>
+					    	</c:if>
+					    	
 					    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
 					        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
+					        
+					        <c:if test="${errors.hour != null || errors.reservationTime != null}">
+					        	<p>${errors.hour } ${errors.reservationTime }</p>
+					        </c:if>
 					        
 					        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
 					        <input type="time" id="reservation-hour" name="reservation-hour"  />
 					        
 					    </div>
+					    
+					    <c:if test="${errors.dateTimeParse != null}">
+					    	<p>${errors.dateTimeParse }</p>
+					    </c:if>
 					    
 					</div>
 							
