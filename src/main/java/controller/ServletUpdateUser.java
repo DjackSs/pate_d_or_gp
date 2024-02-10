@@ -77,7 +77,7 @@ public class ServletUpdateUser extends HttpServlet
 		} 
 		catch (BLLException e) 
 		{
-			request.setAttribute("erreur", e);
+			request.setAttribute("errors", e.getErrors());
 			request.getRequestDispatcher("/WEB-INF/jsp/JSPUpdateUser.jsp").forward(request, response);
 		}
 	}

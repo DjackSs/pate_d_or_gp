@@ -367,7 +367,7 @@ public class UserBLL
 		
 		if(StringUtils.isBlank(time))
 		{
-			bll.addError("hour", "Veuillez saisir une heur de reservation");
+			bll.addError("hour", "Veuillez saisir une heure de reservation");
 		}
 		
 		
@@ -657,7 +657,7 @@ public class UserBLL
 		
 		if(include != true)
 		{
-			bll.addError("reservationTime", "Veuillez respectez le(s) creneau(x) horraire du restaurant");
+			bll.addError("reservationTime", "Veuillez respectez le(s) creneau(x) horaire(s) du restaurant");
 		}
 			
 		

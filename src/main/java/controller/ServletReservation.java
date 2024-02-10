@@ -81,7 +81,7 @@ public class ServletReservation extends HttpServlet
 		
 		if(!"none".equals(request.getParameter("tables")))
 		{
-			User userSession = (((User) request.getSession().getAttribute("user")));
+			User userSession = (User) request.getSession().getAttribute("user");
 			
 
 			String dateReservationStr = request.getParameter("reservation-date");
@@ -106,6 +106,7 @@ public class ServletReservation extends HttpServlet
 			} 
 			catch (BLLException e) 
 			{
+				e.printStackTrace();
 				
 				LocalDate now = LocalDate.now();
 				String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -119,16 +120,22 @@ public class ServletReservation extends HttpServlet
 			}
 			
 		}
+		else
+		{
+	
+			LocalDate now = LocalDate.now();
+			String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			
+			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
+			request.setAttribute("restaurant", this.restaurant);
+			
+			request.setAttribute("errorTable", "Choisissez une table à réserver" );
+			
+			rd.forward(request, response);
+			
+		}
 		
-		LocalDate now = LocalDate.now();
-		String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
-		request.setAttribute("dateTimeInputMin", dateTimeInputMin);
-		request.setAttribute("restaurant", this.restaurant);
-		
-		request.setAttribute("errorTable", "Choisissez une table à réserver" );
-		
-		rd.forward(request, response);
 	
 			
 	}
