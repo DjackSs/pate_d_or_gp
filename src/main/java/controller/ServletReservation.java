@@ -27,7 +27,6 @@ public class ServletReservation extends HttpServlet
 	private UserBLL userBLL;
 	
 	private Restaurant restaurant;
-	private List<Schedule> schedules;
 	
 
 	@Override
@@ -38,7 +37,6 @@ public class ServletReservation extends HttpServlet
 		{
 			this.restaurantBll = new RestaurantBLL();
 			this.userBLL = new UserBLL();
-			this.schedules = new ArrayList<>();
 			this.restaurant = new Restaurant();
 			
 		} 
@@ -61,7 +59,6 @@ public class ServletReservation extends HttpServlet
 		{
 			
 			this.restaurant = restaurantBll.selectById(idRestaurant);
-			this.schedules = restaurant.getSchedules();
 			
 			request.setAttribute("restaurant", this.restaurant);
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
@@ -92,7 +89,7 @@ public class ServletReservation extends HttpServlet
 
 			try 
 			{
-				Reservation newReservation = this.userBLL.insertReservation(dateReservationStr, hourReservationStr, this.schedules);
+				Reservation newReservation = this.userBLL.insertReservation(dateReservationStr, hourReservationStr, this.restaurant.getSchedules());
 				
 				newReservation.setTables(table);
 				
