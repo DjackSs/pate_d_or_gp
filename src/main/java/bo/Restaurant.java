@@ -19,8 +19,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name= "Restaurants")
-
-
 @NamedQueries
 ({
 	@NamedQuery
