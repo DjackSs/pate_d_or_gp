@@ -59,6 +59,7 @@ public class ServletUserPage extends HttpServlet
 				{
 					Map<Integer,Restaurant> reservationRestaurants = new HashMap<>();
 					
+					/*
 					List<Restaurant> restaurants = this.restaurantBLL.selectAll();
 					
 					for(Reservation reservation : user.getReservations())
@@ -72,14 +73,20 @@ public class ServletUserPage extends HttpServlet
 									reservationRestaurants.put(reservation.getId(), restaurant);
 									
 								}
-								
-								
-								
 							}
 							
 						}
 						
 					}
+					
+					*/
+					
+					for(Reservation reservation : user.getReservations())
+					{
+						reservationRestaurants.put(reservation.getId(), this.restaurantBLL.selectByReservation(reservation.getTables().getId()));
+					}
+					
+					
 					
 					
 					request.setAttribute("restaurants", reservationRestaurants);

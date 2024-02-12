@@ -17,10 +17,10 @@ public class Schedule
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "open_hour", nullable = false)
+	@Column(name = "open_hour")
 	private LocalTime openHour;
 	
-	@Column(name = "close_hour", nullable = false)
+	@Column(name = "close_hour")
 	private LocalTime closeHour;
 	
 	

@@ -29,23 +29,47 @@
 			<form action="updateUser" method="POST">
 			
 				<div class="alignLabelInput">
-					<label>Prénom : </label>
-					<input type="text" name="name" value="${user.name}" />
+					<label>Prénom : </label> 
+					<c:choose>
+						<c:when test="${errors.nameSize != null }">
+							<input type="text" name="name" id="name" placeholder="${errors.nameSize }">
+						</c:when>
+						<c:otherwise >
+							<input type="text" name="name" id="name" value="${user.name }" > 
+						</c:otherwise>	
+					</c:choose>
 				</div>
 				
 				<div class="alignLabelInput">
 					<label>Nom : </label>
-					<input type="text" name="lastname" value="${user.lastname}" />
+					<c:choose>
+						<c:when test="${errors.lastnameSize != null }">
+							<input type="text" name="lastname" id="lastname" placeholder="${errors.lastnameSize }">
+						</c:when>
+						<c:otherwise >
+							<input type="text" name="lastname" id="lastname" value="${user.lastname }" > 
+						</c:otherwise>	
+					</c:choose>
 				</div>
 				
 				<div class="alignLabelInput">
 					<label>Email : </label>
-					<input type="email" name="email" value="${user.email}" />
+					<c:choose>
+						<c:when test="${errors.emailSize != null }">
+							<input type="email" name="email" id="name" placeholder="${errors.emailSize }">
+						</c:when>
+						<c:when test="${errors.emailMatch != null }">
+							<input type="email" name="name" id="email" placeholder="${errors.emailMatch }">
+						</c:when>
+						<c:otherwise >
+							<input type="email" name="email" id="email" value="${user.email }" > 
+						</c:otherwise>	
+					</c:choose>
 				</div>
 				
 				<div class="alignLabelInput">
 					<label>Mot de passe: </label>
-					<input type="password" name="password"/>
+					<input type="password" name="password" id="password" placeholder="${errors.password }">
 				</div>
 			
 				<div class="alignLabelInput">

@@ -13,6 +13,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import bo.Restaurant;
 import dal.daointerface.GenericDAOInterface;
 import jakarta.persistence.RollbackException;
+import jakarta.persistence.TypedQuery;
 
 public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 {
@@ -70,14 +71,14 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 	
 	//--------------------------------------------------------------
 	
-	/*
+	
 		public Restaurant selectByReservation(int id) throws DALException
 		{
 			Session session = factory.openSession();
 			
 			TypedQuery<Restaurant> query = session.createNamedQuery("findRestaurantWithReservation", Restaurant.class); 
 			
-			Restaurant restaurant = query.setParameter("idReservation", id).getSingleResult();
+			Restaurant restaurant = query.setParameter("idTable", id).getSingleResult();
 			
 			session.close();
 			
@@ -85,7 +86,7 @@ public class RestaurantDAO implements GenericDAOInterface<Restaurant>
 				
 		}
 		
-	*/
+	
 	//--------------------------------------------------------------
 	
 	public void insert(Restaurant restaurant) throws DALException

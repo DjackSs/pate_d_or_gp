@@ -15,9 +15,11 @@ public class RestaurantTable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "number_place", nullable = false)
+	@Column(name = "number_place")
 	private int numberPlace;
 	private String state;
+	
+	
 	
 	
 	public RestaurantTable() {}

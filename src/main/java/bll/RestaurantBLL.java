@@ -78,7 +78,7 @@ public class RestaurantBLL
 	
 	//--------------------------------------------------------------
 	
-	/*
+	
 	public Restaurant selectByReservation(int id) throws BLLException
 	{
 		
@@ -95,7 +95,7 @@ public class RestaurantBLL
 		
 	
 	}
-	*/
+	
 	
 	//--------------------------------------------------------------
 
