@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +57,7 @@
 							
 								<tr>
 									<th>Restaurant</th>
-									<th>Heures de réservation</th>
+									<th>Date - Heure</th>
 								</tr>
 								
 							</thead>
@@ -74,12 +74,12 @@
 												</c:if>
 											</c:forEach>
 											
-										</tr>
 											<c:forEach var="reservationVO" items="${reservationVO }">
 												<c:if test="${reservation.id == reservationVO.id}">
 													<td>${reservationVO.reservationTime}</td>
 												</c:if>
 											</c:forEach>
+										</tr>
 								</c:forEach>
 							</tbody>
 							

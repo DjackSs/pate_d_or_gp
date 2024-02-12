@@ -64,9 +64,18 @@ h2, h3, table {
 	margin: 15px 0px 15px 0px;
 }
 
+tr {
+	text-align: left;
+}
+
 td {
+	font-size: calc(0.6rem + 0.5vw);
 	padding: 5px;
 	text-align: center;
+}
+
+td:nth-child(even) {
+	padding-left: 2px;
 }
 
 td > .user-resa__restaurant-link {
