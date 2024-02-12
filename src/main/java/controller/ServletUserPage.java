@@ -10,7 +10,6 @@ import bll.BLLException;
 import bll.RestaurantBLL;
 import bo.Reservation;
 import bo.Restaurant;
-import bo.RestaurantTable;
 import bo.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -59,28 +58,11 @@ public class ServletUserPage extends HttpServlet
 				{
 					Map<Integer,Restaurant> reservationRestaurants = new HashMap<>();
 					
-					List<Restaurant> restaurants = this.restaurantBLL.selectAll();
 					
 					for(Reservation reservation : user.getReservations())
 					{
-						for(Restaurant restaurant : restaurants)
-						{
-							for(RestaurantTable table : restaurant.getTables())
-							{
-								if(table.getId() == reservation.getTables().getId())
-								{
-									reservationRestaurants.put(reservation.getId(), restaurant);
-									
-								}
-								
-								
-								
-							}
-							
-						}
-						
+						reservationRestaurants.put(reservation.getId(), this.restaurantBLL.selectByReservation(reservation.getTables().getId()));
 					}
-					
 					
 					request.setAttribute("restaurants", reservationRestaurants);
 					
@@ -93,6 +75,7 @@ public class ServletUserPage extends HttpServlet
 			}
 			
 			User currentUser = (User) request.getSession().getAttribute("user");
+			
 			if (currentUser.getReservations().size() != 0 ) {
 				List<ReservationVO> allResaVO = new ArrayList<>();
 				for (Reservation resa: currentUser.getReservations()) {

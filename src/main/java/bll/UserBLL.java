@@ -3,6 +3,10 @@ package bll;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -49,10 +53,20 @@ public class UserBLL
 	
 	//======================================
 	
-	public List<User> selectAll() throws BLLException {
+	public List<User> selectAll() throws BLLException 
+	{
 		
-		try {
-			return dao.selectAll();
+		try 
+		{
+			List<User> users =  dao.selectAll();
+			
+			for(User item : users)
+			{
+				this.erasePassword(item);
+			}
+			
+			return users;
+			
 		} catch (DALException error) {
 			throw new BLLException("Echec de la recuperation des utilisateurs", error);
 		}
@@ -60,9 +74,15 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	public User selectById(int id) throws BLLException {
-		try {
-			return dao.selectById(id);
+	public User selectById(int id) throws BLLException 
+	{
+		try 
+		{
+			User user = dao.selectById(id);
+			//need the password in updateUser
+			//this.erasePassword(user);
+			return user;
+			
 		} catch (DALException e) {
 			throw new BLLException("Echec de la recuperation de l'utilisateur d'id " + id, e);
 		}
@@ -170,7 +190,6 @@ public class UserBLL
 		{
 			bll.addError("lastnameSize", "Veuillez saisir un nom");
 		}
-		
 		
 		
 		
@@ -334,48 +353,135 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	public Reservation insertReservation(Reservation reservation, List<Schedule> schedules) throws BLLException
+	public Reservation insertReservation(String date, String time, List<Schedule> schedules) throws BLLException 
 	{
-		try
+		BLLException bll = new BLLException();
+		
+		Reservation reservation = null;	
+
+		if(StringUtils.isBlank(date))
 		{
-			this.controleReservation(reservation, schedules);
 			
-			this.dao.insertReservation(reservation);
-			
+			bll.addError("date", "Veuillez saisir une date de reservation");
 		}
-		catch(DALException error)
+		
+		if(StringUtils.isBlank(time))
 		{
-			throw new BLLException("Echec de l'insertion de la réservation", error);
+			bll.addError("hour", "Veuillez saisir une heure de reservation");
+		}
+		
+		
+		if(!StringUtils.isBlank(date) && !StringUtils.isBlank(time))
+		{
+			
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+				String ReservationDateTimeStr = date + "T" + time + ":00";
+				
+			try
+			{
+				LocalDateTime ReservationDateTime = LocalDateTime.parse(ReservationDateTimeStr, formatter);
+				
+				this.controleReservation(ReservationDateTime, schedules, bll);
+					
+				if(ReservationDateTime.toLocalDate().isBefore(LocalDate.now()))
+				{
+					bll.addError("dateDay", "Veuillez choisir une date qui n'est pas passée");
+				}
+				
+
+				if(bll.getErrors().size() != 0)
+				{
+					throw bll;
+				}
+				
+				reservation = new Reservation(ReservationDateTime, "hold");
+				
+			
+				this.dao.insertReservation(reservation);
+					
+	
+				return reservation;
+				
+			}
+			catch(DALException error)
+			{
+				throw new BLLException("Echec de l'insertion de la réservation", error);
+				
+			}
+			catch(DateTimeParseException e)
+			{
+				bll.addError("dateTimeParse", "Mauvais formas de la date ou de l'heure");
+			}
+			
+			
 			
 		}
 		
+		if(bll.getErrors().size() != 0)
+		{
+			throw bll;
+		}
+			
 		
 		return reservation;
+		
 	}
 	
-	//----------------------------------------
+	
+	
+	//======================================
 	
 	public void update(User user) throws BLLException 
 	{
 		
-		BLLException bll = new BLLException ();
-		
+		BLLException bll = new BLLException();
 		User oldUser = this.selectById(user.getId());
 		
+		
 		//name
-		if(user.getName().isBlank() || user.getName() == null)
+		if(StringUtils.isBlank(user.getName()))		
 		{
 			user.setName(oldUser.getName());
 		}
+		else
+		{
+			if(user.getName().trim().length() > USER_NAME_MAX_LENGTH)
+			{
+				bll.addError("nameSize", "Votre prénom est trop long");
+						
+			}
+			
+			if(user.getName().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("nameSize", "Votre prénom est trop court");
+				
+			}
+			
+		}
 		
 		//lastname
-		if(user.getLastname().isBlank() || user.getLastname() == null )
+		if(StringUtils.isBlank(user.getLastname()))
 		{
 			user.setLastname(oldUser.getLastname());
 		}
+		else
+		{
+			if(user.getLastname().trim().length() > USER_LASTNAME_MAX_LENGTH)
+			{
+				bll.addError("lastnameSize", "Votre nom est trop long");
+						
+			}
+			
+			if(user.getLastname().trim().length() < MIN_LENGTH)
+			{
+				bll.addError("lastnameSize", "Votre nom est trop court");
+				
+			}
+			
+		}
 		
 		//email
-		if(user.getEmail().isBlank() || user.getEmail() == null)
+		if(StringUtils.isBlank(user.getEmail()))
 		{
 			user.setEmail(oldUser.getEmail());
 		}
@@ -383,23 +489,24 @@ public class UserBLL
 		{
 			if(user.getEmail().trim().length() > USER_EMAIL_MAX_LENGTH)
 			{
-				throw new BLLException("Email is too big", null);
+				bll.addError("emailSize", "Votre adresse mail est trop longue");
 						
 			}
 			
 			if(user.getEmail().trim().length() < MIN_LENGTH)
 			{
-				throw new BLLException("Email name is too small", null);
+				bll.addError("emailSize", "Votre adresse mail est trop courte");
 				
 			}
+			
 			if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
 			{
-				throw new BLLException("email is invalid", null);
-			}		
+				bll.addError("emailMatch", "Votre adresse est invalide");
+			}
 		}
 		
 		//password
-		if(user.getPassword().isBlank() || user.getPassword() == null)
+		if(StringUtils.isBlank(user.getPassword()))
 		{
 			user.setPassword(oldUser.getPassword());
 		}
@@ -407,25 +514,27 @@ public class UserBLL
 		{
 			if(user.getPassword().trim().length() > USER_PASSWORD_MAX_LENGTH)
 			{
-				throw new BLLException("Password is invalid", null);
+				bll.addError("password", "Mot de passe invalide");
 						
 			}
 			
 			if(user.getPassword().trim().length() < MIN_LENGTH)
 			{
-				throw new BLLException("Password is invalid", null);
+				bll.addError("password", "Mot de passe invalide");
 				
 			}
 			
 			if(!this.regexMatche(user.getPassword(), PASSWORD_REGEX))
 			{
-				throw new BLLException("Password is invalid", null);
+				bll.addError("password", "Mot de passe invalide");
 			}
-			
 		}
 		
 		
-		
+		if(bll.getErrors().size() != 0)
+		{
+			throw bll;
+		}
 			
 		
 		try 
@@ -532,13 +641,13 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	private void controleReservation(Reservation reservation, List<Schedule> schedules) throws BLLException
+	private void controleReservation(LocalDateTime reservationTime, List<Schedule> schedules, BLLException bll)
 	{
 		boolean include = false;
 		
 		for(Schedule schedule : schedules)
 		{
-			if(reservation.getReservationTime().toLocalTime().isAfter(schedule.getOpenHour()) && reservation.getReservationTime().toLocalTime().isBefore(schedule.getCloseHour()))
+			if(reservationTime.toLocalTime().isAfter(schedule.getOpenHour()) && reservationTime.toLocalTime().isBefore(schedule.getCloseHour()))
 			{
 				include = true;
 			}
@@ -547,7 +656,7 @@ public class UserBLL
 		
 		if(include != true)
 		{
-			throw new BLLException("Reservation time is invalide", null);
+			bll.addError("reservationTime", "Veuillez respectez le(s) creneau(x) horaire(s) du restaurant");
 		}
 			
 		

@@ -56,33 +56,28 @@ public class ServletUpdateUser extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
-		int id = ((User) request.getSession().getAttribute("user")).getId();
-		String name = request.getParameter("name");
-		String lastname = request.getParameter("lastname");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
 		
-		String role = ((User) request.getSession().getAttribute("user")).getRole();
+		User userToUpdate = ((User) request.getSession().getAttribute("user"));
 		
-		try {
-			User userToUpdate;
-			userToUpdate = userBLL.selectById(id);
-			userToUpdate.setName(name);
-			userToUpdate.setLastname(lastname);
-			userToUpdate.setEmail(email);
-			userToUpdate.setPassword(password);
-			userToUpdate.setRole(role);
+		userToUpdate.setName(request.getParameter("name"));
+		userToUpdate.setLastname(request.getParameter("lastname"));
+		userToUpdate.setEmail(request.getParameter("email"));
+		userToUpdate.setPassword(request.getParameter("password"));
+		
+		
+		try 
+		{
 			
 			userBLL.update(userToUpdate);
 			
 			request.getSession().setAttribute("user", userToUpdate);
 			
-			response.sendRedirect(request.getContextPath()+"user");
+			response.sendRedirect(request.getContextPath()+"/user");
 			
 		} 
 		catch (BLLException e) 
 		{
-			request.setAttribute("erreur", e);
+			request.setAttribute("errors", e.getErrors());
 			request.getRequestDispatcher("/WEB-INF/jsp/JSPUpdateUser.jsp").forward(request, response);
 		}
 	}

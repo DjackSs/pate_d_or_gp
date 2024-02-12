@@ -2,7 +2,6 @@ package bo;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,7 +20,7 @@ public class Reservation
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "reservation_time", nullable = false)
+	@Column(name = "reservation_time")
 	private LocalDateTime reservationTime;
 	private String state;
 	

@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.Id;	
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
@@ -19,34 +19,27 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name= "Restaurants")
-
-/*
 @NamedQueries
 ({
 	@NamedQuery
 	(
 		name = "findRestaurantWithReservation",
-		query = "select r from Restaurant r join RestaurantTable t on r.id = t.id_restaurant join Reservation x on t.id = x.id_table where x.id = :idReservation " 
-		//"select Restaurants.* from Restaurants inner join Tables on Restaurants.id = Tables.id_restaurant inner join Reservations on Tables.id = Reservations.id_table where Reservations.id = ?;"
+		query = "select r from Restaurant r inner join r.tables t where t.id = :idTable" 
+		//"select Restaurants.* from Restaurants inner join Tables on Restaurants.id = Tables.id_restaurant where Tables.id = ?;"
 	)
 })
-*/
 public class Restaurant 
 {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(length = 50, nullable = false)
 	private String name;
-	
-	@Column(length = 60, nullable = false)
 	private String address;
 	
-	@Column(name = "postal_code", nullable = false)
+	@Column(name = "postal_code")
 	private String postalCode;
 	
-	@Column(length = 40, nullable = false)
 	private String town;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

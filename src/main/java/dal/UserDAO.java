@@ -121,6 +121,7 @@ public class UserDAO implements UserDAOInterface<User>
 	
 	//----------------------------------------
 
+
 		public void insertMessage(Message message) throws DALException 
 		{
 

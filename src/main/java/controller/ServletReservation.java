@@ -2,10 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 import bll.BLLException;
 import bll.RestaurantBLL;
@@ -13,7 +10,6 @@ import bll.UserBLL;
 import bo.Reservation;
 import bo.Restaurant;
 import bo.RestaurantTable;
-import bo.Schedule;
 import bo.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -27,7 +23,7 @@ public class ServletReservation extends HttpServlet
 	private RestaurantBLL restaurantBll;
 	private UserBLL userBLL;
 	
-	private List<Schedule> schedules;
+	private Restaurant restaurant;
 	
 
 	@Override
@@ -38,7 +34,7 @@ public class ServletReservation extends HttpServlet
 		{
 			this.restaurantBll = new RestaurantBLL();
 			this.userBLL = new UserBLL();
-			this.schedules = new ArrayList<>();
+			this.restaurant = new Restaurant();
 			
 		} 
 		catch (BLLException e) 
@@ -59,10 +55,9 @@ public class ServletReservation extends HttpServlet
 		try 
 		{
 			
-			Restaurant restaurant = restaurantBll.selectById(idRestaurant);
-			this.schedules = restaurant.getSchedules();
+			this.restaurant = restaurantBll.selectById(idRestaurant);
 			
-			request.setAttribute("restaurant", restaurant);
+			request.setAttribute("restaurant", this.restaurant);
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
 			
 		} 
@@ -76,29 +71,22 @@ public class ServletReservation extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String redirectDestination = "reservationUser";
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation.jsp");
 		
 		if(!"none".equals(request.getParameter("tables")))
 		{
-			User userSession = (((User) request.getSession().getAttribute("user")));
+			User userSession = (User) request.getSession().getAttribute("user");
 			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-			
+
 			String dateReservationStr = request.getParameter("reservation-date");
-			String hourReservationStr = request.getParameter("reservation-hour");
-			String lunchReservationDateTimeStr = dateReservationStr + "T" + hourReservationStr + ":00";
-			
-			LocalDateTime lunchReservationDateTime = LocalDateTime.parse(lunchReservationDateTimeStr, formatter);
-			
-			
+			String hourReservationStr = request.getParameter("reservation-hour");			
+
 			RestaurantTable table = new RestaurantTable();
 			table.setId(Integer.parseInt(request.getParameter("tables")));
-		
-			Reservation newReservation = new Reservation(lunchReservationDateTime, "hold");
-			
+
 			try 
 			{
-				newReservation = this.userBLL.insertReservation(newReservation, this.schedules);
+				Reservation newReservation = this.userBLL.insertReservation(dateReservationStr, hourReservationStr, this.restaurant.getSchedules());
 				
 				newReservation.setTables(table);
 				
@@ -106,21 +94,41 @@ public class ServletReservation extends HttpServlet
 				
 				this.userBLL.update(userSession);
 				
-				redirectDestination = "/user";
+				response.sendRedirect(request.getContextPath()+"/user");
 				
 				
 			} 
 			catch (BLLException e) 
 			{
-				e.printStackTrace();
 				
-				redirectDestination = "/home";
+				LocalDate now = LocalDate.now();
+				String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+				
+				request.setAttribute("dateTimeInputMin", dateTimeInputMin);
+				request.setAttribute("restaurant", this.restaurant);
+				
+				request.setAttribute("errors", e.getErrors());
+				
+				rd.forward(request, response);
 			}
+			
+		}
+		else
+		{
+	
+			LocalDate now = LocalDate.now();
+			String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			
+			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
+			request.setAttribute("restaurant", this.restaurant);
+			
+			request.setAttribute("errorTable", "Choisissez une table à réserver" );
+			
+			rd.forward(request, response);
 			
 		}
 		
 		
-		response.sendRedirect(request.getContextPath()+redirectDestination);
 	
 			
 	}
