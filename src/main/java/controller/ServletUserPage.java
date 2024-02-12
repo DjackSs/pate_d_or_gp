@@ -48,7 +48,8 @@ public class ServletUserPage extends HttpServlet
 			
 			response.sendRedirect(request.getContextPath()+"/home");
 			
-		} else 
+		} 
+		else 
 		{
 			User user = (User) request.getSession().getAttribute("user");
 			
@@ -56,8 +57,8 @@ public class ServletUserPage extends HttpServlet
 			{
 				try
 				{
+					//get the restaurant of each reservations
 					Map<Integer,Restaurant> reservationRestaurants = new HashMap<>();
-					
 					
 					for(Reservation reservation : user.getReservations())
 					{
@@ -66,23 +67,24 @@ public class ServletUserPage extends HttpServlet
 					
 					request.setAttribute("restaurants", reservationRestaurants);
 					
+					//create VO for each reservations
+					List<ReservationVO> allResaVO = new ArrayList<>();
+					
+					for (Reservation resa: user.getReservations()) 
+					{
+						ReservationVO resaVO = new ReservationVO(resa);
+						allResaVO.add(resaVO);
+						
+					}
+						
+					request.setAttribute("reservationVO", allResaVO);
+					
 				}
 				catch(BLLException e)
 				{
 					e.printStackTrace();
 				}
 				
-			}
-			
-			User currentUser = (User) request.getSession().getAttribute("user");
-			
-			if (currentUser.getReservations().size() != 0 ) {
-				List<ReservationVO> allResaVO = new ArrayList<>();
-				for (Reservation resa: currentUser.getReservations()) {
-					ReservationVO resaVO = new ReservationVO(resa);
-					allResaVO.add(resaVO);
-				}
-				request.setAttribute("reservationVO", allResaVO);
 			}
 			
 			
