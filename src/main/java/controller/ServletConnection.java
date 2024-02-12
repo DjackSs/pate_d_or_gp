@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.time.format.DateTimeParseException;
 
 import bll.BLLException;
 import bll.UserBLL;
@@ -53,7 +52,6 @@ public class ServletConnection extends HttpServlet
 	{
 		User tryUser = new User(request.getParameter("email"),request.getParameter("password"));
 		
-		System.out.println(tryUser);
 		try 
 		{
 			

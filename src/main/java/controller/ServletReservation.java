@@ -22,7 +22,6 @@ public class ServletReservation extends HttpServlet
 	private static final long serialVersionUID = 1L;
 	private RestaurantBLL restaurantBll;
 	private UserBLL userBLL;
-	
 	private Restaurant restaurant;
 	
 
@@ -73,11 +72,16 @@ public class ServletReservation extends HttpServlet
 	{
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation.jsp");
 		
+		LocalDate now = LocalDate.now();
+		String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
+		request.setAttribute("dateTimeInputMin", dateTimeInputMin);
+		request.setAttribute("restaurant", this.restaurant);
+		
 		if(!"none".equals(request.getParameter("tables")))
 		{
 			User userSession = (User) request.getSession().getAttribute("user");
 			
-
 			String dateReservationStr = request.getParameter("reservation-date");
 			String hourReservationStr = request.getParameter("reservation-hour");			
 
@@ -86,12 +90,14 @@ public class ServletReservation extends HttpServlet
 
 			try 
 			{
+				//1 - create the reservation
 				Reservation newReservation = this.userBLL.insertReservation(dateReservationStr, hourReservationStr, this.restaurant.getSchedules());
 				
+				//2 - set up the object model
 				newReservation.setTables(table);
-				
 				userSession.addReservation(newReservation);
 				
+				//3 - update the database with the object model
 				this.userBLL.update(userSession);
 				
 				response.sendRedirect(request.getContextPath()+"/user");
@@ -100,13 +106,7 @@ public class ServletReservation extends HttpServlet
 			} 
 			catch (BLLException e) 
 			{
-				
-				LocalDate now = LocalDate.now();
-				String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-				
-				request.setAttribute("dateTimeInputMin", dateTimeInputMin);
-				request.setAttribute("restaurant", this.restaurant);
-				
+
 				request.setAttribute("errors", e.getErrors());
 				
 				rd.forward(request, response);
@@ -116,12 +116,6 @@ public class ServletReservation extends HttpServlet
 		else
 		{
 	
-			LocalDate now = LocalDate.now();
-			String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-			
-			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
-			request.setAttribute("restaurant", this.restaurant);
-			
 			request.setAttribute("errorTable", "Choisissez une table à réserver" );
 			
 			rd.forward(request, response);

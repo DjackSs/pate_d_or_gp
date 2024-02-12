@@ -41,7 +41,8 @@ public class ServletRestaurant extends HttpServlet
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPRestaurant.jsp");
 		
-		try {
+		try 
+		{
 			Restaurant restaurant = restaurantBll.selectById(id);
 			
 			Card restaurantCard = cardBll.selectById(restaurant.getCard().getId());
