@@ -43,6 +43,9 @@
 }
 
 /*********** GENERAL ***********/
+html {
+	scroll-behavior:smooth;
+}
 body {
 	background-color: #3d3a4b;
 	color: #f8f9fa;
