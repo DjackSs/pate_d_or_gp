@@ -19,7 +19,7 @@
     />
 <link href="./css/navbar.css" rel="stylesheet"><link>
 <link href="./css/footer.css" rel="stylesheet"><link>
-<link href="./css/home.css" rel="stylesheet"><link>
+<link href="./css/page404.css" rel="stylesheet"><link>
 </head>
 <body>
 
@@ -27,7 +27,12 @@
 	
 	<main>
 		
-		<h2>Perdus?</h2>
+		<section class="page404-section container">
+			<h1 class="playfair-font title-display-1">Oups !</h1>
+			<h3 class="beige-subtitle title-display-3">La page que vous recherchez semble introuvable.</h3>
+			<p>Code erreur : 404</p>
+			<a href="accueil">Retour à l'accueil</a>
+		</section>
 	
 	</main>
 
