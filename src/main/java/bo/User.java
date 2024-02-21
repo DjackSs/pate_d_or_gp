@@ -36,6 +36,8 @@ public class User
 	private String lastname;
 	private String email;
 	private String password;
+	private String token;
+	private String expirationTime;
 	private String role;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -156,18 +158,28 @@ public class User
 		this.reservations = reservations;
 	}
 
-	@Override
-	public String toString() 
-	{
-		return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", email=" + email + ", password="
-				+ password + ", role=" + role + ", messages=" + messages.size() + ", reservations=" + reservations.size() + "]";
+	public String getToken() {
+		return token;
 	}
-	
-	
 
-	
-	
-	
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getExpirationTime() {
+		return expirationTime;
+	}
+
+	public void setExpirationTime(String expirationTime) {
+		this.expirationTime = expirationTime;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", email=" + email + ", password="
+				+ password + ", token=" + token + ", expirationTime=" + expirationTime + ", role=" + role
+				+ ", messages=" + messages + ", reservations=" + reservations + "]";
+	}
 	
 	
 }

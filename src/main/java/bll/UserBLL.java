@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.apache.tomcat.jakartaee.commons.lang3.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import bo.Message;
 import bo.Reservation;
