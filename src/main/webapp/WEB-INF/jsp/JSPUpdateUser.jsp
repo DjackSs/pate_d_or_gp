@@ -56,10 +56,10 @@
 					<label>Email : </label>
 					<c:choose>
 						<c:when test="${errors.emailSize != null }">
-							<input type="email" name="email" id="name" placeholder="${errors.emailSize }">
+							<input type="email" name="email" id="email" placeholder="${errors.emailSize }">
 						</c:when>
 						<c:when test="${errors.emailMatch != null }">
-							<input type="email" name="name" id="email" placeholder="${errors.emailMatch }">
+							<input type="email" name="email" id="email" placeholder="${errors.emailMatch }">
 						</c:when>
 						<c:otherwise >
 							<input type="email" name="email" id="email" value="${user.email }" > 
