@@ -41,7 +41,7 @@ public class ServletUserPage extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
-		
+		// check if user is connected or not
 		if(request.getParameter("deco") != null) 
 		{
 			request.getSession().setAttribute("user", null);
