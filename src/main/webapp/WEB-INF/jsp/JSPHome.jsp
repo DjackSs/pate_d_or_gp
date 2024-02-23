@@ -33,7 +33,8 @@
 				<p class="beige-subtitle">Restaurants award 2023-2024</p>	
 				<h1 class="playfair-font title-display-1">La Pâte d'Or</h1>	
 				<p>Nos chefs attendent votre commande.</p>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis dicta cum exercitationem, illum minima cupiditate.</p>
+				<p>De la cuisine de rue aux étoiles :</p>
+				<p>Éveillez vos papilles et voyagez à travers les saveurs.</p>
 				<a href="#home-restaurant-section">Consultez nos restaurants</a>
 			</div>
 			
@@ -62,7 +63,8 @@
 						<div class="home-restaurant-card__body">
 							<h3 class="playfair-font title-display-3">${restaurant.name}</h3>
 							<p>(${restaurant.postalCode} ${restaurant.town.toLowerCase() })</p>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, cumque.</p>
+							<p>Succombez à la tentation d'une expérience culinaire hors du commun.
+							Un voyage gustatif raffiné, entre terre et mer.</p>
 						</div>
 					</div>
 				</c:forEach>
