@@ -108,10 +108,12 @@ label {
     margin-right: 5px;
 }
 
+/*
 input:not([type="submit"]) {
 	margin-right: 10px;
-}
-/******BOUTON VALIDATION RESA ************************/
+}*/
+
+/*********** RESA SECTION ***********/
 .form-resa-container > form {
 	font-size: calc(0.5rem + 0.5vw);
     display: flex;
@@ -120,7 +122,9 @@ input:not([type="submit"]) {
     align-items: center;
     gap: 1rem;
 }
-
+.form-resa-container > form input[type="date"] {
+	margin-right: 10px;
+}
 .form-resa-container > form  input:not([type="submit"]), .form-resa-container > form  select {
 	padding: 5px;
 	width: 100%;
@@ -153,7 +157,7 @@ input:not([type="submit"]) {
   	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
 }
 
-/******BOUTON MESSAGE ENVOYER ************************/
+/*********** MESSAGE SECTION ***********/
 .form-message-container > form {
     display: flex;
     flex-direction: column;
