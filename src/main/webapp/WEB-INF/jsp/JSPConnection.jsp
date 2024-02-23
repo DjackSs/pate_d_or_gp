@@ -40,16 +40,14 @@
 					<div>
 					
 						<label for="email">Email</label>
+						<input type="email" name="email" id="email" value="${tryUser.email }" > 
 						<c:choose>
 							<c:when test="${errors.emailSize != null }">
-								<input type="email" name="email" id="email" placeholder="${errors.emailSize }">
+								<span class="error-span">${errors.emailSize }</span>
 							</c:when>
 							<c:when test="${errors.emailMatch != null }">
-								<input type="email" name="email" id="email" placeholder="${errors.emailMatch }">
+								<span class="error-span">${errors.emailMatch }</span>
 							</c:when>
-							<c:otherwise >
-								<input type="email" name="email" id="email" value="${tryUser.email }" > 
-							</c:otherwise>	
 						</c:choose>
 						
 					</div>
@@ -57,15 +55,11 @@
 					<div>
 					
 						<label for="password">Mot de passe</label>
-						<c:choose>
-							<c:when test="${errors.password != null }">
-								<input type="password" name="password" id="password" placeholder="${errors.password }">
-							</c:when>
-							<c:otherwise >
-								<input type="password" name="password" id="password" > 
-							</c:otherwise>	
-						</c:choose>
+						<input type="password" name="password" id="password" > 
 						<i class="bi bi-eye-slash" id="togglePassword"></i>
+						<c:if test="${errors.password != null }">
+							<span class="error-span">${errors.password }</span>
+						</c:if>
 						
 					</div>
 					
