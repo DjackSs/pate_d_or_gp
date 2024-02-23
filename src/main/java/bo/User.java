@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +23,8 @@ import jakarta.persistence.Table;
 	@NamedQuery
 	(
 		name = "findUser",
-		query = "select u from User u where u.email like :email and u.password like :password" //"SELECT * FROM users WHERE Users.email = ? and Users.password = ?"
+		query = "select u from User u where u.email like :email and u.password like :password"
+				//"SELECT * FROM users WHERE Users.email = ? and Users.password = ?"
 		
 	)
 })
@@ -37,6 +39,8 @@ public class User
 	private String email;
 	private String password;
 	private String token;
+	
+	@Column(name = "expiration_time")
 	private String expirationTime;
 	private String role;
 	
