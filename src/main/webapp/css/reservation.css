@@ -63,6 +63,16 @@
 	color: #e74c3c;
 }
 
+
+.messageContent.textarea-style {
+	border: 2px solid #eeebd0;
+	margin: -1px;
+}
+.messageContent.error-border {
+	border: 2px solid #e74c3c;
+}
+
+
 /*********** GENERAL ***********/
 body {
 	background-color: #5d5872;
@@ -138,7 +148,7 @@ label {
 	color: #f1f1f1;
 	outline: none;
 }
-.form-resa-container > form  input:not([type="submit"]):focus, .form-resa-container > form  select:focus, .form-resa-container > form  textarea:focus {
+.form-resa-container > form  input:not([type="submit"]):focus, .form-resa-container > form  select:focus {
 	border: 2px solid #eeebd0;
 	margin: -1px;
 	

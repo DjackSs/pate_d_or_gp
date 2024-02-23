@@ -111,8 +111,6 @@ public class ServletReservation extends HttpServlet
 				String userMessageContentReservation = request.getParameter("reservation-message-content");
 				
 				String userMessageObjectReservation = dateReservationStr + " | " + userDefaultMessageObjectReservation;
-
-				System.out.println(userMessageContentReservation);
 				
 				if(!userMessageContentReservation.isBlank()) {
 					Message newReservationMessage = new Message(userMessageObjectReservation, userMessageContentReservation);

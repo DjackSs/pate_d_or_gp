@@ -100,11 +100,12 @@
 					    
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group display-flex-column">
 						<label for="reservation-message-object"></label>
 					    <input id="reservation-message-object" type="text" name="reservation-message-object" value="${defaultReservationObjectMessage }" hidden="true" />
 						<label for="reservation-message-content"></label>
 						<textarea id="reservation-message-content" class="messageContent" placeholder="Commentaires sur votre resérvation..." name="reservation-message-content" rows="5" cols="33"></textarea>
+						<span class="error-reservation-message-content error-span"></span>
 					</div>
 							
 				<input type="submit" class="form-submit" value="Valider"/>
@@ -116,5 +117,7 @@
 
 	</main>
 	<%@include file="../jspf/footer.jspf"%>
+	
+	<script type="text/javascript" src="./javascript/reservation.js"></script>
 </body>
 </html>
