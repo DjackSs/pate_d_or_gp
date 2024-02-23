@@ -36,6 +36,14 @@
 	margin-bottom: 1rem;
 }
 
+.error-span {
+	font-style: italic;
+	font-size: calc(0.5rem + 0.5vw);
+	font-weight: 500;
+	color: #e74c3c;
+}
+
+
 /*********** GENERAL ***********/
 body {
 	background-color: #5d5872;
