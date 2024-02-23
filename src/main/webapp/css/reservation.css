@@ -42,11 +42,25 @@
     align-items: center;
     gap: 2px;
 }
+.form-group.display-flex-column {
+	flex-direction: column;
+}
+
+.select-group {
+	display: flex;
+	align-items: center;
+}
 
 .input-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.error-span {
+	font-size: calc(0.5rem + 0.5vw);
+	font-weight: 500;
+	color: #e74c3c;
 }
 
 /*********** GENERAL ***********/
@@ -98,20 +112,10 @@ span {
 	font-style: italic;
 }
 
-.submit-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 label {
     margin-right: 5px;
 }
-
-/*
-input:not([type="submit"]) {
-	margin-right: 10px;
-}*/
 
 /*********** RESA SECTION ***********/
 .form-resa-container > form {
@@ -125,15 +129,16 @@ input:not([type="submit"]) {
 .form-resa-container > form input[type="date"] {
 	margin-right: 10px;
 }
-.form-resa-container > form  input:not([type="submit"]), .form-resa-container > form  select, .form-resa-container > form  textarea {
+.form-resa-container > form  input:not([type="submit"]), .form-resa-container > form  select, .form-resa-container > form textarea {
 	padding: 5px;
 	width: 100%;
+	font-size: calc(0.5rem + 0.5vw);
 	border: 1px solid #eeebd0;
 	background-color: #3d3a4b;
 	color: #f1f1f1;
 	outline: none;
 }
-.form-resa-container > form  input:not([type="submit"]):focus, .form-resa-container > form  select:focus {
+.form-resa-container > form  input:not([type="submit"]):focus, .form-resa-container > form  select:focus, .form-resa-container > form  textarea:focus {
 	border: 2px solid #eeebd0;
 	margin: -1px;
 	
@@ -157,47 +162,6 @@ input:not([type="submit"]) {
   	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
 }
 
-/*********** MESSAGE SECTION ***********/
-.form-message-container > form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-.form-message-container > form  input:not([type="submit"]), .form-message-container > form  textarea {
-	width: 100%;
-	padding: 5px;
-	font-size: calc(0.5rem + 0.5vw);
-	border: 1px solid #eeebd0;
-	background-color: #3d3a4b;
-	color: #f1f1f1;
-	outline: none;
-}
-.form-message-container > form  input:not([type="submit"]):focus, .form-message-container > form  textarea:focus {
-	border: 2px solid #eeebd0;
-	margin: -1px;
-	
-}
-.form-message-container > form  input[type="submit"] {
-	padding: 4px 8px;
-	cursor: pointer;
-	font-family: "Montserrat", sans-serif;
-	font-size: calc(0.5rem + 0.5vw);
-	font-weight: 500;
-	background-color: #eeebd0;
-	color: #111;
-	border-radius: 2px;
-	border: 1px solid rgba(61,58,75,0.5);
-	transform: translate(0);
-	transition: all 0.3s ease-in-out;
-}
-.form-message-container > form  input[type="submit"]:hover {
-	 transform: translate(-1px, -1px);
-  	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
-}
-
 /**********FOOTER*******************************/
 footer {
 	position: fixed;
@@ -205,5 +169,3 @@ footer {
     bottom: 0;
     margin-top: 30px;
 }
-
-/***********************************************/
