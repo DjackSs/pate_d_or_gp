@@ -4,9 +4,9 @@
 
 ## Description
 
-This is a Java Persistent Application (JPA) using the Hibernate framework to perform CRUD opperations on a database.
+This is a Java Persistent Application (JPA) that uses the Hibernate framework to perform CRUD operations on a database.
 
-This project is the second step in developing an application to manage a fictional restaurant chain called "Pate D'Or".
+This project is the second step in the development of an application to manage a fictional restaurant chain called "Pate D'Or".
 
 Information about the context can be found in the ./assets folder.
 
@@ -14,7 +14,7 @@ Information about the context can be found in the ./assets folder.
 
 * Java
 * Java Server page Standar Tag Library (JSTL)
-* Hibernate framwork
+* Hibernate framework
 
 ### Features
 
@@ -43,7 +43,7 @@ The ./BDD/ssms folder contains what is needed to connect to the database.
 - The create_bdd.sql file
 - The hibernate.cfg.xml file
 
-Run the create_bdd script and add the hibernate.cfg.xml to the ./src/main/java folder (Java Ressources).
+Run the create_bdd script and add hibernate.cfg.xml to ./src/main/java (Java Resources).
 
 #### mysql
 
@@ -54,23 +54,23 @@ The ./BDD/mysql folder contains what is needed to connect to the database:
 - The pom.xml file
 - The hibernate.cfg.xml file
 
-Run the create_bdd script and add the hibernate.cfg.xml to the ./src/main/java folder (Java Ressources). In addition, it is necessary to replace the pom.xml file in the root folder.
+Run the create_bdd script and add hibernate.cfg.xml to ./src/main/java (Java Resources). In addition, it is necessary to replace the pom.xml file in the root folder.
 
 ### ENV variable
 
 * Configure the hibernate.cfg.xml file
 
-Replace "user" and "password" by your credentials.
+Replace "user" and "password" with your credentials.
 
 ### Run the application
 
 #### Tomcat server
 
-This application run on a Tomcat server.
-The ./BDD/apach-tomcat folder contain what it is need to creat a server.
+This application runs on a Tomcat server.
+The ./BDD/apach-tomcat folder contains what is needed to create a server.
 
 - Eclipse IDE
- 
+
 1) Preferences/Server/Runtime Environements -> Add the ./BDD/apach-tomcat folder
 2) Add the library in the project Build Path as Server Runtime
 
