@@ -4,13 +4,13 @@ DROP TABLE IF EXISTS Orders_Dishes, Dishes, Orders, Messages, Schedules, Reserva
 
 -- Creation des Cards
 CREATE TABLE Cards (
-	id				INT				PRIMARY KEY auto_increment,
+	id				INT				PRIMARY KEY identity,
 	name			VARCHAR(30)		NOT NULL
 	
 );
 
 CREATE TABLE Restaurants (
-	id				INT				PRIMARY KEY auto_increment,
+	id				INT				PRIMARY KEY identity,
     name			VARCHAR(50)		NOT NULL,
     address			VARCHAR(60)		NOT NULL,
     postal_code     CHAR(5)         not null,
@@ -22,7 +22,7 @@ CREATE TABLE Restaurants (
 );
 
 CREATE TABLE Schedules (
-    id				    INT				    PRIMARY KEY auto_increment,
+    id				    INT				    PRIMARY KEY identity,
     open_hour		    time			not null,
     close_hour		    time			not null,
     id_restaurant		int			        null,
@@ -33,10 +33,10 @@ CREATE TABLE Schedules (
 );
 
 CREATE TABLE Tables (
-	id				INT				PRIMARY KEY auto_increment,
+	id				INT				PRIMARY KEY identity,
 	number_place	int		        NOT NULL,
     state           char(4)         null,
-	id_restaurant	INT				NOT NULL,
+	id_restaurant	INT				null,
 
     FOREIGN KEY (id_restaurant) REFERENCES Restaurants(id) on delete cascade,
     check(state in(null,'pres'))
@@ -45,19 +45,21 @@ CREATE TABLE Tables (
 );
 
 CREATE TABLE Users (
-	id				INT				PRIMARY KEY auto_increment,
+	id				INT				PRIMARY KEY identity,
     name            varchar(40)     not null,
     lastname        varchar(40)     not null,
     email           varchar(50)     not null,
     password        varchar(150)    not null,
-    role            char(4)         not null default 'cus',
+    token			varchar(255)	null,
+    expirationTime	datetime		null,
+    role            char(4)         not null default 'cust',
 
     check( role in('cust', 'admi', 'staf'))
 );
 
 
 CREATE TABLE Reservations (
-	id				    INT				PRIMARY KEY auto_increment,
+	id				    INT				PRIMARY KEY identity,
 	reservation_time    datetime        not null,
     state               char(4)         not null default 'hold',
     id_table            int             ,
@@ -70,7 +72,7 @@ CREATE TABLE Reservations (
 );
 
 CREATE TABLE Messages (
-	id				INT				PRIMARY KEY auto_increment,
+	id				INT				PRIMARY KEY identity,
 	object			VARCHAR(100)	not NULL,
     content         varchar(250)    not null,
 	id_user			int				,
@@ -80,7 +82,7 @@ CREATE TABLE Messages (
 
 
 CREATE TABLE Orders (
-	id				INT				PRIMARY KEY auto_increment,
+	id				INT				PRIMARY KEY identity,
 	state           char(4)         null,
     id_table        int             not null,
 
@@ -91,7 +93,7 @@ CREATE TABLE Orders (
 
 
 CREATE TABLE Dishes (
-	id				INT				PRIMARY KEY auto_increment,
+	id				INT				PRIMARY KEY identity,
 	name            varchar(40)     not null,
     price           decimal(5,2)    not null check(price > 0),
     description     varchar(250)    not null,
