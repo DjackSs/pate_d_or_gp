@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import bll.BLLException;
 import bll.RestaurantBLL;
 import bll.UserBLL;
+import bo.Message;
 import bo.Reservation;
 import bo.Restaurant;
 import bo.RestaurantTable;
@@ -44,6 +45,8 @@ public class ServletReservation extends HttpServlet
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{	
+		User userSession = (User) request.getSession().getAttribute("user");
+		
 		int idRestaurant = Integer.parseInt(request.getParameter("idRestaurant"));
 		
 		LocalDate now = LocalDate.now();
@@ -56,8 +59,11 @@ public class ServletReservation extends HttpServlet
 			
 			this.restaurant = restaurantBll.selectById(idRestaurant);
 			
+			String defaultUserObjectMessageReservation = userSession.getLastname() + " " + userSession.getName() + " | " + restaurantBll.selectById(idRestaurant).getName();
+			
 			request.setAttribute("restaurant", this.restaurant);
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
+			request.setAttribute("defaultReservationObjectMessage", defaultUserObjectMessageReservation);
 			
 		} 
 		catch (BLLException e) 
@@ -83,7 +89,7 @@ public class ServletReservation extends HttpServlet
 			User userSession = (User) request.getSession().getAttribute("user");
 			
 			String dateReservationStr = request.getParameter("reservation-date");
-			String hourReservationStr = request.getParameter("reservation-hour");			
+			String hourReservationStr = request.getParameter("reservation-hour");
 
 			RestaurantTable table = new RestaurantTable();
 			table.setId(Integer.parseInt(request.getParameter("tables")));
@@ -100,8 +106,21 @@ public class ServletReservation extends HttpServlet
 				//3 - update the database with the object model
 				this.userBLL.update(userSession);
 				
-				response.sendRedirect(request.getContextPath()+"/user");
+				//4 - Gestion de message additionnel à la réservation client
+				String userDefaultMessageObjectReservation = request.getParameter("reservation-message-object");
+				String userMessageContentReservation = request.getParameter("reservation-message-content");
 				
+				String userMessageObjectReservation = dateReservationStr + " | " + userDefaultMessageObjectReservation;
+
+				System.out.println(userMessageContentReservation);
+				
+				if(!userMessageContentReservation.isBlank()) {
+					Message newReservationMessage = new Message(userMessageObjectReservation, userMessageContentReservation);
+					newReservationMessage = userBLL.insertMessage(newReservationMessage);
+					userSession.addMessage(newReservationMessage);
+				}
+				
+				response.sendRedirect(request.getContextPath()+"/user");
 				
 			} 
 			catch (BLLException e) 

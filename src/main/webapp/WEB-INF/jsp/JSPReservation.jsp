@@ -54,76 +54,64 @@
 						</c:forEach>
 					</p>
 								
-					<div class="form-group">
-					
-						<c:if test="${errorTable != null}">
-							<p>${errorTable }</p>
-						</c:if>
+					<div class="form-group display-flex-column">
 						
-						
-						<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
-						<select id="table-select" name="tables" required>
-							<option value="none">Choisissez une table</option>
-							
-							<c:forEach var="current" items="${restaurant.tables }">
-							
-								<c:if test='${!current.state.equals("pres") }'>
-									<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
-								</c:if>
+						<div class="select-group">
+							<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
+							<select id="table-select" name="tables" required>
+								<option value="none">Choisissez une table</option>
 								
-							</c:forEach>
-							
-						</select>
+								<c:forEach var="current" items="${restaurant.tables }">
+								
+									<c:if test='${!current.state.equals("pres") }'>
+										<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
+									</c:if>
+									
+								</c:forEach>
+								
+							</select>
+						</div>
+						<c:if test="${errorTable != null}">
+							<span class="error-span">${errorTable }</span>
+						</c:if>
 					</div>
 								
-					<div class="form-group">
+					<div class="form-group display-flex-column">
 					
 					    <div class="input-group">
-					    
-					    	<c:if test="${errors.date != null || errors.dateDay != null}">
-					    		<p>${errors.date } ${errors.dateDay }</p>
-					    	</c:if>
-					    	
 					    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
-					        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />
-					        
-					        <c:if test="${errors.hour != null || errors.reservationTime != null}">
-					        	<p>${errors.hour } ${errors.reservationTime }</p>
-					        </c:if>
+					        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />					  
 					        
 					        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
 					        <input type="time" id="reservation-hour" name="reservation-hour"  />
-					        
 					    </div>
 					    
+					    <c:if test="${errors.hour != null || errors.reservationTime != null}">
+					        <span class="error-span">${errors.hour } ${errors.reservationTime }</span>
+					    </c:if>
+					    					    
+					    <c:if test="${errors.date != null || errors.dateDay != null}">
+					    	<span class="error-span">${errors.date } ${errors.dateDay }</span>
+					    </c:if>
+
 					    <c:if test="${errors.dateTimeParse != null}">
-					    	<p>${errors.dateTimeParse }</p>
+					    	<span class="error-span">${errors.dateTimeParse }</span>
 					    </c:if>
 					    
 					</div>
+					
+					<div class="form-group">
+						<label for="reservation-message-object"></label>
+					    <input id="reservation-message-object" type="text" name="reservation-message-object" value="${defaultReservationObjectMessage }" hidden="true" />
+						<label for="reservation-message-content"></label>
+						<textarea id="reservation-message-content" class="messageContent" placeholder="Commentaires sur votre resérvation..." name="reservation-message-content" rows="5" cols="33"></textarea>
+					</div>
 							
-		
-				
 				<input type="submit" class="form-submit" value="Valider"/>
 			
 			</form>
 		
 		</div>
-		</section>
-
-		<section class="form-message-container">
-		
-			<h2 class="title-display-2">Contactez-nous :</h2>
-
-			<form method="post" action="contact">
-					<input type="text" name="object" id="object" placeholder=" Objet">
-
-					<textarea class="messageContent" placeholder=" Message"
-						name="message" rows="5" cols="33"></textarea>
-
-					<input id="submitMessage" type="submit" value="Envoyer">
-			</form>
-			
 		</section>
 
 	</main>
