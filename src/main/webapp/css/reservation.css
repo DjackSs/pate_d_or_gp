@@ -125,7 +125,7 @@ input:not([type="submit"]) {
 .form-resa-container > form input[type="date"] {
 	margin-right: 10px;
 }
-.form-resa-container > form  input:not([type="submit"]), .form-resa-container > form  select {
+.form-resa-container > form  input:not([type="submit"]), .form-resa-container > form  select, .form-resa-container > form  textarea {
 	padding: 5px;
 	width: 100%;
 	border: 1px solid #eeebd0;

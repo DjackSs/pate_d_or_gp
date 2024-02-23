@@ -101,6 +101,13 @@
 					    </c:if>
 					    
 					</div>
+					
+					<div class="form-group">
+						<label for="reservation-message-object"></label>
+					    <input id="reservation-message-object" type="text" name="reservation-message-object" value="${defaultReservationObjectMessage }" hidden="true" />
+						<label for="reservation-message-content"></label>
+						<textarea id="reservation-message-content" class="messageContent" placeholder="Commentaires sur votre resérvation..." name="reservation-message-content" rows="5" cols="33"></textarea>
+					</div>
 							
 		
 				
@@ -109,21 +116,6 @@
 			</form>
 		
 		</div>
-		</section>
-
-		<section class="form-message-container">
-		
-			<h2 class="title-display-2">Contactez-nous :</h2>
-
-			<form method="post" action="contact">
-					<input type="text" name="object" id="object" placeholder=" Objet">
-
-					<textarea class="messageContent" placeholder=" Message"
-						name="message" rows="5" cols="33"></textarea>
-
-					<input id="submitMessage" type="submit" value="Envoyer">
-			</form>
-			
 		</section>
 
 	</main>
