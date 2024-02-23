@@ -6,25 +6,23 @@
 	
 		<div class="inputContainer">
 		
-			<c:choose>
-				<c:when test="${errors.messageObject != null }">
-					<input type="text" name="object" id="object" placeholder="${errors.messageObject }">
-				</c:when>
-				<c:otherwise >
-					<input type="text" name="object" id="object" placeholder="Objet..." value="${newMessage.object }" > 
-				</c:otherwise>	
-			</c:choose>
+			<div>
+				<label for="object" hidden="true"></label>
+				<input type="text" name="object" id="object" placeholder="Objet..." value="${newMessage.object }" > 
+				<c:if test="${errors.messageObject != null}">
+					<span class="error-span">${errors.messageObject }</span>
+				</c:if>
+			</div>
 			
-			<c:choose>
-				<c:when test="${errors.messageContent != null }">
-					<textarea  name="message" id="message" placeholder="${errors.messageContent }"></textarea>
-				</c:when>
-				<c:otherwise >
-					<textarea  name="message" id="message" placeholder="Message...">${newMessage.content }</textarea>
-				</c:otherwise>	
-			</c:choose>
-			
-			<input type="submit" value="Envoyer" class="button-30">
+			<div>
+				<label for="message" hidden="true"></label>
+				<textarea  name="message" id="message" placeholder="Message..." rows="5" cols="33">${newMessage.content }</textarea>
+				<c:if test="${errors.messageContent != null}">
+					<span class="error-span">${errors.messageContent }</span>
+				</c:if>
+			</div>
+					
+			<input type="submit" value="Envoyer">
 			
 		</div>
 		

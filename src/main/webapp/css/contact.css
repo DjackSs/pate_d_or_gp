@@ -1,11 +1,13 @@
 @charset "UTF-8";
 
+/*********** RESET ***********/
 *, ::before, ::after {
 	box-sizing: border-box;
 	margin:0;
 	padding: 0;
 }
 
+/*********** CUSTOM GENERIC CLASS ***********/
 .playfair-font {
   font-family: "Playfair Display", serif;
 }
@@ -16,27 +18,10 @@
     line-height: 1.2;
 }
 
-body {
-	background-color: #5d5872;
-	color: #f8f9fa;
-	font-family: "Montserrat", sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5;
-}
-
 .contact-section {
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
-h1 {
-	text-align: center;
-}
-
-.contact-section > form {
+	position: relative;
+	max-width: 450px;
+	margin: 0 auto;
 	padding: 1rem;
 }
 
@@ -47,8 +32,42 @@ h1 {
 	gap: 2rem;
 }
 
+.error-span {
+	font-style: italic;
+	font-size: calc(0.5rem + 0.5vw);
+	font-weight: 500;
+	color: #e74c3c;
+}
 
-input[type="text" i],
+
+/*********** GENERAL ***********/
+body {
+	background-color: #5d5872;
+	color: #f8f9fa;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+main {
+	width: 100%;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+h1 {
+	text-align: center;
+	width: max-content;
+}
+
+.contact-section > form {
+	margin-top: 1rem;
+}
+
+input[type="text"],
 textarea {
 	width: 100%;
 	background-color: #3d3a4b;
@@ -59,12 +78,14 @@ textarea {
 	font-size: calc(0.5rem + 0.5vw);
 }
 
-
-input[type="text" i]:focus, textarea:focus {
+input[type="text"]:focus, textarea:focus {
 	border: 2px solid #eeebd0;
 	margin: -1px;
 }
 
+.inputContainer > div {
+	width: 100%;
+}
 .inputContainer > input[type="submit"] {
 	margin-top: 10px;
 	padding: 4px 8px;
