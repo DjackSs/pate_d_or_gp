@@ -30,20 +30,6 @@
 		    <version>8.0.33</version>
 		</dependency>
 		
-		<!-- activation api -->
-		<dependency>
-			<groupId>jakarta.activation</groupId>
-			<artifactId>jakarta.activation-api</artifactId>
-			<version>2.1.2</version>
-		</dependency>
-		
-		<!-- jaxb api (jaxb core + jaxb impl) -->
-		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>4.0.1</version>
-		</dependency>
-		
 		<!-- jakarta jstl api -->
 		<dependency>
 			<groupId>jakarta.servlet.jsp.jstl</groupId>
