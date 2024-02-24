@@ -68,7 +68,7 @@ public class UserBLL
 			return users;
 			
 		} catch (DALException error) {
-			throw new BLLException("Echec de la recuperation des utilisateurs", error);
+			throw new BLLException("Echec de la récuperation des utilisateurs", error);
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class UserBLL
 			return user;
 			
 		} catch (DALException e) {
-			throw new BLLException("Echec de la recuperation de l'utilisateur d'id " + id, e);
+			throw new BLLException("Echec de la récuperation de l'utilisateur d'id " + id, e);
 		}
 	}
 	
@@ -316,13 +316,13 @@ public class UserBLL
 		{
 			if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
 			{
-				bll.addError("messageContent", "Le contenus de votre message est trop long");
+				bll.addError("messageContent", "Le contenu de votre message est trop long");
 						
 			}
 			
 			if(message.getContent().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("messageContent", "Le contenus de votre message est trop court");
+				bll.addError("messageContent", "Le contenu de votre message est trop court");
 				
 			}
 			
@@ -362,12 +362,12 @@ public class UserBLL
 		if(StringUtils.isBlank(date))
 		{
 			
-			bll.addError("date", "Veuillez saisir une date de reservation");
+			bll.addError("date", "Veuillez saisir une date de réservation");
 		}
 		
 		if(StringUtils.isBlank(time))
 		{
-			bll.addError("hour", "Veuillez saisir une heure de reservation");
+			bll.addError("hour", "Veuillez saisir une heure de réservation");
 		}
 		
 		

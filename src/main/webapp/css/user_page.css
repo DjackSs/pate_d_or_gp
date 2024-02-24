@@ -1,11 +1,14 @@
 @charset "UTF-8";
 
+/*********** RESET ***********/
 *, ::before, ::after {
 	box-sizing: border-box;
 	margin:0;
 	padding: 0;
 }
 
+
+/*********** CUSTOM GENERIC CLASS ***********/
 .playfair-font {
   font-family: "Playfair Display", serif;
 }
@@ -22,6 +25,8 @@
     line-height: 1.2;
 }
 
+
+/*********** GENERAL ***********/
 main {
 	padding-top: 55px;
 	margin-bottom: 1rem;
@@ -71,7 +76,9 @@ tr {
 td {
 	font-size: calc(0.6rem + 0.5vw);
 	padding: 5px;
-	text-align: center;
+	word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 td:nth-child(even) {
@@ -84,6 +91,10 @@ td > .user-resa__restaurant-link {
 	font-style: italic;
 	font-weight: 500;
 	font-family: "Playfair Display", serif;
+}
+
+.user-message-section td:nth-child(odd) {
+	color: #eeebd0;	
 }
 
 .link {
