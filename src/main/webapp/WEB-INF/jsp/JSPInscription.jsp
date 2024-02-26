@@ -44,7 +44,7 @@
 						
 					<label for="lastname">Nom</label>
 					<input type="text" name="lastname" id="lastname" value="${newUser.lastname }" > 
-					<c:if test="${errors.nameSize != null }">
+					<c:if test="${errors.lastnameSize != null }">
 						<span class="error-span">${errors.lastnameSize }</span>
 					</c:if>
 					
