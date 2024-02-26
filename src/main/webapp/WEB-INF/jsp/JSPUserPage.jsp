@@ -75,7 +75,15 @@
 											
 											<c:forEach var="reservationVO" items="${reservationVO }">
 												<c:if test="${reservation.id == reservationVO.id}">
-													<td>${reservationVO.reservationTime}</td>
+													<td>${reservationVO.reservationTime}
+														<i>
+															<c:choose>
+																<c:when test="${reservation.state == 'hold' }">validée</c:when>
+																<c:when test="${reservation.state == 'gran' }">en attente</c:when>
+																<c:when test="${reservation.state == 'deni' }">refusée</c:when>
+															</c:choose>
+														</i>
+													</td>
 												</c:if>
 											</c:forEach>
 										</tr>

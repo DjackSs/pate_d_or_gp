@@ -47,7 +47,7 @@ button {
 	padding: 5px;
 	margin-top: 5px;
 	cursor: pointer;
-	background-color: #383C40;
+	background-color: rgba(208, 130, 9, 0.8);
 	color: #f1f1f1;
     font-family: "Montserrat", sans-serif;
     border-radius: 2px;
@@ -92,7 +92,7 @@ td:nth-child(even) {
 }
 
 td > .user-resa__restaurant-link {
-	color: rgba(208, 130, 9, 0.8);;
+	color: rgba(208, 130, 9, 0.8);
 	text-decoration: none;
 	font-style: italic;
 	font-weight: 500;
@@ -129,7 +129,6 @@ td > .user-resa__restaurant-link {
 
 .pictureInfo {
 	padding: 1rem;
-    background-color: rgba(208, 130, 9, 0.8);;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -145,6 +144,7 @@ td > .user-resa__restaurant-link {
 
 .profilInfo > p  {
 	font-weight: 500;
+	color: rgba(208, 130, 9, 0.8);
 }
 .profilInfo > p > span {
 	font-style: italic;
@@ -162,6 +162,7 @@ td > .user-resa__restaurant-link {
 	border-radius: 50%;
 	border: 1px solid black;
 	object-fit: cover;
+	background-color: rgba(208, 130, 9, 0.8);
 }
 
 .align-i-h2 {
