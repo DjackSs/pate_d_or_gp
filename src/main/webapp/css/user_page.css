@@ -33,7 +33,7 @@ main {
 }
 
 body {
-	background-color: #5d5872;
+	background-color: #383C40;
 	color: #f8f9fa;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1rem;
@@ -47,7 +47,7 @@ button {
 	padding: 5px;
 	margin-top: 5px;
 	cursor: pointer;
-	background-color: #5d5872;
+	background-color: #383C40;
 	color: #f1f1f1;
     font-family: "Montserrat", sans-serif;
     border-radius: 2px;
@@ -87,7 +87,7 @@ td:nth-child(even) {
 }
 
 td > .user-resa__restaurant-link {
-	color: #eeebd0;
+	color: rgba(208, 130, 9, 0.8);;
 	text-decoration: none;
 	font-style: italic;
 	font-weight: 500;
@@ -95,7 +95,7 @@ td > .user-resa__restaurant-link {
 }
 
 .user-message-section td:nth-child(odd) {
-	color: #eeebd0;	
+	color: rgba(208, 130, 9, 0.8);;	
 }
 
 .link {
@@ -124,7 +124,7 @@ td > .user-resa__restaurant-link {
 
 .pictureInfo {
 	padding: 1rem;
-    background-color: #EEEbd0;
+    background-color: rgba(208, 130, 9, 0.8);;
     display: flex;
     align-items: center;
     gap: 1rem;

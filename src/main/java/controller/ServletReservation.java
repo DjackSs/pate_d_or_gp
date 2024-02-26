@@ -112,7 +112,7 @@ public class ServletReservation extends HttpServlet
 				LocalDate date = LocalDate.parse(dateTimeInputMin, formatter);
 				String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 				
-				String userMessageObjectReservation = formattedDate + " | " + userDefaultMessageObjectReservation;
+				String userMessageObjectReservation = dateReservationStr + " | " + userDefaultMessageObjectReservation;
 				
 				if(!userMessageContentReservation.isBlank()) {
 					Message newReservationMessage = new Message(userMessageObjectReservation, userMessageContentReservation);

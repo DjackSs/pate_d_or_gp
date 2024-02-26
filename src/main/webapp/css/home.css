@@ -38,7 +38,7 @@
 
 .beige-subtitle {
 	text-align: center;
-	color: #eeebd0;
+	color: rgba(208, 130, 9, 0.8);;
 	margin-bottom: 1rem;
 }
 
@@ -48,9 +48,9 @@ html {
 }
 
 body {
-	background-color: #3d3a4b;
+	background-color:#383C40;
 	color: #f8f9fa;
-	padding-top: 55px;
+	padding-top: 50px;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1rem;
 	font-weight: 400;
@@ -70,14 +70,48 @@ p {
 	font-size: calc(0.5rem + 0.5vw);
 }
 
-
 /*********** HOME HERO ***********/
 .home-hero-section {
- 	background-color: #3d3a4b;
 	padding: 6rem;
+ 	height: 75dvh; 
+  	width: 100%;
+  	position: relative;
+  	display: flex;
+    align-items: center;
+
  }
+ 
+ .home-hero-section > .container {
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+ }
+ 
+.home-hero-section .home-hero-section-img {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/banner-homepage.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.75;
+  top: 0;
+  left: 0;
+}
+
+.home-hero-section .home-hero-section-content {
+	position: relative;
+	width: 100%;
+	font-weight: 600;
+}
+
+ .home-hero-section p:nth-child(1) {
+	 margin-left: auto;
+ }
+
  .home-hero-section p:nth-child(3) {
-	 font-weight: lighter;
+	 font-weight: 300;
 	 margin-bottom: 1rem;
  }
  .home-hero-section p:nth-child(4) {
@@ -88,7 +122,7 @@ p {
 	 display: inline-block;
 	 width: max-content;
 	 text-decoration: none;
-	 background-color: #eeebd0;
+	 background-color: rgba(208, 130, 9, 0.8);;
 	 color: #000;
 	 margin-top: 1rem;
 	 padding: 4px 8px;
@@ -106,7 +140,7 @@ p {
  
  /*********** HOME RESTAURANT ***********/
 .home-restaurant-section {
-	background-color: #eeebd0;
+	background-color: rgba(208, 130, 9, 0.8);;
 	padding-bottom: 5rem;
 }
 
@@ -172,7 +206,7 @@ p {
 .home-restaurant-card .home-restaurant-card__body {
 	position: relative;
 	flex-grow: 1;
-	background-color: #5d5872;
+	background-color: #383C40;
 	color: #f8f9fa;
 	padding: 1rem;
 }
@@ -217,7 +251,7 @@ p {
   flex-basis: 70%;
   height: calc(18rem + 5vh);
   border: 1px solid rgba(238,235,208,0.5);
-  box-shadow: 1px 1px 4px #eeebd0;
+  box-shadow: 1px 1px 4px rgba(208, 130, 9, 0.8);;
 }
 
 .home-products-card .home-products-card__box-img {
@@ -240,7 +274,7 @@ p {
   flex-basis: 50%;
   max-width: 50%;
   padding: 4rem 1.4rem;
-  background-color: #eeebd0;
+  background-color: rgba(208, 130, 9, 0.8);;
   color: #111;
   overflow: hidden;
 }
@@ -267,7 +301,7 @@ p {
 }
 
 .home-products-card .home-products-card__body > p:last-child > span {
-  background-color: #5d5872;
+  background-color: #383C40;
   color: #f8f9fa;
   padding: 0.5rem;
   border-radius: 2px;

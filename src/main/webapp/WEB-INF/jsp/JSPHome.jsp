@@ -29,15 +29,16 @@
 	
 		<section class="home-hero-section">	
 		
-			<div class="container">			
-				<p class="beige-subtitle">Restaurants award 2023-2024</p>	
-				<h1 class="playfair-font title-display-1">La Pâte d'Or</h1>	
-				<p>Nos chefs attendent votre commande.</p>
-				<p>De la cuisine de rue aux étoiles :</p>
-				<p>Éveillez vos papilles et voyagez à travers les saveurs.</p>
-				<a href="#home-restaurant-section">Consultez nos restaurants</a>
+				<div class="home-hero-section-img"></div>
+			<div class="home-hero-section-content">
+				
+					<p class="beige-subtitle">Restaurants award 2023-2024</p>	
+					<h1 class="playfair-font title-display-1">La Pâte d'Or</h1>	
+					<p>Nos chefs attendent votre commande.</p>
+					<p>De la cuisine de rue aux étoiles :</p>
+					<p>Éveillez vos papilles et voyagez à travers les saveurs.</p>
+					<a href="#home-restaurant-section">Consultez nos restaurants</a>
 			</div>
-			
 		</section>
 	
 	

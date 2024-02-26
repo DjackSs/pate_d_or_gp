@@ -57,7 +57,7 @@
 					<div class="form-group display-flex-column">
 						
 						<div class="select-group">
-							<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
+							<label for="table-select"><i class="fa-solid fa-utensils" style="color: rgba(208, 130, 9, 0.8);;"></i></label> 
 							<select id="table-select" name="tables" required>
 								<option value="none">Choisissez une table</option>
 								
@@ -79,10 +79,10 @@
 					<div class="form-group display-flex-column">
 					
 					    <div class="input-group">
-					    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: #eeebd0;"></i></label>
+					    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: rgba(208, 130, 9, 0.8);;"></i></label>
 					        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />					  
 					        
-					        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: #eeebd0;"></i></label>
+					        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: rgba(208, 130, 9, 0.8);;"></i></label>
 					        <input type="time" id="reservation-hour" name="reservation-hour"  />
 					    </div>
 					    
