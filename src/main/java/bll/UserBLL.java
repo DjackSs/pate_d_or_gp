@@ -262,6 +262,15 @@ public class UserBLL
 			byte[] salt = this.getSalt(user.getEmail());
 			String hashedPassword = this.toHash(user.getPassword(), salt);
 			
+			
+			//gestion du doublon
+			if(this.selectByEmailAndPassword(hashedPassword, user.getEmail()) != null)
+			{
+				bll.addError("duplicate", "Un utilissateur possède déja ces inforamtions, changez votre adresse mail ou votre mot de passe");
+				throw bll;
+				
+			}
+			
 			user.setPassword(hashedPassword);
 			
 			
