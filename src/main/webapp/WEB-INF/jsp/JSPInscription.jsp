@@ -62,7 +62,10 @@
 					<label for="password">Mot de passe</label>
 					<input type="password" name="password" id="password" > 
 					<c:if test="${errors.password != null }">
-						<span class="error-span">${errors.password }</span>
+						<span class="error-span">${errors.password } ${errors.duplicate }</span>
+					</c:if>
+					<c:if test="${errors.duplicate != null }">
+						<span class="error-span">${errors.duplicate }</span>
 					</c:if>
 					
 					<input type="submit" value="Inscription">

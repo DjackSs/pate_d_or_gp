@@ -57,19 +57,17 @@ public class ServletUpdateUser extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
-		
-		User userToUpdate = ((User) request.getSession().getAttribute("user"));
-		
+		User userToUpdate = new User();
+		userToUpdate.setId(((User) request.getSession().getAttribute("user")).getId());
 		userToUpdate.setName(request.getParameter("name"));
 		userToUpdate.setLastname(request.getParameter("lastname"));
 		userToUpdate.setEmail(request.getParameter("email"));
 		userToUpdate.setPassword(request.getParameter("password"));
 		
-		
 		try 
 		{
 			
-			userBLL.update(userToUpdate);
+			userToUpdate = userBLL.update(userToUpdate);
 			
 			request.getSession().setAttribute("user", userToUpdate);
 			
@@ -78,6 +76,7 @@ public class ServletUpdateUser extends HttpServlet
 		} 
 		catch (BLLException e) 
 		{
+			
 			request.setAttribute("errors", e.getErrors());
 			request.getRequestDispatcher("/WEB-INF/jsp/JSPUpdateUser.jsp").forward(request, response);
 		}

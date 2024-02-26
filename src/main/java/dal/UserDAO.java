@@ -14,6 +14,7 @@ import bo.Message;
 import bo.Reservation;
 import bo.User;
 import dal.daointerface.UserDAOInterface;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.RollbackException;
 import jakarta.persistence.TypedQuery;
 
@@ -78,7 +79,7 @@ public class UserDAO implements UserDAOInterface<User>
 			
 			return user;
 		}
-		catch (jakarta.persistence.NoResultException e)
+		catch (NoResultException e)
 		{
 			session.close();
 			

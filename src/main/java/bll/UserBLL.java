@@ -148,6 +148,7 @@ public class UserBLL
 	{
 		BLLException bll = new BLLException ();
 		
+		
 		//name
 		if(!StringUtils.isBlank(user.getName()))
 		{
@@ -253,28 +254,35 @@ public class UserBLL
 			throw bll;
 		}
 		
+		
 		//role
 		user.setRole("cust");
 		
+		
+		
 		try 
 		{
-			//hashing the password
-			byte[] salt = this.getSalt(user.getEmail());
-			String hashedPassword = this.toHash(user.getPassword(), salt);
-			
-			
-			//gestion du doublon
-			if(this.selectByEmailAndPassword(hashedPassword, user.getEmail()) != null)
-			{
-				bll.addError("duplicate", "Un utilissateur possède déja ces inforamtions, changez votre adresse mail ou votre mot de passe");
-				throw bll;
+	
+				//hashing the password
+				byte[] salt = this.getSalt(user.getEmail());
+				String hashedPassword = this.toHash(user.getPassword(), salt);
 				
-			}
-			
-			user.setPassword(hashedPassword);
-			
-			
-			dao.insert(user);
+				//gestion du doublon
+				try
+				{
+					this.dao.selectByEmailAndPassword(user.getEmail(), hashedPassword);
+					bll.addError("duplicate", "Un utilisateur possède déja ces identifiants. Changer votre adresse mail ou votre mots de passe");
+					throw bll;
+				}
+				catch (DALException e)
+				{
+					user.setPassword(hashedPassword);	
+					dao.insert(user);
+					
+				}
+				
+	
+				
 			
 		} 
 		catch (DALException error) 
@@ -440,7 +448,7 @@ public class UserBLL
 	
 	//======================================
 	
-	public void update(User user) throws BLLException 
+	public User update(User user) throws BLLException 
 	{
 		
 		BLLException bll = new BLLException();
@@ -570,6 +578,10 @@ public class UserBLL
 		{
 			throw new BLLException("Echec du cryptage du mot de passe", e);
 		}
+		
+		this.erasePassword(user);
+		
+		return user;
 	}
 	
 	//----------------------------------------
