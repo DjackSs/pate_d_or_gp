@@ -79,6 +79,7 @@ td {
 	word-break: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 7rem;
 }
 
 td:nth-child(even) {

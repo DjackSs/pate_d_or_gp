@@ -59,7 +59,7 @@ public class ServletReservation extends HttpServlet
 			
 			this.restaurant = restaurantBll.selectById(idRestaurant);
 			
-			String defaultUserObjectMessageReservation = userSession.getLastname() + " " + userSession.getName() + " | " + restaurantBll.selectById(idRestaurant).getName();
+			String defaultUserObjectMessageReservation = restaurantBll.selectById(idRestaurant).getName();
 			
 			request.setAttribute("restaurant", this.restaurant);
 			request.setAttribute("dateTimeInputMin", dateTimeInputMin);
@@ -103,20 +103,25 @@ public class ServletReservation extends HttpServlet
 				newReservation.setTables(table);
 				userSession.addReservation(newReservation);
 				
-				//3 - update the database with the object model
-				this.userBLL.update(userSession);
 				
-				//4 - Gestion de message additionnel à la réservation client
+				//3 - Gestion de message additionnel à la réservation client
 				String userDefaultMessageObjectReservation = request.getParameter("reservation-message-object");
 				String userMessageContentReservation = request.getParameter("reservation-message-content");
 				
-				String userMessageObjectReservation = dateReservationStr + " | " + userDefaultMessageObjectReservation;
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				LocalDate date = LocalDate.parse(dateTimeInputMin, formatter);
+				String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				
+				String userMessageObjectReservation = formattedDate + " | " + userDefaultMessageObjectReservation;
 				
 				if(!userMessageContentReservation.isBlank()) {
 					Message newReservationMessage = new Message(userMessageObjectReservation, userMessageContentReservation);
 					newReservationMessage = userBLL.insertMessage(newReservationMessage);
 					userSession.addMessage(newReservationMessage);
 				}
+				
+				//4 - update the database with the object model
+				this.userBLL.update(userSession);
 				
 				response.sendRedirect(request.getContextPath()+"/user");
 				

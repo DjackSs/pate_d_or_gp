@@ -27,7 +27,7 @@
 				<div class="pictureInfo">
 					<div class="profilPicture">
 						<img id="imgProfil" alt="avatar_neutre"
-							src="././img/naruto-profil.webp">
+							src="././img/avatar-neutre-2.webp">
 					</div>
 					<div class="profilInfo">
 						<p><span>Prénom :</span> ${user.name }</p>
