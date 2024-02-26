@@ -102,11 +102,8 @@ public class ServletReservation extends HttpServlet
 				//2 - set up the object model
 				newReservation.setTables(table);
 				userSession.addReservation(newReservation);
-				
-				//3 - update the database with the object model
-				this.userBLL.update(userSession);
-				
-				//4 - Gestion de message additionnel à la réservation client
+					
+				//3 - Gestion de message additionnel à la réservation client
 				String userDefaultMessageObjectReservation = request.getParameter("reservation-message-object");
 				String userMessageContentReservation = request.getParameter("reservation-message-content");
 				
@@ -118,6 +115,8 @@ public class ServletReservation extends HttpServlet
 					userSession.addMessage(newReservationMessage);
 				}
 				
+				//4 - update the database with the object model
+				this.userBLL.update(userSession);
 				response.sendRedirect(request.getContextPath()+"/user");
 				
 			} 
