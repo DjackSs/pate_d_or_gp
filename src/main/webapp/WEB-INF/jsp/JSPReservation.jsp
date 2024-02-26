@@ -59,12 +59,12 @@
 						<div class="select-group">
 							<label for="table-select"><i class="fa-solid fa-utensils" style="color: #eeebd0;"></i></label> 
 							<select id="table-select" name="tables" required>
-								<option value="none">Choisissez une table</option>
+								<option value="none">Choisissez le nombre de couverts</option>
 								
 								<c:forEach var="current" items="${restaurant.tables }">
 								
 									<c:if test='${!current.state.equals("pres") }'>
-										<option value="${current.id }">Table n°${current.id } - ${current.numberPlace } couverts</option>
+										<option value="${current.id }">${current.numberPlace } couverts</option>
 									</c:if>
 									
 								</c:forEach>

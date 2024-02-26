@@ -141,7 +141,6 @@ label {
 }
 .form-resa-container > form  input:not([type="submit"]), .form-resa-container > form  select, .form-resa-container > form textarea {
 	padding: 5px;
-	width: 100%;
 	font-size: calc(0.5rem + 0.5vw);
 	border: 1px solid #eeebd0;
 	background-color: #3d3a4b;
@@ -165,7 +164,7 @@ label {
 	border: 1px solid rgba(61,58,75,0.5);
 	transform: translate(0);
 	transition: all 0.3s ease-in-out;
-	width: calc(4rem + 0.5vw);
+	font-size: calc(0.5rem + 0.5vw);
 }
 .form-resa-container > form  input[type="submit"]:hover {
 	 transform: translate(-1px, -1px);
