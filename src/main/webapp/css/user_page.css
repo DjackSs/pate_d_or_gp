@@ -70,7 +70,12 @@ h2, h3, table {
 }
 
 tr {
+	display: flex;
 	text-align: left;
+}
+
+td, th {
+	flex-basis: 50%;
 }
 
 td {
