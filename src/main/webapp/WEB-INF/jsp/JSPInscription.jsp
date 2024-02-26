@@ -37,48 +37,33 @@
 					<legend>Saisissez vos informations</legend>
 					
 					<label for="name">Prénom</label>
-					<c:choose>
-						<c:when test="${errors.nameSize != null }">
-							<input type="text" name="name" id="name" placeholder="${errors.nameSize }">
-						</c:when>
-						<c:otherwise >
-							<input type="text" name="name" id="name" value="${newUser.name }" > 
-						</c:otherwise>	
-					</c:choose>
+					<input type="text" name="name" id="name" value="${newUser.name }" > 
+					<c:if test="${errors.nameSize != null }">
+						<span class="error-span">${errors.nameSize }</span>
+					</c:if>
 						
 					<label for="lastname">Nom</label>
-					<c:choose>
-						<c:when test="${errors.lastnameSize != null }">
-							<input type="text" name="lastname" id="lastname" placeholder="${errors.lastnameSize }">
-						</c:when>
-						<c:otherwise >
-							<input type="text" name="lastname" id="lastname" value="${newUser.lastname }" > 
-						</c:otherwise>	
-					</c:choose>
+					<input type="text" name="lastname" id="lastname" value="${newUser.lastname }" > 
+					<c:if test="${errors.lastnameSize != null }">
+						<span class="error-span">${errors.lastnameSize }</span>
+					</c:if>
 					
 					<label for="email">Email</label>
+					<input type="email" name="email" id="email" value="${newUser.email }" > 
 					<c:choose>
 						<c:when test="${errors.emailSize != null }">
-							<input type="email" name="email" id="name" placeholder="${errors.emailSize }">
+							<span class="error-span">${errors.emailSize }</span>
 						</c:when>
 						<c:when test="${errors.emailMatch != null }">
-							<input type="email" name="name" id="email" placeholder="${errors.emailMatch }">
-						</c:when>
-						<c:otherwise >
-							<input type="email" name="email" id="email" value="${newUser.email }" > 
-						</c:otherwise>	
+							<span class="error-span">${errors.emailMatch }</span>
+						</c:when>	
 					</c:choose>
 					
 					<label for="password">Mot de passe</label>
-					<c:choose>
-						<c:when test="${errors.password != null }">
-							<input type="password" name="password" id="password" placeholder="${errors.password }">
-						</c:when>
-						<c:otherwise >
-							<input type="password" name="password" id="password" > 
-						</c:otherwise>	
-					</c:choose>
-					
+					<input type="password" name="password" id="password" > 
+					<c:if test="${errors.password != null }">
+						<span class="error-span">${errors.password }</span>
+					</c:if>
 					
 					<input type="submit" value="Inscription">
 				</fieldset>
