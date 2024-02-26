@@ -1,7 +1,7 @@
 /*********** FOOTER ***********/
 
 footer {
-  background-color: #3d3a4b;
+  background-color: #383C40;
   color: #f8f9fa;
   border-top: 1px solid #f8f9fa;
   padding: 1rem 0;
@@ -31,6 +31,6 @@ footer .footer-icons a {
 }
 
 footer .footer-icons a:hover {
-  color: #eeebd0;
+  color: rgba(208, 130, 9, 0.8);;
   transform: translate(-1px, -1px);
 }

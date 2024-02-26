@@ -32,7 +32,7 @@
 
 .beige-subtitle {
 	text-align: center;
-	color: #eeebd0;
+	color: rgba(208, 130, 9, 0.8);;
 	margin-bottom: 1rem;
 }
 
@@ -45,7 +45,7 @@
 
 /*********** GENERAL ***********/
 body {
-	background-color: #5d5872;
+	background-color: #383C40;
 	color: #f8f9fa;
 	padding-top: 55px;
 	font-family: "Montserrat", sans-serif;
@@ -94,20 +94,20 @@ h1, h2 {
 	padding: 0 10px;
 	text-align: center;
 	font-style: italic;
-	color: #eeebd0;
+	color: rgba(208, 130, 9, 0.8);;
 }
 .inscription-section-container > form  input:not([type="submit"]) {
 	padding: 5px;
 	width: 100%;
-	border: 1px solid #eeebd0;
-	background-color: #3d3a4b;
+	border: 1px solid rgba(208, 130, 9, 0.8);;
+	background-color: #383C40;
 	color: #f1f1f1;
 	outline: none;
 	font-size: calc(0.5rem + 0.5vw);
 	font-family: "Montserrat", sans-serif;
 }
 .inscription-section-container > form  input:not([type="submit"]):focus {
-	border: 2px solid #eeebd0;
+	border: 2px solid rgba(208, 130, 9, 0.8);;
 	margin: -1px;
 	
 }
@@ -118,7 +118,7 @@ h1, h2 {
 	font-family: "Montserrat", sans-serif;
 	font-size: calc(0.5rem + 0.5vw);
 	font-weight: 500;
-	background-color: #eeebd0;
+	background-color: rgba(208, 130, 9, 0.8);;
 	color: #111;
 	border-radius: 2px;
 	border: 1px solid rgba(61,58,75,0.5);
