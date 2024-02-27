@@ -252,17 +252,13 @@ public class UserBLL
 		if(bll.getErrors().size() != 0)
 		{
 			throw bll;
-		}
-		
+		}	
 		
 		//role
 		user.setRole("cust");
 		
-		
-		
 		try 
 		{
-	
 				//hashing the password
 				byte[] salt = this.getSalt(user.getEmail());
 				String hashedPassword = this.toHash(user.getPassword(), salt);
@@ -280,9 +276,7 @@ public class UserBLL
 					dao.insert(user);
 					
 				}
-				
 	
-				
 			
 		} 
 		catch (DALException error) 
