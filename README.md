@@ -8,7 +8,7 @@ This is a Java Persistent Application (JPA) that uses the Hibernate framework to
 
 This project is the second step in the development of an application to manage a fictional restaurant chain called "Pate D'Or".
 
-Informations about the context can be found [here](/assets/Expression_du_besoin.pdf) and [here](/assets/US_reservation.pdf).
+Informations about the overall [context](/assets/Expression_du_besoin.pdf) and [feature of the program](/assets/US_reservation.pdf) are available.
 
 ## Technologies
 
@@ -54,7 +54,7 @@ The [mysql folder](/BDD/mysql) contains what is needed to connect to the databas
 - [The pom.xml file](/BDD/mysql/pom.xml)
 - [The hibernate.cfg.xml file](/BDD/mysql/hibernate.cfg.xml)
 
-Run the create_bdd script and add hibernate.cfg.xml to [here](/src/main/java). In addition, it is necessary to replace the pom.xml file in the [root folder](/).
+Run the create_bdd script and add hibernate.cfg.xml [here](/src/main/java). In addition, it is necessary to replace the pom.xml file in the root folder.
 
 ### ENV variable
 
