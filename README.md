@@ -1,6 +1,6 @@
 # Projet Pate D'Or: Application grand public
 
-![Pate D'Or front](/assets/capture_front.png)
+![Pate D'Or front](/assets/Capture_front.png)
 
 ## Description
 
