@@ -173,10 +173,11 @@ label > i {
 	transition: all 0.3s ease-in-out;
 	font-size: calc(0.5rem + 0.5vw);
 }
-.form-resa-container > form  input[type="submit"]:hover {
+.form-resa-container > form  input[type="submit"]:hover, .form-resa-container > form  input[type="submit"]:focus-visible {
 	 transform: translate(-1px, -1px);
   	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
 }
+
 
 /**********FOOTER*******************************/
 footer {
