@@ -26,9 +26,9 @@ public class Schedule
 	
 	public Schedule() {}
 
-	public Schedule(LocalTime open_hour, LocalTime close_hour) {
-		this.openHour = open_hour;
-		this.closeHour = close_hour;
+	public Schedule(LocalTime openHour, LocalTime closeHour) {
+		this.openHour = openHour;
+		this.closeHour = closeHour;
 	}
 
 
