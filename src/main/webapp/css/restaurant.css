@@ -38,14 +38,14 @@
 
 .beige-subtitle {
 	text-align: center;
-	color: #eeebd0;
+	color: rgba(208, 130, 9, 0.8);;
 	margin-bottom: 1rem;
 }
 
 
 /*********** GENERAL ***********/
 body {
-	background-color: #5d5872;
+	background-color: #383C40;
 	color: #f8f9fa;
 	padding-top: 55px;
 	font-family: "Montserrat", sans-serif;
@@ -83,7 +83,7 @@ h3, h4 {
 .restaurant-content__img-box {
 	flex-basis: 50%;
 	border: 1px solid rgba(238,235,208,0.5);
-	box-shadow: 2px 2px 4px #eeebd0;
+	box-shadow: 2px 2px 4px rgba(208, 130, 9, 0.8);;
 }
 .restaurant-content__img-box > img {
 	width: 100%;
@@ -99,7 +99,7 @@ h3, h4 {
 	gap: 10px;
 	background-color: rgb(1, 1, 1,0.5);
 	border: 1px solid rgba(238,235,208,0.5);
-	box-shadow: 2px 2px 4px #eeebd0;
+	box-shadow: 2px 2px 4px rgba(208, 130, 9, 0.8);;
 }
 .restaurant-content__card-box > div > ul {
 	list-style-type: " - ";
@@ -122,7 +122,7 @@ h3, h4 {
 	color: #000;
 	display: inline-block;
 	text-decoration: none;
-	background-color: #eeebd0;
+	background-color: rgba(208, 130, 9, 0.8);;
 	padding: 4px 8px;
 	font-size: 1rem;
 	font-weight: 500;
@@ -146,12 +146,13 @@ h3, h4 {
 .restaurant-schedule-section > ul  {
 	list-style-type: none;
 	padding: 0 1rem;
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
+	width: 50%;
+	margin: auto;
 }
 .restaurant-schedule-section > ul > li  {
 	font-size: calc(0.8rem + 0.3vw);
+	display: flex;
+	justify-content: space-between;
 }
 .restaurant-schedule-section > ul > li > span {
 	font-weight: 500;
@@ -169,5 +170,11 @@ h3, h4 {
 	}
 	.restaurant-content__card-box > div > ul > li {
 		font-size: calc(1rem + 0.5vw);
+	}
+}
+
+@media screen and (max-width: 590px) {
+	.restaurant-schedule-section > ul  {
+		width: inherit;
 	}
 }
