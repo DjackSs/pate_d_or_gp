@@ -24,7 +24,7 @@ public class XssWrapper extends HttpServletRequestWrapper
 	{
 		String [] values = super.getParameterValues(parameter);
 		
-		if(values == null) return null;
+		if(values == null) return new String[0];
 		
 		int count = values.length;
 		
@@ -46,8 +46,8 @@ public class XssWrapper extends HttpServletRequestWrapper
 				value = pattern.matcher(value).replaceAll("");
 			}
 			
-			value = value.replaceAll( "<", "" );
-            value = value.replaceAll( ">", "" );
+			value = value.replace( "<", "" );
+            value = value.replace( ">", "" );
 			
 		}
 		

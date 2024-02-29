@@ -98,8 +98,7 @@ public class UserBLL
 			bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Veuillez saisir une adresse mail");
 		}
 		
-		
-		
+
 		//password
 		if(StringUtils.isBlank(password))
 		{
@@ -391,7 +390,6 @@ public class UserBLL
 				
 				if(!this.controleReservation(ReservationDateTime, schedules))
 				{
-					System.out.println("hello2");
 					bll.addError(bll.getRESERVATION_TIME_ERROR_KEY(), "Veuillez respectez le(s) creneau(x) horaire(s) du restaurant");
 				}
 					
@@ -499,6 +497,12 @@ public class UserBLL
 		}
 		else
 		{
+			if(StringUtils.isBlank(user.getPassword()) && !user.getEmail().equals(oldUser.getEmail()))
+			{
+				bll.addError(bll.getUSER_EMAIL_MATCH_ERROR_KEY(), "Entrez votre mot de passe pour modifier votre adresse mail");
+				
+			}
+			
 			if(user.getEmail().trim().length() > USER_EMAIL_MAX_LENGTH)
 			{
 				bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Votre adresse mail est trop longue");
@@ -553,12 +557,14 @@ public class UserBLL
 		{
 			if(!oldUser.getEmail().equals(user.getEmail()) || !user.getPassword().equals(oldUser.getPassword()))
 			{
+				
 				//hashing the password
 				byte[] salt = this.getSalt(user.getEmail());
 				String hashedPassword = this.toHash(user.getPassword(), salt);
 				
 				user.setPassword(hashedPassword);
 			}
+			
 			
 			dao.update(user);
 			
