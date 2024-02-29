@@ -76,6 +76,7 @@ public class ServletUserPage extends HttpServlet
 						allResaVO.add(resaVO);
 						
 					}
+					
 						
 					request.setAttribute("reservationVO", allResaVO);
 					
