@@ -63,7 +63,6 @@
 	color: #e74c3c;
 }
 
-
 .messageContent.textarea-style {
 	border: 2px solid rgba(208, 130, 9, 0.8);
 	margin: -1px;
@@ -130,8 +129,10 @@ label[for="reservation-message-content"] {
 	margin-right: 5px;
 }
 
-label > i {
+.form-group i {
 	color: rgba(208, 130, 9, 0.8);
+	font-size: calc(0.8rem + 0.5vw);
+	margin-right: 5px;
 }
 
 /*********** RESA SECTION ***********/
