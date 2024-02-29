@@ -1,6 +1,6 @@
 # Projet Pate D'Or: Application grand public
 
-![Pate D'Or front](/assets/capture_front.png)
+![Pate D'Or front](/assets/Capture_front.png)
 
 ## Description
 
@@ -8,7 +8,7 @@ This is a Java Persistent Application (JPA) that uses the Hibernate framework to
 
 This project is the second step in the development of an application to manage a fictional restaurant chain called "Pate D'Or".
 
-Information about the context can be found in the ./assets folder.
+Informations about the overall [context](/assets/Expression_du_besoin.pdf) and [feature of the program](/assets/US_reservation.pdf) are available.
 
 ## Technologies
 
@@ -38,23 +38,23 @@ This project uses a Relational DataBase Management System (RDBMS).
 #### SSMS
 
 By default, the project is run using SQL Server.
-The ./BDD/ssms folder contains what is needed to connect to the database.
+The [ssms folder](/BDD/ssms) contains what is needed to connect to the database.
 
-- The create_bdd.sql file
-- The hibernate.cfg.xml file
+- [The create_bdd.sql file](/BDD/ssms/creat_bdd.sql)
+- [The hibernate.cfg.xml file](/BDD/ssms/hibernate.cfg.xml)
 
-Run the create_bdd script and add hibernate.cfg.xml to ./src/main/java (Java Resources).
+Run the create_bdd script and add hibernate.cfg.xml [here](/src/main/java).
 
 #### mysql
 
 An alternative configuration is provided to make the project work with MySQL.
-The ./BDD/mysql folder contains what is needed to connect to the database:
+The [mysql folder](/BDD/mysql) contains what is needed to connect to the database:
 
-- The create_bdd_mysql.sql file
-- The pom.xml file
-- The hibernate.cfg.xml file
+- [The create_bdd_mysql.sql file](/BDD/mysql/creat_bdd_mysql.sql)
+- [The pom.xml file](/BDD/mysql/pom.xml)
+- [The hibernate.cfg.xml file](/BDD/mysql/hibernate.cfg.xml)
 
-Run the create_bdd script and add hibernate.cfg.xml to ./src/main/java (Java Resources). In addition, it is necessary to replace the pom.xml file in the root folder.
+Run the create_bdd script and add hibernate.cfg.xml [here](/src/main/java). In addition, it is necessary to replace the pom.xml file in the root folder.
 
 ### ENV variable
 
@@ -67,12 +67,12 @@ Replace "user" and "password" with your credentials.
 #### Tomcat server
 
 This application runs on a Tomcat server.
-The ./BDD/apach-tomcat folder contains what is needed to create a server.
+The [apach-tomcat folder](/BDD/apache-tomcat-10.1.18) contains what is needed to create a server.
 
 - Eclipse IDE
 
 1) Preferences/Server/Runtime Environements -> Add the ./BDD/apach-tomcat folder
 2) Add the library in the project Build Path as Server Runtime
 
-Run ./src/main/java/controller/ServletHome on the server.
+Run [ServletHome](/src/main/java/controller/ServletHome.java) on the server.
 
