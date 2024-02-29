@@ -38,7 +38,7 @@
 
 .beige-subtitle {
 	text-align: center;
-	color: rgba(208, 130, 9, 0.8);;
+	color: rgba(208, 130, 9, 1);;
 	margin-bottom: 1rem;
 }
 
@@ -92,7 +92,7 @@ p {
   text-align: center;
   width: 100%;
   height: 100%;
-  background-image: url("../img/banner-homepage.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../img/banner-homepage.jpg");
   background-size: cover;
   background-position: center;
   opacity: 0.75;
@@ -103,25 +103,24 @@ p {
 .home-hero-section .home-hero-section-content {
 	position: relative;
 	width: 100%;
-	font-weight: 600;
+	text-shadow:  1px 1px black;
 }
 
  .home-hero-section p:nth-child(1) {
+	 font-weight: 500;
 	 margin-left: auto;
  }
 
  .home-hero-section p:nth-child(3) {
-	 font-weight: 300;
+	 font-weight: 400;
+	 font-style: italic;
 	 margin-bottom: 1rem;
- }
- .home-hero-section p:nth-child(4) {
-	 max-width: 50vw;
-	 max-height: 10vh;
  }
  .home-hero-section a {
 	 display: inline-block;
 	 width: max-content;
 	 text-decoration: none;
+	 text-shadow: none;
 	 background-color: rgba(208, 130, 9, 0.8);;
 	 color: #000;
 	 margin-top: 1rem;
@@ -145,6 +144,8 @@ p {
 }
 
 .home-restaurant-section > p {
+	font-weight: 500;
+	font-style: italic;
 	text-align: center;
 	color : #3d3a4b;
 }
@@ -217,6 +218,7 @@ p {
  
 .home-restaurant-card .home-restaurant-card__body > p:nth-child(2) {
 	font-size: 0.8rem;
+	font-style: italic;
 	text-transform: capitalize;
 	margin-bottom: 0.25rem;
 } 
@@ -233,6 +235,7 @@ p {
 }
 
 .home-products-section > p:nth-child(2) {
+	font-style: italic;
 	margin-bottom: 0.25rem;
 	text-align: center;
 	color : #f8f9fa;
