@@ -78,10 +78,7 @@ public class UserBLL
 	{
 		try 
 		{
-			User user = dao.selectById(id);
-			//need the password in updateUser
-			//this.erasePassword(user);
-			return user;
+			return dao.selectById(id);
 			
 		} catch (DALException e) {
 			throw new BLLException("Echec de la récuperation de l'utilisateur d'id " + id, e);
@@ -98,7 +95,7 @@ public class UserBLL
 		//email
 		if(StringUtils.isBlank(email))
 		{
-			bll.addError("emailSize", "Veuillez saisir une adresse mail");
+			bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Veuillez saisir une adresse mail");
 		}
 		
 		
@@ -106,7 +103,7 @@ public class UserBLL
 		//password
 		if(StringUtils.isBlank(password))
 		{
-			bll.addError("password", "Mot de passe invalide");
+			bll.addError(bll.getUSER_PASSWORD_ERROR_KEY(), "Mot de passe invalide");
 				
 		}
 		
@@ -154,20 +151,20 @@ public class UserBLL
 		{
 			if(user.getName().trim().length() > USER_NAME_MAX_LENGTH)
 			{
-				bll.addError("nameSize", "Votre prénom est trop long");
+				bll.addError(bll.getUSER_NAME_SIZE_ERROR_KEY(), "Votre prénom est trop long");
 						
 			}
 			
 			if(user.getName().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("nameSize", "Votre prénom est trop court");
+				bll.addError(bll.getUSER_NAME_SIZE_ERROR_KEY(), "Votre prénom est trop court");
 				
 			}
 			
 		}
 		else
 		{
-			bll.addError("nameSize", "Veuillez saisir un prénom");
+			bll.addError(bll.getUSER_NAME_SIZE_ERROR_KEY(), "Veuillez saisir un prénom");
 		}
 		
 		
@@ -176,20 +173,20 @@ public class UserBLL
 		{
 			if(user.getLastname().trim().length() > USER_LASTNAME_MAX_LENGTH)
 			{
-				bll.addError("lastnameSize", "Votre nom est trop long");
+				bll.addError(bll.getUSER_LASTNAME_SIZE_ERROR_KEY(), "Votre nom est trop long");
 						
 			}
 			
 			if(user.getLastname().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("lastnameSize", "Votre nom est trop court");
+				bll.addError(bll.getUSER_LASTNAME_SIZE_ERROR_KEY(), "Votre nom est trop court");
 				
 			}
 			
 		}
 		else
 		{
-			bll.addError("lastnameSize", "Veuillez saisir un nom");
+			bll.addError(bll.getUSER_LASTNAME_SIZE_ERROR_KEY(), "Veuillez saisir un nom");
 		}
 		
 		
@@ -199,25 +196,25 @@ public class UserBLL
 		{
 			if(user.getEmail().trim().length() > USER_EMAIL_MAX_LENGTH)
 			{
-				bll.addError("emailSize", "Votre adresse mail est trop longue");
+				bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Votre adresse mail est trop longue");
 						
 			}
 			
 			if(user.getEmail().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("emailSize", "Votre adresse mail est trop courte");
+				bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Votre adresse mail est trop courte");
 				
 			}
 			
 			if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
 			{
-				bll.addError("emailMatch", "Votre adresse est invalide");
+				bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Votre adresse est invalide");
 			}
 			
 		}
 		else
 		{
-			bll.addError("emailSize", "Veuillez saisir une adresse mail");
+			bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Veuillez saisir une adresse mail");
 		}
 		
 		
@@ -226,25 +223,25 @@ public class UserBLL
 		{
 			if(user.getPassword().trim().length() > USER_PASSWORD_MAX_LENGTH)
 			{
-				bll.addError("password", "Mot de passe invalide");
+				bll.addError(bll.getUSER_PASSWORD_ERROR_KEY(), "Mot de passe invalide");
 						
 			}
 			
 			if(user.getPassword().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("password", "Mot de passe invalide");
+				bll.addError(bll.getUSER_PASSWORD_ERROR_KEY(), "Mot de passe invalide");
 				
 			}
 			
 			if(!this.regexMatche(user.getPassword(), PASSWORD_REGEX))
 			{
-				bll.addError("password", "Mot de passe invalide");
+				bll.addError(bll.getUSER_PASSWORD_ERROR_KEY(), "Mot de passe invalide");
 			}
 				
 		}
 		else
 		{
-			bll.addError("password", "Mot de passe invalide");
+			bll.addError(bll.getUSER_PASSWORD_ERROR_KEY(), "Mot de passe invalide");
 			
 		}
 		
@@ -267,7 +264,7 @@ public class UserBLL
 				try
 				{
 					this.dao.selectByEmailAndPassword(user.getEmail(), hashedPassword);
-					bll.addError("duplicate", "Un utilisateur possède déja ces identifiants. Changer votre adresse mail ou votre mots de passe");
+					bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Un utilisateur possède déja ces identifiants. Changer votre adresse mail ou votre mots de passe");
 					throw bll;
 				}
 				catch (DALException e)
@@ -304,19 +301,19 @@ public class UserBLL
 		{
 			if(message.getObject().trim().length() > MESSAGE_OBJECT_MAX_LENGTH)
 			{
-				bll.addError("messageObject", "L'objet de votre message est trop long");
+				bll.addError(bll.getMESSAGE_OBJECT_ERROR_KEY(), "L'objet de votre message est trop long");
 						
 			}
 			
 			if(message.getObject().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("messageObject", "L'objet de votre message est trop court");
+				bll.addError(bll.getMESSAGE_OBJECT_ERROR_KEY(), "L'objet de votre message est trop court");
 				
 			}
 		}
 		else
 		{
-			bll.addError("messageObject", "Veuillez saisir un objet pour votre message");
+			bll.addError(bll.getMESSAGE_OBJECT_ERROR_KEY(), "Veuillez saisir un objet pour votre message");
 			
 		}
 		
@@ -327,20 +324,20 @@ public class UserBLL
 		{
 			if(message.getContent().trim().length() > MESSAGE_CONTENT_MAX_LENGTH)
 			{
-				bll.addError("messageContent", "Le contenu de votre message est trop long");
+				bll.addError(bll.getMESSAGE_CONTENT_ERROR_KEY(), "Le contenu de votre message est trop long");
 						
 			}
 			
 			if(message.getContent().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("messageContent", "Le contenu de votre message est trop court");
+				bll.addError(bll.getMESSAGE_CONTENT_ERROR_KEY(), "Le contenu de votre message est trop court");
 				
 			}
 			
 		}
 		else
 		{
-			bll.addError("messageContent", "Veuillez saisir un contenu pour votre message");
+			bll.addError(bll.getMESSAGE_CONTENT_ERROR_KEY(), "Veuillez saisir un contenu pour votre message");
 		}
 		
 		
@@ -373,12 +370,12 @@ public class UserBLL
 		if(StringUtils.isBlank(date))
 		{
 			
-			bll.addError("date", "Veuillez saisir une date de réservation");
+			bll.addError(bll.getRESERVATION_DATE_ERROR_KEY(), "Veuillez saisir une date de réservation");
 		}
 		
 		if(StringUtils.isBlank(time))
 		{
-			bll.addError("hour", "Veuillez saisir une heure de réservation");
+			bll.addError(bll.getRESERVATION_HOUR_ERROR_KEY(), "Veuillez saisir une heure de réservation");
 		}
 		
 		
@@ -386,17 +383,21 @@ public class UserBLL
 		{
 			
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-				String ReservationDateTimeStr = date + "T" + time + ":00";
+				String ReservationDateTimeString = date + "T" + time + ":00";
 				
 			try
 			{
-				LocalDateTime ReservationDateTime = LocalDateTime.parse(ReservationDateTimeStr, formatter);
+				LocalDateTime ReservationDateTime = LocalDateTime.parse(ReservationDateTimeString, formatter);
 				
-				this.controleReservation(ReservationDateTime, schedules, bll);
+				if(!this.controleReservation(ReservationDateTime, schedules))
+				{
+					System.out.println("hello2");
+					bll.addError(bll.getRESERVATION_TIME_ERROR_KEY(), "Veuillez respectez le(s) creneau(x) horaire(s) du restaurant");
+				}
 					
 				if(ReservationDateTime.toLocalDate().isBefore(LocalDate.now()))
 				{
-					bll.addError("dateDay", "Veuillez choisir une date qui n'est pas passée");
+					bll.addError(bll.getRESERVATION_DAY_ERROR_KEY(), "Veuillez choisir une date qui n'est pas passée");
 				}
 				
 
@@ -421,7 +422,7 @@ public class UserBLL
 			}
 			catch(DateTimeParseException e)
 			{
-				bll.addError("dateTimeParse", "Mauvais formas de la date ou de l'heure");
+				bll.addError(bll.getRESERVATION_PARSE_ERROR_KEY(), "Mauvais formas de la date ou de l'heure");
 			}
 			
 			
@@ -458,13 +459,13 @@ public class UserBLL
 		{
 			if(user.getName().trim().length() > USER_NAME_MAX_LENGTH)
 			{
-				bll.addError("nameSize", "Votre prénom est trop long");
+				bll.addError(bll.getUSER_NAME_SIZE_ERROR_KEY(), "Votre prénom est trop long");
 						
 			}
 			
 			if(user.getName().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("nameSize", "Votre prénom est trop court");
+				bll.addError(bll.getUSER_NAME_SIZE_ERROR_KEY(), "Votre prénom est trop court");
 				
 			}
 			
@@ -479,13 +480,13 @@ public class UserBLL
 		{
 			if(user.getLastname().trim().length() > USER_LASTNAME_MAX_LENGTH)
 			{
-				bll.addError("lastnameSize", "Votre nom est trop long");
+				bll.addError(bll.getUSER_LASTNAME_SIZE_ERROR_KEY(), "Votre nom est trop long");
 						
 			}
 			
 			if(user.getLastname().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("lastnameSize", "Votre nom est trop court");
+				bll.addError(bll.getUSER_LASTNAME_SIZE_ERROR_KEY(), "Votre nom est trop court");
 				
 			}
 			
@@ -500,19 +501,19 @@ public class UserBLL
 		{
 			if(user.getEmail().trim().length() > USER_EMAIL_MAX_LENGTH)
 			{
-				bll.addError("emailSize", "Votre adresse mail est trop longue");
+				bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Votre adresse mail est trop longue");
 						
 			}
 			
 			if(user.getEmail().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("emailSize", "Votre adresse mail est trop courte");
+				bll.addError(bll.getUSER_EMAIL_SIZE_ERROR_KEY(), "Votre adresse mail est trop courte");
 				
 			}
 			
 			if(!this.regexMatche(user.getEmail(), EMAIL_REGEX))
 			{
-				bll.addError("emailMatch", "Votre adresse est invalide");
+				bll.addError(bll.getUSER_EMAIL_MATCH_ERROR_KEY(), "Votre adresse est invalide");
 			}
 		}
 		
@@ -525,19 +526,19 @@ public class UserBLL
 		{
 			if(user.getPassword().trim().length() > USER_PASSWORD_MAX_LENGTH)
 			{
-				bll.addError("password", "Mot de passe invalide");
+				bll.addError(bll.getUSER_PASSWORD_ERROR_KEY(), "Mot de passe invalide");
 						
 			}
 			
 			if(user.getPassword().trim().length() < MIN_LENGTH)
 			{
-				bll.addError("password", "Mot de passe invalide");
+				bll.addError(bll.getUSER_PASSWORD_ERROR_KEY(), "Mot de passe invalide");
 				
 			}
 			
 			if(!this.regexMatche(user.getPassword(), PASSWORD_REGEX))
 			{
-				bll.addError("password", "Mot de passe invalide");
+				bll.addError(bll.getUSER_PASSWORD_ERROR_KEY(), "Mot de passe invalide");
 			}
 		}
 		
@@ -605,12 +606,7 @@ public class UserBLL
 	//salt generator with a key
 	private byte[] getSalt(String key)
 	{
-		//SecureRandom rand = new SecureRandom();
-		byte[] salt = key.getBytes();
-		//rand.nextBytes(salt);
-		
-		return salt;
-		
+		return key.getBytes();
 	}
 	
 	//----------------------------------------
@@ -656,7 +652,7 @@ public class UserBLL
 	
 	//----------------------------------------
 	
-	private void controleReservation(LocalDateTime reservationTime, List<Schedule> schedules, BLLException bll)
+	private boolean controleReservation(LocalDateTime reservationTime, List<Schedule> schedules)
 	{
 		boolean include = false;
 		
@@ -669,11 +665,7 @@ public class UserBLL
 			
 		}
 		
-		if(include != true)
-		{
-			bll.addError("reservationTime", "Veuillez respectez le(s) creneau(x) horaire(s) du restaurant");
-		}
+		return include;
 			
-		
 	}
 }
