@@ -8,23 +8,23 @@ public class BLLException extends Exception
 	private static final long serialVersionUID = -8402728185430838053L;
 	
 	//user error keys
-	private final String USER_EMAIL_SIZE_ERROR_KEY = "emailSize";
-	private final String USER_EMAIL_MATCH_ERROR_KEY = "emailMatch";
-	private final String USER_PASSWORD_ERROR_KEY = "password";
-	private final String USER_NAME_SIZE_ERROR_KEY = "nameSize";
-	private final String USER_LASTNAME_SIZE_ERROR_KEY = "lastnameSize";
-	private final String USER_DUPLICATE_ERROR_KEY = "duplicate";
+	private static final String USER_EMAIL_SIZE_ERROR_KEY = "emailSize";
+	private static final String USER_EMAIL_MATCH_ERROR_KEY = "emailMatch";
+	private static final String USER_PASSWORD_ERROR_KEY = "password";
+	private static final String USER_NAME_SIZE_ERROR_KEY = "nameSize";
+	private static final String USER_LASTNAME_SIZE_ERROR_KEY = "lastnameSize";
+	private static final String USER_DUPLICATE_ERROR_KEY = "duplicate";
 	
 	//messsage error keys
-	private final String MESSAGE_OBJECT_ERROR_KEY = "messageObject";
-	private final String MESSAGE_CONTENT_ERROR_KEY = "messageContent";
+	private static final String MESSAGE_OBJECT_ERROR_KEY = "messageObject";
+	private static final String MESSAGE_CONTENT_ERROR_KEY = "messageContent";
 	
 	//reservation error key
-	private final String RESERVATION_DATE_ERROR_KEY = "date";
-	private final String RESERVATION_HOUR_ERROR_KEY = "hour";
-	private final String RESERVATION_DAY_ERROR_KEY = "dateDay";
-	private final String RESERVATION_PARSE_ERROR_KEY = "dateTimeParse";
-	private final String RESERVATION_TIME_ERROR_KEY = "reservationTime";
+	private static final String RESERVATION_DATE_ERROR_KEY = "date";
+	private static final String RESERVATION_HOUR_ERROR_KEY = "hour";
+	private static final String RESERVATION_DAY_ERROR_KEY = "dateDay";
+	private static final String RESERVATION_PARSE_ERROR_KEY = "dateTimeParse";
+	private static final String RESERVATION_TIME_ERROR_KEY = "reservationTime";
   
 	private final Map<String, String> errors;
 	
@@ -81,8 +81,6 @@ public class BLLException extends Exception
 		return USER_LASTNAME_SIZE_ERROR_KEY;
 	}
 	
-	
-
 	public String getUSER_DUPLICATE_ERROR_KEY() {
 		return USER_DUPLICATE_ERROR_KEY;
 	}
