@@ -9,9 +9,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserBLLTest {
-
+	private static UserBLL userBLL;
+	
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		userBLL = new UserBLL();
 	}
 
 	@AfterAll
@@ -27,7 +30,7 @@ class UserBLLTest {
 	}
 
 	@Test
-	void test() {
+	void selectByEmailAndPassword__() {
 		fail("Not yet implemented");
 	}
 
