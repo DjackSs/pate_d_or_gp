@@ -557,7 +557,6 @@ public class UserBLL
 		{
 			if(!oldUser.getEmail().equals(user.getEmail()) || !user.getPassword().equals(oldUser.getPassword()))
 			{
-				
 				//hashing the password
 				byte[] salt = this.getSalt(user.getEmail());
 				String hashedPassword = this.toHash(user.getPassword(), salt);
