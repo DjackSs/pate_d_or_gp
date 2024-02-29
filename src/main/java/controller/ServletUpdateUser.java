@@ -63,6 +63,7 @@ public class ServletUpdateUser extends HttpServlet
 		userToUpdate.setLastname(request.getParameter("lastname"));
 		userToUpdate.setEmail(request.getParameter("email"));
 		userToUpdate.setPassword(request.getParameter("password"));
+		userToUpdate.setRole(((User) request.getSession().getAttribute("user")).getRole());
 		
 		try 
 		{

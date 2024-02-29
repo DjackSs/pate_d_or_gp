@@ -57,19 +57,21 @@
 					<div class="form-group display-flex-column">
 						
 						<div class="select-group">
-							<label for="table-select"><i class="fa-solid fa-utensils" style="color: rgba(208, 130, 9, 0.8);;"></i></label> 
-							<select id="table-select" name="tables" required>
-								<option value="none">Choisissez le nombre de couverts</option>
-								
-								<c:forEach var="current" items="${restaurant.tables }">
-								
-									<c:if test='${!current.state.equals("pres") }'>
-										<option value="${current.id }">${current.numberPlace } couverts</option>
-									</c:if>
+							<label for="table-select">
+								<i class="fa-solid fa-utensils"></i>
+								<select id="table-select" name="tables" required>
+									<option value="none">Choisissez le nombre de couverts</option>
 									
-								</c:forEach>
-								
-							</select>
+									<c:forEach var="current" items="${restaurant.tables }">
+									
+										<c:if test='${!current.state.equals("pres") }'>
+											<option value="${current.id }">${current.numberPlace } couverts</option>
+										</c:if>
+										
+									</c:forEach>
+									
+								</select>
+							</label> 
 						</div>
 						<c:if test="${errorTable != null}">
 							<span class="error-span">${errorTable }</span>
@@ -79,11 +81,15 @@
 					<div class="form-group display-flex-column">
 					
 					    <div class="input-group">
-					    	<label for="reservation-date"><i class="fa-regular fa-calendar-days" style="color: rgba(208, 130, 9, 0.8);;"></i></label>
-					        <input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />					  
+					    	<label for="reservation-date">
+					    		<i class="fa-regular fa-calendar-days"></i>
+					        	<input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />					  
+					        </label>
 					        
-					        <label for="reservation-hour"><i class="fa-solid fa-clock" style="color: rgba(208, 130, 9, 0.8);;"></i></label>
-					        <input type="time" id="reservation-hour" name="reservation-hour"  />
+					        <label for="reservation-hour">
+					        	<i class="fa-solid fa-clock"></i>
+					        	<input type="time" id="reservation-hour" name="reservation-hour"  />
+					        </label>
 					    </div>
 					    
 					    <c:if test="${errors.hour != null || errors.reservationTime != null}">
@@ -101,10 +107,12 @@
 					</div>
 					
 					<div class="form-group display-flex-column">
-						<label for="reservation-message-object"></label>
-					    <input id="reservation-message-object" type="text" name="reservation-message-object" value="${defaultReservationObjectMessage }" hidden="true" />
-						<label for="reservation-message-content"></label>
-						<textarea id="reservation-message-content" class="messageContent" placeholder="Commentaires sur votre resérvation..." name="reservation-message-content" rows="5" cols="33"></textarea>
+						<label for="reservation-message-object">
+						    <input id="reservation-message-object" type="text" name="reservation-message-object" value="${defaultReservationObjectMessage }" hidden="true" />
+						</label>
+						<label for="reservation-message-content">
+							<textarea id="reservation-message-content" class="messageContent" placeholder="Commentaires sur votre resérvation..." name="reservation-message-content" rows="5" cols="33"></textarea>
+						</label>
 						<span class="error-reservation-message-content error-span"></span>
 					</div>
 							

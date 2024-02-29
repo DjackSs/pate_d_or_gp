@@ -29,7 +29,7 @@
 			<form action="updateUser" method="POST">
 			
 				<div class="alignLabelInput">
-					<label>Prénom : </label> 
+					<label for="name">Prénom : </label> 
 					<c:choose>
 						<c:when test="${errors.nameSize != null }">
 							<input type="text" name="name" id="name" placeholder="${errors.nameSize }">
@@ -41,7 +41,7 @@
 				</div>
 				
 				<div class="alignLabelInput">
-					<label>Nom : </label>
+					<label for="lastname">Nom : </label>
 					<c:choose>
 						<c:when test="${errors.lastnameSize != null }">
 							<input type="text" name="lastname" id="lastname" placeholder="${errors.lastnameSize }">
@@ -53,7 +53,7 @@
 				</div>
 				
 				<div class="alignLabelInput">
-					<label>Email : </label>
+					<label for="email">Email : </label>
 					<c:choose>
 						<c:when test="${errors.emailSize != null }">
 							<input type="email" name="email" id="email" placeholder="${errors.emailSize }">
@@ -68,7 +68,7 @@
 				</div>
 				
 				<div class="alignLabelInput">
-					<label>Mot de passe: </label>
+					<label for="password">Mot de passe: </label>
 					<input type="password" name="password" id="password" placeholder="${errors.password }">
 				</div>
 			
