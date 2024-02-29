@@ -172,7 +172,6 @@ label[for="reservation-message-content"] {
 	border: 1px solid rgba(61,58,75,0.5);
 	transform: translate(0);
 	transition: all 0.3s ease-in-out;
-	font-size: calc(0.5rem + 0.5vw);
 }
 .form-resa-container > form  input[type="submit"]:hover, .form-resa-container > form  input[type="submit"]:focus-visible {
 	 transform: translate(-1px, -1px);

@@ -53,7 +53,7 @@ public class ServletUserPage extends HttpServlet
 		{
 			User user = (User) request.getSession().getAttribute("user");
 			
-			if(user.getReservations().isEmpty())
+			if(!user.getReservations().isEmpty())
 			{
 				try
 				{
@@ -76,6 +76,7 @@ public class ServletUserPage extends HttpServlet
 						allResaVO.add(resaVO);
 						
 					}
+					
 						
 					request.setAttribute("reservationVO", allResaVO);
 					
