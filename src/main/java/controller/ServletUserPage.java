@@ -53,7 +53,7 @@ public class ServletUserPage extends HttpServlet
 		{
 			User user = (User) request.getSession().getAttribute("user");
 			
-			if(user.getReservations().size() != 0)
+			if(user.getReservations().isEmpty())
 			{
 				try
 				{
@@ -87,15 +87,9 @@ public class ServletUserPage extends HttpServlet
 				
 			}
 			
-			
 			request.getRequestDispatcher("/WEB-INF/jsp/JSPUserPage.jsp").forward(request, response);
 			
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		
 	}
 
 }

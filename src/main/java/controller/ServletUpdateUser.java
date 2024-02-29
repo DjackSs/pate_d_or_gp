@@ -30,7 +30,7 @@ public class ServletUpdateUser extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// check if updateUSer?delete=true when user click on link to disconnect
+		// check if updateUser?delete=true when user click on link to disconnect
 		if(request.getParameter("delete") != null) 
 		{
 			try 
@@ -63,6 +63,7 @@ public class ServletUpdateUser extends HttpServlet
 		userToUpdate.setLastname(request.getParameter("lastname"));
 		userToUpdate.setEmail(request.getParameter("email"));
 		userToUpdate.setPassword(request.getParameter("password"));
+		userToUpdate.setRole(((User) request.getSession().getAttribute("user")).getRole());
 		
 		try 
 		{
