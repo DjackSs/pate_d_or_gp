@@ -84,7 +84,6 @@ p {
 	cursor: pointer;
 	font-weight: 500;
 	font-family: "Montserrat", sans-serif;
-	position: relative;
     color: #f8f9fa;
     font-size: calc(0.5rem + 0.5vw);
 }
