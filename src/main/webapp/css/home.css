@@ -38,7 +38,7 @@
 
 .beige-subtitle {
 	text-align: center;
-	color: rgba(208, 130, 9, 0.8);;
+	color: rgba(208, 130, 9, 0.8);
 	margin-bottom: 1rem;
 }
 
@@ -122,7 +122,7 @@ p {
 	 display: inline-block;
 	 width: max-content;
 	 text-decoration: none;
-	 background-color: rgba(208, 130, 9, 0.8);;
+	 background-color: rgba(208, 130, 9, 0.8);
 	 color: #000;
 	 margin-top: 1rem;
 	 padding: 4px 8px;
@@ -140,7 +140,7 @@ p {
  
  /*********** HOME RESTAURANT ***********/
 .home-restaurant-section {
-	background-color: rgba(208, 130, 9, 0.8);;
+	background-color: rgba(208, 130, 9, 0.8);
 	padding-bottom: 5rem;
 }
 
@@ -251,7 +251,7 @@ p {
   flex-basis: 70%;
   height: calc(18rem + 5vh);
   border: 1px solid rgba(238,235,208,0.5);
-  box-shadow: 1px 1px 4px rgba(208, 130, 9, 0.8);;
+  box-shadow: 1px 1px 4px rgba(208, 130, 9, 0.8);
 }
 
 .home-products-card .home-products-card__box-img {
@@ -274,7 +274,7 @@ p {
   flex-basis: 50%;
   max-width: 50%;
   padding: 4rem 1.4rem;
-  background-color: rgba(208, 130, 9, 0.8);;
+  background-color: rgba(208, 130, 9, 0.8);
   color: #111;
   overflow: hidden;
 }

@@ -38,7 +38,7 @@
 
 .beige-subtitle {
 	text-align: center;
-	color: rgba(208, 130, 9, 0.8);;
+	color: rgba(208, 130, 9, 0.8);
 	margin-bottom: 1rem;
 }
 
@@ -83,7 +83,7 @@ h3, h4 {
 .restaurant-content__img-box {
 	flex-basis: 50%;
 	border: 1px solid rgba(238,235,208,0.5);
-	box-shadow: 2px 2px 4px rgba(208, 130, 9, 0.8);;
+	box-shadow: 2px 2px 4px rgba(208, 130, 9, 0.8);
 }
 .restaurant-content__img-box > img {
 	width: 100%;
@@ -99,7 +99,7 @@ h3, h4 {
 	gap: 10px;
 	background-color: rgb(1, 1, 1,0.5);
 	border: 1px solid rgba(238,235,208,0.5);
-	box-shadow: 2px 2px 4px rgba(208, 130, 9, 0.8);;
+	box-shadow: 2px 2px 4px rgba(208, 130, 9, 0.8);
 }
 .restaurant-content__card-box > div > ul {
 	list-style-type: " - ";
@@ -122,7 +122,7 @@ h3, h4 {
 	color: #000;
 	display: inline-block;
 	text-decoration: none;
-	background-color: rgba(208, 130, 9, 0.8);;
+	background-color: rgba(208, 130, 9, 0.8);
 	padding: 4px 8px;
 	font-size: 1rem;
 	font-weight: 500;

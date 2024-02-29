@@ -61,15 +61,15 @@ h1 {
     flex: 1;
     text-align: left; 
     background-color: #383C40;
-    color: rgba(208, 130, 9, 0.8);;
-    border: 1px solid rgba(208, 130, 9, 0.8);;
+    color: rgba(208, 130, 9, 0.8);
+    border: 1px solid rgba(208, 130, 9, 0.8);
     outline: none;
     padding: 5px;
     font-size: calc(0.5rem + 0.5vw);
 }
 
 .alignLabelInput input:not([type="submit"]):focus {
-	border: 2px solid rgba(208, 130, 9, 0.8);;
+	border: 2px solid rgba(208, 130, 9, 0.8);
 	margin: -1px;
 }
 
@@ -84,7 +84,7 @@ h1 {
 	font-family: "Montserrat", sans-serif;
 	font-size: calc(0.5rem + 0.5vw);
 	font-weight: 500;
-	background-color: rgba(208, 130, 9, 0.8);;
+	background-color: rgba(208, 130, 9, 0.8);
 	color: #111;
 	border-radius: 2px;
 	border: 1px solid rgba(61,58,75,0.5);
@@ -98,7 +98,7 @@ h1 {
 }
 
 ::placeholder {
-	color: rgba(208, 130, 9, 0.8);;
+	color: rgba(208, 130, 9, 0.8);
 	opacity: 0.5;
 }
 
