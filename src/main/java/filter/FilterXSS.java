@@ -35,7 +35,7 @@ public class FilterXSS extends HttpFilter implements Filter
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		
-		req = new XssWrapper (req);
+		req = new XssWrapper(req);
 		
 		chain.doFilter(req , res );
 	}
