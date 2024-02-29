@@ -65,7 +65,7 @@
 
 
 .messageContent.textarea-style {
-	border: 2px solid rgba(208, 130, 9, 0.8);;
+	border: 2px solid rgba(208, 130, 9, 0.8);
 	margin: -1px;
 }
 .messageContent.error-border {
@@ -115,16 +115,23 @@ h3 {
 	margin-bottom: 40px;
 	text-align: center;
 	font-style: italic;
-    color: rgba(208, 130, 9, 0.8);;
+    color: rgba(208, 130, 9, 0.8);
 }
 
 span {
 	font-style: italic;
 }
 
+label[for="reservation-message-content"] {
+	display: inline-flex;
+}
 
-label {
-    margin-right: 5px;
+.input-group label {
+	margin-right: 5px;
+}
+
+label > i {
+	color: rgba(208, 130, 9, 0.8);
 }
 
 /*********** RESA SECTION ***********/
@@ -142,13 +149,13 @@ label {
 .form-resa-container > form  input:not([type="submit"]), .form-resa-container > form  select, .form-resa-container > form textarea {
 	padding: 5px;
 	font-size: calc(0.5rem + 0.5vw);
-	border: 1px solid rgba(208, 130, 9, 0.8);;
+	border: 1px solid rgba(208, 130, 9, 0.8);
 	background-color: #3d3a4b;
 	color: #f1f1f1;
 	outline: none;
 }
 .form-resa-container > form  input:not([type="submit"]):focus, .form-resa-container > form  select:focus {
-	border: 2px solid rgba(208, 130, 9, 0.8);;
+	border: 2px solid rgba(208, 130, 9, 0.8);
 	margin: -1px;
 	
 }
@@ -158,7 +165,7 @@ label {
 	font-family: "Montserrat", sans-serif;
 	font-size: calc(0.5rem + 0.5vw);
 	font-weight: 500;
-	background-color: rgba(208, 130, 9, 0.8);;
+	background-color: rgba(208, 130, 9, 0.8);
 	color: #111;
 	border-radius: 2px;
 	border: 1px solid rgba(61,58,75,0.5);
@@ -166,10 +173,11 @@ label {
 	transition: all 0.3s ease-in-out;
 	font-size: calc(0.5rem + 0.5vw);
 }
-.form-resa-container > form  input[type="submit"]:hover {
+.form-resa-container > form  input[type="submit"]:hover, .form-resa-container > form  input[type="submit"]:focus-visible {
 	 transform: translate(-1px, -1px);
   	 box-shadow: 0px 0px 10px rgba(241,241,241,0.8);
 }
+
 
 /**********FOOTER*******************************/
 footer {

@@ -24,6 +24,8 @@ public class ServletReservation extends HttpServlet
 	private RestaurantBLL restaurantBll;
 	private UserBLL userBLL;
 	private Restaurant restaurant;
+	
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
 	@Override
@@ -45,12 +47,10 @@ public class ServletReservation extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{	
-		User userSession = (User) request.getSession().getAttribute("user");
-
 		int idRestaurant = Integer.parseInt(request.getParameter("idRestaurant"));
 
 		LocalDate now = LocalDate.now();
-		String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String dateTimeInputMin = now.format(DATE_FORMAT);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation.jsp");
 
@@ -79,7 +79,7 @@ public class ServletReservation extends HttpServlet
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPReservation.jsp");
 
 		LocalDate now = LocalDate.now();
-		String dateTimeInputMin = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String dateTimeInputMin = now.format(DATE_FORMAT);
 
 		request.setAttribute("dateTimeInputMin", dateTimeInputMin);
 		request.setAttribute("restaurant", this.restaurant);
@@ -107,11 +107,11 @@ public class ServletReservation extends HttpServlet
 				String userDefaultMessageObjectReservation = request.getParameter("reservation-message-object");
 				String userMessageContentReservation = request.getParameter("reservation-message-content");
 
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				DateTimeFormatter formatter = DATE_FORMAT;
 				LocalDate date = LocalDate.parse(dateTimeInputMin, formatter);
 				String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-				String userMessageObjectReservation = dateReservationStr + " | " + userDefaultMessageObjectReservation;
+				String userMessageObjectReservation = formattedDate + " | " + userDefaultMessageObjectReservation;
 
 				if(!userMessageContentReservation.isBlank()) {
 					Message newReservationMessage = new Message(userMessageObjectReservation, userMessageContentReservation);
