@@ -57,8 +57,8 @@
 					<div class="form-group display-flex-column">
 						
 						<div class="select-group">
-							<label for="table-select">
 								<i class="fa-solid fa-utensils"></i>
+							<label for="table-select">
 								<select id="table-select" name="tables" required>
 									<option value="none">Choisissez le nombre de couverts</option>
 									
@@ -81,13 +81,13 @@
 					<div class="form-group display-flex-column">
 					
 					    <div class="input-group">
+					    	<i class="fa-regular fa-calendar-days"></i>
 					    	<label for="reservation-date">
-					    		<i class="fa-regular fa-calendar-days"></i>
 					        	<input type="date" id="reservation-date" name="reservation-date" min="${dateTimeInputMin }" />					  
 					        </label>
 					        
+					        <i class="fa-solid fa-clock"></i>
 					        <label for="reservation-hour">
-					        	<i class="fa-solid fa-clock"></i>
 					        	<input type="time" id="reservation-hour" name="reservation-hour"  />
 					        </label>
 					    </div>

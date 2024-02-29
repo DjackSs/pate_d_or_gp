@@ -56,6 +56,8 @@ public class ServletMessage extends HttpServlet
 			user.addMessage(newMessage);
 			
 			this.userBLL.update(user);
+			
+			response.sendRedirect(request.getContextPath()+"/user");
 		}
 		catch (BLLException e)
 		{	
@@ -67,7 +69,7 @@ public class ServletMessage extends HttpServlet
 			rd.forward(request, response);
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/user");
+		
 		
 		
 		
