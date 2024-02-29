@@ -122,9 +122,16 @@ span {
 	font-style: italic;
 }
 
+label[for="reservation-message-content"] {
+	display: inline-flex;
+}
 
-label {
-    margin-right: 5px;
+.input-group label {
+	margin-right: 5px;
+}
+
+label > i {
+	color: rgba(208, 130, 9, 0.8);
 }
 
 /*********** RESA SECTION ***********/

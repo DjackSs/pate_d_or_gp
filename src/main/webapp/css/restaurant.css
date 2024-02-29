@@ -81,6 +81,7 @@ h3, h4 {
 }
 
 .restaurant-content__img-box {
+	display: inline-flex;
 	flex-basis: 50%;
 	border: 1px solid rgba(238,235,208,0.5);
 	box-shadow: 2px 2px 4px rgba(208, 130, 9, 0.8);
