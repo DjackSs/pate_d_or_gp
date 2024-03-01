@@ -41,7 +41,7 @@ public class ServletReservation extends HttpServlet
 		} 
 		catch (BLLException e) 
 		{
-			e.printStackTrace();
+			throw new ServletException("Impossible de se connecter à la base de données", e);
 		}
 	}
 
