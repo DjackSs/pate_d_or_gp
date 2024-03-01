@@ -638,8 +638,7 @@ public class UserBLL
 		}
 		catch (NoSuchAlgorithmException e) 
 		{
-			
-			e.printStackTrace();
+			throw new NoSuchAlgorithmException("Echec du cryptage du mot de passe", e);
 		}
 		
 		return mdp;	
