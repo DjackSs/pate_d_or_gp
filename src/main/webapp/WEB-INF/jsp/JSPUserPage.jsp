@@ -78,9 +78,9 @@
 													<td>${reservationVO.reservationTime}
 														<i>
 															<c:choose>
-																<c:when test="${reservation.state == 'hold' }">validée</c:when>
-																<c:when test="${reservation.state == 'gran' }">en attente</c:when>
-																<c:when test="${reservation.state == 'deni' }">refusée</c:when>
+																<c:when test="${reservation.state == 'hold' }">En attente ⌛</c:when>
+																<c:when test="${reservation.state == 'gran' }">Validée ✔</c:when>
+																<c:when test="${reservation.state == 'deni' }">Refusée ❌</c:when>
 															</c:choose>
 														</i>
 													</td>
