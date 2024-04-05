@@ -18,8 +18,19 @@ EXPOSE 8080
 CMD [ "catalina.sh", "run" ]
 
 #-------------------------------------
+# 1)Allow the container to connect local database:
 
-# ->Creat and run the container
+# -> get local ip address
+# ipconfig (window)
+
+# -> replace "localhost" with the ip address in hibernate.cfg.xml, within the hibernate.connection.url property tag.
+
+#-------------------------------------
+# 2)Create a .war file
+
+
+#-------------------------------------
+# 3)Creat and run the container
 
 # 1) create and tag image :
 # docker build -t java-app:0.1 .
@@ -29,11 +40,3 @@ CMD [ "catalina.sh", "run" ]
 
 # 3) app is runnig on http://localhost:8083/pate_d_or_gp/home
 
-#-------------------------------------
-
-# ->Allow the container to connect local database:
-
-# 1) get local ip address
-# ipconfig (window)
-
-# 2) replace "localhost" with the ip address in hibernate.cfg.xml, within the hibernate.connection.url property tag.

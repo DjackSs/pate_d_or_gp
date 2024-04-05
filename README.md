@@ -66,13 +66,16 @@ Replace "user" and "password" with your credentials.
 
 #### Tomcat server
 
-This application runs on a Tomcat server.
-The [apach-tomcat folder](/BDD/apache-tomcat-10.1.18) contains what is needed to create a server.
+This application runs on a [Tomcat 10.1](https://tomcat.apache.org/download-10.cgi) server.
 
 - Eclipse IDE
 
-1) Preferences/Server/Runtime Environements -> Add the ./BDD/apach-tomcat folder
+1) Preferences/Server/Runtime Environements -> Add the tomcat folder
 2) Add the library in the project Build Path as Server Runtime
 
 Run [ServletHome](/src/main/java/controller/ServletHome.java) on the server.
+
+#### Tomcat container
+
+It is possible to run this application in a docker container, see [Dockerfile](/Dockerfile) for more details.
 
