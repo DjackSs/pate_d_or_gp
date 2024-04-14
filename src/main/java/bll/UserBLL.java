@@ -51,6 +51,11 @@ public class UserBLL
 		}
 	}
 	
+	public UserBLL(UserDAO userDAO)
+	{
+		this.dao = userDAO;
+	}
+	
 	//======================================
 	
 	public List<User> selectAll() throws BLLException 

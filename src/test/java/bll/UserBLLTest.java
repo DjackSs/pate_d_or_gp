@@ -1,35 +1,44 @@
 package bll;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import bo.User;
+import dal.DALException;
+import dal.UserDAO;
+
+
+@ExtendWith(MockitoExtension.class)
 class UserBLLTest 
 {
+	@InjectMocks
 	private UserBLL userBll;
+	
+	@Mock
+	private UserDAO dao;
 	
 	//===============================
 	
 	@BeforeEach
 	void initUserBLL()
 	{
-		try 
-		{
-			this.userBll = new UserBLL();
-		} 
-		catch (BLLException e) 
-		{
-			e.printStackTrace();
-		}
+		this.userBll = new UserBLL(this.dao);
 	}
 
 	@AfterEach
 	void destroyUserBLL()
 	{
 		this.userBll = null;
-		
 	}
 	
 	//===============================
@@ -57,13 +66,51 @@ class UserBLLTest
 	//-----------------------------------
 	
 	@Test
-	void selectByEmailAndPasswordWithWrongEmailAndWrongPasswordTrowBLLException()
+	void selectByEmailAndPasswordWithWrongEmailAndWrongPasswordTrowBLLException() throws DALException
 	{
 		String wrongEmail = "email@wrong.com";
 		String wrongPassword = "wrong";
 		
-		assertThrows(BLLException.class, ()-> this.userBll.selectByEmailAndPassword(wrongEmail, wrongPassword), "selectByEmailAndPassword with wrong email and  wrong password should throw BLLException");
+		when(this.dao.selectByEmailAndPassword(Mockito.anyString(), Mockito.anyString() )).thenThrow(DALException.class);
+		
+		assertThrows(BLLException.class, ()-> this.userBll.selectByEmailAndPassword(wrongEmail, wrongPassword), "selectByEmailAndPassword with wrong email and wrong password should throw BLLException");
 		
 	}
+	
+	//-----------------------------------
+	
+		@Test
+		void selectByEmailAndPasswordWithValidEmailAndPassword() throws DALException
+		{
+			
+			String Email = "email@right.com";
+			String Password = "R1ght!";
+			
+			User userMock = new User();
+			
+			when(this.dao.selectByEmailAndPassword(Mockito.anyString(), Mockito.anyString() )).thenReturn(userMock);
+			
+			User userResult = null;
+			
+			try 
+			{
+				userResult = this.userBll.selectByEmailAndPassword(Email, Password);
+			} 
+			catch (BLLException e) 
+			{
+				for(String error : e.getErrors().values())
+				{
+					System.out.println(error);
+			
+				};
+				
+			}
+			
+			assertNotNull(userResult);
+			
+			
+			
+			
+		}
 
 }
