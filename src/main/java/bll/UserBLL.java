@@ -148,8 +148,7 @@ public class UserBLL
 	public User insert(User user) throws BLLException 
 	{
 		BLLException bll = new BLLException ();
-		
-		
+			
 		//name
 		if(!StringUtils.isBlank(user.getName()))
 		{
