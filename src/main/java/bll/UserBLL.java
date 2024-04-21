@@ -30,9 +30,12 @@ public class UserBLL
 	private static final int USER_EMAIL_MAX_LENGTH = 60;
 	private static final int USER_PASSWORD_MAX_LENGTH = 60;
 	private static final String EMAIL_REGEX = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";
+	
 	//The password must contain at least one lowercase character, one uppercase character, one digit, one special character, and a length between 4 to 20.
 	//https://mkyong.com/regular-expressions/how-to-validate-password-with-regular-expression/
 	private static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{4,20}$";
+	
+	private static final String USER_ROLE_DEFAULT = "cust";
 	
 	//------------------message constants
 	private static final int MESSAGE_OBJECT_MAX_LENGTH = 100;
@@ -49,6 +52,11 @@ public class UserBLL
 		} catch (DALException error) {
 			throw new BLLException("Echec de la connexion", error);
 		}
+	}
+	
+	public UserBLL(UserDAO userDAO)
+	{
+		this.dao = userDAO;
 	}
 	
 	//======================================
@@ -143,8 +151,7 @@ public class UserBLL
 	public User insert(User user) throws BLLException 
 	{
 		BLLException bll = new BLLException ();
-		
-		
+			
 		//name
 		if(!StringUtils.isBlank(user.getName()))
 		{
@@ -251,7 +258,7 @@ public class UserBLL
 		}	
 		
 		//role
-		user.setRole("cust");
+		user.setRole(USER_ROLE_DEFAULT);
 		
 		try 
 		{
@@ -546,6 +553,12 @@ public class UserBLL
 			}
 		}
 		
+		//role
+		if(StringUtils.isBlank(user.getRole()))
+		{
+			user.setRole(USER_ROLE_DEFAULT);
+		}
+		
 		
 		if(bll.getErrors().size() != 0)
 		{
@@ -563,7 +576,6 @@ public class UserBLL
 				
 				user.setPassword(hashedPassword);
 			}
-			
 			
 			dao.update(user);
 			
