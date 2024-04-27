@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import bll.BLLException;
+import bll.BLLFactory;
 import bll.UserBLL;
 import bo.User;
 import jakarta.servlet.ServletException;
@@ -20,7 +21,7 @@ public class ServletUpdateUser extends HttpServlet
 		super.init();
 		try 
 		{
-			userBLL = new UserBLL();
+			userBLL = BLLFactory.getUserBLL();
 		} 
 		catch (BLLException e) 
 		{

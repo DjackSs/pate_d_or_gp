@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import bll.BLLException;
+import bll.BLLFactory;
 import bll.RestaurantBLL;
 import bo.Reservation;
 import bo.Restaurant;
@@ -29,7 +30,7 @@ public class ServletUserPage extends HttpServlet
 		super.init();
 		try 
 		{
-			this.restaurantBLL = new RestaurantBLL();
+			this.restaurantBLL = BLLFactory.getRestaurantBLL();
 		} 
 		catch (BLLException e) 
 		{

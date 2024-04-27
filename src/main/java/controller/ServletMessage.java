@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import bll.BLLException;
+import bll.BLLFactory;
 import bll.UserBLL;
 import bo.Message;
 import bo.User;
@@ -25,7 +26,7 @@ public class ServletMessage extends HttpServlet
 		super.init();
 		try 
 		{
-			this.userBLL = new UserBLL();
+			this.userBLL = BLLFactory.getUserBLL();
 		} 
 		catch (BLLException e)
 		{

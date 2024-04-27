@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import bll.BLLException;
+import bll.BLLFactory;
 import bll.RestaurantBLL;
 import bll.UserBLL;
 import bo.Message;
@@ -34,8 +35,8 @@ public class ServletReservation extends HttpServlet
 
 		try 
 		{
-			this.restaurantBll = new RestaurantBLL();
-			this.userBLL = new UserBLL();
+			this.restaurantBll = BLLFactory.getRestaurantBLL();;
+			this.userBLL = BLLFactory.getUserBLL();
 			this.restaurant = new Restaurant();
 
 		} 

@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import bll.BLLException;
+import bll.BLLFactory;
 import bll.CardBLL;
 import bll.RestaurantBLL;
 import bo.Card;
@@ -25,8 +26,8 @@ public class ServletRestaurant extends HttpServlet
 		
 		try 
 		{
-			this.restaurantBll = new RestaurantBLL();
-			this.cardBll = new CardBLL();
+			this.restaurantBll = BLLFactory.getRestaurantBLL();
+			this.cardBll = BLLFactory.getCardBLL();
 		} 
 		catch (BLLException e) 
 		{
