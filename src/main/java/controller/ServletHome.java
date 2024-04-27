@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import bll.BLLException;
+import bll.BLLFactory;
 import bll.RestaurantBLL;
 import bo.Restaurant;
 import jakarta.servlet.RequestDispatcher;
@@ -26,7 +27,7 @@ public class ServletHome extends HttpServlet
 		
 		try 
 		{
-			this.restaurantBll = new RestaurantBLL();
+			this.restaurantBll = BLLFactory.getRestaurantBLL();
 		} 
 		catch (BLLException e) 
 		{
