@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ import bo.Reservation;
 import bo.Schedule;
 import bo.User;
 import dal.DALException;
+import dal.DAOFactory;
 import dal.UserDAO;
 
 
@@ -36,6 +38,12 @@ import dal.UserDAO;
 @DisplayName("Test for UserBLL")
 class UserBLLTest 
 {
+
+	@BeforeAll
+	static void initFactory()
+	{
+		mockStatic(DAOFactory.class);
+	}
 	
 	//===============================
 	//selectByEmailAndPassword
@@ -50,12 +58,16 @@ class UserBLLTest
 		@Mock
 		private UserDAO dao;
 		
+		
 		//===============================
 		
+		
 		@BeforeEach
-		void initUserBLL()
+		void initUserBLL() throws DALException, BLLException
 		{
-			this.userBll = new UserBLL(this.dao);
+			when(DAOFactory.getUserDAO()).thenReturn(this.dao);
+			
+			this.userBll = new UserBLL();
 		}
 
 		@AfterEach
@@ -140,10 +152,13 @@ class UserBLLTest
 		
 		//===============================
 		
+		
 		@BeforeEach
-		void initUserBLL()
+		void initUserBLL() throws DALException, BLLException
 		{
-			this.userBll = new UserBLL(this.dao);
+			when(DAOFactory.getUserDAO()).thenReturn(this.dao);
+			
+			this.userBll = new UserBLL();
 		}
 
 		@AfterEach
@@ -248,10 +263,14 @@ class UserBLLTest
 		
 		//===============================
 		
+		
+		
 		@BeforeEach
-		void initUserBLL()
+		void initUserBLL() throws DALException, BLLException
 		{
-			this.userBll = new UserBLL(this.dao);
+			when(DAOFactory.getUserDAO()).thenReturn(this.dao);
+			
+			this.userBll = new UserBLL();
 		}
 
 		@AfterEach
@@ -308,6 +327,7 @@ class UserBLLTest
 		
 		//===============================
 		
+		
 		@BeforeAll
 		static void initSchedules()
 		{
@@ -324,9 +344,11 @@ class UserBLLTest
 		}
 		
 		@BeforeEach
-		void initUserBLL()
+		void initUserBLL() throws DALException, BLLException
 		{
-			this.userBll = new UserBLL(this.dao);
+			when(DAOFactory.getUserDAO()).thenReturn(this.dao);
+			
+			this.userBll = new UserBLL();
 		}
 
 		@AfterEach
@@ -442,10 +464,13 @@ class UserBLLTest
 			dataBaseUser = new User("userName", "userLastname", "userEmail@mail.com", "", "cust");
 		}
 		
+		
 		@BeforeEach
-		void initUserBLL()
+		void initUserBLL() throws DALException, BLLException
 		{
-			this.userBll = new UserBLL(this.dao);
+			when(DAOFactory.getUserDAO()).thenReturn(this.dao);
+			
+			this.userBll = new UserBLL();
 		}
 
 		@AfterEach

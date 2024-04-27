@@ -17,6 +17,7 @@ import bo.Reservation;
 import bo.Schedule;
 import bo.User;
 import dal.DALException;
+import dal.DAOFactory;
 import dal.UserDAO;
 
 public class UserBLL 
@@ -47,17 +48,16 @@ public class UserBLL
 	
 	public UserBLL() throws BLLException 
 	{
-		try {
-			dao = new UserDAO();
-		} catch (DALException error) {
+		try 
+		{
+			dao = DAOFactory.getUserDAO();
+		} 
+		catch (DALException error) 
+		{
 			throw new BLLException("Echec de la connexion", error);
 		}
 	}
 	
-	public UserBLL(UserDAO userDAO)
-	{
-		this.dao = userDAO;
-	}
 	
 	//======================================
 	

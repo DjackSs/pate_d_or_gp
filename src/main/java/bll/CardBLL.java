@@ -5,6 +5,7 @@ import java.util.List;
 import bo.Card;
 import dal.CardDAO;
 import dal.DALException;
+import dal.DAOFactory;
 
 public class CardBLL 
 {
@@ -16,7 +17,7 @@ public class CardBLL
 	{
 		try 
 		{
-			dao = new CardDAO();
+			dao = DAOFactory.getCardDAO();
 		} 
 		catch (DALException e) 
 		{

@@ -4,6 +4,7 @@ import java.util.List;
 
 import bo.Restaurant;
 import dal.DALException;
+import dal.DAOFactory;
 import dal.RestaurantDAO;
 
 public class RestaurantBLL 
@@ -17,7 +18,7 @@ public class RestaurantBLL
 		
 		try
 		{
-			this.dao = new RestaurantDAO();
+			this.dao = DAOFactory.getRestaurantDAO();
 			
 		}
 		catch (DALException error)
