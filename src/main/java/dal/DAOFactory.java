@@ -6,7 +6,7 @@ public class DAOFactory
 	private static CardDAO cardDAO;
 	private static RestaurantDAO restaurantDAO;
 	
-	private DAOFactory() {};
+	private DAOFactory() {}
 	
 	public static UserDAO getUserDAO() throws DALException
 	{
