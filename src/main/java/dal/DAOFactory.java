@@ -6,6 +6,8 @@ public class DAOFactory
 	private static CardDAO cardDAO;
 	private static RestaurantDAO restaurantDAO;
 	
+	private DAOFactory() {};
+	
 	public static UserDAO getUserDAO() throws DALException
 	{
 		if(userDAO == null) userDAO = new UserDAO();

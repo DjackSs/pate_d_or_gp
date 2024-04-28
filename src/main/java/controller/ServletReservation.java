@@ -35,7 +35,7 @@ public class ServletReservation extends HttpServlet
 
 		try 
 		{
-			this.restaurantBll = BLLFactory.getRestaurantBLL();;
+			this.restaurantBll = BLLFactory.getRestaurantBLL();
 			this.userBLL = BLLFactory.getUserBLL();
 			this.restaurant = new Restaurant();
 
