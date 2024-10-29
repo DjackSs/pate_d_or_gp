@@ -1,0 +1,27 @@
+version: '2'
+services:
+ db:
+  image: mysql:latest
+  restart: always
+  volumes:
+   - "./BDD/mysql/dump:/docker-entrypoint-initdb.d"
+   # - db_data:/var/lib/mysql/data
+  environment:
+   MYSQL_ROOT_PASSWORD: hello
+   MYSQL_USER: nat
+   MYSQL_PASSWORD: sqlJeTaime
+   MYSQL_DATABASE: pate_d_or
+  ports:
+   - "3307:3307"
+ pate_d_or_gp:
+  depends_on: 
+   - db
+  build: .
+  ports:
+   - "8080:8080"
+  links:
+   - "db:pate_d_or"
+  
+   
+volumes:
+ db_data:
