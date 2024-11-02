@@ -1,0 +1,28 @@
+version: '2'
+services:
+ db:
+  build: ../BDD/mysql/
+  restart: always
+  environment:
+   MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+   MYSQL_USER: ${DATABASE_USER}
+   MYSQL_PASSWORD: ${DATABASE_USER_PASSWORD}
+   MYSQL_DATABASE: pate_d_or
+   MYSQL_TCP_PORT: 3307
+  volumes:
+    - mydata:/var/lib/mysql
+  ports:
+   - "3307:3307"
+   
+ pate_d_or_gp:
+  depends_on: 
+   - db
+  build: .
+  restart: always
+  ports:
+   - "8080:8080"
+  links:
+   - "db:pate_d_or"
+  
+volumes:
+ mydata:

@@ -4,7 +4,6 @@ FROM tomcat:10
 # info about the container
 LABEL name="Pate D'Or gp" 
 
-# container's image name
 WORKDIR /java-app
 
 # creat the .war file
@@ -17,26 +16,19 @@ EXPOSE 8080
 # run the tomcat
 CMD [ "catalina.sh", "run" ]
 
-#-------------------------------------
-# 1)Allow the container to connect local database:
-
-# -> get local ip address
-# ipconfig (window)
-
-# -> replace "localhost" with the ip address in hibernate.cfg.xml, within the hibernate.connection.url property tag.
 
 #-------------------------------------
-# 2)Create a .war file
+# 1)Create a .war file
 
 
 #-------------------------------------
-# 3)Creat and run the container
+# 2)Creat and run the container
 
-# 1) create and tag image :
+# 1 - create and tag image :
 # docker build -t java-app:0.1 .
 
-# 2) create container
+# 2-  create container
 # docker container run --name java-app01 -p 8083:8080 -d java-app:0.1 
 
-# 3) app is runnig on http://localhost:8083/pate_d_or_gp/home
+# 3-  app is runnig on http://localhost:8083/pate_d_or_gp/home
 
