@@ -75,7 +75,10 @@ This application runs on a [Tomcat 10.1](https://tomcat.apache.org/download-10.c
 
 Run [ServletHome](/src/main/java/controller/ServletHome.java) on the server.
 
-#### Tomcat container
+#### Docker
 
-It is possible to run this application in a docker container, see [Dockerfile](/Dockerfile) for more details.
+It is possible to run this application in containers.
+In the [docker folder](/docker), complete the .env and the hibernate.cfg.xml, then add the hibernate.cfg.xml [here](/src/main/java).
+
+Run `docker compose up -d`.
 
