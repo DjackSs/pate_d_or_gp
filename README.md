@@ -78,7 +78,7 @@ Run [ServletHome](/src/main/java/controller/ServletHome.java) on the server.
 #### Docker
 
 It is possible to run this application in containers.
-In the [docker folder](/docker), build and add the .war, complete the .env and the hibernate.cfg.xml, then add the hibernate.cfg.xml [here](/src/main/java).
+In the [docker folder](/docker), complete the .env and the hibernate.cfg.xml, then add the hibernate.cfg.xml [here](/src/main/java), then build and add the .war.
 
 Run `docker compose up -d`.
 
